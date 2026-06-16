@@ -1,0 +1,694 @@
+/* ==========================================
+PRODUCT DETAILS PAGE
+========================================== */
+
+/* HERO */
+
+.product-detail-hero{
+
+ 
+padding:180px 0 120px;
+
+position:relative;
+
+overflow:hidden;
+
+background:
+linear-gradient(
+    135deg,
+    #050816,
+    #0f172a
+);
+ 
+
+}
+
+.product-detail-hero::before{
+
+ 
+content:"";
+
+position:absolute;
+
+width:500px;
+height:500px;
+
+border-radius:50%;
+
+background:
+rgba(0,212,255,.08);
+
+top:-150px;
+right:-150px;
+
+filter:blur(80px);
+ 
+
+}
+
+/* PRODUCT IMAGE */
+
+.product-image-wrapper{
+
+ 
+position:relative;
+
+text-align:center;
+ 
+
+}
+
+.main-product-image{
+
+ 
+width:100%;
+
+max-height:550px;
+
+object-fit:cover;
+
+border-radius:30px;
+
+border:
+1px solid rgba(255,255,255,.08);
+
+box-shadow:
+0 25px 60px rgba(0,0,0,.35);
+
+transition:.6s;
+ 
+
+}
+
+.main-product-image:hover{
+
+ 
+transform:
+scale(1.03);
+ 
+
+}
+
+.glow-effect{
+
+ 
+position:absolute;
+
+inset:0;
+
+background:
+radial-gradient(
+    circle,
+    rgba(0,212,255,.15),
+    transparent 70%
+);
+
+filter:blur(40px);
+
+z-index:-1;
+ 
+
+}
+
+/* PRODUCT INFO */
+
+.product-info{
+
+ 
+padding-left:30px;
+ 
+
+}
+
+.product-category{
+
+ 
+display:inline-block;
+
+padding:10px 18px;
+
+border-radius:50px;
+
+background:
+rgba(0,212,255,.12);
+
+color:#00d4ff;
+
+margin-bottom:20px;
+ 
+
+}
+
+.product-title{
+
+ 
+font-size:4rem;
+
+font-weight:800;
+
+color:white;
+
+margin-bottom:25px;
+ 
+
+}
+
+.product-short-description{
+
+ 
+color:
+rgba(255,255,255,.75);
+
+font-size:1.1rem;
+
+margin-bottom:30px;
+ 
+
+}
+
+.featured-badge{
+
+ 
+display:inline-block;
+
+padding:10px 18px;
+
+border-radius:50px;
+
+background:#00ff99;
+
+color:black;
+
+font-weight:600;
+
+margin-bottom:30px;
+ 
+
+}
+
+.action-buttons{
+
+ 
+display:flex;
+
+gap:15px;
+
+flex-wrap:wrap;
+ 
+
+}
+
+/* OVERVIEW */
+
+.product-overview{
+
+ 
+padding:120px 0;
+ 
+
+}
+
+.overview-content{
+
+ 
+background:
+rgba(255,255,255,.05);
+
+border:
+1px solid rgba(255,255,255,.08);
+
+backdrop-filter:
+blur(20px);
+
+border-radius:30px;
+
+padding:50px;
+
+color:
+rgba(255,255,255,.85);
+
+line-height:2;
+ 
+
+}
+
+.overview-content h1,
+.overview-content h2,
+.overview-content h3{
+
+ 
+color:white;
+
+margin-bottom:20px;
+ 
+
+}
+
+.overview-content ul{
+
+ 
+padding-left:25px;
+ 
+
+}
+
+/* SECTION HEADERS */
+
+.section-header{
+
+ 
+text-align:center;
+
+margin-bottom:60px;
+ 
+
+}
+
+.section-tag{
+
+ 
+color:#00d4ff;
+
+font-weight:600;
+
+letter-spacing:2px;
+ 
+
+}
+
+.section-header h2{
+
+ 
+color:white;
+
+font-size:3rem;
+
+margin-top:15px;
+ 
+
+}
+
+/* SPECIFICATIONS */
+
+.specifications-section{
+
+ 
+padding:120px 0;
+ 
+
+}
+
+.specifications-table{
+
+ 
+background:
+rgba(255,255,255,.05);
+
+border-radius:25px;
+
+overflow:hidden;
+
+border:
+1px solid rgba(255,255,255,.08);
+ 
+
+}
+
+.specifications-table table{
+
+ 
+margin-bottom:0;
+ 
+
+}
+
+.specifications-table th{
+
+ 
+width:35%;
+
+color:#00d4ff;
+ 
+
+}
+
+.specifications-table td{
+
+ 
+color:white;
+ 
+
+}
+
+/* GALLERY */
+
+.gallery-section{
+
+ 
+padding:120px 0;
+ 
+
+}
+
+.gallery-card{
+
+ 
+overflow:hidden;
+
+border-radius:25px;
+
+border:
+1px solid rgba(255,255,255,.08);
+
+transition:.5s;
+ 
+
+}
+
+.gallery-card img{
+
+ 
+width:100%;
+
+height:280px;
+
+object-fit:cover;
+
+transition:.6s;
+ 
+
+}
+
+.gallery-card:hover{
+
+ 
+transform:
+translateY(-10px);
+ 
+
+}
+
+.gallery-card:hover img{
+
+ 
+transform:
+scale(1.08);
+ 
+
+}
+
+/* BENEFITS */
+
+.benefits-section{
+
+ 
+padding:120px 0;
+ 
+
+}
+
+.benefit-card{
+
+ 
+height:100%;
+
+text-align:center;
+
+padding:40px 20px;
+
+border-radius:25px;
+
+background:
+rgba(255,255,255,.05);
+
+border:
+1px solid rgba(255,255,255,.08);
+
+backdrop-filter:
+blur(20px);
+
+transition:.4s;
+ 
+
+}
+
+.benefit-card:hover{
+
+ 
+transform:
+translateY(-10px);
+
+background:
+rgba(0,212,255,.08);
+ 
+
+}
+
+.benefit-card i{
+
+ 
+font-size:3rem;
+
+color:#00d4ff;
+
+margin-bottom:20px;
+ 
+
+}
+
+.benefit-card h5{
+
+ 
+color:white;
+ 
+
+}
+
+/* RELATED PRODUCTS */
+
+.related-products{
+
+ 
+padding:120px 0;
+ 
+
+}
+
+.related-card{
+
+ 
+height:100%;
+
+padding:35px;
+
+border-radius:25px;
+
+background:
+rgba(255,255,255,.05);
+
+border:
+1px solid rgba(255,255,255,.08);
+
+backdrop-filter:
+blur(20px);
+
+transition:.4s;
+ 
+
+}
+
+.related-card:hover{
+
+ 
+transform:
+translateY(-12px);
+
+box-shadow:
+0 20px 40px rgba(0,0,0,.25);
+ 
+
+}
+
+.related-card h4{
+
+ 
+color:white;
+
+margin-bottom:15px;
+ 
+
+}
+
+.related-card p{
+
+ 
+color:
+rgba(255,255,255,.75);
+
+margin-bottom:20px;
+ 
+
+}
+
+/* CTA */
+
+.product-cta{
+
+ 
+padding:140px 0;
+
+text-align:center;
+ 
+
+}
+
+.product-cta h2{
+
+ 
+color:white;
+
+font-size:3.5rem;
+
+margin-bottom:20px;
+ 
+
+}
+
+.product-cta p{
+
+ 
+max-width:750px;
+
+margin:auto;
+
+margin-bottom:35px;
+
+color:
+rgba(255,255,255,.75);
+ 
+
+}
+
+/* ANIMATIONS */
+
+.product-info,
+.overview-content,
+.related-card,
+.benefit-card{
+
+ 
+animation:
+fadeUp .8s ease;
+ 
+
+}
+
+@keyframes fadeUp{
+
+ 
+from{
+
+    opacity:0;
+
+    transform:
+    translateY(40px);
+}
+
+to{
+
+    opacity:1;
+
+    transform:
+    translateY(0);
+}
+ 
+
+}
+
+/* FLOATING GLOW */
+
+@keyframes pulseGlow{
+
+ 
+0%{
+
+    transform:scale(1);
+
+    opacity:.5;
+}
+
+50%{
+
+    transform:scale(1.1);
+
+    opacity:1;
+}
+
+100%{
+
+    transform:scale(1);
+
+    opacity:.5;
+}
+ 
+
+}
+
+.glow-effect{
+
+ 
+animation:
+pulseGlow 4s infinite ease-in-out;
+ 
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:992px){
+
+ 
+.product-info{
+
+    padding-left:0;
+    margin-top:40px;
+}
+
+.product-title{
+
+    font-size:2.8rem;
+}
+ 
+
+}
+
+@media(max-width:768px){
+
+ 
+.product-title{
+
+    font-size:2.2rem;
+}
+
+.section-header h2{
+
+    font-size:2rem;
+}
+
+.product-cta h2{
+
+    font-size:2.3rem;
+}
+
+.action-buttons{
+
+    flex-direction:column;
+}
+
+.overview-content{
+
+    padding:30px;
+}
+ 
+
+}

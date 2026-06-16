@@ -1,0 +1,423 @@
+{% extends "base.html" %}
+
+{% block styles %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/certifications.css') }}">
+{% endblock %}
+
+{% block title %}
+Certifications | Mudhai Instrument Services
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+
+<section class="page-hero certification-hero">
+
+ 
+<div class="container text-center">
+
+    <span class="hero-badge">
+        Certified • Trusted • Verified
+    </span>
+
+    <h1 class="page-title">
+        Our Certifications
+    </h1>
+
+    <p class="page-description">
+        Our certifications demonstrate our commitment
+        to quality, compliance, transparency and
+        customer trust.
+    </p>
+
+</div>
+ 
+
+</section>
+
+<!-- CERTIFICATIONS SECTION -->
+
+<section class="certifications-grid-section">
+
+ 
+<div class="container">
+
+    <div class="section-header text-center">
+
+        <span class="section-tag">
+            TRUST & COMPLIANCE
+        </span>
+
+        <h2>
+            Recognized Certifications
+        </h2>
+
+        <p>
+            We maintain industry-recognized certifications
+            that validate our commitment to quality and
+            professional business practices.
+        </p>
+
+    </div>
+
+    <div class="row justify-content-center">
+
+        <!-- IEC -->
+
+        <div class="col-lg-3 col-md-6 mb-4">
+
+            <div class="certification-card">
+
+                <div class="certificate-logo">
+
+                    <img src="{{ url_for('static', filename='images/certifications/iec.png') }}"
+                         alt="IEC Certification">
+
+                </div>
+
+                <h3>IEC</h3>
+
+                <p>
+                    Import Export Code certification
+                    enabling international trade activities.
+                </p>
+
+                <span class="status-badge">
+                    Active
+                </span>
+
+            </div>
+
+        </div>
+
+        <!-- APEDA -->
+
+        <div class="col-lg-3 col-md-6 mb-4">
+
+            <div class="certification-card">
+
+                <div class="certificate-logo">
+
+                    <img src="{{ url_for('static', filename='images/certifications/apeda.png') }}"
+                         alt="APEDA Certification">
+
+                </div>
+
+                <h3>APEDA</h3>
+
+                <p>
+                    Agricultural and Processed Food
+                    Products Export Development Authority.
+                </p>
+
+                <span class="status-badge">
+                    Active
+                </span>
+
+            </div>
+
+        </div>
+
+        <!-- FSSAI -->
+
+        <div class="col-lg-3 col-md-6 mb-4">
+
+            <div class="certification-card">
+
+                <div class="certificate-logo">
+
+                    <img src="{{ url_for('static', filename='images/certifications/fssai.png') }}"
+                         alt="FSSAI Certification">
+
+                </div>
+
+                <h3>FSSAI</h3>
+
+                <p>
+                    Food Safety and Standards Authority
+                    certification ensuring quality standards.
+                </p>
+
+                <span class="status-badge">
+                    Active
+                </span>
+
+            </div>
+
+        </div>
+
+        <!-- MSME -->
+
+        <div class="col-lg-3 col-md-6 mb-4">
+
+            <div class="certification-card">
+
+                <div class="certificate-logo">
+
+                    <img src="{{ url_for('static', filename='images/certifications/msme.png') }}"
+                         alt="MSME Certification">
+
+                </div>
+
+                <h3>MSME</h3>
+
+                <p>
+                    Registered under Micro, Small and
+                    Medium Enterprises Development.
+                </p>
+
+                <span class="status-badge">
+                    Active
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+ 
+
+</section>
+
+<!-- TRUST SECTION -->
+
+<section class="certification-timeline">
+
+ 
+<div class="container">
+
+    <div class="section-header text-center">
+
+        <span class="section-tag">
+            OUR COMMITMENT
+        </span>
+
+        <h2>
+            Building Trust Through Excellence
+        </h2>
+
+    </div>
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-3 col-md-6 mb-4">
+
+            <div class="timeline-step">
+
+                <div class="timeline-icon">📋</div>
+
+                <h5>Compliance</h5>
+
+                <p>
+                    Following industry regulations
+                    and standards.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+
+            <div class="timeline-step">
+
+                <div class="timeline-icon">🛡️</div>
+
+                <h5>Verification</h5>
+
+                <p>
+                    Independent validation and
+                    certification processes.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+
+            <div class="timeline-step">
+
+                <div class="timeline-icon">⭐</div>
+
+                <h5>Quality</h5>
+
+                <p>
+                    Consistent quality standards
+                    across products and services.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+
+            <div class="timeline-step">
+
+                <div class="timeline-icon">🤝</div>
+
+                <h5>Trust</h5>
+
+                <p>
+                    Building long-term customer
+                    relationships through excellence.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+ 
+
+</section>
+
+<!-- FEATURED CERTIFICATIONS -->
+
+<section class="featured-certifications">
+
+ 
+<div class="container">
+
+    <div class="section-header text-center">
+
+        <h2>
+            Key Certifications
+        </h2>
+
+    </div>
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-3 col-md-6 mb-4">
+
+            <div class="featured-cert-card">
+
+                <h3>IEC</h3>
+
+                <p>Import Export Code</p>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+
+            <div class="featured-cert-card">
+
+                <h3>APEDA</h3>
+
+                <p>Agricultural Export Authority</p>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+
+            <div class="featured-cert-card">
+
+                <h3>FSSAI</h3>
+
+                <p>Food Safety Certification</p>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+
+            <div class="featured-cert-card">
+
+                <h3>MSME</h3>
+
+                <p>MSME Registration</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+ 
+
+</section>
+
+<!-- CTA -->
+
+<section class="cta-section">
+
+ 
+<div class="container text-center">
+
+    <h2>
+        Looking For A Reliable Partner?
+    </h2>
+
+    <p>
+        Our certifications and commitment to quality
+        make us a trusted choice for industrial and
+        agricultural solutions.
+    </p>
+
+    <a href="{{ url_for('contact') }}"
+       class="btn btn-success btn-lg">
+
+        Contact Us Today
+
+    </a>
+
+</div>
+ 
+
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    if(typeof gsap !== "undefined"){
+
+        gsap.from(".certification-card",{
+            opacity:0,
+            y:80,
+            duration:1,
+            stagger:0.15
+        });
+
+        gsap.from(".timeline-step",{
+            opacity:0,
+            y:60,
+            duration:1,
+            stagger:0.2,
+            delay:0.2
+        });
+
+        gsap.from(".featured-cert-card",{
+            opacity:0,
+            scale:0.8,
+            duration:0.8,
+            stagger:0.15,
+            delay:0.3
+        });
+
+    }
+
+});
+
+</script>
+
+{% endblock %}

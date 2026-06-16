@@ -1,4 +1,3 @@
-```python
 from flask import (
     Flask,
     render_template,
@@ -11,32 +10,31 @@ from flask import (
 
 from pymongo import MongoClient
 from bson.objectid import ObjectId
+from datetime import datetime
 from dotenv import load_dotenv
 
 import os
-from datetime import datetime
 
-# --------------------------------------------------
-# LOAD ENV VARIABLES
-# --------------------------------------------------
+# ==========================================
+# ENVIRONMENT
+# ==========================================
 
 load_dotenv()
 
-# --------------------------------------------------
-# APP CONFIG
-# --------------------------------------------------
-
 app = Flask(__name__)
 
-app.secret_key = os.getenv("SECRET_KEY")
+app.secret_key = os.getenv(
+    "SECRET_KEY",
+    "mudhai_secret_key"
+)
 
-# --------------------------------------------------
-# MONGODB CONNECTION
-# --------------------------------------------------
+# ==========================================
+# MONGODB
+# ==========================================
 
-MONGO_URI = os.getenv("MONGO_URI")
-
-client = MongoClient(MONGO_URI)
+client = MongoClient(
+    os.getenv("MONGO_URI")
+)
 
 db = client["mudhai_db"]
 
@@ -44,58 +42,55 @@ products_collection = db["products"]
 blogs_collection = db["blogs"]
 certifications_collection = db["certifications"]
 enquiries_collection = db["enquiries"]
-users_collection = db["users"]
 
-# --------------------------------------------------
-# HOME PAGE
-# --------------------------------------------------
+# ==========================================
+# HOME
+# ==========================================
 
 @app.route("/")
 def home():
 
-    featured_products = list(
-        products_collection.find().limit(3)
+    products = list(
+        products_collection.find(
+            {"featured": True}
+        ).limit(6)
     )
 
-    latest_blogs = list(
-        blogs_collection.find().sort(
-            "created_at", -1
-        ).limit(3)
+    blogs = list(
+        blogs_collection.find()
+        .sort("created_at", -1)
+        .limit(3)
     )
 
     return render_template(
         "home.html",
-        products=featured_products,
-        blogs=latest_blogs
+        products=products,
+        blogs=blogs
     )
 
-# --------------------------------------------------
+# ==========================================
 # ABOUT
-# --------------------------------------------------
+# ==========================================
 
 @app.route("/about")
 def about():
     return render_template("about.html")
 
-# --------------------------------------------------
+# ==========================================
 # PRODUCTS
-# --------------------------------------------------
+# ==========================================
 
 @app.route("/products")
 def products():
 
-    all_products = list(
+    products = list(
         products_collection.find()
     )
 
     return render_template(
         "products.html",
-        products=all_products
+        products=products
     )
-
-# --------------------------------------------------
-# PRODUCT DETAILS
-# --------------------------------------------------
 
 @app.route("/product/<product_id>")
 def product_details(product_id):
@@ -105,35 +100,49 @@ def product_details(product_id):
     )
 
     if not product:
-        flash("Product not found", "danger")
-        return redirect(url_for("products"))
+        return redirect(
+            url_for("products")
+        )
+
+    related_products = list(
+
+        products_collection.find(
+            {
+                "category":
+                product["category"],
+
+                "_id":
+                {
+                    "$ne":
+                    product["_id"]
+                }
+            }
+        ).limit(3)
+
+    )
 
     return render_template(
         "product_details.html",
-        product=product
+        product=product,
+        related_products=related_products
     )
 
-# --------------------------------------------------
+# ==========================================
 # BLOGS
-# --------------------------------------------------
+# ==========================================
 
 @app.route("/blogs")
 def blogs():
 
-    all_blogs = list(
-        blogs_collection.find().sort(
-            "created_at", -1
-        )
+    blogs = list(
+        blogs_collection.find()
+        .sort("created_at", -1)
     )
 
     return render_template(
         "blogs.html",
-        blogs=all_blogs
+        blogs=blogs
     )
-
-# --------------------------------------------------
-# BLOG DETAILS
-# --------------------------------------------------
 
 @app.route("/blog/<blog_id>")
 def blog_details(blog_id):
@@ -143,98 +152,149 @@ def blog_details(blog_id):
     )
 
     if not blog:
-        flash("Blog not found", "danger")
-        return redirect(url_for("blogs"))
+        return redirect(
+            url_for("blogs")
+        )
+
+    related_blogs = list(
+
+        blogs_collection.find(
+            {
+                "category":
+                blog["category"],
+
+                "_id":
+                {
+                    "$ne":
+                    blog["_id"]
+                }
+            }
+        ).limit(3)
+
+    )
 
     return render_template(
         "blog_details.html",
-        blog=blog
+        blog=blog,
+        related_blogs=related_blogs
     )
 
-# --------------------------------------------------
+# ==========================================
 # CERTIFICATIONS
-# --------------------------------------------------
+# ==========================================
 
 @app.route("/certifications")
 def certifications():
 
-    all_certifications = list(
+    certifications = list(
         certifications_collection.find()
     )
 
     return render_template(
         "certifications.html",
-        certifications=all_certifications
+        certifications=certifications
     )
 
-# --------------------------------------------------
+# ==========================================
 # CONTACT
-# --------------------------------------------------
+# ==========================================
 
-@app.route("/contact", methods=["GET", "POST"])
+@app.route(
+    "/contact",
+    methods=["GET", "POST"]
+)
 def contact():
 
     if request.method == "POST":
 
-        enquiry_data = {
+        enquiry = {
 
-            "name": request.form.get("name"),
-            "email": request.form.get("email"),
-            "phone": request.form.get("phone"),
-            "message": request.form.get("message"),
+            "name":
+            request.form.get("name"),
 
-            "status": "new",
+            "email":
+            request.form.get("email"),
 
-            "created_at": datetime.utcnow()
+            "phone":
+            request.form.get("phone"),
+
+            "company":
+            request.form.get("company"),
+
+            "interested_product":
+            request.form.get(
+                "interested_product"
+            ),
+
+            "message":
+            request.form.get(
+                "message"
+            ),
+
+            "status":
+            "New",
+
+            "created_at":
+            datetime.utcnow()
         }
 
         enquiries_collection.insert_one(
-            enquiry_data
+            enquiry
         )
 
         flash(
-            "Your enquiry has been submitted successfully.",
+            "Enquiry submitted successfully!",
             "success"
         )
 
-        return redirect(url_for("contact"))
+        return redirect(
+            url_for("contact")
+        )
 
-    return render_template("contact.html")
+    return render_template(
+        "contact.html"
+    )
 
-# --------------------------------------------------
+# ==========================================
 # ADMIN LOGIN
-# --------------------------------------------------
+# ==========================================
 
-@app.route("/admin/login", methods=["GET", "POST"])
+@app.route(
+    "/admin/login",
+    methods=["GET", "POST"]
+)
 def admin_login():
 
     if request.method == "POST":
 
-        username = request.form.get("username")
-        password = request.form.get("password")
-
-        admin = users_collection.find_one(
-            {
-                "username": username,
-                "password": password
-            }
+        username = request.form.get(
+            "username"
         )
 
-        if admin:
+        password = request.form.get(
+            "password"
+        )
+
+        if (
+            username ==
+            os.getenv("ADMIN_USERNAME")
+
+            and
+
+            password ==
+            os.getenv("ADMIN_PASSWORD")
+        ):
 
             session["admin"] = username
 
-            flash(
-                "Login successful",
-                "success"
-            )
-
             return redirect(
-                url_for("dashboard")
+                url_for(
+                    "admin_dashboard"
+                )
             )
 
         flash(
-            "Invalid credentials",
+            "Invalid Credentials",
             "danger"
         )
 
@@ -242,14 +302,28 @@ def admin_login():
         "admin/login.html"
     )
 
-# --------------------------------------------------
-# ADMIN DASHBOARD
-# --------------------------------------------------
+# ==========================================
+# LOGOUT
+# ==========================================
+
+@app.route("/admin/logout")
+def admin_logout():
+
+    session.clear()
+
+    return redirect(
+        url_for("admin_login")
+    )
+
+# ==========================================
+# DASHBOARD
+# ==========================================
 
 @app.route("/admin/dashboard")
-def dashboard():
+def admin_dashboard():
 
     if "admin" not in session:
+
         return redirect(
             url_for("admin_login")
         )
@@ -269,64 +343,280 @@ def dashboard():
         enquiries_collection.count_documents({})
     }
 
-    latest_enquiries = list(
-
+    enquiries = list(
         enquiries_collection.find()
-
         .sort("created_at", -1)
-
-        .limit(5)
+        .limit(10)
     )
 
     return render_template(
         "admin/dashboard.html",
         stats=stats,
-        enquiries=latest_enquiries
+        enquiries=enquiries
     )
 
-# --------------------------------------------------
-# ADMIN LOGOUT
-# --------------------------------------------------
+# ==========================================
+# ADMIN PRODUCTS
+# ==========================================
 
-@app.route("/admin/logout")
-def admin_logout():
+@app.route("/admin/products")
+def admin_products():
 
-    session.clear()
+    if "admin" not in session:
+        return redirect(
+            url_for("admin_login")
+        )
+
+    products = list(
+        products_collection.find()
+    )
+
+    return render_template(
+        "admin/products.html",
+        products=products
+    )
+
+@app.route(
+    "/admin/product/add",
+    methods=["POST"]
+)
+def add_product():
+
+    products_collection.insert_one({
+
+        "name":
+        request.form.get("name"),
+
+        "category":
+        request.form.get("category"),
+
+        "short_description":
+        request.form.get(
+            "short_description"
+        ),
+
+        "description":
+        request.form.get(
+            "description"
+        ),
+
+        "featured":
+        bool(
+            request.form.get(
+                "featured"
+            )
+        ),
+
+        "created_at":
+        datetime.utcnow()
+    })
 
     flash(
-        "Logged out successfully",
+        "Product Added",
         "success"
     )
 
     return redirect(
-        url_for("admin_login")
+        url_for("admin_products")
     )
 
-# --------------------------------------------------
+@app.route(
+    "/admin/product/delete/<id>"
+)
+def delete_product(id):
+
+    products_collection.delete_one(
+        {
+            "_id":
+            ObjectId(id)
+        }
+    )
+
+    return redirect(
+        url_for("admin_products")
+    )
+
+# ==========================================
+# ADMIN BLOGS
+# ==========================================
+
+@app.route("/admin/blogs")
+def admin_blogs():
+
+    if "admin" not in session:
+        return redirect(
+            url_for("admin_login")
+        )
+
+    blogs = list(
+        blogs_collection.find()
+    )
+
+    return render_template(
+        "admin/blogs.html",
+        blogs=blogs
+    )
+
+@app.route(
+    "/admin/blog/add",
+    methods=["POST"]
+)
+def add_blog():
+
+    tags = request.form.get(
+        "tags",
+        ""
+    )
+
+    blogs_collection.insert_one({
+
+        "title":
+        request.form.get("title"),
+
+        "author":
+        request.form.get("author"),
+
+        "category":
+        request.form.get("category"),
+
+        "excerpt":
+        request.form.get("excerpt"),
+
+        "content":
+        request.form.get("content"),
+
+        "tags":
+        [
+            tag.strip()
+            for tag in tags.split(",")
+        ],
+
+        "featured":
+        bool(
+            request.form.get(
+                "featured"
+            )
+        ),
+
+        "created_at":
+        datetime.utcnow()
+    })
+
+    return redirect(
+        url_for("admin_blogs")
+    )
+
+@app.route(
+    "/admin/blog/delete/<id>"
+)
+def delete_blog(id):
+
+    blogs_collection.delete_one(
+        {
+            "_id":
+            ObjectId(id)
+        }
+    )
+
+    return redirect(
+        url_for("admin_blogs")
+    )
+
+# ==========================================
+# ADMIN ENQUIRIES
+# ==========================================
+
+@app.route("/admin/enquiries")
+def admin_enquiries():
+
+    if "admin" not in session:
+        return redirect(
+            url_for("admin_login")
+        )
+
+    enquiries = list(
+
+        enquiries_collection.find()
+        .sort("created_at", -1)
+
+    )
+
+    return render_template(
+        "admin/enquiries.html",
+        enquiries=enquiries
+    )
+
+@app.route(
+    "/admin/enquiry/update/<id>",
+    methods=["POST"]
+)
+def update_enquiry(id):
+
+    enquiries_collection.update_one(
+
+        {
+            "_id":
+            ObjectId(id)
+        },
+
+        {
+            "$set": {
+
+                "status":
+                request.form.get(
+                    "status"
+                )
+
+            }
+        }
+    )
+
+    return redirect(
+        url_for("admin_enquiries")
+    )
+
+@app.route(
+    "/admin/enquiry/delete/<id>"
+)
+def delete_enquiry(id):
+
+    enquiries_collection.delete_one(
+        {
+            "_id":
+            ObjectId(id)
+        }
+    )
+
+    return redirect(
+        url_for("admin_enquiries")
+    )
+
+# ==========================================
 # ERROR HANDLERS
-# --------------------------------------------------
+# ==========================================
 
 @app.errorhandler(404)
-def not_found(error):
+def page_not_found(error):
+
     return render_template(
         "404.html"
     ), 404
 
 @app.errorhandler(500)
-def internal_server_error(error):
+def server_error(error):
+
     return render_template(
         "500.html"
     ), 500
 
-# --------------------------------------------------
-# RUN APP
-# --------------------------------------------------
+# ==========================================
+# RUN
+# ==========================================
 
 if __name__ == "__main__":
 
     app.run(
-        debug=True,
         host="0.0.0.0",
-        port=5000
+        port=5000,
+        debug=True
     )
-```

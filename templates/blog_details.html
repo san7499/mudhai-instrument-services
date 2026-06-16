@@ -1,0 +1,411 @@
+{% extends "base.html" %}
+
+{% block styles %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/blog_details.css') }}">
+{% endblock %}
+
+{% block title %}
+{{ blog.title }} | Mudhai Instrument Services
+{% endblock %}
+
+{% block content %}
+
+<!-- ========================= -->
+
+<!-- BLOG HERO -->
+
+<!-- ========================= -->
+
+<section class="blog-detail-hero">
+
+```
+<div class="container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-10">
+
+            <div class="blog-header text-center">
+
+                <span class="blog-category">
+                    {{ blog.category if blog.category else "Blog" }}
+                </span>
+
+                <h1 class="blog-title">
+                    {{ blog.title }}
+                </h1>
+
+                <div class="blog-meta">
+
+                    <span>
+                        <i class="fa-solid fa-user"></i>
+                        {{ blog.author if blog.author else "Mudhai Team" }}
+                    </span>
+
+                    <span>
+                        <i class="fa-solid fa-calendar"></i>
+
+                        {% if blog.created_at %}
+                            {{ blog.created_at.strftime('%d %B %Y') }}
+                        {% else %}
+                            Recent Article
+                        {% endif %}
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- ========================= -->
+
+<!-- FEATURED IMAGE -->
+
+<!-- ========================= -->
+
+<section class="blog-image-section">
+
+```
+<div class="container">
+
+    <div class="blog-featured-image-wrapper">
+
+        {% if blog.featured_image %}
+
+        <img
+            src="{{ blog.featured_image }}"
+            alt="{{ blog.title }}"
+            class="img-fluid blog-featured-image">
+
+        {% else %}
+
+        <img
+            src="{{ url_for('static', filename='images/default-blog.jpg') }}"
+            alt="{{ blog.title }}"
+            class="img-fluid blog-featured-image">
+
+        {% endif %}
+
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- ========================= -->
+
+<!-- BLOG CONTENT -->
+
+<!-- ========================= -->
+
+<section class="blog-content-section">
+
+```
+<div class="container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-9">
+
+            <div class="blog-content-card">
+
+                {% if blog.excerpt %}
+
+                <div class="blog-excerpt">
+                    {{ blog.excerpt }}
+                </div>
+
+                {% endif %}
+
+                <div class="blog-content">
+
+                    {% if blog.content %}
+
+                        {{ blog.content | safe }}
+
+                    {% else %}
+
+                        <p>
+                            Content will be updated soon.
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- ========================= -->
+
+<!-- TAGS -->
+
+<!-- ========================= -->
+
+{% if blog.tags and blog.tags|length > 0 %}
+
+<section class="blog-tags-section">
+
+```
+<div class="container">
+
+    <div class="tags-wrapper">
+
+        <h5>
+            Related Topics
+        </h5>
+
+        {% for tag in blog.tags %}
+
+        <span class="tag-badge">
+            {{ tag }}
+        </span>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+```
+
+</section>
+
+{% endif %}
+
+<!-- ========================= -->
+
+<!-- SHARE SECTION -->
+
+<!-- ========================= -->
+
+<section class="share-section">
+
+```
+<div class="container text-center">
+
+    <h4>
+        Share This Article
+    </h4>
+
+    <div class="social-share">
+
+        <a href="#"
+           class="share-btn facebook-share">
+
+            <i class="fab fa-facebook-f"></i>
+
+        </a>
+
+        <a href="#"
+           class="share-btn linkedin-share">
+
+            <i class="fab fa-linkedin-in"></i>
+
+        </a>
+
+        <a href="#"
+           class="share-btn whatsapp-share">
+
+            <i class="fab fa-whatsapp"></i>
+
+        </a>
+
+        <a href="#"
+           class="share-btn copy-link-btn">
+
+            <i class="fa-solid fa-link"></i>
+
+        </a>
+
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- ========================= -->
+
+<!-- RELATED BLOGS -->
+
+<!-- ========================= -->
+
+{% if related_blogs and related_blogs|length > 0 %}
+
+<section class="related-blogs-section">
+
+```
+<div class="container">
+
+    <div class="section-header text-center">
+
+        <span class="section-tag">
+            MORE ARTICLES
+        </span>
+
+        <h2>
+            Related Insights
+        </h2>
+
+    </div>
+
+    <div class="row">
+
+        {% for item in related_blogs %}
+
+        <div class="col-lg-4 mb-4">
+
+            <div class="related-blog-card">
+
+                <h4>
+                    {{ item.title }}
+                </h4>
+
+                <p>
+                    {{ item.excerpt }}
+                </p>
+
+                <a
+                    href="{{ url_for('blog_details', blog_id=item._id) }}"
+                    class="btn btn-outline-primary">
+
+                    Read Article
+
+                </a>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+```
+
+</section>
+
+{% endif %}
+
+<!-- ========================= -->
+
+<!-- CTA -->
+
+<!-- ========================= -->
+
+<section class="blog-cta-section">
+
+```
+<div class="container text-center">
+
+    <h2>
+        Need Expert Guidance?
+    </h2>
+
+    <p>
+
+        Whether you're looking for industrial
+        instrumentation solutions or agricultural
+        products, our team is ready to help.
+
+    </p>
+
+    <a
+        href="{{ url_for('contact') }}"
+        class="btn btn-success btn-lg">
+
+        Contact Us
+
+    </a>
+
+</div>
+```
+
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    if(typeof gsap !== "undefined"){
+
+        gsap.from(".blog-title",{
+            opacity:0,
+            y:60,
+            duration:1
+        });
+
+        gsap.from(".blog-meta",{
+            opacity:0,
+            y:30,
+            duration:1,
+            delay:0.3
+        });
+
+        gsap.from(".blog-featured-image",{
+            opacity:0,
+            scale:0.9,
+            duration:1.2
+        });
+
+        gsap.from(".blog-content-card",{
+            opacity:0,
+            y:50,
+            duration:1,
+
+            scrollTrigger:{
+                trigger:".blog-content-card",
+                start:"top 80%"
+            }
+        });
+
+    }
+
+    const copyButton =
+        document.querySelector(".copy-link-btn");
+
+    if(copyButton){
+
+        copyButton.addEventListener("click",(e)=>{
+
+            e.preventDefault();
+
+            navigator.clipboard.writeText(
+                window.location.href
+            );
+
+            alert("Article link copied successfully!");
+
+        });
+
+    }
+
+});
+
+</script>
+
+{% endblock %}

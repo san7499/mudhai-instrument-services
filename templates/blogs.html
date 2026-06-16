@@ -1,0 +1,400 @@
+{% extends "base.html" %}
+
+{% block styles %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/blog.css') }}">
+{% endblock %}
+
+{% block title %}
+Blogs & Insights | Mudhai Instrument Services
+{% endblock %}
+
+{% block content %}
+
+<!-- ========================= -->
+<!-- HERO SECTION -->
+<!-- ========================= -->
+
+<section class="page-hero blog-hero">
+
+    <div class="container text-center">
+
+        <span class="hero-badge">
+            Knowledge Center
+        </span>
+
+        <h1 class="page-title">
+            Industry & Agriculture Insights
+        </h1>
+
+        <p class="page-description">
+            Explore expert articles, technical guides,
+            farming practices, product knowledge and
+            industry updates from Mudhai Instrument Services.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ========================= -->
+<!-- SEARCH SECTION -->
+<!-- ========================= -->
+
+<section class="blog-search-section">
+
+    <div class="container">
+
+        <div class="search-wrapper">
+
+            <input
+                type="text"
+                id="blogSearch"
+                class="form-control"
+                placeholder="Search articles...">
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ========================= -->
+<!-- FEATURED BLOG -->
+<!-- ========================= -->
+
+{% if blogs and blogs|length > 0 %}
+
+<section class="featured-blog-section">
+
+    <div class="container">
+
+        <div class="featured-blog-card">
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-6">
+
+                    {% if blogs[0].featured_image %}
+
+                    <img
+                        src="{{ blogs[0].featured_image }}"
+                        alt="{{ blogs[0].title }}"
+                        class="img-fluid featured-blog-image">
+
+                    {% else %}
+
+                    <img
+                        src="{{ url_for('static', filename='images/default-blog.jpg') }}"
+                        alt="{{ blogs[0].title }}"
+                        class="img-fluid featured-blog-image">
+
+                    {% endif %}
+
+                </div>
+
+                <div class="col-lg-6">
+
+                    <span class="featured-label">
+                        Featured Article
+                    </span>
+
+                    <h2>
+                        {{ blogs[0].title }}
+                    </h2>
+
+                    <p>
+                        {{ blogs[0].excerpt }}
+                    </p>
+
+                    <a
+                        href="{{ url_for('blog_details', blog_id=blogs[0]._id) }}"
+                        class="btn btn-primary">
+
+                        Read Article
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endif %}
+
+<!-- ========================= -->
+<!-- BLOG GRID -->
+<!-- ========================= -->
+
+<section class="blog-grid-section">
+
+    <div class="container">
+
+        <div class="section-header text-center">
+
+            <span class="section-tag">
+                LATEST ARTICLES
+            </span>
+
+            <h2>
+                Explore Our Knowledge Hub
+            </h2>
+
+        </div>
+
+        <div class="row">
+
+            {% if blogs %}
+
+                {% for blog in blogs %}
+
+                <div class="col-lg-4 col-md-6 mb-4 blog-item">
+
+                    <div class="blog-card">
+
+                        <div class="blog-image">
+
+                            {% if blog.featured_image %}
+
+                            <img
+                                src="{{ blog.featured_image }}"
+                                alt="{{ blog.title }}"
+                                class="img-fluid">
+
+                            {% else %}
+
+                            <img
+                                src="{{ url_for('static', filename='images/default-blog.jpg') }}"
+                                alt="{{ blog.title }}"
+                                class="img-fluid">
+
+                            {% endif %}
+
+                        </div>
+
+                        <div class="blog-content">
+
+                            <span class="blog-category">
+                                {{ blog.category }}
+                            </span>
+
+                            <h4>
+                                {{ blog.title }}
+                            </h4>
+
+                            <p>
+                                {{ blog.excerpt }}
+                            </p>
+
+                            <div class="blog-meta">
+
+                                <span>
+
+                                    <i class="fa-solid fa-user"></i>
+
+                                    {{ blog.author }}
+
+                                </span>
+
+                            </div>
+
+                            <a
+                                href="{{ url_for('blog_details', blog_id=blog._id) }}"
+                                class="read-more-btn">
+
+                                Read More
+
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            {% else %}
+
+            <div class="col-12 text-center">
+
+                <div class="empty-state">
+
+                    <i class="fa-solid fa-newspaper"></i>
+
+                    <h3>
+                        No Blogs Available
+                    </h3>
+
+                    <p>
+                        Articles will appear here once published.
+                    </p>
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ========================= -->
+<!-- BLOG CATEGORIES -->
+<!-- ========================= -->
+
+<section class="blog-categories-section">
+
+    <div class="container">
+
+        <div class="section-header text-center">
+
+            <h2>
+                Topics We Cover
+            </h2>
+
+        </div>
+
+        <div class="category-grid">
+
+            <div class="category-card">
+                ⚙️
+                <h5>Industrial Instruments</h5>
+            </div>
+
+            <div class="category-card">
+                🌱
+                <h5>Agriculture</h5>
+            </div>
+
+            <div class="category-card">
+                🌾
+                <h5>Onion Cultivation</h5>
+            </div>
+
+            <div class="category-card">
+                🍃
+                <h5>Moringa Products</h5>
+            </div>
+
+            <div class="category-card">
+                📈
+                <h5>Industry Trends</h5>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ========================= -->
+<!-- NEWSLETTER -->
+<!-- ========================= -->
+
+<section class="newsletter-section">
+
+    <div class="container text-center">
+
+        <h2>
+            Stay Updated
+        </h2>
+
+        <p>
+            Subscribe to receive industry insights,
+            technical guides and company updates.
+        </p>
+
+        <form class="newsletter-form">
+
+            <input
+                type="email"
+                placeholder="Enter your email"
+                required>
+
+            <button
+                type="submit"
+                class="btn btn-success">
+
+                Subscribe
+
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const searchInput = document.getElementById("blogSearch");
+    const blogCards = document.querySelectorAll(".blog-item");
+
+    if(searchInput){
+
+        searchInput.addEventListener("keyup", () => {
+
+            const value =
+                searchInput.value.toLowerCase();
+
+            blogCards.forEach(card => {
+
+                const text =
+                    card.innerText.toLowerCase();
+
+                if(text.includes(value)){
+
+                    card.style.display = "block";
+
+                }else{
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+        });
+
+    }
+
+    if(typeof gsap !== "undefined"){
+
+        gsap.from(".blog-card", {
+
+            opacity:0,
+            y:60,
+            duration:1,
+            stagger:0.15,
+
+            scrollTrigger:{
+                trigger:".blog-grid-section",
+                start:"top 80%"
+            }
+
+        });
+
+    }
+
+});
+
+</script>
+
+{% endblock %}

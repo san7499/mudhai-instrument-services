@@ -1,0 +1,469 @@
+ html
+{% extends "base.html" %}
+
+{% block styles %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/contact.css') }}">
+{% endblock %}
+
+{% block title %}
+Contact Us | Mudhai Instrument Services
+{% endblock %}
+
+{% block content %}
+
+<!-- ===================================== -->
+<!-- HERO SECTION -->
+<!-- ===================================== -->
+
+<section class="page-hero contact-hero">
+
+    <div class="container text-center">
+
+        <span class="hero-badge">
+            Let's Connect
+        </span>
+
+        <h1 class="page-title">
+            Contact Us
+        </h1>
+
+        <p class="page-description">
+
+            Have questions about our products or services?
+
+            Our team is ready to assist you.
+
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ===================================== -->
+<!-- CONTACT SECTION -->
+<!-- ===================================== -->
+
+<section class="contact-section">
+
+    <div class="container">
+
+        <div class="row g-5">
+
+            <!-- CONTACT FORM -->
+
+            <div class="col-lg-7">
+
+                <div class="contact-form-card">
+
+                    <div class="section-header">
+
+                        <span class="section-tag">
+                            SEND AN ENQUIRY
+                        </span>
+
+                        <h2>
+                            Get In Touch
+                        </h2>
+
+                    </div>
+
+                    <form
+                        method="POST"
+                        action="{{ url_for('contact') }}">
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+
+                                    Full Name
+
+                                </label>
+
+                                <input
+                                    type="text"
+                                    name="name"
+                                    class="form-control"
+                                    placeholder="Enter your full name"
+                                    required>
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+
+                                    Email Address
+
+                                </label>
+
+                                <input
+                                    type="email"
+                                    name="email"
+                                    class="form-control"
+                                    placeholder="Enter your email"
+                                    required>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+
+                                    Phone Number
+
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    name="phone"
+                                    class="form-control"
+                                    placeholder="Enter phone number"
+                                    required>
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+
+                                    Company Name
+
+                                </label>
+
+                                <input
+                                    type="text"
+                                    name="company"
+                                    class="form-control"
+                                    placeholder="Company name">
+
+                            </div>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+
+                                Interested Product
+
+                            </label>
+
+                            <select
+                                name="interested_product"
+                                class="form-select">
+
+                                <option value="">
+                                    Select Product
+                                </option>
+
+                                <option>
+                                    Electromagnetic Flow Meter
+                                </option>
+
+                                <option>
+                                    Onion Seeds
+                                </option>
+
+                                <option>
+                                    Moringa Powder
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+
+                                Message
+
+                            </label>
+
+                            <textarea
+                                name="message"
+                                rows="6"
+                                class="form-control"
+                                placeholder="Write your enquiry here..."
+                                required></textarea>
+
+                        </div>
+
+                        <button
+                            type="submit"
+                            class="btn btn-success btn-lg w-100">
+
+                            Submit Enquiry
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            <!-- CONTACT INFO -->
+
+            <div class="col-lg-5">
+
+                <div class="contact-info-card">
+
+                    <div class="section-header">
+
+                        <span class="section-tag">
+                            CONTACT DETAILS
+                        </span>
+
+                        <h2>
+                            Reach Us
+                        </h2>
+
+                    </div>
+
+                    <div class="info-item">
+
+                        <div class="info-icon">
+
+                            <i class="fa-solid fa-phone"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h5>Phone</h5>
+
+                            <p>
+
+                                <a href="tel:+919834424390">
+
+                                    +91 9834424390
+
+                                </a>
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="info-item">
+
+                        <div class="info-icon">
+
+                            <i class="fa-solid fa-envelope"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h5>Email</h5>
+
+                            <p>
+
+                                <a href="mailto:info@midaiinstrumentservices.com">
+
+                                    info@midaiinstrumentservices.com
+
+                                </a>
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="info-item">
+
+                        <div class="info-icon">
+
+                            <i class="fa-solid fa-location-dot"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h5>Address</h5>
+
+                            <p>
+
+                                A/P Dahigaon<br>
+
+                                Tal. Koregaon<br>
+
+                                Dist. Satara<br>
+
+                                Maharashtra - 415524
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- SOCIAL LINKS -->
+
+                    <div class="social-links">
+
+                        <a
+                            href="https://www.facebook.com/share/1JK81cQRDe/"
+                            target="_blank"
+                            class="social-btn">
+
+                            <i class="fab fa-facebook-f"></i>
+
+                        </a>
+
+                        <a
+                            href="https://www.linkedin.com/"
+                            target="_blank"
+                            class="social-btn">
+
+                            <i class="fab fa-linkedin-in"></i>
+
+                        </a>
+
+                        <a
+                            href="https://wa.me/919834424390"
+                            target="_blank"
+                            class="social-btn">
+
+                            <i class="fab fa-whatsapp"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===================================== -->
+<!-- GOOGLE MAP -->
+<!-- ===================================== -->
+
+<section class="map-section">
+
+    <div class="container">
+
+        <div class="section-header text-center">
+
+            <h2>
+
+                Our Location
+
+            </h2>
+
+        </div>
+
+        <div class="map-card">
+
+            <iframe
+                src="https://maps.google.com/maps?q=Dahigaon,Koregaon,Satara,Maharashtra&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                width="100%"
+                height="450"
+                style="border:0;"
+                allowfullscreen
+                loading="lazy">
+
+            </iframe>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===================================== -->
+<!-- CTA -->
+<!-- ===================================== -->
+
+<section class="cta-section">
+
+    <div class="container text-center">
+
+        <h2>
+
+            Ready To Work Together?
+
+        </h2>
+
+        <p>
+
+            Let's discuss your requirements and
+            find the right solution for your business.
+
+        </p>
+
+        <a
+            href="tel:+919834424390"
+            class="btn btn-primary btn-lg">
+
+            Call Now
+
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    if (typeof gsap !== "undefined") {
+
+        gsap.from(".contact-form-card", {
+
+            opacity: 0,
+            x: -100,
+            duration: 1.2
+
+        });
+
+        gsap.from(".contact-info-card", {
+
+            opacity: 0,
+            x: 100,
+            duration: 1.2
+
+        });
+
+        gsap.from(".info-item", {
+
+            opacity: 0,
+            y: 40,
+
+            stagger: 0.2,
+
+            duration: 0.8,
+
+            delay: 0.5
+
+        });
+
+    }
+
+});
+
+</script>
+
+{% endblock %}
+ 

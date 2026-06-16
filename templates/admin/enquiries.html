@@ -1,0 +1,528 @@
+{% extends "base.html" %}
+
+{% block title %}
+Manage Enquiries | Admin Panel
+{% endblock %}
+
+{% block content %}
+
+<section class="admin-enquiries-section py-5">
+
+    <div class="container-fluid">
+
+        <!-- Header -->
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <div>
+
+                <h2 class="fw-bold">
+
+                    Enquiry Management
+
+                </h2>
+
+                <p class="text-muted">
+
+                    Track and manage customer enquiries
+
+                </p>
+
+            </div>
+
+            <div>
+
+                <span class="badge bg-success p-2">
+
+                    Total Leads:
+                    {{ enquiries|length }}
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <!-- Search & Filter -->
+
+        <div class="card shadow-sm border-0 mb-4">
+
+            <div class="card-body">
+
+                <div class="row">
+
+                    <div class="col-md-8">
+
+                        <input
+                            type="text"
+                            id="searchEnquiry"
+                            class="form-control"
+                            placeholder="Search enquiries...">
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <select
+                            id="statusFilter"
+                            class="form-select">
+
+                            <option value="all">
+
+                                All Status
+
+                            </option>
+
+                            <option value="New">
+
+                                New
+
+                            </option>
+
+                            <option value="Contacted">
+
+                                Contacted
+
+                            </option>
+
+                            <option value="Quotation Sent">
+
+                                Quotation Sent
+
+                            </option>
+
+                            <option value="Negotiation">
+
+                                Negotiation
+
+                            </option>
+
+                            <option value="Converted">
+
+                                Converted
+
+                            </option>
+
+                            <option value="Closed">
+
+                                Closed
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Enquiries Table -->
+
+        <div class="card shadow-sm border-0">
+
+            <div class="card-body">
+
+                <div class="table-responsive">
+
+                    <table
+                        class="table table-hover align-middle"
+                        id="enquiryTable">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Name</th>
+
+                                <th>Company</th>
+
+                                <th>Email</th>
+
+                                <th>Phone</th>
+
+                                <th>Product</th>
+
+                                <th>Status</th>
+
+                                <th>Date</th>
+
+                                <th>Actions</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            {% for enquiry in enquiries %}
+
+                            <tr
+                                data-status="{{ enquiry.status }}">
+
+                                <td>
+
+                                    {{ enquiry.name }}
+
+                                </td>
+
+                                <td>
+
+                                    {{ enquiry.company }}
+
+                                </td>
+
+                                <td>
+
+                                    {{ enquiry.email }}
+
+                                </td>
+
+                                <td>
+
+                                    {{ enquiry.phone }}
+
+                                </td>
+
+                                <td>
+
+                                    {{ enquiry.interested_product }}
+
+                                </td>
+
+                                <td>
+
+                                    <span
+                                        class="badge
+                                        {% if enquiry.status == 'New' %}
+                                        bg-primary
+                                        {% elif enquiry.status == 'Contacted' %}
+                                        bg-info
+                                        {% elif enquiry.status == 'Quotation Sent' %}
+                                        bg-warning text-dark
+                                        {% elif enquiry.status == 'Negotiation' %}
+                                        bg-secondary
+                                        {% elif enquiry.status == 'Converted' %}
+                                        bg-success
+                                        {% else %}
+                                        bg-danger
+                                        {% endif %}
+                                        ">
+
+                                        {{ enquiry.status }}
+
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    {% if enquiry.created_at %}
+
+                                    {{ enquiry.created_at.strftime('%d-%m-%Y') }}
+
+                                    {% endif %}
+
+                                </td>
+
+                                <td>
+
+                                    <!-- View -->
+
+                                    <button
+                                        class="btn btn-sm btn-primary"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#enquiry{{ enquiry._id }}">
+
+                                        <i class="fa-solid fa-eye"></i>
+
+                                    </button>
+
+                                    <!-- Delete -->
+
+                                    <a
+                                        href="/admin/enquiry/delete/{{ enquiry._id }}"
+                                        class="btn btn-sm btn-danger"
+                                        onclick="return confirm('Delete this enquiry?')">
+
+                                        <i class="fa-solid fa-trash"></i>
+
+                                    </a>
+
+                                </td>
+
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===================================== -->
+<!-- ENQUIRY DETAIL MODALS -->
+<!-- ===================================== -->
+
+{% for enquiry in enquiries %}
+
+<div
+    class="modal fade"
+    id="enquiry{{ enquiry._id }}"
+    tabindex="-1">
+
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5>
+
+                    Enquiry Details
+
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <div class="row">
+
+                    <div class="col-md-6">
+
+                        <strong>Name:</strong>
+
+                        <p>
+
+                            {{ enquiry.name }}
+
+                        </p>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <strong>Company:</strong>
+
+                        <p>
+
+                            {{ enquiry.company }}
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6">
+
+                        <strong>Email:</strong>
+
+                        <p>
+
+                            {{ enquiry.email }}
+
+                        </p>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <strong>Phone:</strong>
+
+                        <p>
+
+                            {{ enquiry.phone }}
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <strong>Interested Product:</strong>
+
+                    <p>
+
+                        {{ enquiry.interested_product }}
+
+                    </p>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <strong>Message:</strong>
+
+                    <div class="alert alert-light">
+
+                        {{ enquiry.message }}
+
+                    </div>
+
+                </div>
+
+                <!-- Status Update -->
+
+                <form
+                    method="POST"
+                    action="/admin/enquiry/update/{{ enquiry._id }}">
+
+                    <label>
+
+                        Update Status
+
+                    </label>
+
+                    <select
+                        name="status"
+                        class="form-select mb-3">
+
+                        <option {% if enquiry.status == "New" %}selected{% endif %}>
+                            New
+                        </option>
+
+                        <option {% if enquiry.status == "Contacted" %}selected{% endif %}>
+                            Contacted
+                        </option>
+
+                        <option {% if enquiry.status == "Quotation Sent" %}selected{% endif %}>
+                            Quotation Sent
+                        </option>
+
+                        <option {% if enquiry.status == "Negotiation" %}selected{% endif %}>
+                            Negotiation
+                        </option>
+
+                        <option {% if enquiry.status == "Converted" %}selected{% endif %}>
+                            Converted
+                        </option>
+
+                        <option {% if enquiry.status == "Closed" %}selected{% endif %}>
+                            Closed
+                        </option>
+
+                    </select>
+
+                    <button
+                        type="submit"
+                        class="btn btn-success">
+
+                        Update Status
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const search =
+        document.getElementById("searchEnquiry");
+
+    const filter =
+        document.getElementById("statusFilter");
+
+    const rows =
+        document.querySelectorAll(
+            "#enquiryTable tbody tr"
+        );
+
+    function applyFilters(){
+
+        const searchValue =
+            search.value.toLowerCase();
+
+        const statusValue =
+            filter.value;
+
+        rows.forEach(row => {
+
+            const text =
+                row.innerText.toLowerCase();
+
+            const status =
+                row.dataset.status;
+
+            const matchSearch =
+                text.includes(searchValue);
+
+            const matchStatus =
+                statusValue === "all" ||
+                status === statusValue;
+
+            row.style.display =
+                matchSearch && matchStatus
+                ? ""
+                : "none";
+
+        });
+
+    }
+
+    search.addEventListener(
+        "keyup",
+        applyFilters
+    );
+
+    filter.addEventListener(
+        "change",
+        applyFilters
+    );
+
+    if(typeof gsap !== "undefined"){
+
+        gsap.from(
+            "#enquiryTable tbody tr",
+            {
+                opacity:0,
+                y:25,
+                stagger:0.05,
+                duration:0.5
+            }
+        );
+
+    }
+
+});
+
+</script>
+
+{% endblock %}

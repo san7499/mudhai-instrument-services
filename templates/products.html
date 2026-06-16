@@ -1,0 +1,421 @@
+{% extends "base.html" %}
+
+{% block styles %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/products.css') }}">
+{% endblock %}
+
+{% block title %}
+Our Products | Mudhai Instrument Services
+{% endblock %}
+
+{% block content %}
+
+<!-- ===================================== -->
+<!-- HERO SECTION -->
+<!-- ===================================== -->
+
+<section class="page-hero products-hero">
+
+    <div class="container text-center">
+
+        <span class="hero-badge">
+            Industrial & Agricultural Solutions
+        </span>
+
+        <h1 class="page-title">
+            Our Products
+        </h1>
+
+        <p class="page-description">
+            Discover our carefully selected range of industrial instruments
+            and agricultural products designed to deliver reliability,
+            performance and value.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ===================================== -->
+<!-- PRODUCT FILTER -->
+<!-- ===================================== -->
+
+<section class="product-filter-section">
+
+    <div class="container">
+
+        <div class="filter-wrapper">
+
+            <button class="filter-btn active"
+                    data-filter="all">
+                All Products
+            </button>
+
+            <button class="filter-btn"
+                    data-filter="Industrial Instruments">
+                Industrial
+            </button>
+
+            <button class="filter-btn"
+                    data-filter="Agricultural Products">
+                Agriculture
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===================================== -->
+<!-- PRODUCTS GRID -->
+<!-- ===================================== -->
+
+<section class="products-section">
+
+    <div class="container">
+
+        {% if products %}
+
+        <div class="row">
+
+            {% for product in products %}
+
+            <div class="col-lg-4 col-md-6 mb-5 product-item"
+                 data-category="{{ product.category }}">
+
+                <div class="product-card">
+
+                    <!-- Product Image -->
+
+                    <div class="product-image">
+
+                        {% if product.images and product.images|length > 0 %}
+
+                        <img src="{{ product.images[0] }}"
+                             alt="{{ product.name }}"
+                             class="img-fluid">
+
+                        {% else %}
+
+                        <img src="{{ url_for('static', filename='images/default-product.jpg') }}"
+                             alt="{{ product.name }}"
+                             class="img-fluid">
+
+                        {% endif %}
+
+                        <div class="product-overlay">
+
+                            <a href="/product/{{ product._id }}"
+                               class="view-btn">
+
+                                View Details
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Product Content -->
+
+                    <div class="product-content">
+
+                        <span class="product-category">
+                            {{ product.category }}
+                        </span>
+
+                        <h3 class="product-title">
+                            {{ product.name }}
+                        </h3>
+
+                        <p class="product-description">
+                            {{ product.short_description }}
+                        </p>
+
+                        {% if product.featured %}
+
+                        <span class="featured-badge">
+                            Featured Product
+                        </span>
+
+                        {% endif %}
+
+                        <div class="product-footer mt-3">
+
+                            <a href="/product/{{ product._id }}"
+                               class="btn btn-primary">
+
+                                Explore Product
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <div class="text-center">
+
+            <h3>No Products Available</h3>
+
+            <p>Please check back later.</p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+<!-- ===================================== -->
+<!-- FEATURED PRODUCT SECTION -->
+<!-- ===================================== -->
+
+<section class="product-highlight">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-6">
+
+                <div class="highlight-content">
+
+                    <span class="section-tag">
+                        FEATURED SOLUTION
+                    </span>
+
+                    <h2>
+                        Precision Flow Measurement Technology
+                    </h2>
+
+                    <p>
+                        Our electromagnetic flow meter solutions provide
+                        highly accurate and dependable flow measurement
+                        for industrial applications with minimal
+                        maintenance requirements.
+                    </p>
+
+                    <ul class="feature-list">
+
+                        <li>✔ High Accuracy</li>
+                        <li>✔ No Moving Parts</li>
+                        <li>✔ Low Maintenance</li>
+                        <li>✔ Long Service Life</li>
+
+                    </ul>
+
+                    <a href="/contact"
+                       class="btn btn-primary">
+
+                        Request Quotation
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <div class="highlight-visual">
+
+                    <div class="floating-ring"></div>
+
+                    <div class="floating-ring ring-2"></div>
+
+                    <div class="floating-ring ring-3"></div>
+
+                    <div class="center-icon">
+
+                        ⚙️
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===================================== -->
+<!-- ADVANTAGES -->
+<!-- ===================================== -->
+
+<section class="why-products-section">
+
+    <div class="container">
+
+        <div class="section-header text-center">
+
+            <span class="section-tag">
+                OUR ADVANTAGE
+            </span>
+
+            <h2>
+                Why Choose Our Products
+            </h2>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-3 col-md-6 mb-4">
+
+                <div class="advantage-card">
+
+                    <i class="fa-solid fa-medal"></i>
+
+                    <h5>
+                        Quality Assured
+                    </h5>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+
+                <div class="advantage-card">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    <h5>
+                        Reliable Supply
+                    </h5>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+
+                <div class="advantage-card">
+
+                    <i class="fa-solid fa-headset"></i>
+
+                    <h5>
+                        Expert Support
+                    </h5>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+
+                <div class="advantage-card">
+
+                    <i class="fa-solid fa-handshake"></i>
+
+                    <h5>
+                        Trusted Partner
+                    </h5>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===================================== -->
+<!-- CTA SECTION -->
+<!-- ===================================== -->
+
+<section class="cta-section">
+
+    <div class="container text-center">
+
+        <h2>
+            Looking For The Right Product?
+        </h2>
+
+        <p>
+            Our team is ready to help you choose
+            the most suitable solution for your requirements.
+        </p>
+
+        <a href="/contact"
+           class="btn btn-success btn-lg">
+
+            Contact Us
+
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const filterButtons =
+        document.querySelectorAll(".filter-btn");
+
+    const products =
+        document.querySelectorAll(".product-item");
+
+    filterButtons.forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            filterButtons.forEach(btn =>
+                btn.classList.remove("active")
+            );
+
+            button.classList.add("active");
+
+            const filter =
+                button.dataset.filter;
+
+            products.forEach(product => {
+
+                if (
+                    filter === "all" ||
+                    product.dataset.category === filter
+                ) {
+
+                    product.style.display = "block";
+
+                } else {
+
+                    product.style.display = "none";
+
+                }
+
+            });
+
+        });
+
+    });
+
+});
+
+</script>
+
+{% endblock %}

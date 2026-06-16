@@ -1,0 +1,372 @@
+ html
+{% extends "base.html" %}
+
+{% block styles %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+{% block title %}
+Mudhai Instrument Services
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+
+<section class="hero-section">
+
+    <div class="hero-overlay"></div>
+
+    <div class="container">
+
+        <div class="row align-items-center min-vh-100">
+
+            <div class="col-lg-6">
+
+                <span class="hero-badge">
+                    Trusted Merchant Trading Company
+                </span>
+
+                <h1 class="hero-title">
+
+                    Precision For
+
+                    <span class="gradient-text">
+                        Industry
+                    </span>
+
+                    Growth For
+
+                    <span class="gradient-text-green">
+                        Agriculture
+                    </span>
+
+                </h1>
+
+                <p class="hero-description">
+
+                    Mudhai Instrument Services delivers
+                    reliable industrial instrumentation
+                    and premium agricultural products
+                    with a commitment to quality,
+                    transparency and customer satisfaction.
+
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="/products"
+                       class="btn btn-primary hero-btn">
+
+                        Explore Products
+
+                    </a>
+
+                    <a href="/contact"
+                       class="btn btn-success hero-btn">
+
+                        Contact Us
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <div class="floating-cards">
+
+                    <div class="floating-card card-1">
+                        ⚙️
+                        <h5>Flow Meter</h5>
+                    </div>
+
+                    <div class="floating-card card-2">
+                        🌱
+                        <h5>Onion Seeds</h5>
+                    </div>
+
+                    <div class="floating-card card-3">
+                        🍃
+                        <h5>Moringa Powder</h5>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ABOUT PREVIEW -->
+
+<section class="why-us-section">
+
+    <div class="container">
+
+        <div class="section-header text-center">
+
+            <span class="section-tag">
+                ABOUT US
+            </span>
+
+            <h2>
+                Trusted Business Partner
+            </h2>
+
+        </div>
+
+        <div class="glass-card">
+
+            <p>
+
+                Mudhai Instrument Services is a trusted
+                merchant trading company committed to
+                delivering excellence through quality,
+                reliability and customer-focused solutions.
+
+                We strive to create long-term value for
+                our customers through dependable products
+                and professional service.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PRODUCTS -->
+
+<section class="products-section">
+
+    <div class="container">
+
+        <div class="section-header text-center">
+
+            <h2>
+                Our Products
+            </h2>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-4 mb-4">
+
+                <div class="product-card">
+
+                    <img src="{{ url_for('static', filename='images/flowmeter.jpg') }}"
+                         class="img-fluid">
+
+                    <div class="product-content">
+
+                        <h4>
+                            Electromagnetic Flow Meter
+                        </h4>
+
+                        <p>
+                            Accurate flow measurement
+                            for conductive liquids.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4 mb-4">
+
+                <div class="product-card">
+
+                    <img src="{{ url_for('static', filename='images/onion-seeds.jpg') }}"
+                         class="img-fluid">
+
+                    <div class="product-content">
+
+                        <h4>
+                            Onion Seeds
+                        </h4>
+
+                        <p>
+                            High-quality onion seeds
+                            with superior germination.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4 mb-4">
+
+                <div class="product-card">
+
+                    <img src="{{ url_for('static', filename='images/moringa-powder.jpg') }}"
+                         class="img-fluid">
+
+                    <div class="product-content">
+
+                        <h4>
+                            Moringa Powder
+                        </h4>
+
+                        <p>
+                            Premium nutritional
+                            moringa powder products.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- WHY US -->
+
+<section class="why-us-section">
+
+    <div class="container">
+
+        <div class="section-header text-center">
+
+            <h2>
+                Why Choose Us
+            </h2>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-4">
+
+                <div class="glass-card">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    <h4>
+                        Trusted & Reliable
+                    </h4>
+
+                    <p>
+                        Long-term relationships built
+                        through honesty and transparency.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="glass-card">
+
+                    <i class="fa-solid fa-award"></i>
+
+                    <h4>
+                        Quality Commitment
+                    </h4>
+
+                    <p>
+                        Delivering products that meet
+                        high quality standards.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="glass-card">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    <h4>
+                        Customer Focus
+                    </h4>
+
+                    <p>
+                        Personalized support and
+                        dependable service.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CERTIFICATIONS -->
+
+<section class="certifications-section">
+
+    <div class="container">
+
+        <div class="section-header text-center">
+
+            <h2>
+                Certifications
+            </h2>
+
+        </div>
+
+        <div class="certification-grid">
+
+            <div class="cert-card">IEC</div>
+            <div class="cert-card">APEDA</div>
+            <div class="cert-card">FSSAI</div>
+            <div class="cert-card">MSME</div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CTA -->
+
+<section class="cta-section">
+
+    <div class="container text-center">
+
+        <h2>
+            Ready To Work With Us?
+        </h2>
+
+        <p>
+            Contact our team for industrial
+            instrumentation and agricultural products.
+        </p>
+
+        <a href="/contact"
+           class="btn btn-success btn-lg">
+
+            Contact Us
+
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}
+ 

@@ -1,0 +1,548 @@
+/* =====================================
+   FLOATING ANIMATIONS
+===================================== */
+
+@keyframes floatY {
+
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+
+}
+
+@keyframes floatX {
+
+    0% {
+        transform: translateX(0px);
+    }
+
+    50% {
+        transform: translateX(15px);
+    }
+
+    100% {
+        transform: translateX(0px);
+    }
+
+}
+
+/* =====================================
+   ROTATION
+===================================== */
+
+@keyframes rotateSlow {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+/* =====================================
+   PULSE
+===================================== */
+
+@keyframes pulseGlow {
+
+    0% {
+        box-shadow: 0 0 0px rgba(0, 212, 255, 0.3);
+    }
+
+    50% {
+        box-shadow:
+            0 0 20px rgba(0, 212, 255, 0.8),
+            0 0 40px rgba(0, 212, 255, 0.4);
+    }
+
+    100% {
+        box-shadow: 0 0 0px rgba(0, 212, 255, 0.3);
+    }
+
+}
+
+/* =====================================
+   GRADIENT ANIMATION
+===================================== */
+
+@keyframes gradientMove {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
+
+/* =====================================
+   HERO BADGE
+===================================== */
+
+.hero-badge {
+
+    display: inline-block;
+
+    padding: 10px 20px;
+
+    border-radius: 50px;
+
+    background: rgba(255,255,255,0.08);
+
+    border: 1px solid rgba(255,255,255,0.1);
+
+    backdrop-filter: blur(10px);
+
+    animation: floatY 4s ease-in-out infinite;
+}
+
+/* =====================================
+   FLOATING PRODUCT CARDS
+===================================== */
+
+.floating-cards {
+
+    position: relative;
+
+    min-height: 500px;
+}
+
+.floating-card {
+
+    position: absolute;
+
+    width: 220px;
+
+    padding: 25px;
+
+    text-align: center;
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255,255,255,0.1);
+
+    box-shadow:
+        0 15px 30px rgba(0,0,0,0.2);
+
+    transition: 0.4s;
+}
+
+.floating-card:hover {
+
+    transform:
+        translateY(-10px)
+        scale(1.05);
+}
+
+.card-1 {
+
+    top: 0;
+    left: 20px;
+
+    animation:
+        floatY 6s ease-in-out infinite;
+}
+
+.card-2 {
+
+    top: 180px;
+    right: 20px;
+
+    animation:
+        floatY 7s ease-in-out infinite;
+}
+
+.card-3 {
+
+    bottom: 0;
+    left: 120px;
+
+    animation:
+        floatY 5s ease-in-out infinite;
+}
+
+/* =====================================
+   GLASS HOVER EFFECT
+===================================== */
+
+.glass-card,
+.product-card,
+.blog-card,
+.certification-card {
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.glass-card::before,
+.product-card::before,
+.blog-card::before,
+.certification-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.1),
+            transparent
+        );
+
+    transition: 0.8s;
+}
+
+.glass-card:hover::before,
+.product-card:hover::before,
+.blog-card:hover::before,
+.certification-card:hover::before {
+
+    left: 100%;
+}
+
+/* =====================================
+   GLOW EFFECTS
+===================================== */
+
+.glow-effect {
+
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: 20px;
+
+    pointer-events: none;
+
+    animation:
+        pulseGlow 4s infinite;
+}
+
+/* =====================================
+   BUTTON GLOW
+===================================== */
+
+.btn-primary,
+.btn-success {
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.btn-primary::before,
+.btn-success::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.3),
+            transparent
+        );
+
+    transition: 0.8s;
+}
+
+.btn-primary:hover::before,
+.btn-success:hover::before {
+
+    left: 100%;
+}
+
+/* =====================================
+   FEATURE CARDS
+===================================== */
+
+.feature-card {
+
+    background:
+        rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(20px);
+
+    border-radius: 20px;
+
+    padding: 30px;
+
+    text-align: center;
+
+    transition: 0.4s;
+}
+
+.feature-card:hover {
+
+    transform:
+        translateY(-12px);
+}
+
+.feature-icon {
+
+    width: 70px;
+    height: 70px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: auto auto 20px;
+
+    border-radius: 50%;
+
+    font-size: 28px;
+
+    animation:
+        pulseGlow 3s infinite;
+}
+
+/* =====================================
+   TIMELINE
+===================================== */
+
+.timeline {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    flex-wrap: wrap;
+}
+
+.timeline-item {
+
+    flex: 1;
+
+    min-width: 250px;
+
+    text-align: center;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(255,255,255,0.05);
+
+    backdrop-filter: blur(15px);
+}
+
+.timeline-icon {
+
+    font-size: 40px;
+
+    margin-bottom: 20px;
+
+    animation:
+        floatY 5s ease-in-out infinite;
+}
+
+/* =====================================
+   FLOATING RINGS
+===================================== */
+
+.floating-ring {
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    border: 2px solid rgba(0,212,255,0.2);
+
+    animation:
+        rotateSlow 20s linear infinite;
+}
+
+.ring-2 {
+
+    animation-duration: 30s;
+}
+
+.ring-3 {
+
+    animation-duration: 40s;
+}
+
+/* =====================================
+   CERTIFICATION BADGES
+===================================== */
+
+.cert-badge {
+
+    padding: 20px;
+
+    text-align: center;
+
+    border-radius: 15px;
+
+    background:
+        rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(15px);
+
+    transition: 0.4s;
+}
+
+.cert-badge:hover {
+
+    transform:
+        scale(1.08);
+
+    animation:
+        pulseGlow 2s infinite;
+}
+
+/* =====================================
+   SOCIAL BUTTONS
+===================================== */
+
+.social-btn {
+
+    width: 50px;
+    height: 50px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    margin: 5px;
+
+    background:
+        rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(15px);
+
+    transition: 0.4s;
+}
+
+.social-btn:hover {
+
+    transform:
+        translateY(-5px)
+        scale(1.1);
+}
+
+/* =====================================
+   REVEAL STATES FOR GSAP
+===================================== */
+
+.reveal-up {
+
+    opacity: 0;
+
+    transform:
+        translateY(80px);
+}
+
+.reveal-left {
+
+    opacity: 0;
+
+    transform:
+        translateX(-80px);
+}
+
+.reveal-right {
+
+    opacity: 0;
+
+    transform:
+        translateX(80px);
+}
+
+.reveal-scale {
+
+    opacity: 0;
+
+    transform:
+        scale(0.8);
+}
+
+/* =====================================
+   MAGNETIC BUTTON
+===================================== */
+
+.magnetic-btn {
+
+    transition:
+        transform 0.2s ease;
+}
+
+/* =====================================
+   PARALLAX ELEMENTS
+===================================== */
+
+.parallax {
+
+    will-change: transform;
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width: 768px) {
+
+    .floating-cards {
+
+        min-height: 350px;
+    }
+
+    .floating-card {
+
+        width: 160px;
+
+        padding: 15px;
+    }
+
+    .timeline {
+
+        flex-direction: column;
+    }
+
+}

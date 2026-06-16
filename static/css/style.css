@@ -1,0 +1,355 @@
+/* =====================================
+   ROOT VARIABLES
+===================================== */
+
+:root{
+    --primary:#00d4ff;
+    --secondary:#00ff99;
+
+    --dark:#050816;
+    --dark-card:#0f172a;
+
+    --white:#ffffff;
+
+    --glass:rgba(255,255,255,0.05);
+    --border:rgba(255,255,255,0.08);
+
+    --shadow:0 15px 40px rgba(0,0,0,.35);
+
+    --transition:.4s ease;
+}
+
+/* =====================================
+   RESET
+===================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#050816;
+    color:#ffffff;
+    overflow-x:hidden;
+    min-height:100vh;
+}
+
+/* =====================================
+   THREE.JS BACKGROUND
+===================================== */
+
+#bg-canvas{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:-10;
+    pointer-events:none;
+}
+
+#bg-canvas canvas{
+    display:block;
+    width:100%;
+    height:100%;
+}
+
+/* =====================================
+   PRELOADER
+===================================== */
+
+#preloader{
+    position:fixed;
+    inset:0;
+
+    background:#050816;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    z-index:99999;
+
+    transition:opacity .5s ease;
+}
+
+#preloader img{
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.08);
+    }
+
+}
+
+/* =====================================
+   NAVBAR
+===================================== */
+
+.custom-navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+
+    z-index:9999;
+
+    background:rgba(5,8,22,.85);
+
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+    transition:
+        transform .35s ease,
+        background .35s ease;
+}
+
+/* Scroll Down Hide */
+
+.custom-navbar.nav-hidden{
+    transform:translateY(-100%);
+}
+
+/* Scroll Up Show */
+
+.custom-navbar.nav-visible{
+    transform:translateY(0);
+}
+
+.navbar-scrolled{
+    background:rgba(5,8,22,.95);
+}
+
+.navbar-brand img{
+    transition:.4s ease;
+}
+
+.navbar-brand img:hover{
+    transform:scale(1.05);
+}
+
+.nav-link{
+    color:#ffffff !important;
+    margin-left:15px;
+    position:relative;
+    transition:.3s ease;
+}
+
+.nav-link::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-5px;
+
+    width:0;
+    height:2px;
+
+    background:#00d4ff;
+
+    transition:.3s ease;
+}
+
+.nav-link:hover{
+    color:#00d4ff !important;
+}
+
+.nav-link:hover::after{
+    width:100%;
+}
+
+/* =====================================
+   FLASH MESSAGES
+===================================== */
+
+.alert{
+    border:none;
+    border-radius:15px;
+}
+
+/* =====================================
+   MAIN CONTENT
+===================================== */
+
+main{
+    position:relative;
+    z-index:2;
+}
+
+/* =====================================
+   SECTION
+===================================== */
+
+section{
+    position:relative;
+    z-index:2;
+}
+
+/* =====================================
+   GLASS CARD
+===================================== */
+
+.glass-card{
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:25px;
+
+    padding:35px;
+
+    transition:.4s ease;
+
+    /* Removed blur causing visibility issue */
+    backdrop-filter:none;
+}
+
+.glass-card:hover{
+    transform:translateY(-8px);
+    box-shadow:var(--shadow);
+}
+
+/* =====================================
+   BUTTONS
+===================================== */
+
+.btn-primary{
+    background:#00d4ff;
+    border:none;
+    color:#000;
+    font-weight:600;
+}
+
+.btn-primary:hover{
+    transform:translateY(-3px);
+}
+
+.btn-success{
+    background:#00ff99;
+    border:none;
+    color:#000;
+    font-weight:600;
+}
+
+.btn-success:hover{
+    transform:translateY(-3px);
+}
+
+/* =====================================
+   FOOTER
+===================================== */
+
+.footer{
+    background:#020617;
+
+    padding:80px 0 40px;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    position:relative;
+    z-index:2;
+}
+
+.footer h5{
+    color:#ffffff;
+    margin-bottom:20px;
+}
+
+.footer p{
+    color:rgba(255,255,255,.75);
+}
+
+.footer-links{
+    list-style:none;
+    padding:0;
+}
+
+.footer-links li{
+    margin-bottom:10px;
+}
+
+.footer-links a{
+    color:#ffffff;
+    text-decoration:none;
+    transition:.3s ease;
+}
+
+.footer-links a:hover{
+    color:#00d4ff;
+}
+
+/* =====================================
+   COMMON HEADINGS
+===================================== */
+
+h1,h2,h3,h4,h5,h6{
+    color:#ffffff;
+}
+
+p{
+    color:rgba(255,255,255,.8);
+}
+
+/* =====================================
+   SCROLLBAR
+===================================== */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#050816;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#00d4ff;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#00ff99;
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media(max-width:992px){
+
+    .navbar-nav{
+        text-align:center;
+        padding:15px 0;
+    }
+
+    .nav-link{
+        margin:10px 0;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .footer{
+        text-align:center;
+    }
+
+    .navbar-brand img{
+        height:45px;
+    }
+
+}
