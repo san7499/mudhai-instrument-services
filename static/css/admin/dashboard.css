@@ -1,0 +1,317 @@
+/* ==========================================
+   ADMIN DASHBOARD
+========================================== */
+
+.admin-dashboard{
+    min-height:100vh;
+    padding:120px 0 80px;
+}
+
+/* ==========================================
+   SIDEBAR
+========================================== */
+
+.admin-sidebar{
+    position:sticky;
+    top:100px;
+}
+
+.admin-sidebar .glass-card{
+    padding:30px;
+}
+
+.admin-sidebar h4{
+    color:#ffffff;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.admin-sidebar p{
+    color:rgba(255,255,255,.65);
+    margin-bottom:25px;
+    font-size:.9rem;
+}
+
+.admin-sidebar .btn{
+    width:100%;
+    text-align:left;
+    margin-bottom:10px;
+    border-radius:12px;
+    font-weight:500;
+    transition:.3s ease;
+}
+
+.admin-sidebar .btn:hover{
+    transform:translateX(5px);
+}
+
+/* ==========================================
+   DASHBOARD HEADER
+========================================== */
+
+.dashboard-header{
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:25px;
+    padding:30px;
+    margin-bottom:30px;
+    backdrop-filter:blur(15px);
+}
+
+.dashboard-header h2{
+    color:#ffffff;
+    font-size:2.5rem;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.dashboard-header p{
+    color:rgba(255,255,255,.7);
+    margin:0;
+}
+
+/* ==========================================
+   STATS CARDS
+========================================== */
+
+.stats-card{
+    height:100%;
+    text-align:center;
+
+    padding:35px 25px;
+
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:25px;
+
+    backdrop-filter:blur(15px);
+
+    transition:all .4s ease;
+}
+
+.stats-card:hover{
+    transform:translateY(-10px);
+    border-color:#00d4ff;
+    box-shadow:0 20px 40px rgba(0,0,0,.25);
+}
+
+.stats-card i{
+    font-size:2.2rem;
+    margin-bottom:15px;
+}
+
+.stats-card h2{
+    color:#ffffff;
+    font-size:2.3rem;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.stats-card p{
+    color:rgba(255,255,255,.7);
+    margin:0;
+}
+
+/* ==========================================
+   DASHBOARD CONTENT CARDS
+========================================== */
+
+.dashboard-card{
+    padding:30px;
+
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:25px;
+
+    backdrop-filter:blur(15px);
+
+    transition:.4s ease;
+}
+
+.dashboard-card:hover{
+    border-color:#00d4ff;
+}
+
+.dashboard-card h4{
+    color:#ffffff;
+    margin-bottom:25px;
+    font-weight:600;
+}
+
+/* ==========================================
+   QUICK ACTIONS
+========================================== */
+
+.quick-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.quick-actions .btn{
+    min-width:220px;
+    padding:12px 20px;
+    border-radius:12px;
+    font-weight:600;
+}
+
+/* ==========================================
+   TABLE
+========================================== */
+
+.table{
+    margin-bottom:0;
+}
+
+.table-dark{
+    --bs-table-bg:transparent;
+}
+
+.table thead th{
+    color:#00d4ff;
+    border-bottom:1px solid rgba(255,255,255,.12);
+}
+
+.table tbody td{
+    color:#ffffff;
+    border-color:rgba(255,255,255,.05);
+}
+
+.table-hover tbody tr:hover{
+    background:rgba(255,255,255,.03);
+}
+
+/* ==========================================
+   STATUS BADGE
+========================================== */
+
+.status-badge,
+.badge{
+    padding:8px 14px;
+    border-radius:50px;
+    font-size:.85rem;
+    font-weight:600;
+}
+
+/* ==========================================
+   STATUS LIST
+========================================== */
+
+.status-list{
+    list-style:none;
+    padding:0;
+    margin:0;
+}
+
+.status-list li{
+    padding:12px 0;
+    color:rgba(255,255,255,.8);
+    border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.status-list li:last-child{
+    border-bottom:none;
+}
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+.btn-primary{
+    background:#00d4ff;
+    border:none;
+    color:#000;
+    font-weight:600;
+}
+
+.btn-primary:hover{
+    background:#00c5ee;
+    color:#000;
+}
+
+.btn-success{
+    background:#00ff99;
+    border:none;
+    color:#000;
+    font-weight:600;
+}
+
+.btn-success:hover{
+    background:#00e68a;
+    color:#000;
+}
+
+.btn-warning{
+    font-weight:600;
+    color:#000;
+}
+
+.btn-danger{
+    font-weight:600;
+}
+
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+.table-responsive::-webkit-scrollbar{
+    height:8px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb{
+    background:#00d4ff;
+    border-radius:20px;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:992px){
+
+    .admin-dashboard{
+        padding:90px 0 60px;
+    }
+
+    .dashboard-header h2{
+        font-size:2rem;
+    }
+
+    .quick-actions{
+        flex-direction:column;
+    }
+
+    .quick-actions .btn{
+        width:100%;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .dashboard-header{
+        text-align:center;
+        padding:20px;
+    }
+
+    .dashboard-header h2{
+        font-size:1.8rem;
+    }
+
+    .stats-card{
+        padding:25px 20px;
+    }
+
+    .stats-card h2{
+        font-size:2rem;
+    }
+
+    .dashboard-card{
+        padding:20px;
+    }
+
+    .admin-sidebar{
+        position:static;
+    }
+
+}

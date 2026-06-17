@@ -1,0 +1,353 @@
+/* ==========================================
+   ADMIN ENQUIRIES PAGE
+========================================== */
+.admin-enquiries {
+    padding: 120px 0 80px;
+    min-height: 100vh;
+}
+
+/* ==========================================
+   SIDEBAR
+========================================== */
+.admin-sidebar {
+    position: sticky;
+    top: 100px;
+}
+
+.admin-sidebar .glass-card {
+    padding: 30px;
+}
+
+.admin-sidebar h4 {
+    color: #ffffff;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.admin-sidebar p {
+    color: rgba(255, 255, 255, .65);
+    margin-bottom: 25px;
+}
+
+.admin-sidebar .btn {
+    width: 100%;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    text-align: left;
+    font-weight: 500;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+.dashboard-header {
+    padding: 35px;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, .05);
+    border: 1px solid rgba(255, 255, 255, .08);
+    backdrop-filter: blur(15px);
+    margin-bottom: 35px;
+}
+
+.dashboard-header h2 {
+    color: #ffffff;
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.dashboard-header p {
+    color: rgba(255, 255, 255, .7);
+    margin: 0;
+}
+
+/* ==========================================
+   STATS
+========================================== */
+.stats-card {
+    text-align: center;
+    padding: 30px;
+    height: 100%;
+    background: rgba(255, 255, 255, .05);
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 25px;
+    backdrop-filter: blur(15px);
+    transition: .35s ease;
+    animation: floatCard 5s ease-in-out infinite;
+}
+
+.stats-card:hover {
+    transform: translateY(-8px);
+    border-color: #00d4ff;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, .25);
+}
+
+.stats-card i {
+    font-size: 2rem;
+    color: #00d4ff;
+    margin-bottom: 15px;
+}
+
+.stats-card h3 {
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.stats-card p {
+    color: rgba(255, 255, 255, .7);
+    margin: 0;
+}
+
+/* ==========================================
+   GLASS CARD
+========================================== */
+.dashboard-card {
+    background: rgba(255, 255, 255, .05);
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 25px;
+    backdrop-filter: blur(15px);
+    padding: 30px;
+    transition: .35s ease;
+}
+
+.dashboard-card:hover {
+    border-color: #00d4ff;
+}
+
+.dashboard-card h4 {
+    color: #ffffff;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+/* ==========================================
+   SEARCH BAR
+========================================== */
+.form-control,
+.form-select {
+    background: rgba(255, 255, 255, .06);
+    border: 1px solid rgba(255, 255, 255, .1);
+    color: #ffffff;
+    border-radius: 12px;
+    padding: 12px 15px;
+}
+
+.form-control:focus,
+.form-select:focus {
+    background: rgba(255, 255, 255, .08);
+    color: #ffffff;
+    border-color: #00d4ff;
+    box-shadow: 0 0 15px rgba(0, 212, 255, .25);
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, .5);
+}
+
+.form-select option {
+    background: #0f172a;
+    color: #ffffff;
+}
+
+/* ==========================================
+   TABLE
+========================================== */
+.table {
+    margin-bottom: 0;
+    vertical-align: middle;
+}
+
+.table-dark {
+    --bs-table-bg: transparent;
+}
+
+.table thead th {
+    color: #00d4ff;
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
+    font-weight: 600;
+}
+
+.table td {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, .06);
+    vertical-align: middle;
+}
+
+.table tbody tr {
+    transition: .3s ease;
+}
+
+.table tbody tr:hover {
+    background: rgba(255, 255, 255, .05);
+}
+
+/* ==========================================
+   BADGES
+========================================== */
+.badge {
+    padding: 8px 14px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: .82rem;
+}
+
+/* ==========================================
+   BUTTONS
+========================================== */
+.btn {
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.btn-primary {
+    background: #00d4ff;
+    border: none;
+    color: #000;
+}
+
+.btn-primary:hover {
+    background: #00c4ec;
+    color: #000;
+    transform: translateY(-2px);
+}
+
+.btn-success {
+    background: #00ff99;
+    border: none;
+    color: #000;
+}
+
+.btn-success:hover {
+    background: #00e68a;
+    color: #000;
+    transform: translateY(-2px);
+}
+
+.btn-danger:hover,
+.btn-secondary:hover {
+    transform: translateY(-2px);
+}
+
+/* ==========================================
+   MODAL
+========================================== */
+.modal-content {
+    background: #0f172a;
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 25px;
+    color: #ffffff;
+}
+
+.modal-header,
+.modal-footer {
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+.modal-footer {
+    border-top: 1px solid rgba(255, 255, 255, .08);
+}
+
+.modal-title {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* ==========================================
+   GLASS CARD INSIDE MODAL
+========================================== */
+.modal .glass-card {
+    background: rgba(255, 255, 255, .04);
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 20px;
+    padding: 25px;
+    height: 100%;
+}
+
+.modal .glass-card h5 {
+    color: #00d4ff;
+    margin-bottom: 20px;
+}
+
+.modal p {
+    color: rgba(255, 255, 255, .82);
+    line-height: 1.7;
+}
+
+.modal strong {
+    color: #ffffff;
+}
+
+/* ==========================================
+   FLOATING ANIMATION
+========================================== */
+@keyframes floatCard {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+/* ==========================================
+   SCROLLBAR
+========================================== */
+.table-responsive::-webkit-scrollbar {
+    height: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background: #00d4ff;
+    border-radius: 20px;
+}
+
+/* ==========================================
+   RESPONSIVE (MEDIA QUERIES)
+========================================== */
+@media (max-width: 992px) {
+    .admin-enquiries {
+        padding: 90px 0;
+    }
+
+    .dashboard-header {
+        text-align: center;
+    }
+
+    .dashboard-header h2 {
+        font-size: 2rem;
+    }
+
+    .admin-sidebar {
+        position: relative;
+        top: auto;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-header {
+        padding: 25px;
+    }
+
+    .dashboard-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .stats-card {
+        margin-bottom: 20px;
+    }
+
+    .dashboard-card {
+        padding: 20px;
+    }
+
+    .table {
+        font-size: .9rem;
+    }
+
+    .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}

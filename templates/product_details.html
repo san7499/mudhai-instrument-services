@@ -27,10 +27,10 @@
 
                 <div class="product-image-wrapper">
 
-                    {% if product.images and product.images|length > 0 %}
+                    {% if product.image_url %}
 
                     <img
-                        src="{{ product.images[0] }}"
+                        src="{{ product.image_url }}"
                         alt="{{ product.name }}"
                         class="img-fluid main-product-image">
 
@@ -56,43 +56,35 @@
                 <div class="product-info">
 
                     <span class="product-category">
-
                         {{ product.category }}
-
                     </span>
 
                     <h1 class="product-title">
-
                         {{ product.name }}
-
                     </h1>
 
                     <p class="product-short-description">
-
                         {{ product.short_description }}
-
                     </p>
 
                     {% if product.featured %}
 
                     <span class="featured-badge">
-
                         ⭐ Featured Product
-
                     </span>
 
                     {% endif %}
 
                     <div class="action-buttons mt-4">
 
-                        <a href="/contact"
-                           class="btn btn-primary btn-lg">
+                        <a href="{{ url_for('contact') }}"
+                           class="btn btn-primary btn-lg me-2">
 
                             Request Quote
 
                         </a>
 
-                        <a href="/products"
+                        <a href="{{ url_for('products') }}"
                            class="btn btn-outline-light btn-lg">
 
                             Back To Products
@@ -110,7 +102,6 @@
     </div>
 
 </section>
-
 <!-- ===================================== -->
 <!-- PRODUCT OVERVIEW -->
 <!-- ===================================== -->
@@ -222,43 +213,42 @@
 {% endif %}
 
 <!-- ===================================== -->
+<!-- ===================================== -->
 <!-- PRODUCT GALLERY -->
 <!-- ===================================== -->
 
-{% if product.images and product.images|length > 1 %}
+{% if product.image %}
 
-<section class="gallery-section">
+<section class="gallery-section py-5">
 
     <div class="container">
 
-        <div class="section-header text-center">
+        <div class="section-header text-center mb-5">
 
             <h2>
-
                 Product Gallery
-
             </h2>
+
+            <p>
+                High-quality product images
+            </p>
 
         </div>
 
-        <div class="row">
+        <div class="row justify-content-center">
 
-            {% for image in product.images %}
-
-            <div class="col-lg-4 col-md-6 mb-4">
+            <div class="col-lg-8 col-md-10">
 
                 <div class="gallery-card">
 
                     <img
-                        src="{{ image }}"
+                        src="{{ url_for('static', filename=product.image) }}"
                         alt="{{ product.name }}"
-                        class="img-fluid">
+                        class="img-fluid rounded shadow-lg w-100">
 
                 </div>
 
             </div>
-
-            {% endfor %}
 
         </div>
 

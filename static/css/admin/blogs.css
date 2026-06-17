@@ -1,0 +1,448 @@
+/* ==========================================
+   ADMIN BLOGS PAGE
+========================================== */
+
+.admin-blogs-section{
+    padding:120px 0;
+    min-height:100vh;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.admin-blogs-section h2{
+    color:#ffffff;
+    font-size:2.5rem;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.admin-blogs-section p{
+    color:rgba(255,255,255,.70);
+    margin-bottom:0;
+}
+
+/* ==========================================
+   GLASS CARD
+========================================== */
+
+.glass-card{
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:25px;
+
+    padding:25px;
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    transition:.35s ease;
+
+}
+
+.glass-card:hover{
+
+    border-color:#00d4ff;
+
+    box-shadow:0 20px 40px rgba(0,0,0,.25);
+
+}
+
+/* ==========================================
+   SEARCH
+========================================== */
+
+#blogSearch{
+
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    color:#ffffff;
+
+    border-radius:12px;
+
+    padding:14px 18px;
+
+}
+
+#blogSearch::placeholder{
+
+    color:rgba(255,255,255,.45);
+
+}
+
+#blogSearch:focus{
+
+    background:rgba(255,255,255,.08);
+
+    color:#ffffff;
+
+    border-color:#00d4ff;
+
+    box-shadow:0 0 20px rgba(0,212,255,.25);
+
+}
+
+/* ==========================================
+   TABLE
+========================================== */
+
+.table{
+
+    margin-bottom:0;
+
+}
+
+.table-dark{
+
+    --bs-table-bg:transparent;
+
+}
+
+.table thead th{
+
+    color:#00d4ff;
+
+    border-bottom:1px solid rgba(255,255,255,.12);
+
+    font-weight:600;
+
+    white-space:nowrap;
+
+}
+
+.table td{
+
+    color:#ffffff;
+
+    vertical-align:middle;
+
+    border-color:rgba(255,255,255,.05);
+
+}
+
+.table tbody tr{
+
+    transition:.3s;
+
+}
+
+.table tbody tr:hover{
+
+    background:rgba(255,255,255,.05);
+
+}
+
+/* ==========================================
+   BLOG IMAGE
+========================================== */
+
+.table img{
+
+    width:65px;
+
+    height:65px;
+
+    object-fit:cover;
+
+    border-radius:12px;
+
+    border:2px solid rgba(255,255,255,.08);
+
+}
+
+/* ==========================================
+   BADGES
+========================================== */
+
+.badge{
+
+    padding:8px 15px;
+
+    border-radius:50px;
+
+    font-size:.8rem;
+
+    font-weight:600;
+
+}
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+.btn{
+
+    border-radius:10px;
+
+    transition:.3s ease;
+
+}
+
+.btn-primary{
+
+    background:#00d4ff;
+
+    border:none;
+
+    color:#000;
+
+    font-weight:600;
+
+}
+
+.btn-primary:hover{
+
+    background:#00bde5;
+
+    color:#000;
+
+    transform:translateY(-2px);
+
+}
+
+.btn-success{
+
+    background:#00ff99;
+
+    border:none;
+
+    color:#000;
+
+    font-weight:600;
+
+}
+
+.btn-success:hover{
+
+    background:#00e68a;
+
+    color:#000;
+
+    transform:translateY(-2px);
+
+}
+
+.btn-danger{
+
+    font-weight:600;
+
+}
+
+.btn-outline-light:hover{
+
+    color:#000;
+
+}
+
+/* ==========================================
+   MODAL
+========================================== */
+
+.modal-content{
+
+    background:#0f172a;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:20px;
+
+}
+
+.modal-header{
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+.modal-footer{
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+.modal-title,
+.modal h5{
+
+    color:#ffffff;
+
+}
+
+.modal label{
+
+    color:#ffffff;
+
+    font-weight:500;
+
+    margin-bottom:8px;
+
+}
+
+.modal .form-control,
+.modal .form-select{
+
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    color:#ffffff;
+
+    border-radius:12px;
+
+    padding:12px;
+
+}
+
+.modal .form-control:focus,
+.modal .form-select:focus{
+
+    background:rgba(255,255,255,.08);
+
+    border-color:#00d4ff;
+
+    color:#ffffff;
+
+    box-shadow:0 0 20px rgba(0,212,255,.25);
+
+}
+
+.modal textarea{
+
+    resize:vertical;
+
+    min-height:140px;
+
+}
+
+.modal .form-control::placeholder{
+
+    color:rgba(255,255,255,.45);
+
+}
+
+.modal .form-select option{
+
+    background:#0f172a;
+
+    color:#ffffff;
+
+}
+
+.form-check-label{
+
+    color:#ffffff;
+
+}
+
+/* ==========================================
+   FLOAT ANIMATION
+========================================== */
+
+@keyframes floatCard{
+
+    0%,100%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-5px);
+
+    }
+
+}
+
+.glass-card{
+
+    animation:floatCard 6s ease-in-out infinite;
+
+}
+
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+.table-responsive::-webkit-scrollbar{
+
+    height:8px;
+
+}
+
+.table-responsive::-webkit-scrollbar-thumb{
+
+    background:#00d4ff;
+
+    border-radius:20px;
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:992px){
+
+    .admin-blogs-section{
+
+        padding:90px 0;
+
+    }
+
+    .admin-blogs-section h2{
+
+        font-size:2rem;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .admin-blogs-section{
+
+        padding:70px 0;
+
+    }
+
+    .glass-card{
+
+        padding:20px;
+
+    }
+
+    .admin-blogs-section h2{
+
+        font-size:1.8rem;
+
+    }
+
+    .table{
+
+        font-size:.9rem;
+
+    }
+
+    .table img{
+
+        width:50px;
+
+        height:50px;
+
+    }
+
+    .btn{
+
+        font-size:.85rem;
+
+        padding:6px 10px;
+
+    }
+
+}

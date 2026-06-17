@@ -1,14 +1,15 @@
 {% extends "base.html" %}
 
+{% block styles %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/admin/dashboard.css') }}">
+{% endblock %}
+
 {% block title %}
 Admin Dashboard | Mudhai Instrument Services
 {% endblock %}
 
 {% block content %}
-
-<!-- ===================================== -->
-<!-- ADMIN DASHBOARD -->
-<!-- ===================================== -->
 
 <section class="admin-dashboard">
 
@@ -16,145 +17,85 @@ Admin Dashboard | Mudhai Instrument Services
 
         <div class="row">
 
-            <!-- ===================================== -->
             <!-- SIDEBAR -->
-            <!-- ===================================== -->
 
-            <div class="col-lg-2 sidebar">
+            <div class="col-lg-2 mb-4">
 
-                <div class="sidebar-header">
+                <div class="glass-card admin-sidebar">
 
-                    <h4>
+                    <h4>Admin Panel</h4>
 
-                        Admin Panel
+                    <p>Mudhai Instrument Services</p>
 
-                    </h4>
+                    <div class="d-grid gap-2">
 
-                    <p>
-
-                        Mudhai Instrument Services
-
-                    </p>
-
-                </div>
-
-                <ul class="sidebar-menu">
-
-                    <li>
-
-                        <a
-                            href="/admin/dashboard"
-                            class="active">
-
-                            <i class="fa-solid fa-chart-line"></i>
-
+                        <a href="{{ url_for('admin_dashboard') }}"
+                           class="btn btn-primary">
+                            <i class="fa-solid fa-chart-line me-2"></i>
                             Dashboard
-
                         </a>
 
-                    </li>
-
-                    <li>
-
-                        <a
-                            href="/admin/products">
-
-                            <i class="fa-solid fa-box"></i>
-
+                        <a href="{{ url_for('admin_products') }}"
+                           class="btn btn-outline-light">
+                            <i class="fa-solid fa-box me-2"></i>
                             Products
-
                         </a>
 
-                    </li>
-
-                    <li>
-
-                        <a
-                            href="/admin/blogs">
-
-                            <i class="fa-solid fa-blog"></i>
-
+                        <a href="{{ url_for('admin_blogs') }}"
+                           class="btn btn-outline-light">
+                            <i class="fa-solid fa-blog me-2"></i>
                             Blogs
-
                         </a>
 
-                    </li>
-
-                    <li>
-
-                        <a
-                            href="/admin/enquiries">
-
-                            <i class="fa-solid fa-envelope"></i>
-
-                            Enquiries
-
-                        </a>
-
-                    </li>
-
-                    <li>
-
-                        <a
-                            href="/certifications">
-
-                            <i class="fa-solid fa-certificate"></i>
-
+                        <a href="{{ url_for('admin_certifications') }}"
+                           class="btn btn-outline-light">
+                            <i class="fa-solid fa-certificate me-2"></i>
                             Certifications
-
                         </a>
 
-                    </li>
+                        <a href="{{ url_for('admin_enquiries') }}"
+                           class="btn btn-outline-light">
+                            <i class="fa-solid fa-envelope me-2"></i>
+                            Enquiries
+                        </a>
 
-                    <li>
-
-                        <a
-                            href="/admin/logout">
-
-                            <i class="fa-solid fa-right-from-bracket"></i>
-
+                        <a href="{{ url_for('admin_logout') }}"
+                           class="btn btn-danger">
+                            <i class="fa-solid fa-right-from-bracket me-2"></i>
                             Logout
-
                         </a>
-
-                    </li>
-
-                </ul>
-
-            </div>
-
-            <!-- ===================================== -->
-            <!-- MAIN CONTENT -->
-            <!-- ===================================== -->
-
-            <div class="col-lg-10 dashboard-content">
-
-                <!-- Header -->
-
-                <div class="dashboard-header">
-
-                    <div>
-
-                        <h2>
-
-                            Dashboard
-
-                        </h2>
-
-                        <p>
-
-                            Welcome back,
-                            {{ session['admin'] }}
-
-                        </p>
 
                     </div>
 
                 </div>
 
-                <!-- ===================================== -->
-                <!-- STATS CARDS -->
-                <!-- ===================================== -->
+            </div>
+
+            <!-- MAIN CONTENT -->
+
+            <div class="col-lg-10">
+
+                <!-- HEADER -->
+
+                <div class="glass-card dashboard-header">
+
+                    <h2>
+                        Dashboard
+                    </h2>
+
+                    <p>
+
+                        Welcome Back,
+
+                        <strong>
+                            {{ session.get('admin', 'Admin') }}
+                        </strong>
+
+                    </p>
+
+                </div>
+
+                <!-- STATS -->
 
                 <div class="row">
 
@@ -162,27 +103,11 @@ Admin Dashboard | Mudhai Instrument Services
 
                         <div class="stats-card">
 
-                            <div class="stats-icon">
+                            <i class="fa-solid fa-box fa-2x text-info mb-3"></i>
 
-                                <i class="fa-solid fa-box"></i>
+                            <h2>{{ stats.products }}</h2>
 
-                            </div>
-
-                            <div>
-
-                                <h3>
-
-                                    {{ stats.products }}
-
-                                </h3>
-
-                                <p>
-
-                                    Products
-
-                                </p>
-
-                            </div>
+                            <p>Products</p>
 
                         </div>
 
@@ -192,27 +117,11 @@ Admin Dashboard | Mudhai Instrument Services
 
                         <div class="stats-card">
 
-                            <div class="stats-icon">
+                            <i class="fa-solid fa-blog fa-2x text-success mb-3"></i>
 
-                                <i class="fa-solid fa-blog"></i>
+                            <h2>{{ stats.blogs }}</h2>
 
-                            </div>
-
-                            <div>
-
-                                <h3>
-
-                                    {{ stats.blogs }}
-
-                                </h3>
-
-                                <p>
-
-                                    Blogs
-
-                                </p>
-
-                            </div>
+                            <p>Blogs</p>
 
                         </div>
 
@@ -222,27 +131,11 @@ Admin Dashboard | Mudhai Instrument Services
 
                         <div class="stats-card">
 
-                            <div class="stats-icon">
+                            <i class="fa-solid fa-certificate fa-2x text-warning mb-3"></i>
 
-                                <i class="fa-solid fa-certificate"></i>
+                            <h2>{{ stats.certifications }}</h2>
 
-                            </div>
-
-                            <div>
-
-                                <h3>
-
-                                    {{ stats.certifications }}
-
-                                </h3>
-
-                                <p>
-
-                                    Certifications
-
-                                </p>
-
-                            </div>
+                            <p>Certifications</p>
 
                         </div>
 
@@ -252,27 +145,11 @@ Admin Dashboard | Mudhai Instrument Services
 
                         <div class="stats-card">
 
-                            <div class="stats-icon">
+                            <i class="fa-solid fa-envelope fa-2x text-danger mb-3"></i>
 
-                                <i class="fa-solid fa-envelope"></i>
+                            <h2>{{ stats.enquiries }}</h2>
 
-                            </div>
-
-                            <div>
-
-                                <h3>
-
-                                    {{ stats.enquiries }}
-
-                                </h3>
-
-                                <p>
-
-                                    Enquiries
-
-                                </p>
-
-                            </div>
+                            <p>Enquiries</p>
 
                         </div>
 
@@ -280,51 +157,38 @@ Admin Dashboard | Mudhai Instrument Services
 
                 </div>
 
-                <!-- ===================================== -->
                 <!-- QUICK ACTIONS -->
-                <!-- ===================================== -->
 
-                <div class="dashboard-card">
+                <div class="dashboard-card mb-4">
 
-                    <div class="card-header-custom">
-
-                        <h4>
-
-                            Quick Actions
-
-                        </h4>
-
-                    </div>
+                    <h4>Quick Actions</h4>
 
                     <div class="quick-actions">
 
-                        <a
-                            href="/admin/products"
-                            class="action-btn">
+                        <a href="{{ url_for('admin_products') }}"
+                           class="btn btn-primary">
 
-                            <i class="fa-solid fa-plus"></i>
+                            <i class="fa-solid fa-box me-2"></i>
 
-                            Add Product
-
-                        </a>
-
-                        <a
-                            href="/admin/blogs"
-                            class="action-btn">
-
-                            <i class="fa-solid fa-pen"></i>
-
-                            Add Blog
+                            Manage Products
 
                         </a>
 
-                        <a
-                            href="/admin/enquiries"
-                            class="action-btn">
+                        <a href="{{ url_for('admin_blogs') }}"
+                           class="btn btn-success">
 
-                            <i class="fa-solid fa-envelope-open"></i>
+                            <i class="fa-solid fa-blog me-2"></i>
 
-                            View Leads
+                            Manage Blogs
+
+                        </a>
+
+                        <a href="{{ url_for('admin_enquiries') }}"
+                           class="btn btn-warning">
+
+                            <i class="fa-solid fa-envelope me-2"></i>
+
+                            View Enquiries
 
                         </a>
 
@@ -332,54 +196,24 @@ Admin Dashboard | Mudhai Instrument Services
 
                 </div>
 
-                <!-- ===================================== -->
                 <!-- RECENT ENQUIRIES -->
-                <!-- ===================================== -->
 
-                <div class="dashboard-card mt-4">
+                <div class="dashboard-card mb-4">
 
-                    <div class="card-header-custom">
-
-                        <h4>
-
-                            Recent Enquiries
-
-                        </h4>
-
-                    </div>
+                    <h4>Recent Enquiries</h4>
 
                     <div class="table-responsive">
 
-                        <table
-                            class="table table-hover align-middle">
+                        <table class="table table-dark align-middle">
 
                             <thead>
 
                                 <tr>
 
-                                    <th>
-
-                                        Name
-
-                                    </th>
-
-                                    <th>
-
-                                        Email
-
-                                    </th>
-
-                                    <th>
-
-                                        Phone
-
-                                    </th>
-
-                                    <th>
-
-                                        Status
-
-                                    </th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Status</th>
 
                                 </tr>
 
@@ -387,42 +221,46 @@ Admin Dashboard | Mudhai Instrument Services
 
                             <tbody>
 
-                                {% for enquiry in enquiries %}
+                                {% if enquiries %}
 
-                                <tr>
+                                    {% for enquiry in enquiries %}
 
-                                    <td>
+                                    <tr>
 
-                                        {{ enquiry.name }}
+                                        <td>{{ enquiry.name }}</td>
 
-                                    </td>
+                                        <td>{{ enquiry.email }}</td>
 
-                                    <td>
+                                        <td>{{ enquiry.phone }}</td>
 
-                                        {{ enquiry.email }}
+                                        <td>
 
-                                    </td>
+                                            <span class="badge bg-success">
 
-                                    <td>
+                                                {{ enquiry.status }}
 
-                                        {{ enquiry.phone }}
+                                            </span>
 
-                                    </td>
+                                        </td>
 
-                                    <td>
+                                    </tr>
 
-                                        <span
-                                            class="status-badge">
+                                    {% endfor %}
 
-                                            {{ enquiry.status }}
+                                {% else %}
 
-                                        </span>
+                                    <tr>
 
-                                    </td>
+                                        <td colspan="4"
+                                            class="text-center">
 
-                                </tr>
+                                            No enquiries found
 
-                                {% endfor %}
+                                        </td>
+
+                                    </tr>
+
+                                {% endif %}
 
                             </tbody>
 
@@ -432,41 +270,23 @@ Admin Dashboard | Mudhai Instrument Services
 
                 </div>
 
-                <!-- ===================================== -->
-                <!-- SYSTEM STATUS -->
-                <!-- ===================================== -->
+                <!-- INFO SECTION -->
 
-                <div class="row mt-4">
+                <div class="row">
 
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 mb-4">
 
                         <div class="dashboard-card">
 
-                            <h4>
-
-                                Website Status
-
-                            </h4>
+                            <h4>Website Status</h4>
 
                             <ul class="status-list">
 
-                                <li>
+                                <li>✅ Website Online</li>
 
-                                    ✅ Website Online
+                                <li>✅ MongoDB Connected</li>
 
-                                </li>
-
-                                <li>
-
-                                    ✅ MongoDB Connected
-
-                                </li>
-
-                                <li>
-
-                                    ✅ Admin Active
-
-                                </li>
+                                <li>✅ Admin Logged In</li>
 
                             </ul>
 
@@ -474,35 +294,19 @@ Admin Dashboard | Mudhai Instrument Services
 
                     </div>
 
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 mb-4">
 
                         <div class="dashboard-card">
 
-                            <h4>
-
-                                Business Overview
-
-                            </h4>
+                            <h4>Business Overview</h4>
 
                             <ul class="status-list">
 
-                                <li>
+                                <li>⚙ Industrial Instruments</li>
 
-                                    Industrial Products
+                                <li>🌱 Agricultural Products</li>
 
-                                </li>
-
-                                <li>
-
-                                    Agricultural Products
-
-                                </li>
-
-                                <li>
-
-                                    Certifications Verified
-
-                                </li>
+                                <li>🏆 Certified Business</li>
 
                             </ul>
 
@@ -519,45 +323,5 @@ Admin Dashboard | Mudhai Instrument Services
     </div>
 
 </section>
-
-{% endblock %}
-
-{% block scripts %}
-
-<script>
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    if (typeof gsap !== "undefined") {
-
-        gsap.from(".stats-card", {
-
-            opacity: 0,
-            y: 60,
-
-            duration: 1,
-
-            stagger: 0.15
-
-        });
-
-        gsap.from(".dashboard-card", {
-
-            opacity: 0,
-            y: 40,
-
-            duration: 1,
-
-            stagger: 0.2,
-
-            delay: 0.3
-
-        });
-
-    }
-
-});
-
-</script>
 
 {% endblock %}

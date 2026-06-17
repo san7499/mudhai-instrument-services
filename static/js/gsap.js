@@ -168,29 +168,46 @@ if (document.querySelector(".contact-form-card")) {
     });
 
 }
-
 /* =====================================
    PRODUCT DETAILS
 ===================================== */
 
 if (document.querySelector(".main-product-image")) {
 
-    gsap.from(".main-product-image", {
-        opacity: 0,
-        scale: 0.9,
-        duration: 1,
-        clearProps: "all"
+    gsap.set(".main-product-image", {
+        opacity: 1,
+        visibility: "visible"
     });
 
-    gsap.from(".product-info", {
-        opacity: 0,
-        x: 80,
-        duration: 1,
-        clearProps: "all"
-    });
+    gsap.fromTo(
+        ".main-product-image",
+        {
+            opacity: 0,
+            scale: 0.9
+        },
+        {
+            opacity: 1,
+            scale: 1,
+            duration: 1,
+            ease: "power2.out"
+        }
+    );
+
+    gsap.fromTo(
+        ".product-info",
+        {
+            opacity: 0,
+            x: 80
+        },
+        {
+            opacity: 1,
+            x: 0,
+            duration: 1,
+            ease: "power2.out"
+        }
+    );
 
 }
-
 /* =====================================
    MAP
 ===================================== */
