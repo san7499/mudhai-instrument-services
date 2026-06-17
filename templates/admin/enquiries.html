@@ -1,321 +1,1023 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %}
-Manage Enquiries | Admin Panel
-{% endblock %}
+<head>
 
-{% block styles %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/admin/enquiries.css') }}">
-{% endblock %}
+    <meta charset="UTF-8">
 
-{% block content %}
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+
+        Admin Enquiries |
+        Mudhai Instrument Services
+
+    </title>
+
+    <!-- Bootstrap -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Google Fonts -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Admin CSS -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/admin/enquiries.css') }}">
+
+</head>
+
+<body>
+
+<!-- ===================================== -->
+<!-- ENQUIRIES SECTION -->
+<!-- ===================================== -->
+
 <section class="admin-enquiries-section">
+
     <div class="container-fluid">
 
-        <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
+        <!-- HEADER -->
+
+        <div
+            class="d-flex justify-content-between align-items-center flex-wrap mb-4">
+
             <div>
-                <h2 class="text-white fw-bold mb-2">
+
+                <h2 class="fw-bold text-white">
+
                     <i class="fa-solid fa-envelope-open-text text-info me-2"></i>
+
                     Customer Enquiries
+
                 </h2>
-                <p class="text-secondary mb-0">
-                    Manage customer enquiries, update lead status and respond quickly.
+
+                <p class="text-secondary">
+
+                    Manage customer enquiries and update lead status.
+
                 </p>
+
             </div>
+
             <div class="mt-3 mt-lg-0">
-                <a href="{{ url_for('admin_dashboard') }}" class="btn btn-outline-light me-2">
-                    <i class="fa-solid fa-chart-line"></i> Dashboard
+
+                <a
+                    href="{{ url_for('admin_dashboard') }}"
+                    class="btn btn-outline-light me-2">
+
+                    <i class="fa-solid fa-chart-line me-2"></i>
+
+                    Dashboard
+
                 </a>
+
                 <span class="btn btn-success">
-                    Total Leads : {{ enquiries|length }}
+
+                    Total Leads :
+                    {{ enquiries|length }}
+
                 </span>
+
             </div>
+
         </div>
+
+        <!-- FLASH -->
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+
+        {% if messages %}
+
+        {% for category, message in messages %}
+
+        <div
+            class="alert alert-{{ category }} alert-dismissible fade show">
+
+            {{ message }}
+
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert">
+            </button>
+
+        </div>
+
+        {% endfor %}
+
+        {% endif %}
+
+        {% endwith %}
+
+        <!-- STATS -->
 
         <div class="row g-4 mb-4">
+
             <div class="col-lg-3 col-md-6">
+
                 <div class="stats-card">
-                    <i class="fa-solid fa-envelope fa-2x text-info mb-3"></i>
-                    <h3>{{ enquiries|length }}</h3>
-                    <p>Total Enquiries</p>
+
+                    <i
+                        class="fa-solid fa-envelope fa-2x text-info mb-3">
+                    </i>
+
+                    <h3>
+
+                        {{ enquiries|length }}
+
+                    </h3>
+
+                    <p>
+
+                        Total Enquiries
+
+                    </p>
+
                 </div>
+
             </div>
 
             <div class="col-lg-3 col-md-6">
+
                 <div class="stats-card">
-                    <i class="fa-solid fa-user-clock fa-2x text-warning mb-3"></i>
-                    <h3>{{ enquiries|selectattr('status','equalto','New')|list|length }}</h3>
-                    <p>New Leads</p>
+
+                    <i
+                        class="fa-solid fa-user-clock fa-2x text-warning mb-3">
+                    </i>
+
+                    <h3>
+
+                        {{ enquiries
+                           |selectattr('status','equalto','New')
+                           |list
+                           |length }}
+
+                    </h3>
+
+                    <p>
+
+                        New Leads
+
+                    </p>
+
                 </div>
+
             </div>
 
             <div class="col-lg-3 col-md-6">
+
                 <div class="stats-card">
-                    <i class="fa-solid fa-phone-volume fa-2x text-primary mb-3"></i>
-                    <h3>{{ enquiries|selectattr('status','equalto','Contacted')|list|length }}</h3>
-                    <p>Contacted</p>
+
+                    <i
+                        class="fa-solid fa-phone-volume fa-2x text-primary mb-3">
+                    </i>
+
+                    <h3>
+
+                        {{ enquiries
+                           |selectattr('status','equalto','Contacted')
+                           |list
+                           |length }}
+
+                    </h3>
+
+                    <p>
+
+                        Contacted
+
+                    </p>
+
                 </div>
+
             </div>
 
             <div class="col-lg-3 col-md-6">
+
                 <div class="stats-card">
-                    <i class="fa-solid fa-circle-check fa-2x text-success mb-3"></i>
-                    <h3>{{ enquiries|selectattr('status','equalto','Converted')|list|length }}</h3>
-                    <p>Converted</p>
+
+                    <i
+                        class="fa-solid fa-circle-check fa-2x text-success mb-3">
+                    </i>
+
+                    <h3>
+
+                        {{ enquiries
+                           |selectattr('status','equalto','Converted')
+                           |list
+                           |length }}
+
+                    </h3>
+
+                    <p>
+
+                        Converted
+
+                    </p>
+
                 </div>
+
             </div>
+
         </div>
+                <!-- SEARCH & FILTER -->
 
         <div class="glass-card mb-4">
+
             <div class="row">
+
                 <div class="col-lg-8 mb-3 mb-lg-0">
-                    <input type="text" id="searchEnquiry" class="form-control" placeholder="Search by Name, Email, Company or Product">
+
+                    <input
+                        type="text"
+                        id="searchEnquiry"
+                        class="form-control"
+                        placeholder="Search by Name, Company, Email or Product">
+
                 </div>
+
                 <div class="col-lg-4">
-                    <select id="statusFilter" class="form-select">
-                        <option value="all">All Status</option>
-                        <option value="New">New</option>
-                        <option value="Contacted">Contacted</option>
-                        <option value="Quotation Sent">Quotation Sent</option>
-                        <option value="Negotiation">Negotiation</option>
-                        <option value="Converted">Converted</option>
-                        <option value="Closed">Closed</option>
+
+                    <select
+                        id="statusFilter"
+                        class="form-select">
+
+                        <option value="all">
+
+                            All Status
+
+                        </option>
+
+                        <option value="New">
+
+                            New
+
+                        </option>
+
+                        <option value="Contacted">
+
+                            Contacted
+
+                        </option>
+
+                        <option value="Quotation Sent">
+
+                            Quotation Sent
+
+                        </option>
+
+                        <option value="Negotiation">
+
+                            Negotiation
+
+                        </option>
+
+                        <option value="Converted">
+
+                            Converted
+
+                        </option>
+
+                        <option value="Closed">
+
+                            Closed
+
+                        </option>
+
                     </select>
+
                 </div>
+
             </div>
+
         </div>
+
+        <!-- ENQUIRIES TABLE -->
 
         <div class="glass-card">
+
             <div class="table-responsive">
-                <table class="table table-dark table-hover align-middle" id="enquiryTable">
+
+                <table
+                    class="table table-dark table-hover align-middle"
+                    id="enquiryTable">
+
                     <thead>
+
                         <tr>
+
                             <th>#</th>
+
                             <th>Name</th>
+
                             <th>Company</th>
+
                             <th>Email</th>
+
                             <th>Phone</th>
+
                             <th>Interested Product</th>
+
                             <th>Status</th>
+
                             <th>Date</th>
-                            <th class="text-center">Actions</th>
+
+                            <th class="text-center">
+
+                                Actions
+
+                            </th>
+
                         </tr>
+
                     </thead>
+
                     <tbody>
-                        {% for enquiry in enquiries %}
-                        <tr data-status="{{ enquiry.status }}">
-                            <td>{{ loop.index }}</td>
-                            <td><strong>{{ enquiry.name }}</strong></td>
-                            <td>{{ enquiry.company }}</td>
-                            <td>{{ enquiry.email }}</td>
-                            <td>{{ enquiry.phone }}</td>
-                            <td>{{ enquiry.interested_product }}</td>
-                            <td>
-                                {% if enquiry.status == "New" %}
-                                <span class="badge bg-primary">New</span>
-                                {% elif enquiry.status == "Contacted" %}
-                                <span class="badge bg-info">Contacted</span>
-                                {% elif enquiry.status == "Quotation Sent" %}
-                                <span class="badge bg-warning text-dark">Quotation Sent</span>
-                                {% elif enquiry.status == "Negotiation" %}
-                                <span class="badge bg-secondary">Negotiation</span>
-                                {% elif enquiry.status == "Converted" %}
-                                <span class="badge bg-success">Converted</span>
-                                {% else %}
-                                <span class="badge bg-danger">Closed</span>
-                                {% endif %}
-                            </td>
-                            <td>
-                                {% if enquiry.created_at %}
-                                {{ enquiry.created_at.strftime("%d-%m-%Y") }}
-                                {% endif %}
-                            </td>
-                            <td class="text-center">
-                                <button class="btn btn-primary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#enquiry{{ enquiry._id }}">
-                                    <i class="fa-solid fa-eye"></i>
-                                </button>
-                                <a href="/admin/enquiry/delete/{{ enquiry._id }}" class="btn btn-danger btn-sm" onclick="return confirm('Delete this enquiry?')">
-                                    <i class="fa-solid fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        {% endfor %}
+
+                    {% if enquiries %}
+
+                    {% for enquiry in enquiries %}
+
+                    <tr
+                        data-status="{{ enquiry.status }}">
+
+                        <td>
+
+                            {{ loop.index }}
+
+                        </td>
+
+                        <td>
+
+                            <strong>
+
+                                {{ enquiry.name }}
+
+                            </strong>
+
+                        </td>
+
+                        <td>
+
+                            {{ enquiry.company }}
+
+                        </td>
+
+                        <td>
+
+                            {{ enquiry.email }}
+
+                        </td>
+
+                        <td>
+
+                            {{ enquiry.phone }}
+
+                        </td>
+
+                        <td>
+
+                            {{ enquiry.interested_product }}
+
+                        </td>
+
+                        <td>
+
+                            {% if enquiry.status=="New" %}
+
+                            <span class="badge bg-primary">
+
+                                New
+
+                            </span>
+
+                            {% elif enquiry.status=="Contacted" %}
+
+                            <span class="badge bg-info">
+
+                                Contacted
+
+                            </span>
+
+                            {% elif enquiry.status=="Quotation Sent" %}
+
+                            <span class="badge bg-warning text-dark">
+
+                                Quotation Sent
+
+                            </span>
+
+                            {% elif enquiry.status=="Negotiation" %}
+
+                            <span class="badge bg-secondary">
+
+                                Negotiation
+
+                            </span>
+
+                            {% elif enquiry.status=="Converted" %}
+
+                            <span class="badge bg-success">
+
+                                Converted
+
+                            </span>
+
+                            {% else %}
+
+                            <span class="badge bg-danger">
+
+                                Closed
+
+                            </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+
+                            {% if enquiry.created_at %}
+
+                            {{ enquiry.created_at.strftime("%d-%m-%Y") }}
+
+                            {% endif %}
+
+                        </td>
+
+                        <td class="text-center">
+
+                            <button
+
+                                class="btn btn-primary btn-sm me-2"
+
+                                data-bs-toggle="modal"
+
+                                data-bs-target="#enquiry{{ enquiry._id }}">
+
+                                <i class="fa-solid fa-eye"></i>
+
+                            </button>
+
+                            <a
+
+                                href="/admin/enquiry/delete/{{ enquiry._id }}"
+
+                                class="btn btn-danger btn-sm"
+
+                                onclick="return confirm('Delete this enquiry?')">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                    {% else %}
+
+                    <tr>
+
+                        <td
+                            colspan="9"
+                            class="text-center py-5">
+
+                            <i class="fa-solid fa-inbox fa-3x mb-3 d-block text-secondary"></i>
+
+                            No enquiries found.
+
+                        </td>
+
+                    </tr>
+
+                    {% endif %}
+
                     </tbody>
+
                 </table>
+
             </div>
+
         </div>
+
     </div>
+
 </section>
 
+<!-- =====================================
+     ENQUIRY MODALS
+===================================== -->
+
 {% for enquiry in enquiries %}
-<div class="modal fade" id="enquiry{{ enquiry._id }}" tabindex="-1">
+<div
+    class="modal fade"
+    id="enquiry{{ enquiry._id }}"
+    tabindex="-1">
+
     <div class="modal-dialog modal-xl">
+
         <div class="modal-content">
+
+            <!-- Modal Header -->
+
             <div class="modal-header">
+
                 <h5 class="modal-title">
-                    <i class="fa-solid fa-envelope-open-text text-info me-2"></i> Enquiry Details
+
+                    <i class="fa-solid fa-envelope-open-text text-info me-2"></i>
+
+                    Enquiry Details
+
                 </h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+
+                <button
+                    type="button"
+                    class="btn-close btn-close-white"
+                    data-bs-dismiss="modal">
+                </button>
+
             </div>
+
+            <!-- Modal Body -->
+
             <div class="modal-body">
+
                 <div class="row">
-                    <div class="col-md-6 mb-4">
+
+                    <!-- Customer Details -->
+
+                    <div class="col-lg-6 mb-4">
+
                         <div class="glass-card h-100">
-                            <h5 class="mb-4">Customer Information</h5>
-                            <p><strong>Name :</strong> {{ enquiry.name }}</p>
-                            <p><strong>Company :</strong> {{ enquiry.company }}</p>
-                            <p><strong>Email :</strong> {{ enquiry.email }}</p>
-                            <p><strong>Phone :</strong> {{ enquiry.phone }}</p>
+
+                            <h5 class="mb-4">
+
+                                <i class="fa-solid fa-user text-info me-2"></i>
+
+                                Customer Information
+
+                            </h5>
+
+                            <p>
+
+                                <strong>Name :</strong>
+
+                                {{ enquiry.name }}
+
+                            </p>
+
+                            <p>
+
+                                <strong>Company :</strong>
+
+                                {{ enquiry.company }}
+
+                            </p>
+
+                            <p>
+
+                                <strong>Email :</strong>
+
+                                {{ enquiry.email }}
+
+                            </p>
+
+                            <p>
+
+                                <strong>Phone :</strong>
+
+                                {{ enquiry.phone }}
+
+                            </p>
+
                         </div>
+
                     </div>
 
-                    <div class="col-md-6 mb-4">
+                    <!-- Product Details -->
+
+                    <div class="col-lg-6 mb-4">
+
                         <div class="glass-card h-100">
-                            <h5 class="mb-4">Product Details</h5>
-                            <p><strong>Interested Product :</strong></p>
-                            <p>{{ enquiry.interested_product }}</p>
-                            <p><strong>Current Status :</strong></p>
-                            
-                            {% if enquiry.status == "New" %}
-                            <span class="badge bg-primary">New</span>
-                            {% elif enquiry.status == "Contacted" %}
-                            <span class="badge bg-info">Contacted</span>
-                            {% elif enquiry.status == "Quotation Sent" %}
-                            <span class="badge bg-warning text-dark">Quotation Sent</span>
-                            {% elif enquiry.status == "Negotiation" %}
-                            <span class="badge bg-secondary">Negotiation</span>
-                            {% elif enquiry.status == "Converted" %}
-                            <span class="badge bg-success">Converted</span>
+
+                            <h5 class="mb-4">
+
+                                <i class="fa-solid fa-box text-success me-2"></i>
+
+                                Product Details
+
+                            </h5>
+
+                            <p>
+
+                                <strong>Interested Product :</strong>
+
+                            </p>
+
+                            <p>
+
+                                {{ enquiry.interested_product }}
+
+                            </p>
+
+                            <hr>
+
+                            <p>
+
+                                <strong>Current Status :</strong>
+
+                            </p>
+
+                            {% if enquiry.status=="New" %}
+
+                            <span class="badge bg-primary">
+
+                                New
+
+                            </span>
+
+                            {% elif enquiry.status=="Contacted" %}
+
+                            <span class="badge bg-info">
+
+                                Contacted
+
+                            </span>
+
+                            {% elif enquiry.status=="Quotation Sent" %}
+
+                            <span class="badge bg-warning text-dark">
+
+                                Quotation Sent
+
+                            </span>
+
+                            {% elif enquiry.status=="Negotiation" %}
+
+                            <span class="badge bg-secondary">
+
+                                Negotiation
+
+                            </span>
+
+                            {% elif enquiry.status=="Converted" %}
+
+                            <span class="badge bg-success">
+
+                                Converted
+
+                            </span>
+
                             {% else %}
-                            <span class="badge bg-danger">Closed</span>
+
+                            <span class="badge bg-danger">
+
+                                Closed
+
+                            </span>
+
                             {% endif %}
+
                         </div>
+
                     </div>
+
                 </div>
+
+                <!-- Customer Message -->
 
                 <div class="glass-card mb-4">
+
                     <h5 class="mb-3">
-                        <i class="fa-solid fa-comment-dots text-info me-2"></i> Customer Message
+
+                        <i class="fa-solid fa-comment-dots text-warning me-2"></i>
+
+                        Customer Message
+
                     </h5>
-                    <p class="mb-0">{{ enquiry.message }}</p>
+
+                    <p class="mb-0">
+
+                        {{ enquiry.message }}
+
+                    </p>
+
                 </div>
+
+                <!-- Update Status -->
 
                 <div class="glass-card">
-                    <h5 class="mb-3">
-                        <i class="fa-solid fa-pen-to-square text-success me-2"></i> Update Enquiry Status
+
+                    <h5 class="mb-4">
+
+                        <i class="fa-solid fa-pen-to-square text-success me-2"></i>
+
+                        Update Enquiry Status
+
                     </h5>
-                    <form method="POST" action="/admin/enquiry/update/{{ enquiry._id }}">
+
+                    <form
+                        method="POST"
+                        action="/admin/enquiry/update/{{ enquiry._id }}">
+
                         <div class="row align-items-end">
-                            <div class="col-lg-6 mb-3 mb-lg-0">
-                                <label class="form-label">Status</label>
-                                <select name="status" class="form-select">
-                                    <option value="New" {% if enquiry.status == "New" %}selected{% endif %}>New</option>
-                                    <option value="Contacted" {% if enquiry.status == "Contacted" %}selected{% endif %}>Contacted</option>
-                                    <option value="Quotation Sent" {% if enquiry.status == "Quotation Sent" %}selected{% endif %}>Quotation Sent</option>
-                                    <option value="Negotiation" {% if enquiry.status == "Negotiation" %}selected{% endif %}>Negotiation</option>
-                                    <option value="Converted" {% if enquiry.status == "Converted" %}selected{% endif %}>Converted</option>
-                                    <option value="Closed" {% if enquiry.status == "Closed" %}selected{% endif %}>Closed</option>
+
+                            <div class="col-lg-6 mb-3">
+
+                                <label class="form-label">
+
+                                    Status
+
+                                </label>
+
+                                <select
+                                    name="status"
+                                    class="form-select">
+
+                                    <option value="New"
+                                    {% if enquiry.status=="New" %}selected{% endif %}>
+                                        New
+                                    </option>
+
+                                    <option value="Contacted"
+                                    {% if enquiry.status=="Contacted" %}selected{% endif %}>
+                                        Contacted
+                                    </option>
+
+                                    <option value="Quotation Sent"
+                                    {% if enquiry.status=="Quotation Sent" %}selected{% endif %}>
+                                        Quotation Sent
+                                    </option>
+
+                                    <option value="Negotiation"
+                                    {% if enquiry.status=="Negotiation" %}selected{% endif %}>
+                                        Negotiation
+                                    </option>
+
+                                    <option value="Converted"
+                                    {% if enquiry.status=="Converted" %}selected{% endif %}>
+                                        Converted
+                                    </option>
+
+                                    <option value="Closed"
+                                    {% if enquiry.status=="Closed" %}selected{% endif %}>
+                                        Closed
+                                    </option>
+
                                 </select>
+
                             </div>
-                            <div class="col-lg-3 col-sm-6 mb-3 mb-lg-0">
-                                <a href="{{ url_for('admin_dashboard') }}" class="btn btn-outline-light d-block text-center pt-2 pb-2">
-                                    <i class="fa-solid fa-chart-line me-2"></i> Dashboard
+
+                            <div class="col-lg-3 mb-3">
+
+                                <a
+                                    href="{{ url_for('admin_dashboard') }}"
+                                    class="btn btn-outline-light w-100">
+
+                                    <i class="fa-solid fa-chart-line me-2"></i>
+
+                                    Dashboard
+
                                 </a>
+
                             </div>
-                            <div class="col-lg-3 col-sm-6 mb-3 mb-lg-0">
-                                <button type="submit" class="btn btn-success w-100 pt-2 pb-2">
-                                    <i class="fa-solid fa-floppy-disk me-2"></i> Update
+
+                            <div class="col-lg-3 mb-3">
+
+                                <button
+                                    type="submit"
+                                    class="btn btn-success w-100">
+
+                                    <i class="fa-solid fa-floppy-disk me-2"></i>
+
+                                    Update
+
                                 </button>
+
                             </div>
+
                         </div>
+
                     </form>
+
                 </div>
+
             </div>
+
+            <!-- Footer -->
+
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal">
+
+                    Close
+
+                </button>
+
             </div>
+
         </div>
+
     </div>
+
 </div>
+
 {% endfor %}
-{% endblock %}
+<!-- ==========================================
+BOOTSTRAP JS
+========================================== -->
 
-{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- ==========================================
+GSAP
+========================================== -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<!-- ==========================================
+CUSTOM JAVASCRIPT
+========================================== -->
+
 <script>
-document.addEventListener("DOMContentLoaded", () => {
 
-    /* ==========================================
-        SEARCH
-    ========================================== */
-    const searchInput = document.getElementById("searchEnquiry");
-    const tableRows = document.querySelectorAll("#enquiryTable tbody tr");
+document.addEventListener("DOMContentLoaded",()=>{
 
-    if (searchInput) {
-        searchInput.addEventListener("keyup", function () {
-            const value = this.value.toLowerCase();
+    /* =====================================
+       SEARCH
+    ===================================== */
 
-            tableRows.forEach(row => {
-                const text = row.innerText.toLowerCase();
-                row.style.display = text.includes(value) ? "" : "none";
-            });
-        });
+    const searchInput =
+        document.getElementById("searchEnquiry");
+
+    const tableRows =
+        document.querySelectorAll(
+            "#enquiryTable tbody tr"
+        );
+
+    if(searchInput){
+
+        searchInput.addEventListener(
+            "keyup",
+            function(){
+
+                const value =
+                    this.value.toLowerCase();
+
+                tableRows.forEach(row=>{
+
+                    const text =
+                        row.innerText.toLowerCase();
+
+                    row.style.display =
+                        text.includes(value)
+                        ? ""
+                        : "none";
+
+                });
+
+            }
+        );
+
     }
 
-    /* ==========================================
-        STATUS FILTER
-    ========================================== */
-    const statusFilter = document.getElementById("statusFilter");
+    /* =====================================
+       STATUS FILTER
+    ===================================== */
 
-    if (statusFilter) {
-        statusFilter.addEventListener("change", function () {
-            const selected = this.value.toLowerCase();
+    const statusFilter =
+        document.getElementById("statusFilter");
 
-            tableRows.forEach(row => {
-                if (selected === "all") {
-                    row.style.display = "";
-                    return;
-                }
+    if(statusFilter){
 
-                const badge = row.querySelector(".badge");
-                if (!badge) return;
+        statusFilter.addEventListener(
+            "change",
+            function(){
 
-                const status = badge.innerText.trim().toLowerCase();
-                row.style.display = status === selected ? "" : "none";
-            });
-        });
+                const selected =
+                    this.value.toLowerCase();
+
+                tableRows.forEach(row=>{
+
+                    if(selected==="all"){
+
+                        row.style.display="";
+
+                        return;
+
+                    }
+
+                    const badge =
+                        row.querySelector(".badge");
+
+                    if(!badge){
+
+                        row.style.display="none";
+
+                        return;
+
+                    }
+
+                    const status =
+                        badge.innerText
+                        .trim()
+                        .toLowerCase();
+
+                    row.style.display =
+                        status===selected
+                        ? ""
+                        : "none";
+
+                });
+
+            }
+        );
+
     }
 
-    /* ==========================================
-        GSAP ANIMATIONS
-    ========================================== */
-    if (typeof gsap !== "undefined") {
-        gsap.from(".dashboard-header", {
-            opacity: 0,
-            y: 40,
-            duration: 1
+    /* =====================================
+       GSAP
+    ===================================== */
+
+    if(typeof gsap!=="undefined"){
+
+        gsap.from(".stats-card",{
+
+            opacity:0,
+
+            y:40,
+
+            duration:.8,
+
+            stagger:.12,
+
+            ease:"power3.out"
+
         });
 
-        gsap.from(".stats-card", {
-            opacity: 0,
-            y: 40,
-            duration: 0.8,
-            stagger: 0.1
+        gsap.from(".glass-card",{
+
+            opacity:0,
+
+            y:35,
+
+            duration:.9,
+
+            stagger:.15,
+
+            ease:"power2.out"
+
         });
 
-        gsap.from(".dashboard-card", {
-            opacity: 0,
-            y: 50,
-            duration: 1,
-            stagger: 0.15
+        gsap.from("#enquiryTable tbody tr",{
+
+            opacity:0,
+
+            y:20,
+
+            duration:.4,
+
+            stagger:.04,
+
+            ease:"power2.out"
+
         });
 
-        gsap.from("#enquiryTable tbody tr", {
-            opacity: 0,
-            y: 20,
-            duration: 0.5,
-            stagger: 0.05
-        });
     }
+
 });
 </script>
-{% endblock %}
+
+</body>
+
+</html>

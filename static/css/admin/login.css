@@ -1,0 +1,647 @@
+/* =====================================================
+   ADMIN LOGIN
+   Mudhai Instrument Services
+===================================================== */
+
+:root{
+
+    --primary:#00d4ff;
+    --secondary:#00ff99;
+
+    --dark:#050816;
+    --dark-card:#0f172a;
+
+    --white:#ffffff;
+
+    --glass:rgba(255,255,255,.08);
+
+    --border:rgba(255,255,255,.12);
+
+    --shadow:0 20px 60px rgba(0,0,0,.35);
+
+}
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:#050816;
+
+    color:#ffffff;
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+
+    position:relative;
+
+}
+
+/* =====================================================
+   ANIMATED BACKGROUND
+===================================================== */
+
+.background{
+
+    position:fixed;
+
+    inset:0;
+
+    overflow:hidden;
+
+    z-index:-10;
+
+    background:
+    linear-gradient(
+        135deg,
+        #050816,
+        #081224,
+        #0f172a
+    );
+
+}
+
+.circle{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    filter:blur(90px);
+
+    opacity:.35;
+
+    animation:float 12s ease-in-out infinite;
+
+}
+
+.circle1{
+
+    width:420px;
+
+    height:420px;
+
+    background:#00d4ff;
+
+    top:-120px;
+
+    left:-120px;
+
+}
+
+.circle2{
+
+    width:360px;
+
+    height:360px;
+
+    background:#00ff99;
+
+    bottom:-120px;
+
+    right:-120px;
+
+    animation-delay:2s;
+
+}
+
+.circle3{
+
+    width:250px;
+
+    height:250px;
+
+    background:#00bfff;
+
+    top:40%;
+
+    left:10%;
+
+    animation-delay:4s;
+
+}
+
+.circle4{
+
+    width:220px;
+
+    height:220px;
+
+    background:#7b61ff;
+
+    top:18%;
+
+    right:18%;
+
+    animation-delay:6s;
+
+}
+
+@keyframes float{
+
+    0%,100%{
+
+        transform:
+        translate(0,0);
+
+    }
+
+    50%{
+
+        transform:
+        translate(25px,-35px);
+
+    }
+
+}
+
+/* =====================================================
+   LOGIN SECTION
+===================================================== */
+
+.login-section{
+
+    position:relative;
+
+    z-index:100;
+
+    min-height:100vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:40px 20px;
+
+}
+
+.login-section .container{
+
+    position:relative;
+
+    z-index:101;
+
+}
+
+.login-section .row{
+
+    width:100%;
+
+}
+
+.login-card{
+
+    position:relative;
+
+    z-index:999;
+
+    width:100%;
+
+    display:block;
+
+    opacity:1;
+
+    visibility:visible;
+
+    padding:45px;
+
+    border-radius:28px;
+
+    background:rgba(15,23,42,.92);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
+
+    overflow:hidden;
+
+}
+
+.login-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(0,212,255,.06),
+        transparent,
+        rgba(0,255,153,.05)
+    );
+
+    pointer-events:none;
+
+}
+/* =====================================================
+   LOGIN HEADER
+===================================================== */
+
+.login-header{
+
+    position:relative;
+
+    z-index:2;
+
+    text-align:center;
+
+    margin-bottom:35px;
+
+}
+
+.logo{
+
+    width:90px;
+
+    height:90px;
+
+    margin:0 auto 25px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--secondary)
+        );
+
+    color:#000;
+
+    font-size:2rem;
+
+    box-shadow:
+        0 10px 35px rgba(0,212,255,.35);
+
+    transition:.35s ease;
+
+}
+
+.logo:hover{
+
+    transform:scale(1.08) rotate(8deg);
+
+}
+
+.login-header h2{
+
+    color:var(--white);
+
+    font-size:2rem;
+
+    font-weight:700;
+
+    margin-bottom:10px;
+
+}
+
+.login-header p{
+
+    color:rgba(255,255,255,.72);
+
+    font-size:.95rem;
+
+    margin:0;
+
+}
+
+/* =====================================================
+   FLASH MESSAGE
+===================================================== */
+
+.alert{
+
+    border:none;
+
+    border-radius:14px;
+
+    padding:14px 18px;
+
+    font-size:.95rem;
+
+    margin-bottom:22px;
+
+}
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.form-label{
+
+    color:var(--white);
+
+    font-weight:600;
+
+    margin-bottom:8px;
+
+}
+
+.input-group{
+
+    margin-bottom:8px;
+
+}
+
+.input-group-text{
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.10);
+
+    border-right:none;
+
+    color:var(--primary);
+
+    min-width:52px;
+
+    justify-content:center;
+
+}
+
+.form-control{
+
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.10);
+
+    border-left:none;
+
+    color:var(--white);
+
+    padding:14px 16px;
+
+    font-size:1rem;
+
+    transition:.35s ease;
+
+}
+
+.form-control::placeholder{
+
+    color:rgba(255,255,255,.45);
+
+}
+
+.form-control:focus{
+
+    background:rgba(255,255,255,.10);
+
+    color:#fff;
+
+    border-color:var(--primary);
+
+    box-shadow:none;
+
+}
+
+.input-group:focus-within .input-group-text{
+
+    border-color:var(--primary);
+
+    color:var(--primary);
+
+}
+
+/* =====================================================
+   PASSWORD BUTTON
+===================================================== */
+
+#togglePassword{
+
+    border:1px solid rgba(255,255,255,.10);
+
+    background:rgba(255,255,255,.08);
+
+    color:#ffffff;
+
+    transition:.35s ease;
+
+}
+
+#togglePassword:hover{
+
+    background:var(--primary);
+
+    color:#000;
+
+}
+
+/* =====================================================
+   INVALID INPUT
+===================================================== */
+
+.form-control.is-invalid{
+
+    border-color:#ff4d4d;
+
+}
+
+.form-control.is-valid{
+
+    border-color:#00ff99;
+
+}
+/* =====================================================
+   LOGIN BUTTON
+===================================================== */
+
+.login-btn{
+
+    width:100%;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--secondary)
+        );
+
+    border:none;
+
+    color:#000;
+
+    font-size:1rem;
+
+    font-weight:700;
+
+    padding:15px;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease,
+        opacity .35s ease;
+
+}
+
+.login-btn:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 15px 35px rgba(0,212,255,.35);
+
+}
+
+.login-btn:active{
+
+    transform:scale(.98);
+
+}
+
+.login-btn:focus{
+
+    box-shadow:
+        0 0 0 .2rem rgba(0,212,255,.30);
+
+}
+
+/* =====================================================
+   BACK TO WEBSITE
+===================================================== */
+
+.back-home{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    margin-top:12px;
+
+    color:rgba(255,255,255,.75);
+
+    text-decoration:none;
+
+    font-size:.95rem;
+
+    transition:.35s ease;
+
+}
+
+.back-home:hover{
+
+    color:var(--primary);
+
+    transform:translateX(-4px);
+
+}
+
+/* =====================================================
+   LOGIN FOOTER
+===================================================== */
+
+.login-footer{
+
+    margin-top:35px;
+
+    padding-top:20px;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    text-align:center;
+
+}
+
+.login-footer p{
+
+    margin:0;
+
+    color:rgba(255,255,255,.55);
+
+    font-size:.9rem;
+
+}
+
+/* =====================================================
+   HOVER EFFECTS
+===================================================== */
+
+.login-card:hover{
+
+    transform:translateY(-4px);
+
+    transition:.4s ease;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.45);
+
+}
+
+.logo{
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease;
+
+}
+
+.logo:hover{
+
+    transform:rotate(10deg) scale(1.08);
+
+    box-shadow:
+        0 15px 40px rgba(0,212,255,.45);
+
+}
+
+.form-control:hover{
+
+    border-color:
+        rgba(0,212,255,.45);
+
+}
+
+.input-group-text{
+
+    transition:.35s ease;
+
+}
+
+.input-group:hover .input-group-text{
+
+    color:#00ff99;
+
+}

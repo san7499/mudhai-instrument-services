@@ -217,17 +217,27 @@ def admin_dashboard():
 
 # ==========================================
 # ==========================================
+# ==========================================================
 # ADMIN PRODUCTS
-# ==========================================
+# ==========================================================
 
 @app.route("/admin/products")
 def admin_products():
+
     if not is_admin():
         return redirect(url_for("admin_login"))
 
-    products = list(
-        products_collection.find().sort("created_at", -1)
-    )
+    try:
+
+        products = list(
+            products_collection.find().sort("created_at", -1)
+        )
+
+    except Exception as e:
+
+        print("LOAD PRODUCTS ERROR :", e)
+
+        products = []
 
     return render_template(
         "admin/products.html",
@@ -235,8 +245,13 @@ def admin_products():
     )
 
 
+# ==========================================================
+# ADD PRODUCT
+# ==========================================================
+
 @app.route("/admin/product/add", methods=["POST"])
 def add_product():
+
     if not is_admin():
         return redirect(url_for("admin_login"))
 
@@ -248,14 +263,19 @@ def add_product():
 
             "category": request.form.get("category", "").strip(),
 
-            "image_url": request.form.get("image_url", "").strip(),
+            "image_url": request.form.get(
+                "image_url",
+                ""
+            ).strip(),
 
             "short_description": request.form.get(
-                "short_description", ""
+                "short_description",
+                ""
             ).strip(),
 
             "description": request.form.get(
-                "description", ""
+                "description",
+                ""
             ).strip(),
 
             "featured": "featured" in request.form,
@@ -283,6 +303,117 @@ def add_product():
     return redirect(url_for("admin_products"))
 
 
+# ==========================================================
+# EDIT PRODUCT
+# ==========================================================
+
+@app.route("/admin/product/edit/<id>", methods=["GET", "POST"])
+def edit_product(id):
+
+    if not is_admin():
+        return redirect(url_for("admin_login"))
+
+    obj_id = safe_object_id(id)
+
+    if not obj_id:
+
+        flash(
+            "Invalid Product ID.",
+            "danger"
+        )
+
+        return redirect(url_for("admin_products"))
+
+    product = products_collection.find_one(
+        {
+            "_id": obj_id
+        }
+    )
+
+    if not product:
+
+        flash(
+            "Product not found.",
+            "warning"
+        )
+
+        return redirect(url_for("admin_products"))
+
+    if request.method == "POST":
+
+        try:
+
+            updated_data = {
+
+                "name": request.form.get(
+                    "name",
+                    ""
+                ).strip(),
+
+                "category": request.form.get(
+                    "category",
+                    ""
+                ).strip(),
+
+                "image_url": request.form.get(
+                    "image_url",
+                    ""
+                ).strip(),
+
+                "short_description": request.form.get(
+                    "short_description",
+                    ""
+                ).strip(),
+
+                "description": request.form.get(
+                    "description",
+                    ""
+                ).strip(),
+
+                "featured": "featured" in request.form
+
+            }
+
+            products_collection.update_one(
+
+                {
+                    "_id": obj_id
+                },
+
+                {
+                    "$set": updated_data
+                }
+
+            )
+
+            flash(
+                "Product Updated Successfully!",
+                "success"
+            )
+
+            return redirect(
+                url_for("admin_products")
+            )
+
+        except Exception as e:
+
+            print("UPDATE PRODUCT ERROR :", e)
+
+            flash(
+                "Unable to update product.",
+                "danger"
+            )
+
+    return render_template(
+        "admin/edit_product.html",
+        product=product
+    )
+
+
+# ==========================================================
+# DELETE PRODUCT
+# ==========================================================
+
 @app.route("/admin/product/delete/<id>")
 def delete_product(id):
 
@@ -293,33 +424,35 @@ def delete_product(id):
 
         obj_id = safe_object_id(id)
 
-        if obj_id:
-
-            result = products_collection.delete_one(
-                {
-                    "_id": obj_id
-                }
-            )
-
-            if result.deleted_count:
-
-                flash(
-                    "Product Deleted Successfully!",
-                    "success"
-                )
-
-            else:
-
-                flash(
-                    "Product not found.",
-                    "warning"
-                )
-
-        else:
+        if not obj_id:
 
             flash(
                 "Invalid Product ID.",
                 "danger"
+            )
+
+            return redirect(
+                url_for("admin_products")
+            )
+
+        result = products_collection.delete_one(
+            {
+                "_id": obj_id
+            }
+        )
+
+        if result.deleted_count:
+
+            flash(
+                "Product Deleted Successfully!",
+                "success"
+            )
+
+        else:
+
+            flash(
+                "Product Not Found.",
+                "warning"
             )
 
     except Exception as e:
@@ -333,87 +466,284 @@ def delete_product(id):
 
     return redirect(url_for("admin_products"))
 # ==========================================
+# ==========================================
 # ADMIN BLOGS
 # ==========================================
+
 @app.route("/admin/blogs")
 def admin_blogs():
+
     if not is_admin():
         return redirect(url_for("admin_login"))
 
-    blogs = list(blogs_collection.find().sort("created_at", -1))
-    return render_template("admin/blogs.html", blogs=blogs)
+    try:
+
+        blogs = list(
+            blogs_collection.find().sort("created_at", -1)
+        )
+
+    except Exception as e:
+
+        print("BLOG FETCH ERROR:", e)
+
+        blogs = []
+
+        flash(
+            "Unable to load blogs.",
+            "danger"
+        )
+
+    return render_template(
+        "admin/blogs.html",
+        blogs=blogs
+    )
+
+
+# ==========================================
+# ADD BLOG
+# ==========================================
 
 @app.route("/admin/blog/add", methods=["POST"])
 def add_blog():
+
     if not is_admin():
         return redirect(url_for("admin_login"))
 
-    tags = request.form.get("tags", "")
-    blogs_collection.insert_one({
-        "title": request.form.get("title"),
-        "author": request.form.get("author"),
-        "category": request.form.get("category"),
-        "excerpt": request.form.get("excerpt"),
-        "content": request.form.get("content"),
-        "featured_image": request.form.get("featured_image"),
-        "tags": [tag.strip() for tag in tags.split(",") if tag.strip()],
-        "featured": bool(request.form.get("featured")),
-        "created_at": datetime.utcnow()
-    })
+    try:
 
-    flash("Blog Added Successfully", "success")
+        title = request.form.get("title", "").strip()
+        author = request.form.get("author", "").strip()
+        category = request.form.get("category", "").strip()
+        excerpt = request.form.get("excerpt", "").strip()
+        content = request.form.get("content", "").strip()
+        featured_image = request.form.get(
+            "featured_image",
+            ""
+        ).strip()
+
+        tags = request.form.get("tags", "").strip()
+
+        if not title or not author or not category:
+
+            flash(
+                "Please fill all required fields.",
+                "warning"
+            )
+
+            return redirect(url_for("admin_blogs"))
+
+        blog = {
+
+            "title": title,
+
+            "author": author,
+
+            "category": category,
+
+            "excerpt": excerpt,
+
+            "content": content,
+
+            "featured_image": featured_image,
+
+            "tags": [
+
+                tag.strip()
+
+                for tag in tags.split(",")
+
+                if tag.strip()
+
+            ],
+
+            "featured": "featured" in request.form,
+
+            "created_at": datetime.utcnow()
+
+        }
+
+        blogs_collection.insert_one(blog)
+
+        flash(
+            "Blog Added Successfully!",
+            "success"
+        )
+
+    except Exception as e:
+
+        print("ADD BLOG ERROR:", e)
+
+        flash(
+            "Unable to add blog.",
+            "danger"
+        )
+
     return redirect(url_for("admin_blogs"))
+
+
+# ==========================================
+# EDIT BLOG
+# ==========================================
+
+@app.route("/admin/blog/edit/<id>", methods=["POST"])
+def edit_blog(id):
+
+    if not is_admin():
+        return redirect(url_for("admin_login"))
+
+    try:
+
+        obj_id = safe_object_id(id)
+
+        if not obj_id:
+
+            flash(
+                "Invalid Blog ID.",
+                "danger"
+            )
+
+            return redirect(url_for("admin_blogs"))
+
+        tags = request.form.get("tags", "").strip()
+
+        result = blogs_collection.update_one(
+
+            {
+                "_id": obj_id
+            },
+
+            {
+                "$set": {
+
+                    "title": request.form.get(
+                        "title",
+                        ""
+                    ).strip(),
+
+                    "author": request.form.get(
+                        "author",
+                        ""
+                    ).strip(),
+
+                    "category": request.form.get(
+                        "category",
+                        ""
+                    ).strip(),
+
+                    "excerpt": request.form.get(
+                        "excerpt",
+                        ""
+                    ).strip(),
+
+                    "content": request.form.get(
+                        "content",
+                        ""
+                    ).strip(),
+
+                    "featured_image": request.form.get(
+                        "featured_image",
+                        ""
+                    ).strip(),
+
+                    "tags": [
+
+                        tag.strip()
+
+                        for tag in tags.split(",")
+
+                        if tag.strip()
+
+                    ],
+
+                    "featured": "featured" in request.form,
+
+                    "modified_at": datetime.utcnow()
+
+                }
+
+            }
+
+        )
+
+        if result.matched_count:
+
+            flash(
+                "Blog Updated Successfully!",
+                "success"
+            )
+
+        else:
+
+            flash(
+                "Blog not found.",
+                "warning"
+            )
+
+    except Exception as e:
+
+        print("EDIT BLOG ERROR:", e)
+
+        flash(
+            "Unable to update blog.",
+            "danger"
+        )
+
+    return redirect(url_for("admin_blogs"))
+
+
+# ==========================================
+# DELETE BLOG
+# ==========================================
 
 @app.route("/admin/blog/delete/<id>")
 def delete_blog(id):
+
     if not is_admin():
         return redirect(url_for("admin_login"))
 
-    obj_id = safe_object_id(id)
-    if obj_id:
-        blogs_collection.delete_one({"_id": obj_id})
-        flash("Blog Deleted", "success")
+    try:
+
+        obj_id = safe_object_id(id)
+
+        if not obj_id:
+
+            flash(
+                "Invalid Blog ID.",
+                "danger"
+            )
+
+            return redirect(url_for("admin_blogs"))
+
+        result = blogs_collection.delete_one(
+            {
+                "_id": obj_id
+            }
+        )
+
+        if result.deleted_count:
+
+            flash(
+                "Blog Deleted Successfully!",
+                "success"
+            )
+
+        else:
+
+            flash(
+                "Blog not found.",
+                "warning"
+            )
+
+    except Exception as e:
+
+        print("DELETE BLOG ERROR:", e)
+
+        flash(
+            "Unable to delete blog.",
+            "danger"
+        )
 
     return redirect(url_for("admin_blogs"))
-
-# ==========================================
-# ADMIN CERTIFICATIONS
-# ==========================================
-@app.route("/admin/certifications")
-def admin_certifications():
-    if not is_admin():
-        return redirect(url_for("admin_login"))
-
-    certifications = list(certifications_collection.find().sort("created_at", -1))
-    return render_template("admin/certifications.html", certifications=certifications)
-
-@app.route("/admin/certification/add", methods=["POST"])
-def add_certification():
-    if not is_admin():
-        return redirect(url_for("admin_login"))
-
-    certifications_collection.insert_one({
-        "name": request.form.get("name"),
-        "description": request.form.get("description"),
-        "status": request.form.get("status", "Active"),
-        "created_at": datetime.utcnow()
-    })
-
-    flash("Certification Added", "success")
-    return redirect(url_for("admin_certifications"))
-
-@app.route("/admin/certification/delete/<id>")
-def delete_certification(id):
-    if not is_admin():
-        return redirect(url_for("admin_login"))
-
-    obj_id = safe_object_id(id)
-    if obj_id:
-        certifications_collection.delete_one({"_id": obj_id})
-        flash("Certification Deleted", "success")
-
-    return redirect(url_for("admin_certifications"))
-
 # ==========================================
 # ADMIN ENQUIRIES
 # ==========================================

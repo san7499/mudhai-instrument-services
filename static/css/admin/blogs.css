@@ -1,72 +1,152 @@
-/* ==========================================
+/* =====================================================
    ADMIN BLOGS PAGE
-========================================== */
+   Mudhai Instrument Services
+===================================================== */
 
-.admin-blogs-section{
-    padding:120px 0;
-    min-height:100vh;
+:root{
+
+    --primary:#00d4ff;
+    --secondary:#00ff99;
+
+    --dark:#050816;
+    --dark2:#0f172a;
+
+    --white:#ffffff;
+
+    --glass:rgba(255,255,255,.06);
+
+    --border:rgba(255,255,255,.10);
+
+    --shadow:0 20px 60px rgba(0,0,0,.35);
+
 }
 
-/* ==========================================
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:linear-gradient(
+        135deg,
+        #050816,
+        #081224,
+        #0f172a
+    );
+
+    color:#ffffff;
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+
+}
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+.admin-blogs-section{
+
+    min-height:100vh;
+
+    padding:110px 20px 70px;
+
+}
+
+/* =====================================================
    HEADER
-========================================== */
+===================================================== */
 
 .admin-blogs-section h2{
-    color:#ffffff;
+
     font-size:2.5rem;
+
     font-weight:700;
+
+    color:#ffffff;
+
     margin-bottom:10px;
+
 }
 
 .admin-blogs-section p{
+
     color:rgba(255,255,255,.70);
-    margin-bottom:0;
+
+    margin:0;
+
 }
 
-/* ==========================================
+/* =====================================================
    GLASS CARD
-========================================== */
+===================================================== */
 
 .glass-card{
 
-    background:rgba(255,255,255,.05);
+    background:var(--glass);
 
-    border:1px solid rgba(255,255,255,.08);
+    border:1px solid var(--border);
 
     border-radius:25px;
 
     padding:25px;
 
     backdrop-filter:blur(18px);
+
     -webkit-backdrop-filter:blur(18px);
 
-    transition:.35s ease;
+    box-shadow:var(--shadow);
+
+    transition:.35s;
+
+    animation:none;
 
 }
 
 .glass-card:hover{
 
-    border-color:#00d4ff;
+    border-color:var(--primary);
 
-    box-shadow:0 20px 40px rgba(0,0,0,.25);
+    transform:translateY(-3px);
 
 }
 
-/* ==========================================
-   SEARCH
-========================================== */
+/* =====================================================
+   SEARCH BAR
+===================================================== */
 
 #blogSearch{
 
-    background:rgba(255,255,255,.06);
+    background:rgba(255,255,255,.05);
 
-    border:1px solid rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.10);
 
     color:#ffffff;
 
-    border-radius:12px;
+    border-radius:14px;
 
-    padding:14px 18px;
+    padding:15px 18px;
+
+    font-size:1rem;
+
+    transition:.35s;
 
 }
 
@@ -82,19 +162,25 @@
 
     color:#ffffff;
 
-    border-color:#00d4ff;
+    border-color:var(--primary);
 
     box-shadow:0 0 20px rgba(0,212,255,.25);
 
+    outline:none;
+
 }
 
-/* ==========================================
+/* =====================================================
    TABLE
-========================================== */
+===================================================== */
 
 .table{
 
     margin-bottom:0;
+
+    width:100%;
+
+    color:#ffffff !important;
 
 }
 
@@ -106,41 +192,56 @@
 
 .table thead th{
 
-    color:#00d4ff;
-
-    border-bottom:1px solid rgba(255,255,255,.12);
+    color:var(--primary) !important;
 
     font-weight:600;
 
+    border-bottom:1px solid rgba(255,255,255,.12);
+
+    padding:18px 15px;
+
     white-space:nowrap;
 
-}
-
-.table td{
-
-    color:#ffffff;
-
-    vertical-align:middle;
-
-    border-color:rgba(255,255,255,.05);
+    font-size:.95rem;
 
 }
 
 .table tbody tr{
 
+    background:rgba(255,255,255,.02);
+
     transition:.3s;
+
+    opacity:1 !important;
+
+    visibility:visible !important;
 
 }
 
 .table tbody tr:hover{
 
-    background:rgba(255,255,255,.05);
+    background:rgba(255,255,255,.08);
 
 }
 
-/* ==========================================
+.table tbody td{
+
+    color:#ffffff !important;
+
+    padding:16px 15px;
+
+    vertical-align:middle;
+
+    border-color:rgba(255,255,255,.06);
+
+    opacity:1 !important;
+
+    visibility:visible !important;
+
+}
+/* =====================================================
    BLOG IMAGE
-========================================== */
+===================================================== */
 
 .table img{
 
@@ -154,11 +255,25 @@
 
     border:2px solid rgba(255,255,255,.08);
 
+    transition:.35s ease;
+
+    display:block;
+
+    opacity:1 !important;
+
 }
 
-/* ==========================================
+.table img:hover{
+
+    transform:scale(1.08);
+
+    border-color:var(--primary);
+
+}
+
+/* =====================================================
    BADGES
-========================================== */
+===================================================== */
 
 .badge{
 
@@ -166,71 +281,115 @@
 
     border-radius:50px;
 
-    font-size:.8rem;
+    font-size:.82rem;
 
     font-weight:600;
 
+    letter-spacing:.4px;
+
 }
 
-/* ==========================================
+.bg-success{
+
+    background:#00ff99 !important;
+
+    color:#000 !important;
+
+}
+
+.bg-secondary{
+
+    background:#6c757d !important;
+
+    color:#fff !important;
+
+}
+
+/* =====================================================
    BUTTONS
-========================================== */
+===================================================== */
 
 .btn{
 
-    border-radius:10px;
+    border-radius:12px;
 
-    transition:.3s ease;
+    transition:.35s ease;
+
+    font-weight:600;
 
 }
 
 .btn-primary{
 
-    background:#00d4ff;
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        #00a8ff
+    );
 
     border:none;
 
     color:#000;
-
-    font-weight:600;
 
 }
 
 .btn-primary:hover{
 
-    background:#00bde5;
-
     color:#000;
 
-    transform:translateY(-2px);
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 25px rgba(0,212,255,.30);
 
 }
 
 .btn-success{
 
-    background:#00ff99;
+    background:linear-gradient(
+        135deg,
+        var(--secondary),
+        #00cc7a
+    );
 
     border:none;
 
     color:#000;
 
-    font-weight:600;
-
 }
 
 .btn-success:hover{
 
-    background:#00e68a;
-
     color:#000;
 
-    transform:translateY(-2px);
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 25px rgba(0,255,153,.30);
 
 }
 
 .btn-danger{
 
+    border:none;
+
     font-weight:600;
+
+}
+
+.btn-danger:hover{
+
+    transform:translateY(-3px);
+
+}
+
+.btn-warning{
+
+    font-weight:600;
+
+}
+
+.btn-outline-light{
+
+    border:1px solid rgba(255,255,255,.20);
 
 }
 
@@ -238,19 +397,31 @@
 
     color:#000;
 
+    background:#ffffff;
+
 }
 
-/* ==========================================
+/* =====================================================
    MODAL
-========================================== */
+===================================================== */
+
+.modal{
+
+    z-index:1060 !important;
+
+}
 
 .modal-content{
 
     background:#0f172a;
 
-    border:1px solid rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.10);
 
-    border-radius:20px;
+    border-radius:25px;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.45);
+
+    overflow:hidden;
 
 }
 
@@ -258,43 +429,76 @@
 
     border-bottom:1px solid rgba(255,255,255,.08);
 
+    padding:22px 28px;
+
+}
+
+.modal-title{
+
+    color:#ffffff;
+
+    font-size:1.4rem;
+
+    font-weight:700;
+
+}
+
+.modal-body{
+
+    padding:30px;
+
 }
 
 .modal-footer{
 
     border-top:1px solid rgba(255,255,255,.08);
 
-}
+    padding:20px 28px;
 
-.modal-title,
-.modal h5{
+}
+/* =====================================================
+   FORM LABELS
+===================================================== */
+
+.modal .form-label{
 
     color:#ffffff;
 
-}
-
-.modal label{
-
-    color:#ffffff;
-
-    font-weight:500;
+    font-weight:600;
 
     margin-bottom:8px;
 
+    display:block;
+
 }
+
+/* =====================================================
+   INPUTS
+===================================================== */
 
 .modal .form-control,
 .modal .form-select{
 
+    width:100%;
+
     background:rgba(255,255,255,.06);
 
-    border:1px solid rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.10);
 
     color:#ffffff;
 
-    border-radius:12px;
+    border-radius:14px;
 
-    padding:12px;
+    padding:14px 16px;
+
+    transition:.35s ease;
+
+}
+
+.modal .form-control:hover,
+.modal .form-select:hover{
+
+    border-color:rgba(0,212,255,.45);
 
 }
 
@@ -303,19 +507,13 @@
 
     background:rgba(255,255,255,.08);
 
-    border-color:#00d4ff;
-
     color:#ffffff;
 
-    box-shadow:0 0 20px rgba(0,212,255,.25);
+    border-color:var(--primary);
 
-}
+    box-shadow:0 0 18px rgba(0,212,255,.25);
 
-.modal textarea{
-
-    resize:vertical;
-
-    min-height:140px;
+    outline:none;
 
 }
 
@@ -333,41 +531,183 @@
 
 }
 
+/* =====================================================
+   TEXTAREA
+===================================================== */
+
+.modal textarea{
+
+    resize:vertical;
+
+    min-height:150px;
+
+}
+
+#blogContent{
+
+    min-height:260px;
+
+}
+
+/* =====================================================
+   CHECKBOX
+===================================================== */
+
+.form-check{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-top:10px;
+
+}
+
+.form-check-input{
+
+    width:20px;
+
+    height:20px;
+
+    cursor:pointer;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.25);
+
+}
+
+.form-check-input:checked{
+
+    background-color:var(--secondary);
+
+    border-color:var(--secondary);
+
+}
+
 .form-check-label{
+
+    color:#ffffff;
+
+    font-weight:500;
+
+    margin:0;
+
+}
+
+/* =====================================================
+   MODAL FOOTER BUTTONS
+===================================================== */
+
+.modal-footer .btn{
+
+    min-width:150px;
+
+    padding:12px 18px;
+
+    font-weight:600;
+
+}
+
+.btn-secondary{
+
+    background:#2d3748;
+
+    border:none;
 
     color:#ffffff;
 
 }
 
-/* ==========================================
-   FLOAT ANIMATION
-========================================== */
+.btn-secondary:hover{
 
-@keyframes floatCard{
+    background:#3c4657;
 
-    0%,100%{
-
-        transform:translateY(0);
-
-    }
-
-    50%{
-
-        transform:translateY(-5px);
-
-    }
+    color:#ffffff;
 
 }
 
-.glass-card{
+/* =====================================================
+   CLOSE BUTTON
+===================================================== */
 
-    animation:floatCard 6s ease-in-out infinite;
+.btn-close{
+
+    filter:invert(1);
+
+    opacity:.85;
 
 }
 
-/* ==========================================
+.btn-close:hover{
+
+    opacity:1;
+
+}
+
+/* =====================================================
+   ALERTS
+===================================================== */
+
+.alert{
+
+    border:none;
+
+    border-radius:15px;
+
+    font-weight:500;
+
+    margin-bottom:20px;
+
+}
+
+/* =====================================================
    SCROLLBAR
-========================================== */
+===================================================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+    height:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#081224;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:linear-gradient(
+        180deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:var(--primary);
+
+}
+
+/* =====================================================
+   TABLE SCROLLBAR
+===================================================== */
+
+.table-responsive{
+
+    overflow-x:auto;
+
+}
 
 .table-responsive::-webkit-scrollbar{
 
@@ -377,21 +717,20 @@
 
 .table-responsive::-webkit-scrollbar-thumb{
 
-    background:#00d4ff;
+    background:var(--primary);
 
     border-radius:20px;
 
 }
+/* =====================================================
+   TABLET RESPONSIVE
+===================================================== */
 
-/* ==========================================
-   RESPONSIVE
-========================================== */
-
-@media(max-width:992px){
+@media (max-width:992px){
 
     .admin-blogs-section{
 
-        padding:90px 0;
+        padding:90px 15px;
 
     }
 
@@ -401,31 +740,56 @@
 
     }
 
-}
+    .glass-card{
 
-@media(max-width:768px){
-
-    .admin-blogs-section{
-
-        padding:70px 0;
+        padding:22px;
 
     }
 
-    .glass-card{
+}
 
-        padding:20px;
+/* =====================================================
+   MOBILE RESPONSIVE
+===================================================== */
+
+@media (max-width:768px){
+
+    .admin-blogs-section{
+
+        padding:70px 12px;
 
     }
 
     .admin-blogs-section h2{
 
-        font-size:1.8rem;
+        font-size:1.7rem;
+
+    }
+
+    .admin-blogs-section p{
+
+        font-size:.95rem;
+
+    }
+
+    .glass-card{
+
+        padding:18px;
+
+        border-radius:18px;
 
     }
 
     .table{
 
-        font-size:.9rem;
+        font-size:.90rem;
+
+    }
+
+    .table th,
+    .table td{
+
+        padding:12px 10px;
 
     }
 
@@ -441,8 +805,219 @@
 
         font-size:.85rem;
 
-        padding:6px 10px;
+        padding:7px 10px;
 
     }
+
+    .modal-dialog{
+
+        margin:12px;
+
+    }
+
+    .modal-body{
+
+        padding:20px;
+
+    }
+
+    .modal-footer{
+
+        flex-direction:column;
+
+        gap:10px;
+
+    }
+
+    .modal-footer .btn{
+
+        width:100%;
+
+    }
+
+}
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width:480px){
+
+    .admin-blogs-section{
+
+        padding:60px 10px;
+
+    }
+
+    .admin-blogs-section h2{
+
+        font-size:1.45rem;
+
+    }
+
+    .admin-blogs-section p{
+
+        font-size:.88rem;
+
+    }
+
+    .glass-card{
+
+        padding:15px;
+
+        border-radius:16px;
+
+    }
+
+    .table{
+
+        font-size:.82rem;
+
+    }
+
+    .table img{
+
+        width:45px;
+
+        height:45px;
+
+    }
+
+    .btn{
+
+        font-size:.80rem;
+
+        padding:6px 8px;
+
+    }
+
+    .modal-title{
+
+        font-size:1.15rem;
+
+    }
+
+}
+
+/* =====================================================
+   BLOG TABLE VISIBILITY FIX
+===================================================== */
+
+table,
+thead,
+tbody,
+tr,
+th,
+td{
+
+    opacity:1 !important;
+
+    visibility:visible !important;
+
+}
+
+tbody tr{
+
+    display:table-row !important;
+
+}
+
+tbody td{
+
+    color:#ffffff !important;
+
+}
+
+thead th{
+
+    color:#00d4ff !important;
+
+}
+
+.table img{
+
+    opacity:1 !important;
+
+    visibility:visible !important;
+
+}
+
+/* =====================================================
+   REMOVE GSAP INITIAL HIDDEN STATE
+===================================================== */
+
+.glass-card,
+.table,
+.table-responsive,
+tbody,
+tbody tr,
+tbody td,
+.modal,
+.modal-content{
+
+    opacity:1 !important;
+
+    visibility:visible !important;
+
+    transform:none !important;
+
+}
+
+/* =====================================================
+   REMOVE FLOAT ANIMATION
+===================================================== */
+
+.glass-card{
+
+    animation:none !important;
+
+}
+
+/* =====================================================
+   HOVER EFFECTS
+===================================================== */
+
+.table tbody tr{
+
+    transition:background .3s ease,
+               transform .2s ease;
+
+}
+
+.table tbody tr:hover{
+
+    background:rgba(255,255,255,.08);
+
+    transform:translateY(-2px);
+
+}
+
+.btn{
+
+    transition:.3s ease;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/* =====================================================
+   FINAL FIX
+===================================================== */
+
+body{
+
+    opacity:1 !important;
+
+}
+
+.admin-blogs-section{
+
+    opacity:1 !important;
+
+    visibility:visible !important;
 
 }

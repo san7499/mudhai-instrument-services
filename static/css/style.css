@@ -1,210 +1,1521 @@
-/* =====================================
+/* =====================================================
+   MUDHAI INSTRUMENT SERVICES
+   PREMIUM STYLE.CSS
+   PART 1
+===================================================== */
+
+/* =====================================================
    ROOT VARIABLES
-===================================== */
+===================================================== */
 
 :root{
+
     --primary:#00d4ff;
+    --primary-dark:#0099cc;
+
     --secondary:#00ff99;
+    --secondary-dark:#00cc7a;
 
     --dark:#050816;
-    --dark-card:#0f172a;
+    --dark-light:#0f172a;
+    --dark-card:#111827;
 
     --white:#ffffff;
 
-    --glass:rgba(255,255,255,0.05);
-    --border:rgba(255,255,255,0.08);
+    --text:#e2e8f0;
+    --text-light:#94a3b8;
 
-    --shadow:0 15px 40px rgba(0,0,0,.35);
+    --glass:rgba(255,255,255,.06);
 
-    --transition:.4s ease;
+    --glass-hover:rgba(255,255,255,.10);
+
+    --border:rgba(255,255,255,.10);
+
+    --shadow:
+    0 20px 60px rgba(0,0,0,.35);
+
+    --radius:22px;
+
+    --transition:.35s ease;
+
 }
 
-/* =====================================
+/* =====================================================
    RESET
-===================================== */
+===================================================== */
 
-*{
+*,
+*::before,
+*::after{
+
     margin:0;
     padding:0;
+
     box-sizing:border-box;
+
 }
 
 html{
+
     scroll-behavior:smooth;
+
 }
 
 body{
-    font-family:'Poppins',sans-serif;
-    background:#050816;
-    color:#ffffff;
+
+    font-family:"Poppins",sans-serif;
+
+    background:var(--dark);
+
+    color:var(--white);
+
     overflow-x:hidden;
+
     min-height:100vh;
+
+    line-height:1.7;
+
 }
 
-/* =====================================
-   THREE.JS BACKGROUND
-===================================== */
+/* =====================================================
+   SELECTION
+===================================================== */
+
+::selection{
+
+    background:var(--primary);
+
+    color:#000;
+
+}
+
+/* =====================================================
+   LINKS
+===================================================== */
+
+a{
+
+    color:inherit;
+
+    text-decoration:none;
+
+    transition:var(--transition);
+
+}
+
+/* =====================================================
+   IMAGES
+===================================================== */
+
+img{
+
+    max-width:100%;
+
+    display:block;
+
+    user-select:none;
+
+}
+
+/* =====================================================
+   HEADINGS
+===================================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+
+    color:#fff;
+
+    font-weight:700;
+
+    line-height:1.2;
+
+}
+
+p{
+
+    color:rgba(255,255,255,.78);
+
+}
+
+/* =====================================================
+   THREE BACKGROUND
+===================================================== */
 
 #bg-canvas{
+
     position:fixed;
+
     inset:0;
+
     width:100%;
     height:100%;
-    z-index:-10;
+
+    z-index:-100;
+
     pointer-events:none;
+
 }
 
 #bg-canvas canvas{
+
     display:block;
-    width:100%;
-    height:100%;
+
 }
 
 /* =====================================
-   PRELOADER
+RGB CURSOR GLOW
 ===================================== */
 
-#preloader{
+#cursor-glow{
+
     position:fixed;
+
+    left:0;
+    top:0;
+
+    width:260px;
+    height:260px;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    transform:translate(-50%,-50%);
+
+    z-index:999999;
+
+    opacity:.8;
+
+    filter:blur(55px);
+
+    background:
+    radial-gradient(circle,
+        rgba(255,0,0,.55) 0%,
+        rgba(255,0,255,.35) 35%,
+        transparent 75%
+    );
+
+    animation:rgbGlow 6s linear infinite;
+
+    transition:
+        width .25s ease,
+        height .25s ease,
+        opacity .25s ease;
+
+}
+
+@keyframes rgbGlow{
+
+    0%{
+
+        background:
+        radial-gradient(circle,
+        rgba(255,0,0,.6) 0%,
+        rgba(255,100,0,.35) 40%,
+        transparent 80%);
+
+    }
+
+    16%{
+
+        background:
+        radial-gradient(circle,
+        rgba(255,120,0,.6) 0%,
+        rgba(255,255,0,.35) 40%,
+        transparent 80%);
+
+    }
+
+    33%{
+
+        background:
+        radial-gradient(circle,
+        rgba(0,255,0,.6) 0%,
+        rgba(0,255,150,.35) 40%,
+        transparent 80%);
+
+    }
+
+    50%{
+
+        background:
+        radial-gradient(circle,
+        rgba(0,255,255,.6) 0%,
+        rgba(0,120,255,.35) 40%,
+        transparent 80%);
+
+    }
+
+    66%{
+
+        background:
+        radial-gradient(circle,
+        rgba(0,0,255,.6) 0%,
+        rgba(120,0,255,.35) 40%,
+        transparent 80%);
+
+    }
+
+    83%{
+
+        background:
+        radial-gradient(circle,
+        rgba(255,0,255,.6) 0%,
+        rgba(255,0,150,.35) 40%,
+        transparent 80%);
+
+    }
+
+    100%{
+
+        background:
+        radial-gradient(circle,
+        rgba(255,0,0,.6) 0%,
+        rgba(255,100,0,.35) 40%,
+        transparent 80%);
+
+    }
+
+}
+/* =====================================================
+   PRELOADER
+===================================================== */
+
+#preloader{
+
+    position:fixed;
+
     inset:0;
 
     background:#050816;
 
     display:flex;
+
     justify-content:center;
+
     align-items:center;
 
-    z-index:99999;
+    flex-direction:column;
+
+    z-index:999999;
 
     transition:opacity .5s ease;
+
 }
 
 #preloader img{
-    animation:pulse 2s infinite;
+
+    width:90px;
+
+    animation:logoPulse 2s infinite;
+
 }
 
-@keyframes pulse{
+@keyframes logoPulse{
 
-    0%,100%{
+    0%{
+
         transform:scale(1);
+
     }
 
     50%{
+
         transform:scale(1.08);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
     }
 
 }
 
-/* =====================================
+#preloader::after{
+
+    content:"Loading...";
+
+    margin-top:18px;
+
+    color:#fff;
+
+    font-size:.95rem;
+
+    letter-spacing:2px;
+
+}
+/* =====================================================
    NAVBAR
-===================================== */
+===================================================== */
 
 .custom-navbar{
+
     position:fixed;
+
     top:0;
     left:0;
+
     width:100%;
 
     z-index:9999;
 
-    background:rgba(5,8,22,.85);
+    background:rgba(5,8,22,.78);
 
-    backdrop-filter:blur(12px);
-    -webkit-backdrop-filter:blur(12px);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
 
     border-bottom:1px solid rgba(255,255,255,.08);
 
     transition:
         transform .35s ease,
-        background .35s ease;
+        background .35s ease,
+        box-shadow .35s ease;
+
 }
 
-/* Scroll Down Hide */
+.custom-navbar.navbar-scrolled{
+
+    background:rgba(5,8,22,.95);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.25);
+
+}
 
 .custom-navbar.nav-hidden{
-    transform:translateY(-100%);
-}
 
-/* Scroll Up Show */
+    transform:translateY(-110%);
 
-.custom-navbar.nav-visible{
-    transform:translateY(0);
-}
-
-.navbar-scrolled{
-    background:rgba(5,8,22,.95);
 }
 
 .navbar-brand img{
-    transition:.4s ease;
+
+    height:55px;
+
+    transition:.35s ease;
+
 }
 
 .navbar-brand img:hover{
-    transform:scale(1.05);
+
+    transform:scale(1.06);
+
+}
+
+.navbar-nav{
+
+    gap:10px;
+
 }
 
 .nav-link{
-    color:#ffffff !important;
-    margin-left:15px;
+
     position:relative;
-    transition:.3s ease;
-}
 
-.nav-link::after{
-    content:"";
-    position:absolute;
-    left:0;
-    bottom:-5px;
+    color:#fff !important;
 
-    width:0;
-    height:2px;
+    font-weight:500;
 
-    background:#00d4ff;
+    padding:10px 16px !important;
 
-    transition:.3s ease;
+    border-radius:12px;
+
+    transition:var(--transition);
+
 }
 
 .nav-link:hover{
-    color:#00d4ff !important;
+
+    color:var(--primary)!important;
+
+    background:rgba(255,255,255,.05);
+
 }
 
-.nav-link:hover::after{
-    width:100%;
+.nav-link.active{
+
+    color:var(--primary)!important;
+
 }
 
-/* =====================================
-   FLASH MESSAGES
-===================================== */
+.nav-link::after{
 
-.alert{
-    border:none;
-    border-radius:15px;
+    content:"";
+
+    position:absolute;
+
+    left:15px;
+
+    bottom:6px;
+
+    width:0;
+
+    height:2px;
+
+    background:var(--primary);
+
+    transition:.3s;
+
 }
 
-/* =====================================
-   MAIN CONTENT
-===================================== */
+.nav-link:hover::after,
+
+.nav-link.active::after{
+
+    width:calc(100% - 30px);
+
+}
+
+/* =====================================================
+   MAIN
+===================================================== */
 
 main{
-    position:relative;
-    z-index:2;
-}
 
-/* =====================================
-   SECTION
-===================================== */
+    position:relative;
+
+    z-index:2;
+
+    min-height:70vh;
+
+    padding-top:95px;
+
+}
 
 section{
+
     position:relative;
+
     z-index:2;
+
 }
 
-/* =====================================
+/* =====================================================
    GLASS CARD
-===================================== */
+===================================================== */
 
 .glass-card{
-    background:rgba(255,255,255,.04);
+
+    background:var(--glass);
+
+    border:1px solid var(--border);
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+    border-radius:var(--radius);
+
+    padding:32px;
+
+    transition:var(--transition);
+
+    overflow:hidden;
+
+}
+
+.glass-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        rgba(255,255,255,.08),
+
+        transparent 60%
+
+    );
+
+    opacity:0;
+
+    transition:.4s;
+
+}
+
+.glass-card:hover{
+
+    transform:translateY(-8px);
+
+    background:var(--glass-hover);
+
+    box-shadow:var(--shadow);
+
+}
+
+.glass-card:hover::before{
+
+    opacity:1;
+
+}
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.btn{
+
+    border-radius:14px;
+
+    font-weight:600;
+
+    padding:12px 28px;
+
+    transition:.35s ease;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.btn-primary{
+
+    background:var(--primary);
+
+    color:#000;
+
+    border:none;
+
+}
+
+.btn-primary:hover{
+
+    background:#11ddff;
+
+    color:#000;
+
+    transform:translateY(-4px);
+
+    box-shadow:
+
+        0 10px 25px rgba(0,212,255,.35);
+
+}
+
+.btn-success{
+
+    background:var(--secondary);
+
+    color:#000;
+
+    border:none;
+
+}
+
+.btn-success:hover{
+
+    background:#22ffb2;
+
+    color:#000;
+
+    transform:translateY(-4px);
+
+    box-shadow:
+
+        0 10px 25px rgba(0,255,153,.35);
+
+}
+
+.btn-outline-light{
+
+    border:1px solid rgba(255,255,255,.25);
+
+}
+
+.btn-outline-light:hover{
+
+    background:#fff;
+
+    color:#000;
+
+}
+
+/* =====================================================
+   RIPPLE
+===================================================== */
+
+.btn .ripple{
+
+    position:absolute;
+
+    width:18px;
+
+    height:18px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.55);
+
+    transform:translate(-50%,-50%) scale(0);
+
+    animation:ripple .7s linear;
+
+    pointer-events:none;
+
+}
+
+@keyframes ripple{
+
+    to{
+
+        transform:
+        translate(-50%,-50%)
+        scale(18);
+
+        opacity:0;
+
+    }
+
+}
+
+/* =====================================================
+   FORMS
+===================================================== */
+
+.form-control,
+.form-select{
+
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    color:#fff;
+
+    border-radius:14px;
+
+    padding:14px 18px;
+
+    transition:.35s;
+
+}
+
+.form-control::placeholder{
+
+    color:rgba(255,255,255,.45);
+
+}
+
+.form-control:focus,
+.form-select:focus{
+
+    background:rgba(255,255,255,.08);
+
+    color:#fff;
+
+    border-color:var(--primary);
+
+    box-shadow:
+
+        0 0 18px rgba(0,212,255,.25);
+
+}
+
+.form-select option{
+
+    background:#0f172a;
+
+    color:#fff;
+
+}
+
+.form-label{
+
+    color:#fff;
+
+    font-weight:500;
+
+}
+
+/* =====================================================
+   ALERTS
+===================================================== */
+
+.alert{
+
+    border:none;
+
+    border-radius:16px;
+
+    backdrop-filter:blur(12px);
+
+    box-shadow:
+
+        0 15px 35px rgba(0,0,0,.25);
+
+}
+
+/* =====================================================
+   SCROLL PROGRESS
+===================================================== */
+
+#scroll-progress{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:0;
+
+    height:3px;
+
+    background:
+
+    linear-gradient(
+        90deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    z-index:99999;
+
+}
+
+/* =====================================================
+   BACK TO TOP
+===================================================== */
+
+.back-to-top-btn{
+
+    position:fixed;
+
+    right:25px;
+
+    bottom:25px;
+
+    width:52px;
+
+    height:52px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+    color:#000;
+
+    cursor:pointer;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transform:translateY(25px);
+
+    transition:.35s;
+
+    z-index:999;
+
+}
+
+.back-to-top-btn.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:translateY(0);
+
+}
+
+.back-to-top-btn:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:
+
+        0 12px 30px rgba(0,212,255,.4);
+
+}
+
+/* =====================================================
+   COMMON HOVER
+===================================================== */
+
+img{
+
+    transition:.45s ease;
+
+}
+
+img:hover{
+
+    transform:scale(1.02);
+
+}
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer{
+
+    position:relative;
+
+    z-index:2;
+
+    background:#020617;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    padding:80px 0 35px;
+
+    overflow:hidden;
+
+}
+
+.footer::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:500px;
+    height:500px;
+
+    top:-250px;
+    right:-250px;
+
+    border-radius:50%;
+
+    background:rgba(0,212,255,.08);
+
+    filter:blur(120px);
+
+}
+
+.footer h5{
+
+    color:#fff;
+
+    margin-bottom:20px;
+
+    font-weight:700;
+
+}
+
+.footer p{
+
+    color:rgba(255,255,255,.75);
+
+    line-height:1.8;
+
+}
+
+.footer-links{
+
+    list-style:none;
+
+    padding:0;
+
+}
+
+.footer-links li{
+
+    margin-bottom:12px;
+
+}
+
+.footer-links a{
+
+    color:#ddd;
+
+    transition:.35s;
+
+}
+
+.footer-links a:hover{
+
+    color:var(--primary);
+
+    padding-left:8px;
+
+}
+
+.social-links{
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+.social-btn{
+
+    width:46px;
+    height:46px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:rgba(255,255,255,.08);
+
+    color:#fff;
+
+    transition:.35s;
+
+}
+
+.social-btn:hover{
+
+    background:var(--primary);
+
+    color:#000;
+
+    transform:translateY(-6px);
+
+}
+
+/* =====================================================
+   PRODUCT CARD
+===================================================== */
+
+.product-card{
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    transition:.4s;
+
+    height:100%;
+
+}
+
+.product-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 20px 50px rgba(0,0,0,.35);
+
+}
+
+.product-image{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.product-image img{
+
+    width:100%;
+
+    height:280px;
+
+    object-fit:cover;
+
+    transition:.5s;
+
+}
+
+.product-card:hover img{
+
+    transform:scale(1.08);
+
+}
+
+.product-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:rgba(0,0,0,.55);
+
+    opacity:0;
+
+    transition:.35s;
+
+}
+
+.product-card:hover .product-overlay{
+
+    opacity:1;
+
+}
+
+.view-btn{
+
+    background:var(--primary);
+
+    color:#000;
+
+    padding:12px 28px;
+
+    border-radius:50px;
+
+    font-weight:600;
+
+}
+
+.product-content{
+
+    padding:25px;
+
+}
+
+.product-category{
+
+    display:inline-block;
+
+    color:var(--primary);
+
+    font-size:.9rem;
+
+    margin-bottom:10px;
+
+    font-weight:600;
+
+}
+
+.product-title{
+
+    font-size:1.5rem;
+
+    margin-bottom:15px;
+
+}
+
+.product-description{
+
+    color:rgba(255,255,255,.75);
+
+}
+
+.featured-badge{
+
+    display:inline-block;
+
+    margin-top:15px;
+
+    padding:8px 16px;
+
+    border-radius:30px;
+
+    background:rgba(0,255,153,.15);
+
+    color:var(--secondary);
+
+    font-size:.85rem;
+
+}
+
+/* =====================================================
+   BLOG CARD
+===================================================== */
+
+.blog-card{
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    transition:.4s;
+
+    height:100%;
+
+}
+
+.blog-card:hover{
+
+    transform:translateY(-10px);
+
+}
+
+.blog-card img{
+
+    width:100%;
+
+    height:240px;
+
+    object-fit:cover;
+
+}
+
+.blog-content{
+
+    padding:25px;
+
+}
+
+.blog-title{
+
+    color:#fff;
+
+    margin-bottom:12px;
+
+}
+
+.blog-meta{
+
+    color:var(--primary);
+
+    font-size:.85rem;
+
+    margin-bottom:15px;
+
+}
+
+/* =====================================================
+   CERTIFICATION CARD
+===================================================== */
+
+.certification-card{
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:25px;
+
+    padding:30px;
+
+    text-align:center;
+
+    transition:.4s;
+
+    height:100%;
+
+}
+
+.certification-card:hover{
+
+    transform:translateY(-10px);
+
+    border-color:var(--primary);
+
+}
+
+.certification-card img{
+
+    height:110px;
+
+    margin:auto;
+
+    margin-bottom:20px;
+
+}
+
+.certification-card h4{
+
+    margin-bottom:12px;
+
+}
+
+/* =====================================================
+   ADMIN CARDS
+===================================================== */
+
+.stats-card{
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:22px;
+
+    text-align:center;
+
+    padding:35px;
+
+    transition:.35s;
+
+}
+
+.stats-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:var(--primary);
+
+}
+
+.stats-card i{
+
+    color:var(--primary);
+
+    margin-bottom:20px;
+
+}
+
+.stats-card h2{
+
+    font-size:2.4rem;
+
+}
+
+.dashboard-card{
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:22px;
+
+    padding:30px;
+
+}
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.table{
+
+    color:#fff;
+
+    margin-bottom:0;
+
+}
+
+.table thead th{
+
+    color:var(--primary);
+
+    border-color:rgba(255,255,255,.08);
+
+}
+
+.table td{
+
+    vertical-align:middle;
+
+    border-color:rgba(255,255,255,.05);
+
+}
+
+.table img{
+
+    width:70px;
+
+    border-radius:10px;
+
+}
+
+/* =====================================================
+   PRODUCT DETAIL IMAGE
+===================================================== */
+
+.product-image-wrapper{
+
+    position:relative;
+
+}
+
+.main-product-image{
+
+    width:100%;
+
+    border-radius:25px;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
+
+}
+
+.gallery-card{
+
+    overflow:hidden;
+
+    border-radius:20px;
+
+}
+
+.gallery-card img{
+
+    width:100%;
+
+    height:250px;
+
+    object-fit:cover;
+
+    transition:.45s;
+
+}
+
+.gallery-card:hover img{
+
+    transform:scale(1.08);
+
+}
+/* =====================================================
+   HERO SECTIONS
+===================================================== */
+
+.hero-section,
+.page-hero,
+.product-detail-hero,
+.contact-hero{
+
+    position:relative;
+
+    min-height:90vh;
+
+    display:flex;
+
+    align-items:center;
+
+    overflow:hidden;
+
+}
+
+.hero-title,
+.page-title{
+
+    font-size:clamp(2.5rem,6vw,5rem);
+
+    font-weight:800;
+
+    line-height:1.1;
+
+    margin-bottom:20px;
+
+}
+
+.hero-description,
+.page-description{
+
+    font-size:1.1rem;
+
+    color:rgba(255,255,255,.75);
+
+    max-width:700px;
+
+    line-height:1.8;
+
+}
+
+/* =====================================================
+   SECTION HEADINGS
+===================================================== */
+
+.section-header{
+
+    text-align:center;
+
+    margin-bottom:60px;
+
+}
+
+.section-header h2{
+
+    font-size:2.8rem;
+
+    font-weight:700;
+
+    margin-bottom:15px;
+
+}
+
+.section-header p{
+
+    max-width:700px;
+
+    margin:auto;
+
+}
+
+/* =====================================================
+   TIMELINE
+===================================================== */
+
+.timeline{
+
+    position:relative;
+
+}
+
+.timeline::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    top:0;
+
+    width:3px;
+
+    height:100%;
+
+    background:rgba(255,255,255,.08);
+
+    transform:translateX(-50%);
+
+}
+
+.timeline-step{
+
+    position:relative;
+
+    margin-bottom:60px;
+
+}
+
+.timeline-step::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    width:20px;
+
+    height:20px;
+
+    background:var(--primary);
+
+    border-radius:50%;
+
+    transform:translateX(-50%);
+
+}
+
+/* =====================================================
+   CONTACT
+===================================================== */
+
+.contact-form-card,
+.contact-info-card{
+
+    background:rgba(255,255,255,.05);
 
     border:1px solid rgba(255,255,255,.08);
 
@@ -212,144 +1523,321 @@ section{
 
     padding:35px;
 
-    transition:.4s ease;
+    height:100%;
 
-    /* Removed blur causing visibility issue */
-    backdrop-filter:none;
 }
 
-.glass-card:hover{
-    transform:translateY(-8px);
-    box-shadow:var(--shadow);
+.info-item{
+
+    display:flex;
+
+    gap:18px;
+
+    margin-bottom:28px;
+
 }
 
-/* =====================================
-   BUTTONS
-===================================== */
+.info-icon{
 
-.btn-primary{
-    background:#00d4ff;
-    border:none;
-    color:#000;
-    font-weight:600;
+    width:58px;
+
+    height:58px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:rgba(0,212,255,.12);
+
+    color:var(--primary);
+
+    font-size:1.3rem;
+
 }
 
-.btn-primary:hover{
-    transform:translateY(-3px);
+.info-item h5{
+
+    margin-bottom:8px;
+
 }
 
-.btn-success{
-    background:#00ff99;
-    border:none;
-    color:#000;
-    font-weight:600;
+/* =====================================================
+   MAP
+===================================================== */
+
+.map-card{
+
+    overflow:hidden;
+
+    border-radius:25px;
+
+    border:1px solid rgba(255,255,255,.08);
+
 }
 
-.btn-success:hover{
-    transform:translateY(-3px);
+.map-card iframe{
+
+    width:100%;
+
+    display:block;
+
+    border:0;
+
 }
 
-/* =====================================
-   FOOTER
-===================================== */
+/* =====================================================
+   BADGES
+===================================================== */
 
-.footer{
-    background:#020617;
+.badge{
 
-    padding:80px 0 40px;
+    border-radius:30px;
 
-    border-top:1px solid rgba(255,255,255,.08);
+    padding:8px 15px;
 
-    position:relative;
-    z-index:2;
 }
 
-.footer h5{
-    color:#ffffff;
-    margin-bottom:20px;
+/* =====================================================
+   SCROLL REVEAL
+===================================================== */
+
+.glass-card,
+.product-card,
+.blog-card,
+.certification-card,
+.stats-card{
+
+    opacity:1;
+
+    transform:none;
+
 }
 
-.footer p{
-    color:rgba(255,255,255,.75);
+.visible{
+
+    opacity:1 !important;
+
+    transform:none !important;
+
 }
 
-.footer-links{
-    list-style:none;
-    padding:0;
+/* =====================================================
+   PAGE LOADED
+===================================================== */
+
+body{
+
+    opacity:1;
+
+    transition:opacity .4s ease;
+
 }
 
-.footer-links li{
-    margin-bottom:10px;
+body.page-loaded{
+
+    opacity:1;
+
 }
 
-.footer-links a{
-    color:#ffffff;
-    text-decoration:none;
-    transition:.3s ease;
+/* =====================================================
+   UTILITIES
+===================================================== */
+
+.shadow-hover:hover{
+
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
+
 }
 
-.footer-links a:hover{
-    color:#00d4ff;
+.rounded-xl{
+
+    border-radius:25px;
+
 }
 
-/* =====================================
-   COMMON HEADINGS
-===================================== */
+.text-primary{
 
-h1,h2,h3,h4,h5,h6{
-    color:#ffffff;
+    color:var(--primary)!important;
+
 }
 
-p{
-    color:rgba(255,255,255,.8);
+.text-secondary{
+
+    color:var(--secondary)!important;
+
 }
 
-/* =====================================
+/* =====================================================
    SCROLLBAR
-===================================== */
+===================================================== */
 
 ::-webkit-scrollbar{
-    width:8px;
+
+    width:10px;
+
 }
 
 ::-webkit-scrollbar-track{
+
     background:#050816;
+
 }
 
 ::-webkit-scrollbar-thumb{
-    background:#00d4ff;
-    border-radius:20px;
+
+    background:linear-gradient(
+
+        var(--primary),
+
+        var(--secondary)
+
+    );
+
+    border-radius:30px;
+
 }
 
 ::-webkit-scrollbar-thumb:hover{
+
     background:#00ff99;
+
 }
 
-/* =====================================
+/* =====================================================
    RESPONSIVE
-===================================== */
+===================================================== */
+
+@media(max-width:1200px){
+
+    .hero-title{
+
+        font-size:3.8rem;
+
+    }
+
+}
 
 @media(max-width:992px){
 
     .navbar-nav{
+
         text-align:center;
-        padding:15px 0;
+
+        padding:20px 0;
+
     }
 
-    .nav-link{
-        margin:10px 0;
+    .hero-title{
+
+        font-size:3rem;
+
+    }
+
+    .section-header h2{
+
+        font-size:2.2rem;
+
+    }
+
+    .timeline::before{
+
+        left:25px;
+
+    }
+
+    .timeline-step::before{
+
+        left:25px;
+
     }
 
 }
 
 @media(max-width:768px){
 
-    .footer{
-        text-align:center;
+    
+
+    .hero-section,
+    .page-hero,
+    .contact-hero,
+    .product-detail-hero{
+
+        min-height:auto;
+
+        padding:120px 0 70px;
+
     }
 
-    .navbar-brand img{
-        height:45px;
+    .hero-title{
+
+        font-size:2.4rem;
+
+    }
+
+    .section-header h2{
+
+        font-size:2rem;
+
+    }
+
+    .glass-card{
+
+        padding:22px;
+
+    }
+
+    .footer{
+
+        text-align:center;
+
+    }
+
+    .social-links{
+
+        justify-content:center;
+
+    }
+
+    .table{
+
+        font-size:.9rem;
+
+    }
+
+}
+
+@media(max-width:576px){
+
+    .hero-title{
+
+        font-size:2rem;
+
+    }
+
+    .btn{
+
+        width:100%;
+
+        margin-bottom:12px;
+
+    }
+
+    .product-image img{
+
+        height:220px;
+
+    }
+
+    .main-product-image{
+
+        max-height:350px;
+
+        object-fit:cover;
+
     }
 
 }

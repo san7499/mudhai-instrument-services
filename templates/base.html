@@ -1,75 +1,77 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
 
- 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-<meta name="description"
-      content="Mudhai Instrument Services - Precision Industrial Instruments & Agricultural Solutions">
+    <meta name="description"
+          content="Mudhai Instrument Services - Precision Industrial Instruments & Agricultural Solutions">
 
-<meta name="keywords"
-      content="Industrial Instruments, Agriculture, Flow Meters, Automation, Mudhai Instrument Services">
+    <meta name="keywords"
+          content="Industrial Instruments, Agriculture, Flow Meters, Automation, Mudhai Instrument Services">
 
-<meta name="author"
-      content="Mudhai Instrument Services">
+    <meta name="author"
+          content="Mudhai Instrument Services">
 
-<title>
-    {% block title %}
-    Mudhai Instrument Services
+    <title>
+        {% block title %}
+        Mudhai Instrument Services
+        {% endblock %}
+    </title>
+
+    <!-- Favicon -->
+
+    <link rel="icon"
+          type="image/png"
+          href="{{ url_for('static', filename='images/logo.png') }}">
+
+    <!-- Bootstrap -->
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Main CSS -->
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/animations.css') }}">
+
+    {% block styles %}
     {% endblock %}
-</title>
-
-<!-- Favicon -->
-
-<link rel="icon"
-      type="image/png"
-      href="{{ url_for('static', filename='images/logo.png') }}">
-
-<!-- Bootstrap -->
-
-<link rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-
-<!-- Font Awesome -->
-
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-<!-- Google Fonts -->
-
-<link rel="preconnect"
-      href="https://fonts.googleapis.com">
-
-<link rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet">
-
-<!-- Main CSS -->
-
-<link rel="stylesheet"
-      href="{{ url_for('static', filename='css/style.css') }}">
-
-<link rel="stylesheet"
-      href="{{ url_for('static', filename='css/animations.css') }}">
-
-{% block styles %}
-{% endblock %}
- 
 
 </head>
 
 <body>
 
- 
+<!-- ===================================== -->
+<!-- CURSOR GLOW -->
+<!-- ===================================== -->
+
+<div id="cursor-glow"></div>
+
 <!-- ===================================== -->
 <!-- PRELOADER -->
 <!-- ===================================== -->
@@ -83,7 +85,7 @@
 </div>
 
 <!-- ===================================== -->
-<!-- THREE JS BACKGROUND -->
+<!-- THREE.JS BACKGROUND -->
 <!-- ===================================== -->
 
 <div id="bg-canvas"></div>
@@ -120,69 +122,45 @@
             <ul class="navbar-nav ms-auto">
 
                 <li class="nav-item">
-
                     <a class="nav-link"
                        href="{{ url_for('home') }}">
-
                         Home
-
                     </a>
-
                 </li>
 
                 <li class="nav-item">
-
                     <a class="nav-link"
                        href="{{ url_for('about') }}">
-
                         About
-
                     </a>
-
                 </li>
 
                 <li class="nav-item">
-
                     <a class="nav-link"
                        href="{{ url_for('products') }}">
-
                         Products
-
                     </a>
-
                 </li>
 
                 <li class="nav-item">
-
                     <a class="nav-link"
                        href="{{ url_for('blogs') }}">
-
                         Blogs
-
                     </a>
-
                 </li>
 
                 <li class="nav-item">
-
                     <a class="nav-link"
                        href="{{ url_for('certifications') }}">
-
                         Certifications
-
                     </a>
-
                 </li>
 
                 <li class="nav-item">
-
                     <a class="nav-link"
                        href="{{ url_for('contact') }}">
-
                         Contact
-
                     </a>
-
                 </li>
 
             </ul>
@@ -192,7 +170,6 @@
     </div>
 
 </nav>
-
 <!-- ===================================== -->
 <!-- FLASH MESSAGES -->
 <!-- ===================================== -->
@@ -203,20 +180,20 @@
 
     {% if messages %}
 
-    {% for category, message in messages %}
+        {% for category, message in messages %}
 
-    <div class="alert alert-{{ category }} alert-dismissible fade show">
+        <div class="alert alert-{{ category }} alert-dismissible fade show shadow-lg">
 
-        {{ message }}
+            {{ message }}
 
-        <button type="button"
-                class="btn-close"
-                data-bs-dismiss="alert">
-        </button>
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert">
+            </button>
 
-    </div>
+        </div>
 
-    {% endfor %}
+        {% endfor %}
 
     {% endif %}
 
@@ -243,7 +220,9 @@
 
     <div class="container">
 
-        <div class="row gy-4">
+        <div class="row gy-5">
+
+            <!-- Company -->
 
             <div class="col-lg-4">
 
@@ -251,18 +230,45 @@
                      alt="Mudhai Logo"
                      height="70">
 
-                <p class="mt-3">
+                <p class="mt-4">
 
-                    Precision for Industry,
-                    Growth for Agriculture.
+                    Mudhai Instrument Services provides reliable industrial
+                    instrumentation and agricultural solutions with a strong
+                    focus on quality, innovation and customer satisfaction.
 
                 </p>
 
+                <div class="social-links mt-4">
+
+                    <a href="#" class="social-btn">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+
+                    <a href="#" class="social-btn">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+
+                    <a href="#" class="social-btn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+
+                    <a href="#" class="social-btn">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+
+                </div>
+
             </div>
+
+            <!-- Quick Links -->
 
             <div class="col-lg-4">
 
-                <h5>Quick Links</h5>
+                <h5 class="mb-4">
+
+                    Quick Links
+
+                </h5>
 
                 <ul class="footer-links">
 
@@ -274,7 +280,7 @@
 
                     <li>
                         <a href="{{ url_for('about') }}">
-                            About
+                            About Us
                         </a>
                     </li>
 
@@ -306,13 +312,27 @@
 
             </div>
 
+            <!-- Contact -->
+
             <div class="col-lg-4">
 
-                <h5>Contact</h5>
+                <h5 class="mb-4">
+
+                    Contact Information
+
+                </h5>
 
                 <p>
 
-                    <i class="fa-solid fa-envelope"></i>
+                    <i class="fa-solid fa-location-dot text-info me-2"></i>
+
+                    Pune, Maharashtra, India
+
+                </p>
+
+                <p>
+
+                    <i class="fa-solid fa-envelope text-info me-2"></i>
 
                     info@mudhaiinstrumentservices.com
 
@@ -320,9 +340,17 @@
 
                 <p>
 
-                    <i class="fa-solid fa-phone"></i>
+                    <i class="fa-solid fa-phone text-info me-2"></i>
 
                     +91 9834424390
+
+                </p>
+
+                <p>
+
+                    <i class="fa-solid fa-clock text-info me-2"></i>
+
+                    Monday - Saturday : 9:00 AM - 6:00 PM
 
                 </p>
 
@@ -330,12 +358,14 @@
 
         </div>
 
-        <hr>
+        <hr class="my-5">
 
         <div class="text-center">
 
             © <span id="year"></span>
+
             Mudhai Instrument Services.
+
             All Rights Reserved.
 
         </div>
@@ -343,7 +373,6 @@
     </div>
 
 </footer>
-
 <!-- ===================================== -->
 <!-- BOOTSTRAP -->
 <!-- ===================================== -->
@@ -374,51 +403,156 @@
 
 <script src="{{ url_for('static', filename='js/three-scene.js') }}"></script>
 
+<!-- =====================================
+INTERACTIVE RGB CURSOR GLOW
+===================================== -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const glow = document.getElementById("cursor-glow");
+
+    if (!glow) return;
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+
+    let currentX = mouseX;
+    let currentY = mouseY;
+
+    /* =====================================
+       DESKTOP MOUSE
+    ===================================== */
+
+    document.addEventListener("mousemove", (e) => {
+
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        glow.style.opacity = "0.35";
+
+    });
+
+    /* =====================================
+       MOBILE TOUCH
+    ===================================== */
+
+    document.addEventListener("touchstart", (e) => {
+
+        const touch = e.touches[0];
+
+        mouseX = touch.clientX;
+        mouseY = touch.clientY;
+
+        glow.style.opacity = "0.35";
+
+    }, { passive: true });
+
+    document.addEventListener("touchmove", (e) => {
+
+        const touch = e.touches[0];
+
+        mouseX = touch.clientX;
+        mouseY = touch.clientY;
+
+    }, { passive: true });
+
+    document.addEventListener("touchend", () => {
+
+        glow.style.opacity = "0.15";
+
+    });
+
+    /* =====================================
+       SMOOTH FOLLOW
+    ===================================== */
+
+    function animateGlow() {
+
+        currentX += (mouseX - currentX) * 0.12;
+        currentY += (mouseY - currentY) * 0.12;
+
+        glow.style.left = currentX + "px";
+        glow.style.top = currentY + "px";
+
+        requestAnimationFrame(animateGlow);
+
+    }
+
+    animateGlow();
+
+    /* =====================================
+       HOVER EFFECT
+    ===================================== */
+
+    document.querySelectorAll(
+        "a,button,.btn,input,textarea,select,.product-card,.blog-card,.glass-card"
+    ).forEach(item => {
+
+        item.addEventListener("mouseenter", () => {
+
+            glow.style.width = "340px";
+            glow.style.height = "340px";
+            glow.style.opacity = "0.45";
+
+        });
+
+        item.addEventListener("mouseleave", () => {
+
+            glow.style.width = "220px";
+            glow.style.height = "220px";
+            glow.style.opacity = "0.28";
+
+        });
+
+    });
+
+    /* =====================================
+       WINDOW RESIZE
+    ===================================== */
+
+    window.addEventListener("resize", () => {
+
+        if (mouseX > window.innerWidth)
+            mouseX = window.innerWidth / 2;
+
+        if (mouseY > window.innerHeight)
+            mouseY = window.innerHeight / 2;
+
+    });
+
+});
+
+</script>
+
 <!-- ===================================== -->
 <!-- NAVBAR AUTO HIDE -->
 <!-- ===================================== -->
 
 <script>
 
-    let lastScrollTop = 0;
+const navbar=document.querySelector(".custom-navbar");
 
-    const navbar =
-        document.querySelector(
-            ".custom-navbar"
-        );
+let lastScroll=0;
 
-    window.addEventListener(
-        "scroll",
-        () => {
+window.addEventListener("scroll",()=>{
 
-            let currentScroll =
-                window.pageYOffset ||
-                document.documentElement.scrollTop;
+    const current=window.pageYOffset;
 
-            if (
-                currentScroll > lastScrollTop &&
-                currentScroll > 100
-            ) {
+    if(current>lastScroll && current>120){
 
-                navbar.classList.add(
-                    "nav-hidden"
-                );
+        navbar.classList.add("nav-hidden");
 
-            } else {
+    }else{
 
-                navbar.classList.remove(
-                    "nav-hidden"
-                );
+        navbar.classList.remove("nav-hidden");
 
-            }
+    }
 
-            lastScrollTop =
-                currentScroll <= 0
-                    ? 0
-                    : currentScroll;
+    lastScroll=current<=0?0:current;
 
-        }
-    );
+});
 
 </script>
 
@@ -428,14 +562,13 @@
 
 <script>
 
-    document.getElementById("year").textContent =
-        new Date().getFullYear();
+document.getElementById("year").textContent =
+new Date().getFullYear();
 
 </script>
 
 {% block scripts %}
 {% endblock %}
- 
 
 </body>
 

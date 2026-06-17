@@ -1,58 +1,71 @@
 {% extends "base.html" %}
 
-{% block styles %}
-
-<link rel="stylesheet"
-      href="{{ url_for('static', filename='css/blog_details.css') }}">
-{% endblock %}
-
 {% block title %}
 {{ blog.title }} | Mudhai Instrument Services
 {% endblock %}
 
+{% block styles %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/blog_details.css') }}">
+
+{% endblock %}
+
 {% block content %}
 
-<!-- ========================= -->
-
-<!-- BLOG HERO -->
-
-<!-- ========================= -->
+<!-- ==========================================
+BLOG HERO
+========================================== -->
 
 <section class="blog-detail-hero">
 
-```
-<div class="container">
+    <div class="container">
 
-    <div class="row justify-content-center">
+        <div class="row justify-content-center">
 
-        <div class="col-lg-10">
+            <div class="col-lg-10">
 
-            <div class="blog-header text-center">
+                <div class="blog-header text-center">
 
-                <span class="blog-category">
-                    {{ blog.category if blog.category else "Blog" }}
-                </span>
+                    <span class="blog-category">
 
-                <h1 class="blog-title">
-                    {{ blog.title }}
-                </h1>
+                        {{ blog.category if blog.category else "Industrial Blog" }}
 
-                <div class="blog-meta">
-
-                    <span>
-                        <i class="fa-solid fa-user"></i>
-                        {{ blog.author if blog.author else "Mudhai Team" }}
                     </span>
 
-                    <span>
-                        <i class="fa-solid fa-calendar"></i>
+                    <h1 class="blog-title">
 
-                        {% if blog.created_at %}
-                            {{ blog.created_at.strftime('%d %B %Y') }}
-                        {% else %}
-                            Recent Article
-                        {% endif %}
-                    </span>
+                        {{ blog.title }}
+
+                    </h1>
+
+                    <div class="blog-meta">
+
+                        <span>
+
+                            <i class="fa-solid fa-user"></i>
+
+                            {{ blog.author if blog.author else "Mudhai Instrument Services" }}
+
+                        </span>
+
+                        <span>
+
+                            <i class="fa-solid fa-calendar-days"></i>
+
+                            {% if blog.created_at %}
+
+                                {{ blog.created_at.strftime('%d %B %Y') }}
+
+                            {% else %}
+
+                                Recently Published
+
+                            {% endif %}
+
+                        </span>
+
+                    </div>
 
                 </div>
 
@@ -62,85 +75,98 @@
 
     </div>
 
-</div>
-```
-
 </section>
 
-<!-- ========================= -->
-
-<!-- FEATURED IMAGE -->
-
-<!-- ========================= -->
+<!-- ==========================================
+FEATURED IMAGE
+========================================== -->
 
 <section class="blog-image-section">
 
-```
-<div class="container">
+    <div class="container">
 
-    <div class="blog-featured-image-wrapper">
+        <div class="blog-featured-image-wrapper">
 
-        {% if blog.featured_image %}
+            {% if blog.featured_image %}
 
-        <img
-            src="{{ blog.featured_image }}"
-            alt="{{ blog.title }}"
-            class="img-fluid blog-featured-image">
+                <img
+                    src="{{ blog.featured_image }}"
+                    alt="{{ blog.title }}"
+                    class="img-fluid blog-featured-image">
 
-        {% else %}
+            {% else %}
 
-        <img
-            src="{{ url_for('static', filename='images/default-blog.jpg') }}"
-            alt="{{ blog.title }}"
-            class="img-fluid blog-featured-image">
+                <img
+                    src="{{ url_for('static',
+                    filename='images/default-blog.jpg') }}"
+                    alt="{{ blog.title }}"
+                    class="img-fluid blog-featured-image">
 
-        {% endif %}
+            {% endif %}
+
+        </div>
 
     </div>
 
-</div>
-```
-
 </section>
 
-<!-- ========================= -->
-
-<!-- BLOG CONTENT -->
-
-<!-- ========================= -->
+<!-- ==========================================
+BLOG CONTENT
+========================================== -->
 
 <section class="blog-content-section">
 
-```
-<div class="container">
+    <div class="container">
 
-    <div class="row justify-content-center">
+        <div class="row justify-content-center">
 
-        <div class="col-lg-9">
+            <div class="col-lg-10">
 
-            <div class="blog-content-card">
+                <div class="blog-content-card">
 
-                {% if blog.excerpt %}
+                    {% if blog.excerpt %}
 
-                <div class="blog-excerpt">
-                    {{ blog.excerpt }}
-                </div>
+                    <div class="blog-excerpt">
 
-                {% endif %}
+                        {{ blog.excerpt }}
 
-                <div class="blog-content">
-
-                    {% if blog.content %}
-
-                        {{ blog.content | safe }}
-
-                    {% else %}
-
-                        <p>
-                            Content will be updated soon.
-                        </p>
+                    </div>
 
                     {% endif %}
+
+                    <div class="blog-article-content">
+
+                        {% if blog.content %}
+
+                            {% if '<' in blog.content %}
+
+                                {{ blog.content | safe }}
+
+                            {% else %}
+
+                                {% for paragraph in blog.content.split('\n') %}
+
+                                    {% if paragraph.strip() %}
+
+                                        <p>{{ paragraph }}</p>
+
+                                    {% endif %}
+
+                                {% endfor %}
+
+                            {% endif %}
+
+                        {% else %}
+
+                            <p>
+
+                                Blog content will be available soon.
+
+                            </p>
+
+                        {% endif %}
+
+                    </div>
 
                 </div>
 
@@ -150,145 +176,114 @@
 
     </div>
 
-</div>
-```
-
 </section>
+<!-- ==========================================
+BLOG TAGS
+========================================== -->
 
-<!-- ========================= -->
-
-<!-- TAGS -->
-
-<!-- ========================= -->
-
-{% if blog.tags and blog.tags|length > 0 %}
+{% if blog.tags %}
 
 <section class="blog-tags-section">
 
-```
-<div class="container">
+    <div class="container">
 
-    <div class="tags-wrapper">
+        <div class="tags-wrapper">
 
-        <h5>
-            Related Topics
-        </h5>
+            <h5 class="mb-4">
 
-        {% for tag in blog.tags %}
+                Related Topics
 
-        <span class="tag-badge">
-            {{ tag }}
-        </span>
+            </h5>
 
-        {% endfor %}
+            <div class="tags-container">
+
+                {% if blog.tags is string %}
+
+                    {% for tag in blog.tags.split(",") %}
+
+                        {% if tag.strip() %}
+
+                            <span class="tag-badge">
+
+                                {{ tag.strip() }}
+
+                            </span>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                {% else %}
+
+                    {% for tag in blog.tags %}
+
+                        <span class="tag-badge">
+
+                            {{ tag }}
+
+                        </span>
+
+                    {% endfor %}
+
+                {% endif %}
+
+            </div>
+
+        </div>
 
     </div>
-
-</div>
-```
 
 </section>
 
 {% endif %}
 
-<!-- ========================= -->
-
-<!-- SHARE SECTION -->
-
-<!-- ========================= -->
+<!-- ==========================================
+SHARE SECTION
+========================================== -->
 
 <section class="share-section">
 
-```
-<div class="container text-center">
+    <div class="container">
 
-    <h4>
-        Share This Article
-    </h4>
+        <div class="text-center">
 
-    <div class="social-share">
+            <h4>
 
-        <a href="#"
-           class="share-btn facebook-share">
+                Share This Article
 
-            <i class="fab fa-facebook-f"></i>
+            </h4>
 
-        </a>
+            <div class="social-share">
 
-        <a href="#"
-           class="share-btn linkedin-share">
+                <a href="#"
+                   class="share-btn facebook-share"
+                   title="Share on Facebook">
 
-            <i class="fab fa-linkedin-in"></i>
+                    <i class="fab fa-facebook-f"></i>
 
-        </a>
+                </a>
 
-        <a href="#"
-           class="share-btn whatsapp-share">
+                <a href="#"
+                   class="share-btn linkedin-share"
+                   title="Share on LinkedIn">
 
-            <i class="fab fa-whatsapp"></i>
+                    <i class="fab fa-linkedin-in"></i>
 
-        </a>
+                </a>
 
-        <a href="#"
-           class="share-btn copy-link-btn">
+                <a href="#"
+                   class="share-btn whatsapp-share"
+                   title="Share on WhatsApp">
 
-            <i class="fa-solid fa-link"></i>
+                    <i class="fab fa-whatsapp"></i>
 
-        </a>
+                </a>
 
-    </div>
+                <a href="#"
+                   class="share-btn copy-link-btn"
+                   title="Copy Link">
 
-</div>
-```
-
-</section>
-
-<!-- ========================= -->
-
-<!-- RELATED BLOGS -->
-
-<!-- ========================= -->
-
-{% if related_blogs and related_blogs|length > 0 %}
-
-<section class="related-blogs-section">
-
-```
-<div class="container">
-
-    <div class="section-header text-center">
-
-        <span class="section-tag">
-            MORE ARTICLES
-        </span>
-
-        <h2>
-            Related Insights
-        </h2>
-
-    </div>
-
-    <div class="row">
-
-        {% for item in related_blogs %}
-
-        <div class="col-lg-4 mb-4">
-
-            <div class="related-blog-card">
-
-                <h4>
-                    {{ item.title }}
-                </h4>
-
-                <p>
-                    {{ item.excerpt }}
-                </p>
-
-                <a
-                    href="{{ url_for('blog_details', blog_id=item._id) }}"
-                    class="btn btn-outline-primary">
-
-                    Read Article
+                    <i class="fa-solid fa-link"></i>
 
                 </a>
 
@@ -296,50 +291,147 @@
 
         </div>
 
-        {% endfor %}
-
     </div>
 
-</div>
-```
+</section>
+
+
+<!-- ==========================================
+RELATED BLOGS
+========================================== -->
+
+{% if related_blogs and related_blogs|length > 0 %}
+
+<section class="related-blogs-section">
+
+    <div class="container">
+
+        <div class="section-header text-center mb-5">
+
+            <span class="section-tag">
+
+                MORE ARTICLES
+
+            </span>
+
+            <h2>
+
+                Related Insights
+
+            </h2>
+
+            <p>
+
+                Explore more articles from Mudhai Instrument Services.
+
+            </p>
+
+        </div>
+
+        <div class="row">
+
+            {% for item in related_blogs %}
+
+            <div class="col-lg-4 col-md-6 mb-4">
+
+                <div class="related-blog-card">
+
+                    {% if item.featured_image %}
+
+                        <img
+                            src="{{ item.featured_image }}"
+                            alt="{{ item.title }}"
+                            class="img-fluid related-blog-image">
+
+                    {% else %}
+
+                        <img
+                            src="{{ url_for('static', filename='images/default-blog.jpg') }}"
+                            alt="{{ item.title }}"
+                            class="img-fluid related-blog-image">
+
+                    {% endif %}
+
+                    <div class="related-blog-content">
+
+                        <span class="blog-category">
+
+                            {{ item.category if item.category else "Blog" }}
+
+                        </span>
+
+                        <h4>
+
+                            {{ item.title }}
+
+                        </h4>
+
+                        <p>
+
+                            {{ item.excerpt[:120] }}...
+
+                        </p>
+
+                        <a href="{{ url_for('blog_details', blog_id=item._id) }}"
+                           class="btn btn-primary">
+
+                            Read More
+
+                            <i class="fa-solid fa-arrow-right ms-2"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
 
 </section>
 
 {% endif %}
-
-<!-- ========================= -->
-
-<!-- CTA -->
-
-<!-- ========================= -->
+<!-- ==========================================
+CALL TO ACTION
+========================================== -->
 
 <section class="blog-cta-section">
 
-```
-<div class="container text-center">
+    <div class="container">
 
-    <h2>
-        Need Expert Guidance?
-    </h2>
+        <div class="text-center">
 
-    <p>
+            <h2>
 
-        Whether you're looking for industrial
-        instrumentation solutions or agricultural
-        products, our team is ready to help.
+                Need Expert Guidance?
 
-    </p>
+            </h2>
 
-    <a
-        href="{{ url_for('contact') }}"
-        class="btn btn-success btn-lg">
+            <p>
 
-        Contact Us
+                Whether you're looking for industrial instrumentation,
+                calibration services, automation solutions, or agricultural
+                products, our experienced team is ready to help.
 
-    </a>
+            </p>
 
-</div>
-```
+            <a href="{{ url_for('contact') }}"
+               class="btn btn-success btn-lg">
+
+                <i class="fa-solid fa-paper-plane me-2"></i>
+
+                Contact Us
+
+            </a>
+
+        </div>
+
+    </div>
 
 </section>
 
@@ -351,46 +443,86 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    /* ==========================================
+       GSAP ANIMATIONS
+    ========================================== */
+
     if(typeof gsap !== "undefined"){
 
         gsap.from(".blog-title",{
             opacity:0,
             y:60,
-            duration:1
+            duration:1,
+            ease:"power3.out"
         });
 
         gsap.from(".blog-meta",{
             opacity:0,
             y:30,
             duration:1,
-            delay:0.3
+            delay:0.2
         });
 
         gsap.from(".blog-featured-image",{
             opacity:0,
-            scale:0.9,
-            duration:1.2
+            scale:0.92,
+            duration:1
         });
 
         gsap.from(".blog-content-card",{
             opacity:0,
-            y:50,
+            y:40,
             duration:1,
-
             scrollTrigger:{
                 trigger:".blog-content-card",
                 start:"top 80%"
             }
         });
 
+        gsap.from(".tag-badge",{
+            opacity:0,
+            y:20,
+            stagger:0.08,
+            duration:0.5,
+            scrollTrigger:{
+                trigger:".blog-tags-section",
+                start:"top 85%"
+            }
+        });
+
+        gsap.from(".related-blog-card",{
+            opacity:0,
+            y:40,
+            stagger:0.15,
+            duration:0.8,
+            scrollTrigger:{
+                trigger:".related-blogs-section",
+                start:"top 85%"
+            }
+        });
+
+        gsap.from(".blog-cta-section",{
+            opacity:0,
+            y:40,
+            duration:1,
+            scrollTrigger:{
+                trigger:".blog-cta-section",
+                start:"top 85%"
+            }
+        });
+
     }
 
-    const copyButton =
+    /* ==========================================
+       COPY LINK
+    ========================================== */
+
+    const copyBtn =
         document.querySelector(".copy-link-btn");
 
-    if(copyButton){
+    if(copyBtn){
 
-        copyButton.addEventListener("click",(e)=>{
+        copyBtn.addEventListener("click",(e)=>{
 
             e.preventDefault();
 
@@ -398,11 +530,210 @@ document.addEventListener("DOMContentLoaded", () => {
                 window.location.href
             );
 
-            alert("Article link copied successfully!");
+            copyBtn.innerHTML =
+                '<i class="fa-solid fa-check"></i>';
+
+            setTimeout(()=>{
+
+                copyBtn.innerHTML =
+                    '<i class="fa-solid fa-link"></i>';
+
+            },2000);
 
         });
 
     }
+        /* ==========================================
+       FACEBOOK SHARE
+    ========================================== */
+
+    const facebookBtn =
+        document.querySelector(".facebook-share");
+
+    if(facebookBtn){
+
+        facebookBtn.addEventListener("click",(e)=>{
+
+            e.preventDefault();
+
+            window.open(
+
+                "https://www.facebook.com/sharer/sharer.php?u=" +
+                encodeURIComponent(window.location.href),
+
+                "_blank",
+                "width=700,height=500"
+
+            );
+
+        });
+
+    }
+
+
+    /* ==========================================
+       LINKEDIN SHARE
+    ========================================== */
+
+    const linkedinBtn =
+        document.querySelector(".linkedin-share");
+
+    if(linkedinBtn){
+
+        linkedinBtn.addEventListener("click",(e)=>{
+
+            e.preventDefault();
+
+            window.open(
+
+                "https://www.linkedin.com/sharing/share-offsite/?url=" +
+                encodeURIComponent(window.location.href),
+
+                "_blank",
+                "width=700,height=500"
+
+            );
+
+        });
+
+    }
+
+
+    /* ==========================================
+       WHATSAPP SHARE
+    ========================================== */
+
+    const whatsappBtn =
+        document.querySelector(".whatsapp-share");
+
+    if(whatsappBtn){
+
+        whatsappBtn.addEventListener("click",(e)=>{
+
+            e.preventDefault();
+
+            window.open(
+
+                "https://wa.me/?text=" +
+
+                encodeURIComponent(
+                    document.title +
+                    "\n" +
+                    window.location.href
+                ),
+
+                "_blank"
+
+            );
+
+        });
+
+    }
+
+
+    /* ==========================================
+       SMOOTH IMAGE FADE
+    ========================================== */
+
+    const images =
+        document.querySelectorAll("img");
+
+    images.forEach(img=>{
+
+        if(img.complete){
+
+            img.classList.add("loaded");
+
+        }else{
+
+            img.addEventListener("load",()=>{
+
+                img.classList.add("loaded");
+
+            });
+
+        }
+
+    });
+
+
+    /* ==========================================
+       PARALLAX HERO
+    ========================================== */
+
+    window.addEventListener("scroll",()=>{
+
+        const hero =
+            document.querySelector(".blog-detail-hero");
+
+        if(hero){
+
+            hero.style.backgroundPositionY =
+                -(window.scrollY * 0.2) + "px";
+
+        }
+
+    });
+
+
+    /* ==========================================
+       RELATED CARD HOVER
+    ========================================== */
+
+    document.querySelectorAll(".related-blog-card")
+    .forEach(card=>{
+
+        card.addEventListener("mouseenter",()=>{
+
+            card.style.transform =
+                "translateY(-12px)";
+
+        });
+
+        card.addEventListener("mouseleave",()=>{
+
+            card.style.transform =
+                "translateY(0)";
+
+        });
+
+    });
+
+
+    /* ==========================================
+       SHARE BUTTON RIPPLE
+    ========================================== */
+
+    document.querySelectorAll(".share-btn")
+    .forEach(btn=>{
+
+        btn.addEventListener("click",function(e){
+
+            const ripple =
+                document.createElement("span");
+
+            ripple.className = "ripple";
+
+            const rect =
+                this.getBoundingClientRect();
+
+            ripple.style.left =
+                (e.clientX-rect.left)+"px";
+
+            ripple.style.top =
+                (e.clientY-rect.top)+"px";
+
+            this.appendChild(ripple);
+
+            setTimeout(()=>{
+
+                ripple.remove();
+
+            },600);
+
+        });
+
+    });
 
 });
 

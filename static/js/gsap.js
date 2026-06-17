@@ -1,117 +1,101 @@
 /* =====================================
-GSAP GLOBAL ANIMATIONS
+   GSAP GLOBAL ANIMATIONS
 ===================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
 
- 
-/* Check GSAP */
-
-if (typeof gsap === "undefined") {
+if(typeof gsap==="undefined"){
     console.warn("GSAP not loaded");
     return;
 }
 
-/* Register ScrollTrigger */
-
-if (typeof ScrollTrigger !== "undefined") {
+if(typeof ScrollTrigger!=="undefined"){
     gsap.registerPlugin(ScrollTrigger);
 }
 
 /* =====================================
-   HERO SECTION
+   HERO
 ===================================== */
 
-if (document.querySelector(".hero-title")) {
+if(document.querySelector(".hero-title")){
 
-    const heroTL = gsap.timeline();
+const hero=gsap.timeline();
 
-    heroTL
-        .from(".hero-badge", {
-            opacity: 0,
-            y: 30,
-            duration: 0.8,
-            clearProps: "all"
-        })
+hero.from(".hero-badge",{
+    opacity:0,
+    y:30,
+    duration:.8,
+    ease:"power2.out"
+})
 
-        .from(".hero-title", {
-            opacity: 0,
-            y: 60,
-            duration: 1,
-            clearProps: "all"
-        }, "-=0.4")
+.from(".hero-title",{
+    opacity:0,
+    y:60,
+    duration:1,
+    ease:"power2.out"
+},"-=0.4")
 
-        .from(".hero-description", {
-            opacity: 0,
-            y: 40,
-            duration: 0.8,
-            clearProps: "all"
-        }, "-=0.5")
+.from(".hero-description",{
+    opacity:0,
+    y:35,
+    duration:.8,
+    ease:"power2.out"
+},"-=0.5")
 
-        .from(".hero-btn", {
-            opacity: 0,
-            y: 20,
-            duration: 0.6,
-            stagger: 0.15,
-            clearProps: "all"
-        }, "-=0.4");
+.from(".hero-btn",{
+    opacity:0,
+    y:20,
+    stagger:.15,
+    duration:.6,
+    ease:"power2.out"
+},"-=0.4");
+
 }
 
 /* =====================================
    PAGE HERO
 ===================================== */
 
-if (document.querySelector(".page-title")) {
+if(document.querySelector(".page-title")){
 
-    gsap.from(".page-title", {
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        clearProps: "all"
-    });
+gsap.from(".page-title",{
+    opacity:0,
+    y:40,
+    duration:1,
+    ease:"power2.out"
+});
 
-    gsap.from(".page-description", {
-        opacity: 0,
-        y: 30,
-        duration: 1,
-        delay: 0.2,
-        clearProps: "all"
-    });
+gsap.from(".page-description",{
+    opacity:0,
+    y:30,
+    delay:.2,
+    duration:1,
+    ease:"power2.out"
+});
+
 }
 
 /* =====================================
    FLOATING CARDS
 ===================================== */
 
-if (document.querySelector(".card-1")) {
+[".card-1",".card-2",".card-3"].forEach((card,index)=>{
 
-    gsap.to(".card-1", {
-        y: -20,
-        repeat: -1,
-        yoyo: true,
-        duration: 4,
-        ease: "power1.inOut"
-    });
+if(document.querySelector(card)){
 
-    gsap.to(".card-2", {
-        y: -25,
-        repeat: -1,
-        yoyo: true,
-        duration: 5,
-        ease: "power1.inOut"
-    });
+gsap.to(card,{
+    y:-20+(index*4),
+    repeat:-1,
+    yoyo:true,
+    duration:4+index,
+    ease:"power1.inOut"
+});
 
-    gsap.to(".card-3", {
-        y: -18,
-        repeat: -1,
-        yoyo: true,
-        duration: 3.5,
-        ease: "power1.inOut"
-    });
 }
 
+});
 /* =====================================
-   GENERIC CARD ANIMATION
+   GENERIC CARD ANIMATIONS
 ===================================== */
 
 const animatedSelectors = [
@@ -129,17 +113,22 @@ animatedSelectors.forEach(selector => {
 
     gsap.utils.toArray(selector).forEach(element => {
 
-        gsap.from(element, {
-            opacity: 0,
-            y: 50,
-            duration: 0.8,
-            clearProps: "opacity,transform",
+        gsap.from(element,{
 
-            scrollTrigger: typeof ScrollTrigger !== "undefined" ? {
-                trigger: element,
-                start: "top 85%",
-                once: true
-            } : undefined
+            opacity:0,
+            y:40,
+            duration:.8,
+            ease:"power2.out",
+            overwrite:"auto",
+
+            scrollTrigger:
+            typeof ScrollTrigger!=="undefined"
+            ?{
+                trigger:element,
+                start:"top 85%",
+                once:true
+            }
+            :undefined
 
         });
 
@@ -151,80 +140,95 @@ animatedSelectors.forEach(selector => {
    CONTACT PAGE
 ===================================== */
 
-if (document.querySelector(".contact-form-card")) {
+if(document.querySelector(".contact-form-card")){
 
-    gsap.from(".contact-form-card", {
-        opacity: 0,
-        x: -80,
-        duration: 1,
-        clearProps: "all"
-    });
+    gsap.from(".contact-form-card",{
 
-    gsap.from(".contact-info-card", {
-        opacity: 0,
-        x: 80,
-        duration: 1,
-        clearProps: "all"
+        opacity:0,
+        x:-60,
+        duration:1,
+        ease:"power2.out",
+        overwrite:"auto"
+
     });
 
 }
+
+if(document.querySelector(".contact-info-card")){
+
+    gsap.from(".contact-info-card",{
+
+        opacity:0,
+        x:60,
+        duration:1,
+        ease:"power2.out",
+        overwrite:"auto"
+
+    });
+
+}
+
 /* =====================================
    PRODUCT DETAILS
 ===================================== */
 
-if (document.querySelector(".main-product-image")) {
+if(document.querySelector(".main-product-image")){
 
-    gsap.set(".main-product-image", {
-        opacity: 1,
-        visibility: "visible"
+    gsap.set(".main-product-image",{
+
+        opacity:1,
+        visibility:"visible",
+        scale:1
+
     });
 
-    gsap.fromTo(
-        ".main-product-image",
-        {
-            opacity: 0,
-            scale: 0.9
-        },
-        {
-            opacity: 1,
-            scale: 1,
-            duration: 1,
-            ease: "power2.out"
-        }
-    );
+    gsap.from(".main-product-image",{
 
-    gsap.fromTo(
-        ".product-info",
-        {
-            opacity: 0,
-            x: 80
-        },
-        {
-            opacity: 1,
-            x: 0,
-            duration: 1,
-            ease: "power2.out"
-        }
-    );
+        opacity:0,
+        scale:.90,
+        duration:1,
+        ease:"power3.out",
+        overwrite:"auto"
+
+    });
+
+}
+
+if(document.querySelector(".product-info")){
+
+    gsap.from(".product-info",{
+
+        opacity:0,
+        x:70,
+        duration:1,
+        ease:"power3.out",
+        overwrite:"auto"
+
+    });
 
 }
 /* =====================================
    MAP
 ===================================== */
 
-if (document.querySelector(".map-card")) {
+if(document.querySelector(".map-card")){
 
-    gsap.from(".map-card", {
-        opacity: 0,
-        scale: 0.95,
-        duration: 1,
-        clearProps: "all",
+    gsap.from(".map-card",{
 
-        scrollTrigger: typeof ScrollTrigger !== "undefined" ? {
-            trigger: ".map-card",
-            start: "top 85%",
-            once: true
-        } : undefined
+        opacity:0,
+        scale:.95,
+        duration:1,
+        ease:"power2.out",
+        overwrite:"auto",
+
+        scrollTrigger:
+        typeof ScrollTrigger!=="undefined"
+        ?{
+            trigger:".map-card",
+            start:"top 85%",
+            once:true
+        }
+        :undefined
 
     });
 
@@ -234,33 +238,137 @@ if (document.querySelector(".map-card")) {
    ADMIN DASHBOARD
 ===================================== */
 
-if (document.querySelector(".stats-card")) {
+if(document.querySelector(".stats-card")){
 
-    gsap.from(".stats-card", {
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        stagger: 0.1,
-        clearProps: "all"
-    });
+    gsap.from(".stats-card",{
 
-    gsap.from(".dashboard-card", {
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        stagger: 0.1,
-        clearProps: "all"
+        opacity:0,
+        y:30,
+        duration:.8,
+        stagger:.1,
+        ease:"power2.out",
+        overwrite:"auto"
+
     });
 
 }
 
-/* Refresh ScrollTrigger */
+if(document.querySelector(".dashboard-card")){
 
-if (typeof ScrollTrigger !== "undefined") {
+    gsap.from(".dashboard-card",{
+
+        opacity:0,
+        y:30,
+        duration:.8,
+        stagger:.1,
+        ease:"power2.out",
+        overwrite:"auto"
+
+    });
+
+}
+
+/* =====================================
+   ADMIN LOGIN
+===================================== */
+
+if(document.querySelector(".login-card")){
+
+    gsap.set(".login-card",{
+        opacity:1,
+        visibility:"visible"
+    });
+
+    gsap.from(".login-card",{
+
+        opacity:0,
+        y:40,
+        scale:.95,
+        duration:1,
+        ease:"power3.out",
+        overwrite:"auto"
+
+    });
+
+}
+
+if(document.querySelector(".logo-icon")){
+
+    gsap.from(".logo-icon",{
+
+        opacity:0,
+        rotation:180,
+        duration:1.2,
+        ease:"back.out(1.7)"
+
+    });
+
+}
+
+if(document.querySelectorAll(".login-card .form-control").length){
+
+    gsap.from(".login-card .form-control",{
+
+        opacity:0,
+        x:-30,
+        stagger:.15,
+        duration:.7,
+        delay:.3,
+        ease:"power2.out"
+
+    });
+
+}
+
+if(document.querySelector(".login-btn")){
+
+    gsap.from(".login-btn",{
+
+        opacity:0,
+        y:20,
+        delay:.7,
+        duration:.7,
+        ease:"power2.out"
+
+    });
+
+}
+
+/* =====================================
+   FOOTER
+===================================== */
+
+if(document.querySelector(".footer")){
+
+    gsap.from(".footer",{
+
+        opacity:0,
+        y:40,
+        duration:1,
+
+        scrollTrigger:
+        typeof ScrollTrigger!=="undefined"
+        ?{
+            trigger:".footer",
+            start:"top bottom",
+            once:true
+        }
+        :undefined
+
+    });
+
+}
+
+/* =====================================
+   REFRESH
+===================================== */
+
+if(typeof ScrollTrigger!=="undefined"){
+
     ScrollTrigger.refresh();
+
 }
 
 console.log("GSAP Loaded Successfully");
- 
 
 });

@@ -1,50 +1,115 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %}
-Manage Products | Admin Panel
-{% endblock %}
+<head>
 
-{% block styles %}
-<link rel="stylesheet"
-      href="{{ url_for('static', filename='css/admin/products.css') }}">
-{% endblock %}
+    <meta charset="UTF-8">
 
-{% block content %}
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-<section class="admin-products-section py-5">
+    <title>
+        Manage Products | Mudhai Instrument Services
+    </title>
+
+    <!-- Bootstrap -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Google Font -->
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Products CSS -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/admin/products.css') }}">
+
+</head>
+
+<body>
+
+<section class="admin-products-section">
 
     <div class="container-fluid">
 
-        <div class="d-flex justify-content-between align-items-center mb-4">
+        <!-- Flash Messages -->
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+
+            {% if messages %}
+
+                {% for category,message in messages %}
+
+                <div class="alert alert-{{ category }} alert-dismissible fade show">
+
+                    {{ message }}
+
+                    <button
+                        class="btn-close"
+                        data-bs-dismiss="alert">
+                    </button>
+
+                </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+        {% endwith %}
+
+        <!-- Header -->
+
+        <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
 
             <div>
 
                 <h2 class="fw-bold text-white">
+
+                    <i class="fa-solid fa-box-open me-2 text-success"></i>
+
                     Product Management
+
                 </h2>
 
                 <p class="text-secondary">
-                    Manage all website products
+
+                    Manage all website products.
+
                 </p>
 
             </div>
 
             <div>
 
-                <a href="{{ url_for('admin_dashboard') }}"
-                   class="btn btn-outline-light me-2">
+                <a
+                    href="{{ url_for('admin_dashboard') }}"
+                    class="btn btn-outline-light me-2">
 
-                    <i class="fa-solid fa-chart-line"></i>
+                    <i class="fa-solid fa-chart-line me-2"></i>
 
                     Dashboard
 
                 </a>
 
-                <button class="btn btn-success"
-                        data-bs-toggle="modal"
-                        data-bs-target="#addProductModal">
+                <button
+                    class="btn btn-success"
+                    id="addProductBtn"
+                    data-bs-toggle="modal"
+                    data-bs-target="#productModal">
 
-                    <i class="fa-solid fa-plus"></i>
+                    <i class="fa-solid fa-plus me-2"></i>
 
                     Add Product
 
@@ -54,32 +119,67 @@ Manage Products | Admin Panel
 
         </div>
 
+        <!-- Search -->
+
         <div class="glass-card mb-4">
 
-            <input type="text"
-                   id="productSearch"
-                   class="form-control"
-                   placeholder="Search products...">
+            <input
+                type="text"
+                id="productSearch"
+                class="form-control"
+                placeholder="Search Products...">
 
         </div>
+
+        <!-- Products Table -->
 
         <div class="glass-card">
 
             <div class="table-responsive">
 
-                <table class="table table-dark table-hover align-middle"
-                       id="productTable">
+                <table
+                    class="table table-dark table-hover align-middle"
+                    id="productTable">
 
                     <thead>
 
                         <tr>
 
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th>Featured</th>
-                            <th>Created</th>
-                            <th>Actions</th>
+                            <th width="90">
+
+                                Image
+
+                            </th>
+
+                            <th>
+
+                                Product
+
+                            </th>
+
+                            <th>
+
+                                Category
+
+                            </th>
+
+                            <th>
+
+                                Featured
+
+                            </th>
+
+                            <th>
+
+                                Created
+
+                            </th>
+
+                            <th width="170">
+
+                                Actions
+
+                            </th>
 
                         </tr>
 
@@ -99,38 +199,55 @@ Manage Products | Admin Panel
 
                                 <img
                                     src="{{ product.image_url }}"
-                                    alt="{{ product.name }}"
-                                    width="60"
-                                    height="60"
                                     class="rounded"
+                                    width="65"
+                                    height="65"
                                     style="object-fit:cover;">
 
                                 {% else %}
 
-                                <img src="{{ url_for('static', filename='images/default-product.jpg') }}"
-                                     width="60"
-                                     class="rounded">
+                                <img
+                                    src="{{ url_for('static', filename='images/default-product.jpg') }}"
+                                    class="rounded"
+                                    width="65"
+                                    height="65">
 
                                 {% endif %}
 
                             </td>
 
-                            <td>{{ product.name }}</td>
+                            <td>
 
-                            <td>{{ product.category }}</td>
+                                <strong>
+
+                                    {{ product.name }}
+
+                                </strong>
+
+                            </td>
+
+                            <td>
+
+                                {{ product.category }}
+
+                            </td>
 
                             <td>
 
                                 {% if product.featured %}
 
                                 <span class="badge bg-success">
+
                                     Featured
+
                                 </span>
 
                                 {% else %}
 
                                 <span class="badge bg-secondary">
+
                                     No
+
                                 </span>
 
                                 {% endif %}
@@ -141,24 +258,40 @@ Manage Products | Admin Panel
 
                                 {% if product.created_at %}
 
-                                {{ product.created_at.strftime('%d-%m-%Y') }}
+                                    {{ product.created_at.strftime("%d-%m-%Y") }}
 
                                 {% endif %}
 
                             </td>
 
                             <td>
+                                                                <!-- EDIT BUTTON -->
 
-                                <button class="btn btn-sm btn-secondary"
-                                        disabled>
+                                <button
+                                    type="button"
+                                    class="btn btn-primary btn-sm me-1 editProductBtn"
+
+                                    data-id="{{ product._id }}"
+                                    data-name="{{ product.name }}"
+                                    data-category="{{ product.category }}"
+                                    data-image="{{ product.image_url }}"
+                                    data-short="{{ product.short_description }}"
+                                    data-description="{{ product.description }}"
+                                    data-featured="{{ product.featured }}"
+
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#productModal">
 
                                     <i class="fa-solid fa-pen"></i>
 
                                 </button>
 
-                                <a href="{{ url_for('delete_product', id=product._id) }}"
-                                   class="btn btn-sm btn-danger"
-                                   onclick="return confirm('Delete this product?')">
+                                <!-- DELETE BUTTON -->
+
+                                <a
+                                    href="{{ url_for('delete_product', id=product._id) }}"
+                                    class="btn btn-danger btn-sm"
+                                    onclick="return confirm('Delete this product?')">
 
                                     <i class="fa-solid fa-trash"></i>
 
@@ -174,9 +307,25 @@ Manage Products | Admin Panel
 
                         <tr>
 
-                            <td colspan="6" class="text-center py-5">
+                            <td
+                                colspan="6"
+                                class="text-center py-5">
 
-                                No Products Found
+                                <i class="fa-solid fa-box-open fa-3x text-secondary mb-3"></i>
+
+                                <h4 class="text-secondary">
+
+                                    No Products Found
+
+                                </h4>
+
+                                <p class="text-muted">
+
+                                    Click the
+                                    <strong>Add Product</strong>
+                                    button to create your first product.
+
+                                </p>
 
                             </td>
 
@@ -196,141 +345,214 @@ Manage Products | Admin Panel
 
 </section>
 
-<div class="modal fade"
-     id="addProductModal"
-     tabindex="-1"
-     data-bs-backdrop="static"
-     style="background: rgba(0, 0, 0, 0.6); z-index: 1060;">
+<!-- ===================================== -->
+<!-- ADD / EDIT PRODUCT MODAL -->
+<!-- ===================================== -->
 
-    <div class="modal-dialog modal-lg">
+<div
+    class="modal fade"
+    id="productModal"
+    tabindex="-1"
+    aria-hidden="true">
+
+    <div class="modal-dialog modal-xl modal-dialog-centered">
 
         <div class="modal-content bg-dark text-white">
 
-            <form method="POST"
-                  action="{{ url_for('add_product') }}">
+            <form
+                id="productForm"
+                method="POST"
+                action="{{ url_for('add_product') }}">
 
                 <div class="modal-header">
 
-                    <h5>Add Product</h5>
+                    <h4
+                        id="modalTitle"
+                        class="modal-title">
 
-                    <button type="button"
-                            class="btn-close btn-close-white"
-                            data-bs-dismiss="modal">
+                        <i class="fa-solid fa-circle-plus text-success me-2"></i>
+
+                        Add Product
+
+                    </h4>
+
+                    <button
+                        type="button"
+                        class="btn-close btn-close-white"
+                        data-bs-dismiss="modal">
                     </button>
 
                 </div>
 
                 <div class="modal-body">
 
-                    <div class="mb-3">
+                    <div class="row">
 
-                        <label class="form-label">
+                        <!-- PRODUCT NAME -->
 
-                            Product Name
+                        <div class="col-md-6 mb-3">
 
-                        </label>
+                            <label class="form-label">
 
-                        <input type="text"
-                               name="name"
-                               class="form-control"
-                               required>
+                                Product Name
 
-                    </div>
+                            </label>
 
-                    <div class="mb-3">
+                            <input
+                                id="productName"
+                                type="text"
+                                name="name"
+                                class="form-control"
+                                required>
 
-                        <label class="form-label">
+                        </div>
 
-                            Category
+                        <!-- CATEGORY -->
 
-                        </label>
+                        <div class="col-md-6 mb-3">
 
-                        <select
-                            name="category"
-                            class="form-select"
-                            required>
+                            <label class="form-label">
 
-                            <option>
-                                Industrial Instruments
-                            </option>
+                                Category
 
-                            <option>
-                                Agricultural Products
-                            </option>
+                            </label>
 
-                        </select>
+                            <select
+                                id="productCategory"
+                                name="category"
+                                class="form-select"
+                                required>
 
-                    </div>
+                                <option value="">
 
-                    <div class="mb-3">
+                                    Select Category
 
-                        <label class="form-label">
+                                </option>
 
-                            Image URL
+                                <option value="Industrial Instruments">
 
-                        </label>
+                                    Industrial Instruments
 
-                        <input
-                            type="url"
-                            name="image_url"
-                            class="form-control"
-                            placeholder="https://example.com/product.jpg"
-                            required>
+                                </option>
 
-                    </div>
+                                <option value="Agricultural Products">
 
-                    <div class="mb-3">
+                                    Agricultural Products
 
-                        <label class="form-label">
+                                </option>
 
-                            Short Description
+                            </select>
 
-                        </label>
+                        </div>
+                                                <!-- IMAGE URL -->
 
-                        <textarea
-                            name="short_description"
-                            class="form-control"
-                            rows="3"
-                            required></textarea>
+                        <div class="col-12 mb-3">
 
-                    </div>
+                            <label class="form-label">
 
-                    <div class="mb-3">
+                                Product Image URL
 
-                        <label class="form-label">
+                            </label>
 
-                            Full Description
+                            <input
+                                id="productImage"
+                                type="url"
+                                name="image_url"
+                                class="form-control"
+                                placeholder="https://example.com/product.jpg"
+                                required>
 
-                        </label>
+                        </div>
 
-                        <textarea
-                            name="description"
-                            class="form-control"
-                            rows="6"
-                            required></textarea>
+                        <!-- SHORT DESCRIPTION -->
 
-                    </div>
+                        <div class="col-12 mb-3">
 
-                    <div class="form-check">
+                            <label class="form-label">
 
-                        <input type="checkbox"
-                               class="form-check-input"
-                               name="featured">
+                                Short Description
 
-                        <label class="form-check-label">
+                            </label>
 
-                            Featured Product
+                            <textarea
+                                id="productShort"
+                                name="short_description"
+                                class="form-control"
+                                rows="3"
+                                placeholder="Enter short description..."
+                                required></textarea>
 
-                        </label>
+                        </div>
+
+                        <!-- FULL DESCRIPTION -->
+
+                        <div class="col-12 mb-3">
+
+                            <label class="form-label">
+
+                                Full Description
+
+                            </label>
+
+                            <textarea
+                                id="productDescription"
+                                name="description"
+                                class="form-control"
+                                rows="7"
+                                placeholder="Enter complete product description..."
+                                required></textarea>
+
+                        </div>
+
+                        <!-- FEATURED PRODUCT -->
+
+                        <div class="col-12">
+
+                            <div class="form-check form-switch">
+
+                                <input
+                                    id="featuredProduct"
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    name="featured">
+
+                                <label
+                                    class="form-check-label"
+                                    for="featuredProduct">
+
+                                    Mark as Featured Product
+
+                                </label>
+
+                            </div>
+
+                        </div>
 
                     </div>
 
                 </div>
 
+                <!-- MODAL FOOTER -->
+
                 <div class="modal-footer">
 
-                    <button type="submit"
-                            class="btn btn-success">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+
+                        <i class="fa-solid fa-xmark me-2"></i>
+
+                        Cancel
+
+                    </button>
+
+                    <button
+                        id="submitBtn"
+                        type="submit"
+                        class="btn btn-success">
+
+                        <i class="fa-solid fa-floppy-disk me-2"></i>
 
                         Save Product
 
@@ -345,47 +567,53 @@ Manage Products | Admin Panel
     </div>
 
 </div>
+<!-- ===================================== -->
+<!-- Bootstrap JS -->
+<!-- ===================================== -->
 
-{% endblock %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-{% block scripts %}
+<!-- ===================================== -->
+<!-- GSAP -->
+<!-- ===================================== -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<!-- ===================================== -->
+<!-- PRODUCT SEARCH -->
+<!-- ===================================== -->
 
 <script>
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
 
-    const search =
+    const searchInput =
         document.getElementById("productSearch");
 
     const rows =
-        document.querySelectorAll(
-            "#productTable tbody tr"
-        );
+        document.querySelectorAll("#productTable tbody tr");
 
-    if(search){
+    if(searchInput){
 
-        search.addEventListener(
-            "keyup",
-            () => {
+        searchInput.addEventListener("keyup",function(){
 
-                const value =
-                    search.value.toLowerCase();
+            const value =
+                this.value.toLowerCase();
 
-                rows.forEach(row => {
+            rows.forEach(function(row){
 
-                    row.style.display =
-                        row.innerText
-                        .toLowerCase()
-                        .includes(value)
+                row.style.display =
+                    row.innerText
+                    .toLowerCase()
+                    .includes(value)
 
-                        ? ""
+                    ? ""
 
-                        : "none";
+                    : "none";
 
-                    });
+            });
 
-            }
-        );
+        });
 
     }
 
@@ -393,4 +621,61 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </script>
 
-{% endblock %}
+<!-- ===================================== -->
+<!-- EDIT PRODUCT -->
+<!-- ===================================== -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded",function(){
+
+    const modalTitle =
+        document.getElementById("modalTitle");
+
+    const submitBtn =
+        document.getElementById("submitBtn");
+
+    const form =
+        document.getElementById("productForm");
+
+    document.querySelectorAll(".editProductBtn").forEach(function(button){
+
+        button.addEventListener("click",function(){
+
+            modalTitle.innerHTML =
+
+                '<i class="fa-solid fa-pen-to-square text-warning me-2"></i>Edit Product';
+
+            submitBtn.innerHTML =
+
+                '<i class="fa-solid fa-floppy-disk me-2"></i>Update Product';
+
+            form.action =
+                "/admin/product/edit/" +
+                this.dataset.id;
+
+            document.getElementById("productName").value =
+                this.dataset.name;
+
+            document.getElementById("productCategory").value =
+                this.dataset.category;
+
+            document.getElementById("productImage").value =
+                this.dataset.image;
+
+            document.getElementById("productShort").value =
+                this.dataset.short;
+
+            document.getElementById("productDescription").value =
+                this.dataset.description;
+
+            document.getElementById("featuredProduct").checked =
+                this.dataset.featured === "True";
+
+        });
+
+    });
+
+});
+
+</script>
