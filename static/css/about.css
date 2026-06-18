@@ -1,462 +1,1999 @@
 /* ==========================================
-   ABOUT PAGE
+ABOUT PAGE
+Mudhai Instrument Services
+========================================== */
+
+:root{
+
+    --primary:#00d4ff;
+    --secondary:#00ff99;
+    --dark:#050816;
+    --dark-2:#0f172a;
+    --white:#ffffff;
+    --glass:rgba(255,255,255,.06);
+    --glass-border:rgba(255,255,255,.10);
+
+}
+
+/* ==========================================
+COMMON SECTION
 ========================================== */
 
 .about-section,
 .vision-mission-section,
 .why-us-section,
 .journey-section,
-.certification-preview,
-.cta-section{
-    padding:100px 0;
+.stats-section,
+.industries-section,
+.commitment-section,
+.about-cta-section,
+.partner-section{
+
+    position:relative;
+
+    padding:110px 0;
+
+    overflow:hidden;
+
+}
+
+.section-header{
+
+    margin-bottom:70px;
+
+}
+
+.section-tag{
+
+    display:inline-block;
+
+    padding:10px 24px;
+
+    border-radius:50px;
+
+    background:rgba(0,212,255,.12);
+
+    border:1px solid rgba(0,212,255,.25);
+
+    color:var(--primary);
+
+    font-weight:600;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    margin-bottom:18px;
+
+}
+
+.section-header h2{
+
+    color:#ffffff;
+
+    font-size:3rem;
+
+    font-weight:800;
+
+    margin-bottom:20px;
+
+}
+
+.section-header p{
+
+    max-width:760px;
+
+    margin:auto;
+
+    color:rgba(255,255,255,.75);
+
+    line-height:1.9;
+
+    font-size:1.05rem;
+
 }
 
 /* ==========================================
-   HERO SECTION
+HERO
 ========================================== */
 
-.page-hero{
-    min-height:60vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
+/* ==========================================
+HERO SECTION
+========================================== */
+
+.about-hero{
+
     position:relative;
+
+    min-height:75vh;
+
+    padding:180px 0 120px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
     overflow:hidden;
 
-    background:
-    linear-gradient(
+    background:linear-gradient(
         135deg,
-        #050816,
-        #0f172a
+        #050816 0%,
+        #07111d 50%,
+        #0f172a 100%
     );
+
 }
 
-.page-title{
-    font-size:4rem;
-    font-weight:800;
-    color:#ffffff;
-    margin-bottom:25px;
+.about-hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+    radial-gradient(circle at top left,
+    rgba(0,212,255,.12),
+    transparent 40%),
+
+    radial-gradient(circle at bottom right,
+    rgba(0,255,153,.10),
+    transparent 40%);
+
+    z-index:0;
+
 }
 
-.page-description{
-    max-width:800px;
-    margin:auto;
-    color:rgba(255,255,255,.8);
-    font-size:1.15rem;
-    line-height:1.8;
+.hero-bg-shape{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    filter:blur(70px);
+
+    animation:floatBlob 10s ease-in-out infinite;
+
+    z-index:0;
+
+}
+
+.shape-1{
+
+    width:420px;
+
+    height:420px;
+
+    top:-120px;
+
+    left:-120px;
+
+    background:rgba(0,212,255,.15);
+
+}
+
+.shape-2{
+
+    width:320px;
+
+    height:320px;
+
+    bottom:-120px;
+
+    right:-120px;
+
+    background:rgba(0,255,153,.12);
+
+    animation-delay:3s;
+
+}
+
+.about-hero .container{
+
+    position:relative;
+
+    z-index:5;
+
 }
 
 .hero-badge{
-    display:inline-block;
-    padding:12px 25px;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:12px 26px;
+
     border-radius:50px;
 
     background:rgba(255,255,255,.08);
 
-    border:1px solid rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.10);
 
-    color:#00d4ff;
+    backdrop-filter:blur(20px);
 
-    margin-bottom:25px;
+    color:var(--primary);
+
+    font-weight:600;
+
+    margin-bottom:28px;
+
+    position:relative;
+
+    z-index:10;
+
+}
+
+.page-title{
+
+    color:#ffffff;
+
+    font-size:4.5rem;
+
+    font-weight:900;
+
+    line-height:1.15;
+
+    margin-bottom:30px;
+
+    position:relative;
+
+    z-index:10;
+
+    opacity:1 !important;
+
+    visibility:visible !important;
+
+}
+
+.page-title span{
+
+    color:var(--primary);
+
+}
+
+.page-description{
+
+    max-width:850px;
+
+    margin:auto;
+
+    color:rgba(255,255,255,.85);
+
+    font-size:1.15rem;
+
+    line-height:2;
+
+    position:relative;
+
+    z-index:10;
+
+    opacity:1 !important;
+
+    visibility:visible !important;
+
+}
+
+.hero-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:18px;
+
+    margin-top:45px;
+
+    position:relative;
+
+    z-index:10;
+
+}
+
+.hero-buttons .btn{
+
+    padding:14px 32px;
+
+    border-radius:14px;
+
+    font-weight:600;
+
+    transition:.35s;
+
+}
+
+.hero-buttons .btn-primary{
+
+    background:var(--primary);
+
+    color:#000;
+
+    border:none;
+
+}
+
+.hero-buttons .btn-primary:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 18px 35px rgba(0,212,255,.30);
+
+}
+
+.hero-buttons .btn-outline-light:hover{
+
+    transform:translateY(-5px);
+
 }
 
 /* ==========================================
-   ABOUT IMAGE
+COMPANY OVERVIEW
 ========================================== */
 
-.about-image-box{
+.about-image-wrapper{
+
     position:relative;
 
-    height:420px;
+    min-height:520px;
 
     display:flex;
-    justify-content:center;
+
     align-items:center;
+
+    justify-content:center;
+
 }
 
 .glass-image-card{
 
-    width:320px;
-    height:320px;
+    position:relative;
 
-    border-radius:30px;
+    width:100%;
 
-    background:rgba(255,255,255,.08);
+    max-width:420px;
 
-    border:1px solid rgba(255,255,255,.12);
-
-    backdrop-filter:blur(20px);
-
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
+    padding:45px;
 
     text-align:center;
 
-    color:white;
+    border-radius:30px;
 
-    box-shadow:
-    0 20px 50px rgba(0,0,0,.35);
+    background:rgba(255,255,255,.06);
 
-    transition:.4s;
+    border:1px solid rgba(255,255,255,.10);
+
+    backdrop-filter:blur(22px);
+
+    -webkit-backdrop-filter:blur(22px);
+
+    box-shadow:0 25px 60px rgba(0,0,0,.30);
+
+    transition:.4s ease;
+
+    z-index:5;
+
 }
 
 .glass-image-card:hover{
-    transform:translateY(-10px);
+
+    transform:translateY(-12px);
+
+    border-color:var(--primary);
+
+    box-shadow:0 25px 60px rgba(0,212,255,.20);
+
 }
 
-.glass-image-card i{
-    font-size:5rem;
-    color:#00d4ff;
-    margin-bottom:20px;
-}
+.company-icon{
 
-.glass-image-card h3{
-    color:white;
-}
+    width:120px;
 
-/* ==========================================
-   FLOATING CIRCLES
-========================================== */
+    height:120px;
 
-.floating-circle{
-    position:absolute;
-
-    width:140px;
-    height:140px;
+    margin:0 auto 25px;
 
     border-radius:50%;
 
-    background:
-    rgba(0,212,255,.15);
+    display:flex;
 
-    filter:blur(15px);
+    justify-content:center;
 
-    animation:
-    floatCircle 8s ease-in-out infinite;
+    align-items:center;
+
+    background:linear-gradient(
+        135deg,
+        rgba(0,212,255,.18),
+        rgba(0,255,153,.12)
+    );
+
+    border:2px solid rgba(0,212,255,.25);
+
+}
+
+.company-icon i{
+
+    font-size:3.6rem;
+
+    color:var(--primary);
+
+}
+
+.glass-image-card h3{
+
+    color:#ffffff;
+
+    font-size:2rem;
+
+    font-weight:700;
+
+    margin-bottom:18px;
+
+}
+
+.glass-image-card p{
+
+    color:rgba(255,255,255,.78);
+
+    line-height:1.8;
+
+    margin-bottom:35px;
+
+}
+/* ==========================================
+FLOATING CIRCLES
+========================================== */
+
+.floating-circle{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    filter:blur(18px);
+
+    animation:floatCircle 8s ease-in-out infinite;
+
+}
+
+.circle-1{
+
+    width:180px;
+
+    height:180px;
+
+    top:20px;
+
+    left:20px;
+
+    background:rgba(0,212,255,.14);
+
 }
 
 .circle-2{
-    width:100px;
-    height:100px;
 
-    top:50px;
-    right:50px;
+    width:140px;
 
-    background:
-    rgba(0,255,153,.15);
+    height:140px;
+
+    bottom:30px;
+
+    right:20px;
+
+    background:rgba(0,255,153,.12);
 
     animation-delay:2s;
+
 }
 
 @keyframes floatCircle{
 
     0%,100%{
-        transform:translateY(0);
+
+        transform:translateY(0px);
+
     }
 
     50%{
-        transform:translateY(-25px);
+
+        transform:translateY(-22px);
+
     }
 
 }
 
 /* ==========================================
-   ABOUT CONTENT
+COMPANY MINI STATS
+========================================== */
+
+.company-stats{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-top:25px;
+
+}
+
+.mini-stat{
+
+    flex:1;
+
+    padding:18px 10px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+.mini-stat h4{
+
+    color:var(--primary);
+
+    font-size:1.5rem;
+
+    font-weight:700;
+
+    margin-bottom:6px;
+
+}
+
+.mini-stat span{
+
+    color:rgba(255,255,255,.75);
+
+    font-size:.9rem;
+
+}
+
+/* ==========================================
+ABOUT CONTENT
 ========================================== */
 
 .about-content{
-    height:auto;
+
+    padding-left:20px;
+
 }
 
 .about-content h2{
-    color:white;
+
+    color:#ffffff;
+
     font-size:3rem;
-    margin-bottom:25px;
+
+    font-weight:800;
+
+    margin:20px 0 30px;
+
 }
 
 .about-content p{
-    color:rgba(255,255,255,.8);
-    line-height:1.9;
-    margin-bottom:15px;
-}
 
-.section-tag{
-    color:#00d4ff;
-    font-weight:600;
-    letter-spacing:2px;
-}
+    color:rgba(255,255,255,.82);
 
-/* ==========================================
-   VISION & MISSION
-========================================== */
+    line-height:1.95;
 
-.vision-card,
-.mission-card{
+    margin-bottom:18px;
 
-    background:rgba(255,255,255,.08);
+    font-size:1.05rem;
 
-    border:1px solid rgba(255,255,255,.12);
-
-    border-radius:25px;
-
-    backdrop-filter:blur(20px);
-
-    padding:40px;
-
-    color:white;
-
-    transition:.4s;
-
-    height:auto;
-}
-
-.vision-card:hover,
-.mission-card:hover{
-    transform:translateY(-10px);
-}
-
-.vision-card i,
-.mission-card i{
-    font-size:3rem;
-    color:#00d4ff;
-    margin-bottom:20px;
-}
-
-.mission-card ul{
-    padding-left:20px;
-}
-
-.mission-card li{
-    margin-bottom:10px;
 }
 
 /* ==========================================
-   FEATURE CARDS
+ABOUT FEATURES
 ========================================== */
 
-.feature-card{
+.about-features{
 
-    text-align:center;
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:18px;
+
+    margin-top:35px;
+
+}
+
+.about-feature{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:16px 18px;
+
+    border-radius:16px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    color:#ffffff;
+
+    transition:.35s;
+
+}
+
+.about-feature:hover{
+
+    transform:translateX(8px);
+
+    border-color:var(--primary);
+
+    background:rgba(0,212,255,.08);
+
+}
+
+.about-feature i{
+
+    color:var(--secondary);
+
+    font-size:1.15rem;
+
+}
+/* ==========================================
+VISION • MISSION • CORE VALUES
+========================================== */
+
+.vision-mission-section{
+
+    position:relative;
+
+}
+
+.vision-mission-section .glass-card{
+
+    height:100%;
+
+    padding:40px 35px;
 
     background:rgba(255,255,255,.06);
 
-    border:1px solid rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.10);
 
-    border-radius:25px;
+    border-radius:30px;
 
     backdrop-filter:blur(20px);
 
-    padding:40px;
+    -webkit-backdrop-filter:blur(20px);
 
-    transition:.4s;
+    transition:.4s ease;
 
-    height:auto;
+    overflow:hidden;
+
 }
 
-.feature-card:hover{
+.vision-mission-section .glass-card:hover{
+
     transform:translateY(-12px);
+
+    border-color:var(--primary);
+
+    box-shadow:0 25px 50px rgba(0,212,255,.18);
+
 }
 
-.feature-icon{
+.card-icon{
 
-    width:80px;
-    height:80px;
+    width:90px;
+
+    height:90px;
+
+    margin-bottom:25px;
 
     border-radius:50%;
 
     display:flex;
-    justify-content:center;
+
     align-items:center;
 
-    margin:auto auto 20px;
+    justify-content:center;
 
-    background:
-    rgba(0,212,255,.1);
+    background:linear-gradient(
+        135deg,
+        rgba(0,212,255,.15),
+        rgba(0,255,153,.10)
+    );
+
+    border:2px solid rgba(0,212,255,.25);
+
 }
 
-.feature-icon i{
-    font-size:2rem;
-    color:#00d4ff;
+.card-icon i{
+
+    font-size:2.4rem;
+
+    color:var(--primary);
+
 }
 
-.feature-card h4{
-    color:white;
-    margin-bottom:15px;
+.vision-mission-section h3{
+
+    color:#ffffff;
+
+    font-size:1.8rem;
+
+    font-weight:700;
+
+    margin-bottom:20px;
+
 }
 
-.feature-card p{
-    color:rgba(255,255,255,.8);
+.vision-mission-section p{
+
+    color:rgba(255,255,255,.80);
+
+    line-height:1.9;
+
+    margin-bottom:0;
+
+}
+
+.mission-list{
+
+    margin:0;
+
+    padding-left:22px;
+
+}
+
+.mission-list li{
+
+    color:rgba(255,255,255,.82);
+
+    margin-bottom:14px;
+
+    line-height:1.8;
+
+}
+
+.mission-list li:last-child{
+
+    margin-bottom:0;
+
 }
 
 /* ==========================================
-   TIMELINE
+WHY CHOOSE US
 ========================================== */
 
-.timeline{
+.why-us-section{
+
+    position:relative;
+
+}
+
+.feature-card{
+
+    height:100%;
+
+    padding:40px 30px;
+
+    text-align:center;
+
+    border-radius:28px;
+
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.10);
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+    transition:.4s ease;
+
+}
+
+.feature-card:hover{
+
+    transform:translateY(-12px);
+
+    border-color:var(--primary);
+
+    box-shadow:0 20px 40px rgba(0,212,255,.18);
+
+}
+
+.feature-icon{
+
+    width:90px;
+
+    height:90px;
+
+    margin:0 auto 25px;
+
+    border-radius:50%;
 
     display:flex;
 
-    flex-wrap:wrap;
+    align-items:center;
 
     justify-content:center;
 
+    background:rgba(0,212,255,.12);
+
+    border:2px solid rgba(0,212,255,.22);
+
+    transition:.35s;
+
+}
+
+.feature-card:hover .feature-icon{
+
+    background:var(--primary);
+
+    transform:rotate(8deg) scale(1.08);
+
+}
+
+.feature-icon i{
+
+    font-size:2.2rem;
+
+    color:var(--primary);
+
+    transition:.35s;
+
+}
+
+.feature-card:hover .feature-icon i{
+
+    color:#050816;
+
+}
+
+.feature-card h4{
+
+    color:#ffffff;
+
+    font-size:1.45rem;
+
+    font-weight:700;
+
+    margin-bottom:18px;
+
+}
+
+.feature-card p{
+
+    color:rgba(255,255,255,.78);
+
+    line-height:1.8;
+
+    margin:0;
+
+}
+/* ==========================================
+OUR JOURNEY
+========================================== */
+
+.journey-section{
+
+    position:relative;
+
+}
+
+.timeline{
+
+    position:relative;
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
     gap:30px;
+
+    margin-top:60px;
+
 }
 
 .timeline-item{
 
-    width:300px;
+    position:relative;
+
+    padding:35px 30px;
+
+    text-align:center;
+
+    border-radius:30px;
 
     background:rgba(255,255,255,.06);
 
-    border:1px solid rgba(255,255,255,.1);
-
-    border-radius:25px;
-
-    padding:35px;
-
-    text-align:center;
-
-    transition:.4s;
-}
-
-.timeline-item:hover{
-    transform:translateY(-10px);
-}
-
-.timeline-icon{
-    font-size:3rem;
-    margin-bottom:20px;
-}
-
-.timeline-item h5{
-    color:white;
-    margin-bottom:10px;
-}
-
-.timeline-item p{
-    color:rgba(255,255,255,.8);
-}
-
-/* ==========================================
-   CERTIFICATIONS
-========================================== */
-
-.cert-badge{
-
-    background:rgba(255,255,255,.08);
-
-    border:1px solid rgba(255,255,255,.12);
-
-    border-radius:20px;
+    border:1px solid rgba(255,255,255,.10);
 
     backdrop-filter:blur(20px);
 
-    color:white;
+    -webkit-backdrop-filter:blur(20px);
+
+    transition:.4s ease;
+
+}
+
+.timeline-item:hover{
+
+    transform:translateY(-10px);
+
+    border-color:var(--primary);
+
+    box-shadow:0 20px 45px rgba(0,212,255,.20);
+
+}
+
+.timeline-icon{
+
+    width:90px;
+
+    height:90px;
+
+    margin:0 auto 25px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:rgba(0,212,255,.12);
+
+    border:2px solid rgba(0,212,255,.22);
+
+}
+
+.timeline-icon i{
+
+    font-size:2.2rem;
+
+    color:var(--primary);
+
+}
+
+.timeline-item h5{
+
+    color:#ffffff;
+
+    font-size:1.35rem;
 
     font-weight:700;
 
-    padding:30px;
+    margin-bottom:15px;
 
-    text-align:center;
-
-    transition:.4s;
 }
 
-.cert-badge:hover{
-    transform:scale(1.05);
+.timeline-item p{
+
+    color:rgba(255,255,255,.78);
+
+    line-height:1.8;
+
+    margin:0;
+
 }
 
 /* ==========================================
-   CTA SECTION
+STATISTICS
 ========================================== */
 
-.cta-section{
-    text-align:center;
+.stats-section{
+
+    position:relative;
+
 }
 
-.cta-section h2{
-    font-size:3.5rem;
-    color:white;
+.stats-card{
+
+    height:100%;
+
+    text-align:center;
+
+    padding:40px 25px;
+
+    border-radius:28px;
+
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.10);
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+    transition:.4s ease;
+
+}
+
+.stats-card:hover{
+
+    transform:translateY(-12px);
+
+    border-color:var(--primary);
+
+    box-shadow:0 20px 45px rgba(0,212,255,.18);
+
+}
+
+.stats-card i{
+
+    font-size:2.5rem;
+
+    color:var(--primary);
+
+    margin-bottom:18px;
+
+}
+
+.stats-card h2{
+
+    color:#ffffff;
+
+    font-size:3rem;
+
+    font-weight:800;
+
+    margin-bottom:12px;
+
+}
+
+.stats-card p{
+
+    color:rgba(255,255,255,.75);
+
+    margin:0;
+
+}
+
+/* ==========================================
+INDUSTRIES WE SERVE
+========================================== */
+
+.industries-section .glass-card{
+
+    height:100%;
+
+    padding:35px 25px;
+
+    border-radius:25px;
+
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.10);
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+    transition:.35s ease;
+
+}
+
+.industries-section .glass-card:hover{
+
+    transform:translateY(-10px);
+
+    border-color:var(--primary);
+
+    box-shadow:0 18px 40px rgba(0,212,255,.18);
+
+}
+
+.industries-section .glass-card i{
+
     margin-bottom:20px;
+
 }
 
-.cta-section p{
-    color:rgba(255,255,255,.8);
-    margin-bottom:30px;
+.industries-section .glass-card h5{
+
+    color:#ffffff;
+
+    font-size:1.35rem;
+
+    font-weight:700;
+
+    margin-bottom:15px;
+
+}
+
+.industries-section .glass-card p{
+
+    color:rgba(255,255,255,.75);
+
+    line-height:1.8;
+
+    margin:0;
+
 }
 
 /* ==========================================
-   FADE ANIMATION
+OUR COMMITMENT
 ========================================== */
+
+.commitment-section .glass-card{
+
+    padding:60px 50px;
+
+    border-radius:35px;
+
+    text-align:center;
+
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.10);
+
+    backdrop-filter:blur(25px);
+
+    -webkit-backdrop-filter:blur(25px);
+
+}
+
+.commitment-section h2{
+
+    color:#ffffff;
+
+    font-size:3rem;
+
+    font-weight:800;
+
+    margin:25px 0;
+
+}
+
+.commitment-section p{
+
+    max-width:900px;
+
+    margin:auto;
+
+    color:rgba(255,255,255,.80);
+
+    font-size:1.08rem;
+
+    line-height:2;
+
+}
+/* ==========================================
+CALL TO ACTION SECTION
+========================================== */
+
+.about-cta-section{
+
+    position:relative;
+
+    padding:120px 0;
+
+}
+
+.cta-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    text-align:center;
+
+    padding:70px 50px;
+
+    border-radius:35px;
+
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.10);
+
+    backdrop-filter:blur(25px);
+
+    -webkit-backdrop-filter:blur(25px);
+
+    box-shadow:0 25px 60px rgba(0,0,0,.30);
+
+}
+
+.cta-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:350px;
+
+    height:350px;
+
+    border-radius:50%;
+
+    background:rgba(0,212,255,.10);
+
+    top:-150px;
+
+    right:-150px;
+
+    filter:blur(40px);
+
+}
+
+.cta-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:250px;
+
+    height:250px;
+
+    border-radius:50%;
+
+    background:rgba(0,255,153,.08);
+
+    bottom:-120px;
+
+    left:-120px;
+
+    filter:blur(35px);
+
+}
+
+.cta-card>*{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+.cta-card h2{
+
+    color:#ffffff;
+
+    font-size:3rem;
+
+    font-weight:800;
+
+    margin:25px 0;
+
+}
+
+.cta-card p{
+
+    max-width:850px;
+
+    margin:0 auto 35px;
+
+    color:rgba(255,255,255,.80);
+
+    font-size:1.08rem;
+
+    line-height:2;
+
+}
+
+/* ==========================================
+CTA BUTTONS
+========================================== */
+
+.cta-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+
+}
+
+.cta-buttons .btn{
+
+    min-width:220px;
+
+    padding:15px 35px;
+
+    border-radius:15px;
+
+    font-size:1rem;
+
+    font-weight:600;
+
+    transition:.35s ease;
+
+}
+
+.cta-buttons .btn-primary{
+
+    background:var(--primary);
+
+    color:#000;
+
+    border:none;
+
+}
+
+.cta-buttons .btn-primary:hover{
+
+    background:#00bde8;
+
+    transform:translateY(-5px);
+
+    box-shadow:0 18px 35px rgba(0,212,255,.30);
+
+}
+
+.cta-buttons .btn-outline-light{
+
+    border:2px solid rgba(255,255,255,.30);
+
+    color:#ffffff;
+
+    background:transparent;
+
+}
+
+.cta-buttons .btn-outline-light:hover{
+
+    background:#ffffff;
+
+    color:#050816;
+
+    transform:translateY(-5px);
+
+}
+
+/* ==========================================
+PARTNER SECTION
+========================================== */
+
+.partner-section{
+
+    padding:110px 0;
+
+}
+
+.partner-section .feature-card{
+
+    padding:35px 25px;
+
+    text-align:center;
+
+}
+
+.partner-section .feature-card i{
+
+    transition:.35s ease;
+
+}
+
+.partner-section .feature-card:hover i{
+
+    transform:scale(1.15) rotate(8deg);
+
+}
+
+.partner-section .feature-card h5{
+
+    color:#ffffff;
+
+    font-size:1.35rem;
+
+    font-weight:700;
+
+    margin:20px 0 15px;
+
+}
+
+.partner-section .feature-card p{
+
+    color:rgba(255,255,255,.75);
+
+    line-height:1.8;
+
+}
+
+/* ==========================================
+GLOBAL GLASS EFFECT
+========================================== */
+
+.glass-card,
 
 .feature-card,
+
 .timeline-item,
-.vision-card,
-.mission-card,
-.cert-badge{
-    animation:
-    fadeUp .8s ease forwards;
+
+.stats-card,
+
+.cta-card{
+
+    transition:
+
+        transform .35s ease,
+
+        box-shadow .35s ease,
+
+        border-color .35s ease;
+
 }
 
-@keyframes fadeUp{
+.glass-card:hover,
 
-    from{
-        opacity:0;
-        transform:translateY(40px);
+.feature-card:hover,
+
+.timeline-item:hover,
+
+.stats-card:hover{
+
+    border-color:var(--primary);
+
+}
+/* ==========================================
+FLOATING ANIMATIONS
+========================================== */
+
+@keyframes floatY{
+
+    0%{
+        transform:translateY(0);
     }
 
-    to{
-        opacity:1;
+    50%{
+        transform:translateY(-12px);
+    }
+
+    100%{
         transform:translateY(0);
     }
 
 }
 
-/* ==========================================
-   RESPONSIVE
-========================================== */
+@keyframes pulseGlow{
 
-@media(max-width:992px){
+    0%{
 
-    .page-title{
-        font-size:3rem;
+        box-shadow:0 0 0 rgba(0,212,255,.15);
+
     }
 
-    .about-content h2{
-        font-size:2.5rem;
+    50%{
+
+        box-shadow:0 0 35px rgba(0,212,255,.30);
+
+    }
+
+    100%{
+
+        box-shadow:0 0 0 rgba(0,212,255,.15);
+
     }
 
 }
 
-@media(max-width:768px){
+.glass-image-card{
+
+    animation:floatY 6s ease-in-out infinite;
+
+}
+
+.feature-card i,
+
+.timeline-icon,
+
+.stats-card i{
+
+    animation:floatY 5s ease-in-out infinite;
+
+}
+
+.hero-badge{
+
+    animation:pulseGlow 4s infinite;
+
+}
+
+/* ==========================================
+HOVER EFFECTS
+========================================== */
+
+.feature-card,
+
+.timeline-item,
+
+.stats-card,
+
+.glass-card,
+
+.cta-card,
+
+.vision-card,
+
+.mission-card{
+
+    will-change:transform;
+
+}
+
+.feature-card:hover,
+
+.timeline-item:hover,
+
+.stats-card:hover,
+
+.glass-card:hover{
+
+    transform:translateY(-10px);
+
+}
+
+.glass-image-card:hover{
+
+    transform:translateY(-10px) scale(1.03);
+
+}
+
+/* ==========================================
+TEXT SELECTION
+========================================== */
+
+::selection{
+
+    background:var(--primary);
+
+    color:#050816;
+
+}
+
+::-moz-selection{
+
+    background:var(--primary);
+
+    color:#050816;
+
+}
+
+/* ==========================================
+SCROLLBAR
+========================================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#08101d;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:var(--primary);
+
+    border-radius:30px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#00bde8;
+
+}
+
+/* ==========================================
+RESPONSIVE DESIGN
+========================================== */
+
+/* ==============================
+Large Desktop
+============================== */
+
+@media (max-width:1200px){
 
     .page-title{
-        font-size:2.3rem;
+        font-size:3.4rem;
     }
 
-    .about-content h2{
-        font-size:2rem;
+    .page-description{
+        max-width:760px;
+        margin:auto;
     }
 
-    .about-image-box{
-        height:320px;
+    .about-content h2,
+    .commitment-section h2,
+    .cta-card h2{
+        font-size:2.6rem;
     }
 
     .glass-image-card{
-        width:240px;
-        height:240px;
+        width:100%;
+        max-width:380px;
+        margin:auto;
+    }
+
+}
+
+/* ==============================
+Tablet
+============================== */
+
+@media (max-width:992px){
+
+    section{
+        padding:80px 0;
+    }
+
+    .page-hero{
+        min-height:auto;
+        padding:130px 0 80px;
+        text-align:center;
+    }
+
+    .page-title{
+        font-size:2.8rem;
+    }
+
+    .page-description{
+        max-width:650px;
+        margin:auto;
+    }
+
+    .about-image-wrapper{
+        margin-bottom:50px;
+        min-height:auto;
+    }
+
+    .glass-image-card{
+        width:100%;
+        max-width:350px;
+        margin:auto;
+    }
+
+    .about-content{
+        text-align:center;
+    }
+
+    .about-features{
+        justify-content:center;
+    }
+
+    .company-stats{
+        justify-content:center;
+        flex-wrap:wrap;
+        gap:20px;
+    }
+
+    .timeline{
+
+        display:grid;
+
+        grid-template-columns:repeat(2,1fr);
+
+        gap:25px;
+
     }
 
     .timeline-item{
+
         width:100%;
+
+        margin:0;
+
     }
 
-    .cta-section h2{
-        font-size:2.3rem;
+}
+
+/* ==============================
+Mobile
+============================== */
+
+@media (max-width:768px){
+
+    section{
+        padding:70px 0;
+    }
+
+    .page-hero{
+        padding:120px 0 70px;
+    }
+
+    .hero-badge{
+        font-size:.85rem;
+        padding:10px 18px;
+    }
+
+    .page-title{
+        font-size:2.2rem;
+        line-height:1.3;
+    }
+
+    .page-description{
+        font-size:1rem;
+    }
+
+    .about-image-wrapper{
+        min-height:auto;
+        margin-bottom:40px;
+    }
+
+    .glass-image-card{
+
+        width:100%;
+
+        max-width:320px;
+
+        margin:auto;
+
+        padding:30px 22px;
+
+    }
+
+    .company-icon{
+
+        width:90px;
+
+        height:90px;
+
+    }
+
+    .company-icon i{
+
+        font-size:2.8rem;
+
+    }
+
+    .company-stats{
+
+        display:flex;
+
+        flex-direction:column;
+
+        gap:15px;
+
+        align-items:center;
+
+    }
+
+    .mini-stat{
+
+        width:100%;
+
+    }
+
+    .about-content{
+
+        text-align:center;
+
+    }
+
+    .about-features{
+
+        display:flex;
+
+        flex-direction:column;
+
+        gap:15px;
+
+        align-items:center;
+
+    }
+
+    .about-feature{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+    /* ------------------------------
+       Timeline Fix
+    ------------------------------ */
+
+    .timeline{
+
+        display:flex;
+
+        flex-direction:column;
+
+        gap:25px;
+
+        position:relative;
+
+    }
+
+    .timeline::before{
+
+        display:none;
+
+    }
+
+    .timeline-item{
+
+        width:100%;
+
+        max-width:100%;
+
+        margin:0;
+
+        padding:30px 22px;
+
+        text-align:center;
+
+    }
+
+    .timeline-icon{
+
+        margin:0 auto 20px;
+
+    }
+
+    .glass-card,
+    .feature-card{
+
+        padding:30px 22px;
+
+    }
+
+    .cta-card{
+
+        padding:35px 25px;
+
+    }
+
+    .cta-buttons{
+
+        display:flex;
+
+        flex-direction:column;
+
+        gap:15px;
+
+    }
+
+    .cta-buttons .btn{
+
+        width:100%;
+
+    }
+
+}
+
+/* ==============================
+Small Mobile
+============================== */
+
+@media (max-width:576px){
+
+    .page-title{
+
+        font-size:1.9rem;
+
+    }
+
+    .page-description{
+
+        font-size:.95rem;
+
+    }
+
+    .glass-image-card{
+
+        max-width:250px;
+
+    }
+
+    .company-icon{
+
+        width:75px;
+
+        height:75px;
+
+    }
+
+    .company-icon i{
+
+        font-size:2.2rem;
+
+    }
+
+    .glass-image-card h3{
+
+        font-size:1.25rem;
+
+    }
+
+    .about-content h2,
+    .commitment-section h2,
+    .cta-card h2{
+
+        font-size:1.8rem;
+
+    }
+
+    .timeline-item{
+
+        padding:25px 18px;
+
+    }
+
+    .timeline-icon{
+
+        width:70px;
+
+        height:70px;
+
+        margin:auto auto 15px;
+
+    }
+
+    .timeline-icon i{
+
+        font-size:1.8rem;
+
+    }
+
+}
+
+/* ==============================
+Extra Small
+============================== */
+
+@media (max-width:400px){
+
+    .page-title{
+
+        font-size:1.6rem;
+
+    }
+
+    .page-description{
+
+        font-size:.9rem;
+
+    }
+
+    .glass-image-card{
+
+        max-width:220px;
+
+        padding:20px 15px;
+
+    }
+
+    .company-icon{
+
+        width:65px;
+
+        height:65px;
+
+    }
+
+    .company-icon i{
+
+        font-size:2rem;
+
     }
 
 }

@@ -6,64 +6,81 @@
 {% endblock %}
 
 {% block title %}
-Mudhai Instrument Services
+Mudhai Instrument Services | Industrial Instrumentation & Agricultural Solutions
 {% endblock %}
 
 {% block content %}
 
-<!-- HERO -->
+<!-- ==========================================
+HERO SECTION
+========================================== -->
 
 <section class="hero-section">
 
     <div class="hero-overlay"></div>
 
+    <div class="hero-glow glow-1"></div>
+    <div class="hero-glow glow-2"></div>
+
     <div class="container">
 
         <div class="row align-items-center min-vh-100">
 
+            <!-- LEFT CONTENT -->
+
             <div class="col-lg-6">
 
                 <span class="hero-badge">
+
+                    <i class="fa-solid fa-shield-halved me-2"></i>
+
                     Trusted Merchant Trading Company
+
                 </span>
 
                 <h1 class="hero-title">
 
-                    Precision For
+                    Precision Solutions For
 
                     <span class="gradient-text">
-                        Industry
+                        Industrial
                     </span>
 
-                    Growth For
+                    Excellence &
 
                     <span class="gradient-text-green">
-                        Agriculture
+                        Agricultural
                     </span>
+
+                    Growth
 
                 </h1>
 
                 <p class="hero-description">
 
-                    Mudhai Instrument Services delivers
-                    reliable industrial instrumentation
-                    and premium agricultural products
-                    with a commitment to quality,
-                    transparency and customer satisfaction.
+                    Mudhai Instrument Services provides high-quality
+                    industrial instrumentation, automation solutions,
+                    premium agricultural products, calibration services,
+                    and technical support to industries, businesses,
+                    and farmers across India.
 
                 </p>
 
                 <div class="hero-buttons">
 
-                    <a href="/products"
+                    <a href="{{ url_for('products') }}"
                        class="btn btn-primary hero-btn">
+
+                        <i class="fa-solid fa-box-open me-2"></i>
 
                         Explore Products
 
                     </a>
 
-                    <a href="/contact"
-                       class="btn btn-success hero-btn">
+                    <a href="{{ url_for('contact') }}"
+                       class="btn btn-outline-light hero-btn">
+
+                        <i class="fa-solid fa-phone me-2"></i>
 
                         Contact Us
 
@@ -71,26 +88,73 @@ Mudhai Instrument Services
 
                 </div>
 
+                <!-- HERO STATS -->
+
+                <div class="hero-stats mt-5">
+
+
+                    <div class="stat-box">
+
+                        <h3>
+                            24/7
+                        </h3>
+
+                        <span>
+                            Customer Support
+                        </span>
+
+                    </div>
+
+                    <div class="stat-box">
+
+                        <h3>
+                            100%
+                        </h3>
+
+                        <span>
+                            Customer Satisfaction
+                        </span>
+
+                    </div>
+
+                </div>
+
             </div>
+
+            <!-- RIGHT SIDE -->
 
             <div class="col-lg-6">
 
-                <div class="floating-cards">
+                <div class="hero-image-wrapper">
 
-                    <div class="floating-card card-1">
-                        ⚙️
-                        <h5>Flow Meter</h5>
+                    <!-- CENTER CARD -->
+
+                    <div class="glass-main-card">
+
+                        <div class="company-logo" >
+
+                            <i class="fa-solid fa-industry"></i>
+
+                        </div>
+
+                        <h3>
+
+                            Mudhai Instrument Services
+
+                        </h3>
+
+                        <p>
+
+                            Industrial Instrumentation
+
+                            <br>
+
+                            Agricultural Products
+
+                        </p>
+
                     </div>
 
-                    <div class="floating-card card-2">
-                        🌱
-                        <h5>Onion Seeds</h5>
-                    </div>
-
-                    <div class="floating-card card-3">
-                        🍃
-                        <h5>Moringa Powder</h5>
-                    </div>
 
                 </div>
 
@@ -102,7 +166,303 @@ Mudhai Instrument Services
 
 </section>
 
-<!-- ABOUT PREVIEW -->
+<!-- ==========================================
+ABOUT PREVIEW
+========================================== -->
+
+<section class="about-preview-section">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-6">
+
+                <div class="glass-card about-card">
+
+                    <span class="section-tag">
+
+                        ABOUT US
+
+                    </span>
+
+                    <h2>
+
+                        Trusted Partner for Industrial &
+                        Agricultural Solutions
+
+                    </h2>
+
+                    <p>
+
+                        Mudhai Instrument Services is a customer-focused
+                        merchant trading company delivering industrial
+                        instrumentation, automation equipment,
+                        agricultural products, calibration services,
+                        and dependable technical support.
+
+                    </p>
+
+                    <p>
+
+                        We believe in quality, transparency,
+                        innovation, and building long-term
+                        relationships with our customers.
+
+                    </p>
+
+                    <a href="{{ url_for('about') }}"
+                       class="btn btn-primary mt-3">
+
+                        Learn More
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <div class="about-image-box">
+
+                    <div class="glass-image-card">
+
+                        <i class="fa-solid fa-building"></i>
+
+                        <h3>
+
+                            Since Quality Matters
+
+                        </h3>
+
+                        <p>
+
+                            Delivering trusted products
+                            and professional services
+                            with excellence.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ==========================================
+FEATURED PRODUCTS
+========================================== -->
+
+<section class="featured-products-section">
+
+    <div class="container">
+
+        <div class="section-header text-center">
+
+            <span class="section-tag">
+
+                OUR PRODUCTS
+
+            </span>
+
+            <h2>
+
+                Premium Industrial &
+                Agricultural Products
+
+            </h2>
+
+            <p>
+
+                We supply reliable industrial instrumentation,
+                automation equipment and premium agricultural
+                products that meet modern industry standards.
+
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <!-- PRODUCT 1 -->
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="product-card">
+
+                    <div class="product-image">
+
+                        <img
+                            src="{{ url_for('static', filename='images/flowmeter.jpg') }}"
+                            alt="Electromagnetic Flow Meter"
+                            class="img-fluid">
+
+                        <span class="product-badge">
+
+                            Industrial
+
+                        </span>
+
+                    </div>
+
+                    <div class="product-content">
+
+                        <h4>
+
+                            Electromagnetic Flow Meter
+
+                        </h4>
+
+                        <p>
+
+                            High precision flow measurement
+                            solution designed for conductive
+                            liquids with superior accuracy
+                            and reliability.
+
+                        </p>
+
+                        <a href="{{ url_for('products') }}"
+                           class="btn btn-primary">
+
+                            View Product
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- PRODUCT 2 -->
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="product-card">
+
+                    <div class="product-image">
+
+                        <img
+                            src="{{ url_for('static', filename='images/onion-seeds.jpg') }}"
+                            alt="Onion Seeds"
+                            class="img-fluid">
+
+                        <span class="product-badge agriculture">
+
+                            Agriculture
+
+                        </span>
+
+                    </div>
+
+                    <div class="product-content">
+
+                        <h4>
+
+                            Premium Onion Seeds
+
+                        </h4>
+
+                        <p>
+
+                            High germination onion seeds
+                            developed for healthy crop
+                            growth, higher productivity
+                            and improved yield.
+
+                        </p>
+
+                        <a href="{{ url_for('products') }}"
+                           class="btn btn-primary">
+
+                            View Product
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- PRODUCT 3 -->
+
+            <div class="col-lg-4 col-md-6 mx-auto">
+
+                <div class="product-card">
+
+                    <div class="product-image">
+
+                        <img
+                            src="{{ url_for('static', filename='images/moringa-powder.jpg') }}"
+                            alt="Moringa Powder"
+                            class="img-fluid">
+
+                        <span class="product-badge health">
+
+                            Natural Product
+
+                        </span>
+
+                    </div>
+
+                    <div class="product-content">
+
+                        <h4>
+
+                            Premium Moringa Powder
+
+                        </h4>
+
+                        <p>
+
+                            Nutrient-rich moringa powder
+                            processed from quality leaves
+                            for better nutrition and
+                            wellness.
+
+                        </p>
+
+                        <a href="{{ url_for('products') }}"
+                           class="btn btn-primary">
+
+                            View Product
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="text-center mt-5">
+
+            <a href="{{ url_for('products') }}"
+               class="btn btn-outline-primary btn-lg">
+
+                View All Products
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+WHY CHOOSE US
+========================================== -->
 
 <section class="why-us-section">
 
@@ -111,197 +471,834 @@ Mudhai Instrument Services
         <div class="section-header text-center">
 
             <span class="section-tag">
-                ABOUT US
+
+                WHY CHOOSE US
+
             </span>
 
             <h2>
-                Trusted Business Partner
+
+                Why Businesses Trust
+                Mudhai Instrument Services
+
             </h2>
-
-        </div>
-
-        <div class="glass-card">
 
             <p>
 
-                Mudhai Instrument Services is a trusted
-                merchant trading company committed to
-                delivering excellence through quality,
-                reliability and customer-focused solutions.
-
-                We strive to create long-term value for
-                our customers through dependable products
-                and professional service.
+                Our commitment to quality,
+                reliability and customer satisfaction
+                makes us the preferred business partner.
 
             </p>
 
         </div>
 
-    </div>
+        <div class="row g-4">
 
-</section>
+            <div class="col-lg-4">
 
-<!-- PRODUCTS -->
+                <div class="glass-card feature-card">
 
-<section class="products-section">
+                    <div class="feature-icon">
 
-    <div class="container">
-
-        <div class="section-header text-center">
-
-            <h2>
-                Our Products
-            </h2>
-
-        </div>
-
-        <div class="row">
-
-            <div class="col-lg-4 mb-4">
-
-                <div class="product-card">
-
-                    <img src="{{ url_for('static', filename='images/flowmeter.jpg') }}"
-                         class="img-fluid">
-
-                    <div class="product-content">
-
-                        <h4>
-                            Electromagnetic Flow Meter
-                        </h4>
-
-                        <p>
-                            Accurate flow measurement
-                            for conductive liquids.
-                        </p>
+                        <i class="fa-solid fa-shield-halved"></i>
 
                     </div>
-
-                </div>
-
-            </div>
-
-            <div class="col-lg-4 mb-4">
-
-                <div class="product-card">
-
-                    <img src="{{ url_for('static', filename='images/onion-seeds.jpg') }}"
-                         class="img-fluid">
-
-                    <div class="product-content">
-
-                        <h4>
-                            Onion Seeds
-                        </h4>
-
-                        <p>
-                            High-quality onion seeds
-                            with superior germination.
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="col-lg-4 mb-4">
-
-                <div class="product-card">
-
-                    <img src="{{ url_for('static', filename='images/moringa-powder.jpg') }}"
-                         class="img-fluid">
-
-                    <div class="product-content">
-
-                        <h4>
-                            Moringa Powder
-                        </h4>
-
-                        <p>
-                            Premium nutritional
-                            moringa powder products.
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- WHY US -->
-
-<section class="why-us-section">
-
-    <div class="container">
-
-        <div class="section-header text-center">
-
-            <h2>
-                Why Choose Us
-            </h2>
-
-        </div>
-
-        <div class="row">
-
-            <div class="col-md-4">
-
-                <div class="glass-card">
-
-                    <i class="fa-solid fa-shield-halved"></i>
 
                     <h4>
+
                         Trusted & Reliable
+
                     </h4>
 
                     <p>
-                        Long-term relationships built
-                        through honesty and transparency.
+
+                        We maintain transparency,
+                        integrity and reliability
+                        in every business relationship.
+
                     </p>
 
                 </div>
 
             </div>
 
-            <div class="col-md-4">
+            <div class="col-lg-4">
+
+                <div class="glass-card feature-card">
+
+                    <div class="feature-icon">
+
+                        <i class="fa-solid fa-award"></i>
+
+                    </div>
+
+                    <h4>
+
+                        Premium Quality
+
+                    </h4>
+
+                    <p>
+
+                        Every product is sourced
+                        from trusted manufacturers
+                        with strict quality standards.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="glass-card feature-card">
+
+                    <div class="feature-icon">
+
+                        <i class="fa-solid fa-headset"></i>
+
+                    </div>
+
+                    <h4>
+
+                        Technical Support
+
+                    </h4>
+
+                    <p>
+
+                        Dedicated assistance,
+                        product guidance and
+                        customer support whenever needed.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ==========================================
+OUR SERVICES
+========================================== -->
+
+<section class="services-section">
+
+    <div class="container">
+
+        <div class="section-header text-center">
+
+            <span class="section-tag">
+
+                OUR SERVICES
+
+            </span>
+
+            <h2>
+
+                Industrial &
+                Agricultural Solutions
+
+            </h2>
+
+            <p>
+
+                Beyond supplying quality products, we provide
+                technical expertise, consultation and dependable
+                customer support to help your business grow.
+
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="glass-card service-card">
+
+                    <div class="service-icon">
+
+                        <i class="fa-solid fa-gears"></i>
+
+                    </div>
+
+                    <h4>
+
+                        Industrial Automation
+
+                    </h4>
+
+                    <p>
+
+                        Reliable automation products and
+                        industrial instrumentation for
+                        manufacturing industries.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="glass-card service-card">
+
+                    <div class="service-icon">
+
+                        <i class="fa-solid fa-seedling"></i>
+
+                    </div>
+
+                    <h4>
+
+                        Agricultural Products
+
+                    </h4>
+
+                    <p>
+
+                        Premium quality seeds,
+                        moringa powder and
+                        other agricultural solutions.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="glass-card service-card">
+
+                    <div class="service-icon">
+
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+
+                    </div>
+
+                    <h4>
+
+                        Technical Consultation
+
+                    </h4>
+
+                    <p>
+
+                        Product selection,
+                        installation guidance,
+                        and professional technical advice.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="glass-card service-card">
+
+                    <div class="service-icon">
+
+                        <i class="fa-solid fa-headset"></i>
+
+                    </div>
+
+                    <h4>
+
+                        Customer Support
+
+                    </h4>
+
+                    <p>
+
+                        Dedicated support before
+                        and after sales with
+                        quick response assistance.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================
+LATEST BLOGS
+========================================== -->
+
+<section class="latest-blogs-section">
+
+    <div class="container">
+
+        <div class="section-header text-center">
+
+            <span class="section-tag">
+
+                LATEST ARTICLES
+
+            </span>
+
+            <h2>
+
+                Insights & Knowledge Hub
+
+            </h2>
+
+            <p>
+
+                Stay updated with industrial automation,
+                agricultural innovations, product guides,
+                and expert business insights.
+
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            {% if blogs %}
+
+                {% for blog in blogs[:3] %}
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="blog-card">
+
+                        <div class="blog-image">
+
+                            {% if blog.featured_image %}
+
+                            <img
+                                src="{{ blog.featured_image }}"
+                                alt="{{ blog.title }}"
+                                class="img-fluid">
+
+                            {% else %}
+
+                            <img
+                                src="{{ url_for('static', filename='images/default-blog.jpg') }}"
+                                alt="Blog"
+                                class="img-fluid">
+
+                            {% endif %}
+
+                        </div>
+
+                        <div class="blog-content">
+
+                            <span class="blog-category">
+
+                                {{ blog.category }}
+
+                            </span>
+
+                            <h4>
+
+                                {{ blog.title }}
+
+                            </h4>
+
+                            <p>
+
+                                {{ blog.excerpt[:120] }}...
+
+                            </p>
+
+                            <a
+                                href="{{ url_for('blog_details', blog_id=blog._id) }}"
+                                class="btn btn-outline-primary">
+
+                                Read More
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="col-12">
+
+                    <div class="glass-card text-center">
+
+                        <h4>
+
+                            Blogs Coming Soon
+
+                        </h4>
+
+                        <p>
+
+                            Our latest articles will appear here.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+        <div class="text-center mt-5">
+
+            <a href="{{ url_for('blogs') }}"
+               class="btn btn-primary btn-lg">
+
+                View All Blogs
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+WHY PARTNER WITH US
+========================================== -->
+
+<section class="partner-section">
+
+    <div class="container">
+
+        <div class="section-header text-center">
+
+            <span class="section-tag">
+
+                OUR COMMITMENT
+
+            </span>
+
+            <h2>
+
+                Why Partner With Mudhai?
+
+            </h2>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-lg-3 col-md-6">
 
                 <div class="glass-card">
+
+                    <i class="fa-solid fa-medal fa-3x text-info mb-4"></i>
+
+                    <h5>
+
+                        Premium Quality
+
+                    </h5>
+
+                    <p>
+
+                        We supply only trusted,
+                        tested and reliable products.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="glass-card">
+
+                    <i class="fa-solid fa-handshake fa-3x text-success mb-4"></i>
+
+                    <h5>
+
+                        Long-Term Partnership
+
+                    </h5>
+
+                    <p>
+
+                        Building lasting business
+                        relationships with trust.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="glass-card">
+
+                    <i class="fa-solid fa-headset fa-3x text-primary mb-4"></i>
+
+                    <h5>
+
+                        24/7 Support
+
+                    </h5>
+
+                    <p>
+
+                        Dedicated customer
+                        assistance whenever needed.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ==========================================
+TESTIMONIALS
+========================================== -->
+
+<section class="testimonials-section">
+
+    <div class="container">
+
+        <div class="section-header text-center">
+
+            <span class="section-tag">
+
+                TESTIMONIALS
+
+            </span>
+
+            <h2>
+
+                What Our Customers Say
+
+            </h2>
+
+            <p>
+
+                We are proud to build long-term relationships
+                through quality products, reliable service,
+                and customer satisfaction.
+
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-lg-4">
+
+                <div class="glass-card testimonial-card">
+
+                    <div class="testimonial-stars">
+
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+
+                    </div>
+
+                    <p>
+
+                        "Excellent quality products and
+                        professional support. The delivery
+                        was quick and the service exceeded
+                        our expectations."
+
+                    </p>
+
+                    <div class="testimonial-user">
+
+                        <div class="user-avatar">
+
+                            <i class="fa-solid fa-user"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h5>
+
+                                Industrial Client
+
+                            </h5>
+
+                            <span>
+
+                                Manufacturing Company
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="glass-card testimonial-card">
+
+                    <div class="testimonial-stars">
+
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+
+                    </div>
+
+                    <p>
+
+                        "The onion seeds delivered excellent
+                        germination and healthy crop growth.
+                        Highly recommended for quality."
+
+                    </p>
+
+                    <div class="testimonial-user">
+
+                        <div class="user-avatar">
+
+                            <i class="fa-solid fa-user"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h5>
+
+                                Agriculture Customer
+
+                            </h5>
+
+                            <span>
+
+                                Farmer
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="glass-card testimonial-card">
+
+                    <div class="testimonial-stars">
+
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+
+                    </div>
+
+                    <p>
+
+                        "Outstanding customer support and
+                        premium industrial products. We
+                        appreciate their professionalism."
+
+                    </p>
+
+                    <div class="testimonial-user">
+
+                        <div class="user-avatar">
+
+                            <i class="fa-solid fa-user"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h5>
+
+                                Business Partner
+
+                            </h5>
+
+                            <span>
+
+                                Engineering Company
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================
+COMPANY HIGHLIGHTS
+========================================== -->
+
+<section class="company-highlights-section">
+
+    <div class="container">
+
+        <div class="section-header text-center">
+
+            <span class="section-tag">
+
+                OUR PROMISE
+
+            </span>
+
+            <h2>
+
+                Delivering Excellence Every Day
+
+            </h2>
+
+            <p>
+
+                Our commitment to innovation, quality,
+                transparency and customer satisfaction
+                makes us a trusted business partner for
+                industries and agriculture.
+
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="highlight-card">
 
                     <i class="fa-solid fa-award"></i>
 
                     <h4>
-                        Quality Commitment
+
+                        Premium Quality
+
                     </h4>
 
                     <p>
-                        Delivering products that meet
-                        high quality standards.
+
+                        Carefully selected products
+                        that meet international
+                        quality standards.
+
                     </p>
 
                 </div>
 
             </div>
 
-            <div class="col-md-4">
+            <div class="col-lg-3 col-md-6">
 
-                <div class="glass-card">
+                <div class="highlight-card">
 
-                    <i class="fa-solid fa-users"></i>
+                    <i class="fa-solid fa-handshake"></i>
 
                     <h4>
-                        Customer Focus
+
+                        Trusted Partnership
+
                     </h4>
 
                     <p>
-                        Personalized support and
-                        dependable service.
+
+                        Building long-term business
+                        relationships through trust
+                        and reliability.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="highlight-card">
+
+                    <i class="fa-solid fa-lightbulb"></i>
+
+                    <h4>
+
+                        Innovative Solutions
+
+                    </h4>
+
+                    <p>
+
+                        Modern industrial and
+                        agricultural solutions
+                        for better productivity.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="highlight-card">
+
+                    <i class="fa-solid fa-headset"></i>
+
+                    <h4>
+
+                        24/7 Customer Support
+
+                    </h4>
+
+                    <p>
+
+                        Dedicated assistance
+                        whenever you need us.
+
                     </p>
 
                 </div>
@@ -314,26 +1311,86 @@ Mudhai Instrument Services
 
 </section>
 
-<!-- CERTIFICATIONS -->
+<!-- ==========================================
+TRUST SECTION
+========================================== -->
 
-<section class="certifications-section">
+<section class="trust-section">
 
     <div class="container">
 
-        <div class="section-header text-center">
+        <div class="glass-card text-center">
 
             <h2>
-                Certifications
+
+                Why Businesses Choose
+                Mudhai Instrument Services
+
             </h2>
 
-        </div>
+            <p>
 
-        <div class="certification-grid">
+                We are committed to delivering
+                dependable industrial instrumentation,
+                automation equipment, agricultural
+                products and professional customer
+                support with complete transparency.
 
-            <div class="cert-card">IEC</div>
-            <div class="cert-card">APEDA</div>
-            <div class="cert-card">FSSAI</div>
-            <div class="cert-card">MSME</div>
+            </p>
+
+            <div class="row mt-5">
+
+                <div class="col-md-3">
+
+                    <div class="trust-item">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        <h5>
+
+                            Genuine Products
+
+                        </h5>
+
+                    </div>
+
+                </div>
+
+                
+
+                <div class="col-md-3">
+
+                    <div class="trust-item">
+
+                        <i class="fa-solid fa-user-shield"></i>
+
+                        <h5>
+
+                            Trusted Service
+
+                        </h5>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <div class="trust-item">
+
+                        <i class="fa-solid fa-headset"></i>
+
+                        <h5>
+
+                            Technical Support
+
+                        </h5>
+
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 
@@ -341,31 +1398,50 @@ Mudhai Instrument Services
 
 </section>
 
-<!-- CTA -->
-
-<section class="cta-section">
-
-    <div class="container text-center">
-
-        <h2>
-            Ready To Work With Us?
-        </h2>
-
-        <p>
-            Contact our team for industrial
-            instrumentation and agricultural products.
-        </p>
-
-        <a href="/contact"
-           class="btn btn-success btn-lg">
-
-            Contact Us
-
-        </a>
-
-    </div>
-
-</section>
 
 {% endblock %}
- 
+
+{% block scripts %}
+
+<script>
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+    if(typeof gsap!=="undefined"){
+
+        gsap.from(".hero-title",{
+            opacity:0,
+            y:60,
+            duration:1
+        });
+
+        gsap.from(".hero-description",{
+            opacity:0,
+            y:40,
+            delay:.2,
+            duration:1
+        });
+
+        gsap.from(".hero-btn",{
+            opacity:0,
+            y:30,
+            stagger:.15,
+            delay:.4,
+            duration:.8
+        });
+
+        gsap.from(".floating-card",{
+            opacity:0,
+            scale:.8,
+            stagger:.2,
+            delay:.5,
+            duration:.8
+        });
+
+    }
+
+});
+
+</script>
+
+{% endblock %}

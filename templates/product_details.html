@@ -11,21 +11,27 @@
 
 {% block content %}
 
-<!-- ===================================== -->
-<!-- PRODUCT HERO -->
-<!-- ===================================== -->
+<!-- =====================================================
+PRODUCT HERO
+===================================================== -->
 
 <section class="product-detail-hero">
+
+    <div class="hero-overlay"></div>
 
     <div class="container">
 
         <div class="row align-items-center g-5">
 
-            <!-- Product Image -->
+            <!-- ==========================================
+            PRODUCT IMAGE
+            ========================================== -->
 
-            <div class="col-lg-6">
+            <div class="col-lg-6 col-md-12 order-1 order-lg-1">
 
                 <div class="product-image-wrapper">
+
+                    <div class="image-glow"></div>
 
                     {% if product.image_url %}
 
@@ -43,42 +49,134 @@
 
                     {% endif %}
 
-                    <div class="glow-effect"></div>
+                    {% if product.featured %}
+
+                    <div class="featured-ribbon">
+
+                        <i class="fa-solid fa-star"></i>
+
+                        Featured Product
+
+                    </div>
+
+                    {% endif %}
 
                 </div>
 
             </div>
 
-            <!-- Product Information -->
+            <!-- ==========================================
+            PRODUCT INFORMATION
+            ========================================== -->
 
-            <div class="col-lg-6">
+            <div class="col-lg-6 col-md-12 order-1 order-lg-1">
 
                 <div class="product-info">
 
                     <span class="product-category">
+
+                        <i class="fa-solid fa-layer-group me-2"></i>
+
                         {{ product.category }}
+
                     </span>
 
                     <h1 class="product-title">
+
                         {{ product.name }}
+
                     </h1>
 
                     <p class="product-short-description">
+
                         {{ product.short_description }}
+
                     </p>
 
-                    {% if product.featured %}
+                    <!-- =========================
+                    QUICK INFO
+                    ========================== -->
 
-                    <span class="featured-badge">
-                        ⭐ Featured Product
-                    </span>
+                    <div class="product-highlights">
 
-                    {% endif %}
+                        <div class="highlight-box">
 
-                    <div class="action-buttons mt-4">
+                            <i class="fa-solid fa-award"></i>
+
+                            <div>
+
+                                <h6>
+
+                                    Premium Quality
+
+                                </h6>
+
+                                <span>
+
+                                    Tested & Reliable
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <div class="highlight-box">
+
+                            <i class="fa-solid fa-shield-halved"></i>
+
+                            <div>
+
+                                <h6>
+
+                                    Industrial Grade
+
+                                </h6>
+
+                                <span>
+
+                                    High Performance
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <div class="highlight-box">
+
+                            <i class="fa-solid fa-headset"></i>
+
+                            <div>
+
+                                <h6>
+
+                                    24/7 Support
+
+                                </h6>
+
+                                <span>
+
+                                    Technical Assistance
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- =========================
+                    ACTION BUTTONS
+                    ========================== -->
+
+                    <div class="action-buttons">
 
                         <a href="{{ url_for('contact') }}"
-                           class="btn btn-primary btn-lg me-2">
+                           class="btn btn-primary btn-lg">
+
+                            <i class="fa-solid fa-paper-plane me-2"></i>
 
                             Request Quote
 
@@ -86,6 +184,8 @@
 
                         <a href="{{ url_for('products') }}"
                            class="btn btn-outline-light btn-lg">
+
+                            <i class="fa-solid fa-arrow-left me-2"></i>
 
                             Back To Products
 
@@ -102,9 +202,10 @@
     </div>
 
 </section>
-<!-- ===================================== -->
-<!-- PRODUCT OVERVIEW -->
-<!-- ===================================== -->
+
+<!-- =====================================================
+PRODUCT OVERVIEW
+===================================================== -->
 
 <section class="product-overview">
 
@@ -120,25 +221,51 @@
 
             <h2>
 
-                About This Product
+                About {{ product.name }}
 
             </h2>
 
+            <p>
+
+                Discover the features, advantages and industrial applications
+                of this premium-quality product designed to deliver reliable
+                performance and long-term value.
+
+            </p>
+
         </div>
 
-        <div class="overview-content">
+        <div class="overview-card glass-card">
 
             {% if product.description %}
 
-            {{ product.description | safe }}
+                <div class="overview-content">
+
+                    {{ product.description | safe }}
+
+                </div>
 
             {% else %}
 
-            <p>
+                <div class="overview-content text-center">
 
-                Detailed product information will be available soon.
+                    <i class="fa-solid fa-circle-info fa-3x mb-4 text-info"></i>
 
-            </p>
+                    <h4>
+
+                        Product Information Coming Soon
+
+                    </h4>
+
+                    <p>
+
+                        We are currently updating the detailed description,
+                        technical specifications and application details for
+                        this product.
+
+                    </p>
+
+                </div>
 
             {% endif %}
 
@@ -148,9 +275,9 @@
 
 </section>
 
-<!-- ===================================== -->
-<!-- SPECIFICATIONS -->
-<!-- ===================================== -->
+<!-- =====================================================
+TECHNICAL SPECIFICATIONS
+===================================================== -->
 
 {% if product.specifications %}
 
@@ -162,89 +289,60 @@
 
             <span class="section-tag">
 
-                TECHNICAL DETAILS
+                TECHNICAL SPECIFICATIONS
 
             </span>
 
             <h2>
 
-                Specifications
+                Product Specifications
 
-            </h2>
-
-        </div>
-
-        <div class="specifications-table">
-
-            <table class="table table-dark table-striped table-bordered">
-
-                <tbody>
-
-                    {% for key, value in product.specifications.items() %}
-
-                    <tr>
-
-                        <th>
-
-                            {{ key }}
-
-                        </th>
-
-                        <td>
-
-                            {{ value }}
-
-                        </td>
-
-                    </tr>
-
-                    {% endfor %}
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-    </div>
-
-</section>
-
-{% endif %}
-
-<!-- ===================================== -->
-<!-- ===================================== -->
-<!-- PRODUCT GALLERY -->
-<!-- ===================================== -->
-
-{% if product.image %}
-
-<section class="gallery-section py-5">
-
-    <div class="container">
-
-        <div class="section-header text-center mb-5">
-
-            <h2>
-                Product Gallery
             </h2>
 
             <p>
-                High-quality product images
+
+                Complete technical details and performance
+                specifications of {{ product.name }}.
+
             </p>
 
         </div>
 
         <div class="row justify-content-center">
 
-            <div class="col-lg-8 col-md-10">
+            <div class="col-lg-10">
 
-                <div class="gallery-card">
+                <div class="specification-card">
 
-                    <img
-                        src="{{ url_for('static', filename=product.image) }}"
-                        alt="{{ product.name }}"
-                        class="img-fluid rounded shadow-lg w-100">
+                    <table class="table specification-table">
+
+                        <tbody>
+
+                            {% for key, value in product.specifications.items() %}
+
+                            <tr>
+
+                                <th>
+
+                                    <i class="fa-solid fa-circle-check me-2"></i>
+
+                                    {{ key }}
+
+                                </th>
+
+                                <td>
+
+                                    {{ value }}
+
+                                </td>
+
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
 
                 </div>
 
@@ -258,9 +356,222 @@
 
 {% endif %}
 
-<!-- ===================================== -->
-<!-- PRODUCT BENEFITS -->
-<!-- ===================================== -->
+<!-- =====================================================
+PRODUCT FEATURES
+===================================================== -->
+
+<section class="product-features-section">
+
+    <div class="container">
+
+        <div class="section-header text-center">
+
+            <span class="section-tag">
+
+                PRODUCT FEATURES
+
+            </span>
+
+            <h2>
+
+                Outstanding Features
+
+            </h2>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-lg-4 col-md-6 col-sm-12">
+
+                <div class="feature-box">
+
+                    <div class="feature-icon">
+
+                        <i class="fa-solid fa-award"></i>
+
+                    </div>
+
+                    <h5>
+
+                        Premium Quality
+
+                    </h5>
+
+                    <p>
+
+                        Manufactured using high-quality materials
+                        for reliable long-term performance.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="feature-box">
+
+                    <div class="feature-icon">
+
+                        <i class="fa-solid fa-bolt"></i>
+
+                    </div>
+
+                    <h5>
+
+                        High Performance
+
+                    </h5>
+
+                    <p>
+
+                        Designed for maximum efficiency
+                        with excellent operational stability.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="feature-box">
+
+                    <div class="feature-icon">
+
+                        <i class="fa-solid fa-shield-halved"></i>
+
+                    </div>
+
+                    <h5>
+
+                        Durable
+
+                    </h5>
+
+                    <p>
+
+                        Long life Product built to withstand demanding environment.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+PRODUCT GALLERY
+===================================================== -->
+
+{% if product.image_url %}
+
+<section class="gallery-section">
+
+    <div class="container">
+
+        <div class="section-header text-center">
+
+            <span class="section-tag">
+
+                PRODUCT GALLERY
+
+            </span>
+
+            <h2>
+
+                Product Images
+
+            </h2>
+
+            <p>
+
+                Explore high-resolution product images.
+
+            </p>
+
+        </div>
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-10">
+
+                <div class="gallery-card">
+
+                    <img
+                        src="{{ product.image_url }}"
+                        alt="{{ product.name }}"
+                        class="img-fluid gallery-image">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% elif product.image %}
+
+<section class="gallery-section">
+
+    <div class="container">
+
+        <div class="section-header text-center">
+
+            <span class="section-tag">
+
+                PRODUCT GALLERY
+
+            </span>
+
+            <h2>
+
+                Product Images
+
+            </h2>
+
+        </div>
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-10">
+
+                <div class="gallery-card">
+
+                    <img
+                        src="{{ url_for('static', filename=product.image) }}"
+                        alt="{{ product.name }}"
+                        class="img-fluid gallery-image">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endif %}
+
+
+<!-- =====================================================
+PRODUCT BENEFITS
+===================================================== -->
 
 <section class="benefits-section">
 
@@ -270,25 +581,37 @@
 
             <span class="section-tag">
 
-                KEY BENEFITS
+                WHY CHOOSE THIS PRODUCT
 
             </span>
 
             <h2>
 
-                Why Choose This Product
+                Key Benefits
 
             </h2>
 
+            <p>
+
+                Every product supplied by Mudhai Instrument Services
+                is carefully selected to ensure superior quality,
+                dependable performance and long-term customer satisfaction.
+
+            </p>
+
         </div>
 
-        <div class="row">
+        <div class="row g-4">
 
-            <div class="col-lg-3 col-md-6 mb-4">
+            <div class="col-lg-3 col-md-6">
 
                 <div class="benefit-card">
 
-                    <i class="fa-solid fa-award"></i>
+                    <div class="benefit-icon">
+
+                        <i class="fa-solid fa-award"></i>
+
+                    </div>
 
                     <h5>
 
@@ -296,15 +619,26 @@
 
                     </h5>
 
+                    <p>
+
+                        Manufactured with strict quality standards
+                        for consistent and reliable performance.
+
+                    </p>
+
                 </div>
 
             </div>
 
-            <div class="col-lg-3 col-md-6 mb-4">
+            <div class="col-lg-3 col-md-6">
 
                 <div class="benefit-card">
 
-                    <i class="fa-solid fa-shield-halved"></i>
+                    <div class="benefit-icon">
+
+                        <i class="fa-solid fa-shield-halved"></i>
+
+                    </div>
 
                     <h5>
 
@@ -312,15 +646,26 @@
 
                     </h5>
 
+                    <p>
+
+                        Designed for long-lasting operation
+                        even under demanding conditions.
+
+                    </p>
+
                 </div>
 
             </div>
 
-            <div class="col-lg-3 col-md-6 mb-4">
+            <div class="col-lg-3 col-md-6">
 
                 <div class="benefit-card">
 
-                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                    <div class="benefit-icon">
+
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+
+                    </div>
 
                     <h5>
 
@@ -328,21 +673,39 @@
 
                     </h5>
 
+                    <p>
+
+                        Simple installation and low
+                        maintenance requirements.
+
+                    </p>
+
                 </div>
 
             </div>
 
-            <div class="col-lg-3 col-md-6 mb-4">
+            <div class="col-lg-3 col-md-6">
 
                 <div class="benefit-card">
 
-                    <i class="fa-solid fa-thumbs-up"></i>
+                    <div class="benefit-icon">
+
+                        <i class="fa-solid fa-headset"></i>
+
+                    </div>
 
                     <h5>
 
-                        Trusted Solution
+                        Expert Support
 
                     </h5>
+
+                    <p>
+
+                        Dedicated technical guidance
+                        before and after purchase.
+
+                    </p>
 
                 </div>
 
@@ -354,17 +717,23 @@
 
 </section>
 
-<!-- ===================================== -->
-<!-- RELATED PRODUCTS -->
-<!-- ===================================== -->
+<!-- =====================================================
+RELATED PRODUCTS
+===================================================== -->
 
 {% if related_products %}
 
-<section class="related-products">
+<section class="related-products-section">
 
     <div class="container">
 
         <div class="section-header text-center">
+
+            <span class="section-tag">
+
+                EXPLORE MORE
+
+            </span>
 
             <h2>
 
@@ -372,34 +741,68 @@
 
             </h2>
 
+            <p>
+
+                Discover more products from our collection.
+
+            </p>
+
         </div>
 
-        <div class="row">
+        <div class="row g-4">
 
             {% for item in related_products %}
 
-            <div class="col-lg-4 mb-4">
+            <div class="col-lg-4 col-md-6 col-sm-12">
 
-                <div class="related-card">
+                <div class="related-product-card">
 
-                    <h4>
+                    {% if item.image_url %}
 
-                        {{ item.name }}
+                    <img
+                        src="{{ item.image_url }}"
+                        alt="{{ item.name }}"
+                        class="related-product-image">
 
-                    </h4>
+                    {% else %}
 
-                    <p>
+                    <img
+                        src="{{ url_for('static', filename='images/default-product.jpg') }}"
+                        alt="{{ item.name }}"
+                        class="related-product-image">
 
-                        {{ item.short_description }}
+                    {% endif %}
 
-                    </p>
+                    <div class="related-product-content">
 
-                    <a href="/product/{{ item._id }}"
-                       class="btn btn-outline-primary">
+                        <span class="related-category">
 
-                        View Product
+                            {{ item.category }}
 
-                    </a>
+                        </span>
+
+                        <h4>
+
+                            {{ item.name }}
+
+                        </h4>
+
+                        <p>
+
+                            {{ item.short_description }}
+
+                        </p>
+
+                        <a href="/product/{{ item._id }}"
+                           class="btn btn-outline-primary">
+
+                            <i class="fa-solid fa-arrow-right me-2"></i>
+
+                            View Details
+
+                        </a>
+
+                    </div>
 
                 </div>
 
@@ -415,33 +818,59 @@
 
 {% endif %}
 
-<!-- ===================================== -->
-<!-- CTA SECTION -->
-<!-- ===================================== -->
+<!-- =====================================================
+CALL TO ACTION
+===================================================== -->
 
 <section class="product-cta">
 
-    <div class="container text-center">
+    <div class="container">
 
-        <h2>
+        <div class="cta-card text-center">
 
-            Interested In This Product?
+            <span class="section-tag">
 
-        </h2>
+                NEED MORE INFORMATION?
 
-        <p>
+            </span>
 
-            Contact our team today for pricing,
-            specifications and professional support.
+            <h2>
 
-        </p>
+                Let's Discuss Your Requirements
 
-        <a href="/contact"
-           class="btn btn-success btn-lg">
+            </h2>
 
-            Request A Quote
+            <p>
 
-        </a>
+                Whether you need pricing, technical specifications,
+                product recommendations or bulk purchasing assistance,
+                our experts are ready to help you.
+
+            </p>
+
+            <div class="cta-buttons">
+
+                <a href="{{ url_for('contact') }}"
+                   class="btn btn-primary btn-lg">
+
+                    <i class="fa-solid fa-paper-plane me-2"></i>
+
+                    Request A Quote
+
+                </a>
+
+                <a href="{{ url_for('products') }}"
+                   class="btn btn-outline-light btn-lg">
+
+                    <i class="fa-solid fa-box-open me-2"></i>
+
+                    Browse Products
+
+                </a>
+
+            </div>
+
+        </div>
 
     </div>
 
@@ -455,35 +884,133 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    if (typeof gsap !== "undefined") {
+    if(typeof gsap !== "undefined"){
 
-        gsap.from(".product-title", {
-            y: 50,
-            opacity: 0,
-            duration: 1
+        gsap.registerPlugin(ScrollTrigger);
+
+        /* Hero */
+
+        gsap.from(".product-image-wrapper",{
+            opacity:0,
+            x:-80,
+            duration:1.2,
+            ease:"power3.out"
         });
 
-        gsap.from(".product-short-description", {
-            y: 40,
-            opacity: 0,
-            duration: 1.2
+        gsap.from(".product-info",{
+            opacity:0,
+            x:80,
+            duration:1.2,
+            ease:"power3.out"
         });
 
-        gsap.from(".main-product-image", {
-            scale: 0.8,
-            opacity: 0,
-            duration: 1.5
+        /* Sections */
+
+        gsap.utils.toArray(".section-header").forEach(section=>{
+
+            gsap.from(section,{
+                opacity:0,
+                y:40,
+                duration:0.8,
+                scrollTrigger:{
+                    trigger:section,
+                    start:"top 85%"
+                }
+            });
+
         });
 
-        gsap.from(".benefit-card", {
-            opacity: 0,
-            y: 60,
-            duration: 1,
-            stagger: 0.15,
-            scrollTrigger: {
-                trigger: ".benefits-section",
-                start: "top 80%"
+        /* Feature Cards */
+
+        gsap.from(".feature-box",{
+
+            opacity:0,
+
+            y:50,
+
+            stagger:0.15,
+
+            duration:0.8,
+
+            scrollTrigger:{
+                trigger:".product-features-section",
+                start:"top 80%"
             }
+
+        });
+
+        /* Benefits */
+
+        gsap.from(".benefit-card",{
+
+            opacity:0,
+
+            y:60,
+
+            stagger:0.15,
+
+            duration:0.9,
+
+            scrollTrigger:{
+                trigger:".benefits-section",
+                start:"top 80%"
+            }
+
+        });
+
+        /* Applications */
+
+        gsap.from(".application-card",{
+
+            opacity:0,
+
+            y:60,
+
+            stagger:0.15,
+
+            duration:0.9,
+
+            scrollTrigger:{
+                trigger:".applications-section",
+                start:"top 80%"
+            }
+
+        });
+
+        /* Related Products */
+
+        gsap.from(".related-product-card",{
+
+            opacity:0,
+
+            y:50,
+
+            stagger:0.18,
+
+            duration:0.9,
+
+            scrollTrigger:{
+                trigger:".related-products-section",
+                start:"top 85%"
+            }
+
+        });
+
+        /* CTA */
+
+        gsap.from(".cta-card",{
+
+            opacity:0,
+
+            scale:.9,
+
+            duration:1,
+
+            scrollTrigger:{
+                trigger:".product-cta",
+                start:"top 85%"
+            }
+
         });
 
     }
