@@ -111,7 +111,11 @@ const animatedSelectors = [
 
 animatedSelectors.forEach(selector => {
 
-    gsap.utils.toArray(selector).forEach(element => {
+    const elements = gsap.utils.toArray(selector);
+
+    if (!elements.length) return;
+
+    elements.forEach(element => {
 
         gsap.from(element,{
 

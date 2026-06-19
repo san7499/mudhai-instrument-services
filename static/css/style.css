@@ -1706,6 +1706,101 @@ body.page-loaded{
     background:#00ff99;
 
 }
+/*==================================================
+ GOOGLE TRANSLATE NAVBAR
+==================================================*/
+
+#google_translate_element{
+
+    display:flex;
+    align-items:center;
+    margin-left:15px;
+
+}
+
+/* Hide Google Logo */
+
+.goog-te-gadget img{
+
+    display:none !important;
+
+}
+
+/* Hide "Powered by" text */
+
+.goog-te-gadget span{
+
+    display:none !important;
+
+}
+
+/* Widget */
+
+.goog-te-gadget{
+
+    color:transparent !important;
+    font-size:0 !important;
+
+}
+
+/* Dropdown */
+
+.goog-te-combo{
+
+    background:transparent !important;
+
+    border:none !important;
+
+    outline:none !important;
+
+    color:#ffffff !important;
+
+    font-size:16px !important;
+
+    font-family:'Poppins',sans-serif !important;
+
+    font-weight:500;
+
+    cursor:pointer;
+
+    padding:0;
+
+    margin:0;
+
+}
+
+/* Dropdown menu */
+
+.goog-te-combo option{
+
+    color:#000;
+
+}
+
+/* Hide Banner */
+
+.goog-te-banner-frame.skiptranslate{
+
+    display:none !important;
+
+}
+
+body{
+
+    top:0 !important;
+
+}
+.skiptranslate iframe{
+
+    display:none !important;
+
+}
+
+body{
+
+    top:0 !important;
+
+}
 
 /* =====================================================
    RESPONSIVE
