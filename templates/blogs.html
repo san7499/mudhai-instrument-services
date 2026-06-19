@@ -37,27 +37,6 @@ Blogs & Insights | Mudhai Instrument Services
 
 </section>
 
-<!-- ========================= -->
-<!-- SEARCH SECTION -->
-<!-- ========================= -->
-
-<section class="blog-search-section">
-
-    <div class="container">
-
-        <div class="search-wrapper">
-
-            <input
-                type="text"
-                id="blogSearch"
-                class="form-control"
-                placeholder="Search articles...">
-
-        </div>
-
-    </div>
-
-</section>
 
 <!-- ========================= -->
 <!-- FEATURED BLOG -->
@@ -250,67 +229,10 @@ Blogs & Insights | Mudhai Instrument Services
 </section>
 
 
-
-
 {% endblock %}
 
 {% block scripts %}
 
-<script>
 
-document.addEventListener("DOMContentLoaded", () => {
-
-    const searchInput = document.getElementById("blogSearch");
-    const blogCards = document.querySelectorAll(".blog-item");
-
-    if(searchInput){
-
-        searchInput.addEventListener("keyup", () => {
-
-            const value =
-                searchInput.value.toLowerCase();
-
-            blogCards.forEach(card => {
-
-                const text =
-                    card.innerText.toLowerCase();
-
-                if(text.includes(value)){
-
-                    card.style.display = "block";
-
-                }else{
-
-                    card.style.display = "none";
-
-                }
-
-            });
-
-        });
-
-    }
-
-    if(typeof gsap !== "undefined"){
-
-        gsap.from(".blog-card", {
-
-            opacity:0,
-            y:60,
-            duration:1,
-            stagger:0.15,
-
-            scrollTrigger:{
-                trigger:".blog-grid-section",
-                start:"top 80%"
-            }
-
-        });
-
-    }
-
-});
-
-</script>
 
 {% endblock %}

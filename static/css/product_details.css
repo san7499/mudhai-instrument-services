@@ -1,64 +1,740 @@
 /*=========================================================
-PRODUCT DETAILS PAGE
-Mudhai Instrument Services
-Part 1 - Root | Global | Hero | Product Image
+    PRODUCT DETAILS PAGE
+    PART 1
 =========================================================*/
 
+
 /*=========================================================
-ROOT VARIABLES
+    ROOT VARIABLES
 =========================================================*/
 
 :root{
 
     --primary:#00d4ff;
-    --primary-dark:#009dff;
+
+    --primary-dark:#0099cc;
 
     --secondary:#00ff99;
 
     --dark:#050816;
-    --dark-light:#0b1325;
+
+    --dark-light:#0f172a;
+
     --card:#111827;
-    --card-light:#182235;
 
-    --white:#ffffff;
+    --glass:rgba(255,255,255,.05);
 
-    --text:#f8fafc;
-    --text-light:#d5dde8;
-    --text-muted:#9ca3af;
+    --glass-hover:rgba(255,255,255,.08);
 
-    --border:rgba(0,212,255,.18);
+    --border:rgba(255,255,255,.08);
 
-    --radius:28px;
+    --text:#ffffff;
 
-    --shadow-lg:
-    0 25px 60px rgba(0,0,0,.45);
+    --text-light:rgba(255,255,255,.75);
 
-    --shadow-glow:
-    0 0 30px rgba(0,212,255,.12);
+    --radius:22px;
+
+    --transition:.35s ease;
+
+    --shadow-lg:0 20px 60px rgba(0,0,0,.35);
+
+    --shadow-primary:0 0 40px rgba(0,212,255,.25);
 
 }
 
+
 /*=========================================================
-GLOBAL
+    HERO SECTION
 =========================================================*/
 
-.product-detail-hero,
-.product-overview,
-.specifications-section,
-.product-features-section,
-.gallery-section,
-.applications-section,
-.benefits-section,
-.related-products-section,
-.product-cta{
+.product-detail-hero{
 
     position:relative;
 
     overflow:hidden;
 
-    background:transparent;
+    padding:160px 0 110px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #050816 0%,
+        #071426 50%,
+        #0f172a 100%
+    );
 
 }
+
+
+/*=========================================================
+    HERO OVERLAY
+=========================================================*/
+
+.hero-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    overflow:hidden;
+
+}
+
+.hero-overlay::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:650px;
+
+    height:650px;
+
+    top:-250px;
+
+    right:-250px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(circle,
+    rgba(0,212,255,.18),
+    transparent 70%);
+
+    filter:blur(90px);
+
+}
+
+.hero-overlay::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:500px;
+
+    height:500px;
+
+    left:-150px;
+
+    bottom:-180px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(circle,
+    rgba(0,255,153,.15),
+    transparent 70%);
+
+    filter:blur(90px);
+
+}
+
+
+
+
+
+/*=========================================================
+    IMAGE GLOW
+=========================================================*/
+
+.image-glow{
+
+    position:absolute;
+
+    width:340px;
+
+    height:340px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(circle,
+    rgba(0,212,255,.35),
+    transparent 70%);
+
+    filter:blur(70px);
+
+    z-index:0;
+
+}
+
+
+/*=========================================================
+    MAIN PRODUCT IMAGE
+=========================================================*/
+
+.main-product-image{
+
+    position:relative;
+
+    z-index:2;
+
+    width:100%;
+
+    max-width:470px;
+
+    border-radius:26px;
+
+    object-fit:cover;
+
+    transition:var(--transition);
+
+    box-shadow:var(--shadow-lg);
+
+}
+
+.main-product-image:hover{
+
+    transform:translateY(-8px) scale(1.02);
+
+}
+
+
+/*=========================================================
+    FEATURED RIBBON
+=========================================================*/
+
+.featured-ribbon{
+
+    position:absolute;
+
+    top:20px;
+
+    left:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:12px 24px;
+
+    border-radius:50px;
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    color:#000;
+
+    font-size:.9rem;
+
+    font-weight:700;
+
+    z-index:5;
+
+    box-shadow:0 10px 30px rgba(0,212,255,.35);
+
+}
+
+.featured-ribbon i{
+
+    font-size:.9rem;
+
+}
+
+
+
+
+
+/*=========================================================
+    CATEGORY BADGE
+=========================================================*/
+
+.product-category{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:12px 28px;
+
+    margin-bottom:28px;
+
+    border-radius:50px;
+
+    background:rgba(0,212,255,.08);
+
+    border:1px solid rgba(0,212,255,.18);
+
+    color:var(--primary);
+
+    font-size:.95rem;
+
+    font-weight:600;
+
+}
+
+.product-category i{
+
+    color:var(--primary);
+
+}
+
+
+/*=========================================================
+    PRODUCT TITLE
+=========================================================*/
+
+.product-title{
+
+    color:#ffffff;
+
+    font-size:clamp(2.5rem,5vw,4rem);
+
+    font-weight:800;
+
+    line-height:1.18;
+
+    margin-bottom:28px;
+
+    word-break:break-word;
+
+}
+
+
+/*=========================================================
+    PRODUCT DESCRIPTION
+=========================================================*/
+
+.product-short-description{
+
+    color:var(--text-light);
+
+    font-size:1.08rem;
+
+    line-height:1.9;
+
+    margin-bottom:38px;
+
+    max-width:620px;
+
+}
+/*=========================================================
+    PART 2
+    PRODUCT INFO & OVERVIEW
+=========================================================*/
+
+
+/*=========================================================
+    PRODUCT HIGHLIGHTS
+=========================================================*/
+
+.product-highlights{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+    margin-bottom:40px;
+
+}
+
+
+/*=========================================================
+    PRODUCT HIGHLIGHTS
+=========================================================*/
+
+.product-highlights{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+    margin:35px 0 40px;
+
+}
+
+/*=========================================================
+PRODUCT DETAIL CARD
+=========================================================*/
+
+.product-detail-card{
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(25px);
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
+
+    transition:.4s;
+
+}
+
+.product-detail-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:rgba(0,212,255,.25);
+
+}
+.product-image-wrapper{
+
+    position:relative;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:50px;
+
+    height:100%;
+
+}
+
+.product-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    padding:60px;
+
+    height:100%;
+
+}
+.product-highlights{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+    margin:35px 0;
+
+}
+.highlight-box{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:18px;
+
+    padding:20px;
+
+    transition:.35s;
+
+}
+
+.highlight-box:hover{
+
+    transform:translateY(-5px);
+
+    border-color:rgba(0,212,255,.25);
+
+}
+.highlight-icon{
+
+    width:65px;
+
+    height:65px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:rgba(0,212,255,.12);
+
+    color:var(--primary);
+
+    flex-shrink:0;
+
+}
+
+.highlight-icon i{
+
+    font-size:1.5rem;
+
+}
+.highlight-content{
+
+    flex:1;
+
+}
+
+.highlight-content h6{
+
+    color:#fff;
+
+    margin-bottom:5px;
+
+    font-size:1.1rem;
+
+}
+
+.highlight-content span{
+
+    color:var(--text-light);
+
+}
+
+/*=========================================================
+    ICON
+=========================================================*/
+
+
+/*=========================================================
+    ACTION BUTTONS
+=========================================================*/
+
+.action-buttons{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:18px;
+
+    margin-top:35px;
+
+}
+
+.action-buttons .btn{
+
+    width:100%;
+
+    min-height:56px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:14px;
+
+    font-size:1rem;
+
+    font-weight:700;
+
+    transition:.35s ease;
+
+}
+
+.action-buttons .btn i{
+
+    margin-right:10px;
+
+}
+
+.action-buttons .btn-primary{
+
+    background:linear-gradient(
+
+        135deg,
+
+        var(--primary),
+
+        var(--secondary)
+
+    );
+
+    border:none;
+
+    color:#000;
+
+}
+
+.action-buttons .btn-primary:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 15px 35px rgba(0,212,255,.28);
+
+}
+
+.action-buttons .btn-outline-light{
+
+    border:1px solid rgba(255,255,255,.15);
+
+    background:transparent;
+
+    color:#fff;
+
+}
+
+.action-buttons .btn-outline-light:hover{
+
+    background:#fff;
+
+    color:#000;
+
+}
+
+
+/*=========================================================
+    MOBILE
+=========================================================*/
+
+@media(max-width:768px){
+
+    .product-highlights{
+
+        gap:14px;
+
+        margin:25px 0 30px;
+
+    }
+
+
+    .action-buttons{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+/*=========================================================
+    PRODUCT OVERVIEW
+=========================================================*/
+
+.product-overview{
+
+    padding:110px 0;
+
+    position:relative;
+
+}
+
+.product-overview::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+    radial-gradient(circle at top right,
+    rgba(0,212,255,.06),
+    transparent 45%);
+
+    pointer-events:none;
+
+}
+
+
+/*=========================================================
+    OVERVIEW CARD
+=========================================================*/
+
+.overview-content{
+
+    background:var(--glass);
+
+    border:1px solid var(--border);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:26px;
+
+    padding:55px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    box-shadow:var(--shadow-lg);
+
+}
+
+.overview-content::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:300px;
+
+    height:300px;
+
+    top:-140px;
+
+    right:-140px;
+
+    border-radius:50%;
+
+    background:
+
+    radial-gradient(circle,
+    rgba(0,212,255,.12),
+    transparent 70%);
+
+}
+
+.overview-content>*{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+.overview-content h2{
+
+    color:#ffffff;
+
+    font-size:2.5rem;
+
+    font-weight:800;
+
+    margin-bottom:24px;
+
+}
+
+.overview-content p{
+
+    color:var(--text-light);
+
+    line-height:2;
+
+    font-size:1.05rem;
+
+    margin-bottom:18px;
+
+}
+
+
+/*=========================================================
+    SECTION HEADER
+=========================================================*/
 
 .section-header{
 
@@ -76,21 +752,21 @@ GLOBAL
 
     justify-content:center;
 
-    padding:12px 28px;
+    padding:12px 26px;
 
-    border-radius:50px;
+    border-radius:40px;
 
     background:rgba(0,212,255,.08);
 
-    border:1px solid rgba(0,212,255,.20);
+    border:1px solid rgba(0,212,255,.18);
 
     color:var(--primary);
 
-    font-size:.82rem;
+    font-size:.85rem;
 
     font-weight:700;
 
-    letter-spacing:2px;
+    letter-spacing:1px;
 
     text-transform:uppercase;
 
@@ -100,9 +776,9 @@ GLOBAL
 
 .section-header h2{
 
-    color:var(--white);
+    color:#ffffff;
 
-    font-size:3rem;
+    font-size:clamp(2rem,4vw,3rem);
 
     font-weight:800;
 
@@ -112,709 +788,42 @@ GLOBAL
 
 .section-header p{
 
-    color:var(--text-light);
-
-    font-size:1.05rem;
-
-    line-height:1.8;
-
-    max-width:750px;
+    max-width:760px;
 
     margin:auto;
 
-}
-
-/*=========================================================
-HERO
-=========================================================*/
-
-.product-detail-hero{
-
-    padding:170px 0 120px;
-
-    background:
-    linear-gradient(
-        135deg,
-        #050816,
-        #081224,
-        #0d1830
-    );
-
-}
-
-.product-detail-hero::before{
-
-    content:"";
-
-    position:absolute;
-
-    width:650px;
-    height:650px;
-
-    top:-250px;
-    right:-250px;
-
-    border-radius:50%;
-
-    background:
-    radial-gradient(
-        circle,
-        rgba(0,212,255,.16),
-        transparent 70%
-    );
-
-    filter:blur(90px);
-
-    pointer-events:none;
-
-}
-
-.product-detail-hero::after{
-
-    content:"";
-
-    position:absolute;
-
-    width:500px;
-    height:500px;
-
-    bottom:-180px;
-    left:-180px;
-
-    border-radius:50%;
-
-    background:
-    radial-gradient(
-        circle,
-        rgba(0,255,153,.10),
-        transparent 70%
-    );
-
-    filter:blur(90px);
-
-    pointer-events:none;
-
-}
-
-.product-detail-hero .container{
-
-    position:relative;
-
-    z-index:5;
-
-}
-
-/*=========================================================
-PRODUCT IMAGE
-=========================================================*/
-
-.product-image-wrapper{
-
-    position:relative;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-}
-
-.image-glow{
-
-    position:absolute;
-
-    width:420px;
-    height:420px;
-
-    border-radius:50%;
-
-    background:
-    radial-gradient(
-        circle,
-        rgba(0,212,255,.18),
-        transparent 70%
-    );
-
-    filter:blur(60px);
-
-    animation:imageGlow 5s ease infinite;
-
-}
-
-.main-product-image{
-
-    width:100%;
-
-    max-width:520px;
-
-    border-radius:30px;
-
-    border:1px solid var(--border);
-
-    background:#111827;
-
-    object-fit:cover;
-
-    position:relative;
-
-    z-index:2;
-
-    box-shadow:
-    var(--shadow-lg),
-    var(--shadow-glow);
-
-    transition:.45s ease;
-
-}
-
-.main-product-image:hover{
-
-    transform:
-    translateY(-10px)
-    scale(1.02);
-
-}
-
-@keyframes imageGlow{
-
-    0%{
-
-        transform:scale(.95);
-
-        opacity:.45;
-
-    }
-
-    50%{
-
-        transform:scale(1.05);
-
-        opacity:1;
-
-    }
-
-    100%{
-
-        transform:scale(.95);
-
-        opacity:.45;
-
-    }
-
-}
-
-/*=========================================================
-FEATURED BADGE
-=========================================================*/
-
-.featured-ribbon{
-
-    position:absolute;
-
-    top:25px;
-
-    left:25px;
-
-    z-index:10;
-
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    padding:12px 24px;
-
-    border-radius:50px;
-
-    background:
-    linear-gradient(
-        135deg,
-        var(--primary),
-        var(--secondary)
-    );
-
-    color:#000;
-
-    font-weight:700;
-
-    box-shadow:
-
-    0 15px 35px rgba(0,212,255,.30);
-
-}
-
-.featured-ribbon i{
-
-    font-size:.95rem;
-
-}
-/*=========================================================
-PART 2
-PRODUCT INFO | HIGHLIGHTS | BUTTONS | OVERVIEW
-=========================================================*/
-
-/*=========================================================
-PRODUCT INFO
-=========================================================*/
-
-.product-info{
-
-    padding-left:50px;
-
-    position:relative;
-
-    z-index:2;
-
-}
-
-.product-category{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    padding:12px 24px;
-
-    border-radius:50px;
-
-    background:rgba(0,212,255,.08);
-
-    border:1px solid rgba(0,212,255,.22);
-
-    color:var(--primary);
-
-    font-size:.9rem;
-
-    font-weight:700;
-
-    margin-bottom:25px;
-
-}
-
-.product-title{
-
-    color:var(--white);
-
-    font-size:4rem;
-
-    font-weight:900;
-
-    line-height:1.15;
-
-    margin-bottom:25px;
-
-}
-
-.product-short-description{
-
     color:var(--text-light);
-
-    font-size:1.1rem;
 
     line-height:1.9;
 
-    margin-bottom:40px;
-
-    max-width:650px;
-
-}
-
-.featured-badge{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    padding:12px 24px;
-
-    border-radius:50px;
-
-    background:linear-gradient(
-        135deg,
-        var(--secondary),
-        #6dffcb
-    );
-
-    color:#000;
-
-    font-weight:700;
-
-    margin-bottom:35px;
-
-    box-shadow:
-
-    0 12px 30px rgba(0,255,153,.25);
-
-}
-
-/*=========================================================
-PRODUCT HIGHLIGHTS
-=========================================================*/
-
-.product-highlights{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:18px;
-
-    margin-bottom:45px;
-
-}
-
-.highlight-box{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:18px;
-
-    padding:22px;
-
-    border-radius:22px;
-
-    background:var(--card);
-
-    border:1px solid var(--border);
-
-    transition:.35s ease;
-
-}
-
-.highlight-box:hover{
-
-    transform:translateX(8px);
-
-    border-color:var(--primary);
-
-    box-shadow:
-
-    0 20px 40px rgba(0,212,255,.15);
-
-}
-
-.highlight-box i{
-
-    width:60px;
-
-    height:60px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    flex-shrink:0;
-
-    border-radius:50%;
-
-    background:
-
-    linear-gradient(
-
-        135deg,
-
-        rgba(0,212,255,.18),
-
-        rgba(0,255,153,.15)
-
-    );
-
-    color:var(--primary);
-
-    font-size:1.35rem;
-
-}
-
-.highlight-box h6{
-
-    color:#fff;
-
-    font-size:1.05rem;
-
-    font-weight:700;
-
-    margin-bottom:4px;
-
-}
-
-.highlight-box span{
-
-    color:var(--text-light);
-
-    font-size:.92rem;
-
-    line-height:1.7;
-
-}
-
-/*=========================================================
-ACTION BUTTONS
-=========================================================*/
-
-.action-buttons{
-
-    display:flex;
-
-    gap:18px;
-
-    flex-wrap:wrap;
-
-    margin-top:15px;
-
-}
-
-.action-buttons .btn{
-
-    padding:15px 34px;
-
-    border-radius:14px;
-
-    font-size:1rem;
-
-    font-weight:700;
-
-    transition:.35s ease;
-
-}
-
-.action-buttons .btn-primary{
-
-    border:none;
-
-    color:#000;
-
-    background:
-
-    linear-gradient(
-
-        135deg,
-
-        var(--primary),
-
-        #55e8ff
-
-    );
-
-}
-
-.action-buttons .btn-primary:hover{
-
-    transform:translateY(-5px);
-
-    box-shadow:
-
-    0 18px 35px rgba(0,212,255,.30);
-
-}
-
-.action-buttons .btn-outline-light{
-
-    background:transparent;
-
-    color:#fff;
-
-    border:1px solid rgba(255,255,255,.18);
-
-}
-
-.action-buttons .btn-outline-light:hover{
-
-    background:#fff;
-
-    color:#000;
-
-    transform:translateY(-5px);
-
-}
-
-/*=========================================================
-PRODUCT OVERVIEW
-=========================================================*/
-
-.product-overview{
-
-    padding:120px 0;
-
-}
-
-.overview-card{
-
-    background:var(--card);
-
-    border:1px solid var(--border);
-
-    border-radius:30px;
-
-    overflow:hidden;
-
-    box-shadow:
-
-    var(--shadow-lg);
-
-}
-
-.overview-card::before{
-
-    content:"";
-
-    display:block;
-
-    width:100%;
-
-    height:4px;
-
-    background:
-
-    linear-gradient(
-
-        90deg,
-
-        var(--primary),
-
-        var(--secondary)
-
-    );
-
-}
-
-.overview-content{
-
-    padding:60px;
-
-    color:var(--text-light);
-
-    font-size:1.05rem;
-
-    line-height:2;
-
-}
-
-.overview-content h1,
-.overview-content h2,
-.overview-content h3,
-.overview-content h4{
-
-    color:#fff;
-
-    font-weight:800;
-
-    margin-top:35px;
-
-    margin-bottom:20px;
-
-}
-
-.overview-content h1:first-child,
-.overview-content h2:first-child{
-
-    margin-top:0;
-
-}
-
-.overview-content p{
-
-    margin-bottom:18px;
-
-}
-
-.overview-content strong{
-
-    color:#fff;
-
-}
-
-.overview-content ul,
-.overview-content ol{
-
-    margin:22px 0;
-
-    padding-left:30px;
-
-}
-
-.overview-content li{
-
-    margin-bottom:12px;
-
-}
-
-.overview-content img{
-
-    width:100%;
-
-    margin:30px 0;
-
-    border-radius:18px;
-
-    border:1px solid var(--border);
-
-}
-
-.overview-content table{
-
-    width:100%;
-
-    border-collapse:collapse;
-
-    margin-top:30px;
-
-}
-
-.overview-content th{
-
-    background:rgba(0,212,255,.08);
-
-    color:#fff;
-
-    padding:16px;
-
-    border:1px solid var(--border);
-
-}
-
-.overview-content td{
-
-    padding:16px;
-
-    color:var(--text-light);
-
-    border:1px solid var(--border);
+    font-size:1.02rem;
 
 }
 /*=========================================================
-PART 3
-SPECIFICATIONS | GALLERY | PRODUCT FEATURES
+    PART 3
+    SPECIFICATIONS | FEATURES | GALLERY
 =========================================================*/
 
-/*=========================================
-SPECIFICATIONS
-=========================================*/
+
+/*=========================================================
+    SPECIFICATIONS SECTION
+=========================================================*/
 
 .specifications-section{
 
     padding:120px 0;
 
-    position:relative;
-
 }
 
 .specification-card{
 
-    background:var(--card);
+    background:var(--glass);
+
+    backdrop-filter:blur(20px);
 
     border:1px solid var(--border);
 
-    border-radius:30px;
+    border-radius:24px;
 
     overflow:hidden;
 
@@ -822,11 +831,16 @@ SPECIFICATIONS
 
 }
 
+
+/*=========================================================
+    SPECIFICATION TABLE
+=========================================================*/
+
 .specification-table{
 
-    width:100%;
-
     margin:0;
+
+    width:100%;
 
     border-collapse:collapse;
 
@@ -834,7 +848,7 @@ SPECIFICATIONS
 
 .specification-table tbody tr{
 
-    transition:.35s;
+    transition:var(--transition);
 
 }
 
@@ -854,117 +868,42 @@ SPECIFICATIONS
 
     width:35%;
 
-    padding:22px 28px;
+    padding:22px 26px;
+
+    background:#182235;
 
     color:var(--primary);
+
+    border:1px solid rgba(255,255,255,.05);
 
     font-size:1rem;
 
     font-weight:700;
 
-    border:1px solid var(--border);
-
-    background:#162033;
-
 }
 
 .specification-table td{
 
-    padding:22px 28px;
+    padding:22px 26px;
 
     color:var(--text-light);
 
-    border:1px solid var(--border);
+    border:1px solid rgba(255,255,255,.05);
 
     line-height:1.8;
 
 }
 
-/*=========================================
-GALLERY
-=========================================*/
+.specification-table th i{
 
-.gallery-section{
-
-    padding:120px 0;
+    margin-right:8px;
 
 }
 
-.gallery-card{
 
-    position:relative;
-
-    overflow:hidden;
-
-    border-radius:30px;
-
-    background:var(--card);
-
-    border:1px solid var(--border);
-
-    box-shadow:var(--shadow-lg);
-
-    transition:.4s;
-
-}
-
-.gallery-card:hover{
-
-    transform:translateY(-10px);
-
-    box-shadow:
-
-    0 30px 60px rgba(0,212,255,.20);
-
-}
-
-.gallery-image{
-
-    width:100%;
-
-    height:580px;
-
-    object-fit:contain;
-
-    background:#111827;
-
-    transition:.5s;
-
-}
-
-.gallery-card:hover .gallery-image{
-
-    transform:scale(1.03);
-
-}
-
-.gallery-card::after{
-
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    background:
-
-    linear-gradient(
-
-        to top,
-
-        rgba(0,0,0,.20),
-
-        transparent 45%
-
-    );
-
-    pointer-events:none;
-
-}
-
-/*=========================================
-FEATURES SECTION
-=========================================*/
+/*=========================================================
+    PRODUCT FEATURES
+=========================================================*/
 
 .product-features-section{
 
@@ -974,23 +913,45 @@ FEATURES SECTION
 
 .feature-box{
 
+    position:relative;
+
     height:100%;
 
-    padding:45px 30px;
+    padding:40px 28px;
 
-    text-align:center;
+    background:var(--glass);
 
-    background:var(--card);
+    backdrop-filter:blur(18px);
 
     border:1px solid var(--border);
 
-    border-radius:28px;
+    border-radius:22px;
 
-    transition:.4s;
+    text-align:center;
 
-    box-shadow:
+    overflow:hidden;
 
-    0 15px 40px rgba(0,0,0,.35);
+    transition:var(--transition);
+
+}
+
+.feature-box::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(
+        135deg,
+        rgba(0,212,255,.08),
+        transparent 70%
+    );
+
+    opacity:0;
+
+    transition:var(--transition);
 
 }
 
@@ -998,13 +959,30 @@ FEATURES SECTION
 
     transform:translateY(-10px);
 
-    border-color:var(--primary);
+    border-color:rgba(0,212,255,.20);
 
-    box-shadow:
-
-    0 25px 55px rgba(0,212,255,.18);
+    box-shadow:0 20px 40px rgba(0,212,255,.15);
 
 }
+
+.feature-box:hover::before{
+
+    opacity:1;
+
+}
+
+.feature-box>*{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+
+/*=========================================================
+    FEATURE ICON
+=========================================================*/
 
 .feature-icon{
 
@@ -1012,7 +990,7 @@ FEATURES SECTION
 
     height:90px;
 
-    margin:0 auto 25px;
+    margin:auto auto 24px;
 
     border-radius:50%;
 
@@ -1022,35 +1000,37 @@ FEATURES SECTION
 
     justify-content:center;
 
-    background:
+    background:rgba(0,212,255,.10);
 
-    linear-gradient(
-
-        135deg,
-
-        rgba(0,212,255,.18),
-
-        rgba(0,255,153,.12)
-
-    );
-
-    border:1px solid rgba(0,212,255,.25);
-
-    transition:.35s;
+    transition:var(--transition);
 
 }
 
 .feature-box:hover .feature-icon{
 
-    transform:rotate(8deg) scale(1.08);
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    transform:rotate(10deg) scale(1.08);
 
 }
 
 .feature-icon i{
 
-    font-size:2.4rem;
+    font-size:2.2rem;
 
     color:var(--primary);
+
+    transition:var(--transition);
+
+}
+
+.feature-box:hover .feature-icon i{
+
+    color:#000;
 
 }
 
@@ -1062,7 +1042,7 @@ FEATURES SECTION
 
     font-weight:700;
 
-    margin-bottom:18px;
+    margin-bottom:16px;
 
 }
 
@@ -1076,251 +1056,174 @@ FEATURES SECTION
 
 }
 
-/*=========================================
-FEATURE GRID
-=========================================*/
 
-.features-grid{
-
-    display:grid;
-
-    grid-template-columns:repeat(3,1fr);
-
-    gap:30px;
-
-}
-
-/*=========================================
-IMAGE ZOOM
-=========================================*/
-
-.gallery-image{
-
-    cursor:zoom-in;
-
-}
-
-.gallery-card:hover img{
-
-    filter:brightness(1.05);
-
-}
-
-/*=========================================
-SMALL LABELS
-=========================================*/
-
-.feature-label{
-
-    display:inline-block;
-
-    margin-top:15px;
-
-    padding:6px 14px;
-
-    border-radius:50px;
-
-    background:rgba(0,212,255,.08);
-
-    border:1px solid rgba(0,212,255,.18);
-
-    color:var(--primary);
-
-    font-size:.82rem;
-
-    font-weight:600;
-
-}
-
-/*=========================================
-FADE ANIMATION
-=========================================*/
-
-.feature-box,
-.gallery-card,
-.specification-card{
-
-    animation:fadeUp .8s ease both;
-
-}
 /*=========================================================
-PART 4
-APPLICATIONS | BENEFITS | ANIMATIONS
+    PRODUCT GALLERY
 =========================================================*/
 
-/*=========================================
-APPLICATIONS SECTION
-=========================================*/
-
-.applications-section{
+.gallery-section{
 
     padding:120px 0;
 
-    position:relative;
-
 }
 
-.applications-grid{
-
-    display:grid;
-
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-
-    gap:30px;
-
-}
-
-.application-card{
+.gallery-card{
 
     position:relative;
-
-    background:var(--card);
-
-    border:1px solid var(--border);
-
-    border-radius:28px;
-
-    padding:45px 30px;
-
-    text-align:center;
 
     overflow:hidden;
 
-    transition:.4s ease;
+    border-radius:24px;
+
+    background:var(--glass);
+
+    border:1px solid var(--border);
+
+    backdrop-filter:blur(20px);
 
     box-shadow:var(--shadow-lg);
 
-}
-
-.application-card:hover{
-
-    transform:translateY(-10px);
-
-    border-color:var(--primary);
-
-    box-shadow:
-
-    0 25px 55px rgba(0,212,255,.20);
+    transition:var(--transition);
 
 }
 
-.application-card::before{
+.gallery-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.gallery-card::after{
 
     content:"";
 
     position:absolute;
 
-    top:0;
+    inset:0;
 
-    left:0;
+    background:linear-gradient(
 
-    width:100%;
+        to top,
 
-    height:4px;
+        rgba(0,0,0,.25),
 
-    background:
-
-    linear-gradient(
-
-        90deg,
-
-        var(--primary),
-
-        var(--secondary)
+        transparent 45%
 
     );
 
-    transform:scaleX(0);
+    opacity:0;
 
-    transform-origin:left;
+    transition:var(--transition);
+
+}
+
+.gallery-card:hover::after{
+
+    opacity:1;
+
+}
+
+
+/*=========================================================
+    GALLERY IMAGE
+=========================================================*/
+
+.gallery-image{
+
+    width:100%;
+
+    height:520px;
+
+    object-fit:contain;
+
+    background:#101827;
+
+    transition:.45s;
+
+}
+
+.gallery-card:hover .gallery-image{
+
+    transform:scale(1.04);
+
+}
+
+
+/*=========================================================
+    IMAGE LOADER EFFECT
+=========================================================*/
+
+.gallery-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+    radial-gradient(circle,
+
+    rgba(0,212,255,.08),
+
+    transparent 70%);
+
+    opacity:0;
 
     transition:.4s;
 
 }
 
-.application-card:hover::before{
+.gallery-card:hover::before{
 
-    transform:scaleX(1);
-
-}
-
-/*=========================================
-APPLICATION ICON
-=========================================*/
-
-.application-icon{
-
-    width:90px;
-
-    height:90px;
-
-    margin:0 auto 28px;
-
-    border-radius:50%;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    background:
-
-    linear-gradient(
-
-        135deg,
-
-        rgba(0,212,255,.18),
-
-        rgba(0,255,153,.12)
-
-    );
-
-    border:1px solid rgba(0,212,255,.22);
-
-    transition:.35s;
+    opacity:1;
 
 }
 
-.application-card:hover .application-icon{
 
-    transform:rotate(8deg) scale(1.08);
+/*=========================================================
+    COMMON CARD ANIMATION
+=========================================================*/
 
-}
+.feature-box,
 
-.application-icon i{
+.gallery-card,
 
-    font-size:2.4rem;
+.specification-card{
 
-    color:var(--primary);
-
-}
-
-.application-card h4{
-
-    color:#ffffff;
-
-    font-size:1.35rem;
-
-    font-weight:700;
-
-    margin-bottom:18px;
+    animation:fadeUp .8s ease both;
 
 }
 
-.application-card p{
+@keyframes fadeUp{
 
-    color:var(--text-light);
+    from{
 
-    line-height:1.9;
+        opacity:0;
 
-    margin:0;
+        transform:translateY(35px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
 
 }
+/*=========================================================
+    PART 4
+    BENEFITS & RELATED PRODUCTS
+=========================================================*/
 
-/*=========================================
-BENEFITS SECTION
-=========================================*/
+
+/*=========================================================
+    BENEFITS SECTION
+=========================================================*/
 
 .benefits-section{
 
@@ -1330,47 +1233,52 @@ BENEFITS SECTION
 
 }
 
-.benefits-grid{
+.benefits-section::before{
 
-    display:grid;
+    content:"";
 
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    position:absolute;
 
-    gap:30px;
+    inset:0;
+
+    background:
+
+    radial-gradient(circle at left,
+    rgba(0,212,255,.05),
+    transparent 45%);
+
+    pointer-events:none;
 
 }
+
+
+/*=========================================================
+    BENEFIT CARD
+=========================================================*/
 
 .benefit-card{
 
     position:relative;
 
-    background:var(--card);
+    height:100%;
 
-    border:1px solid var(--border);
-
-    border-radius:28px;
-
-    padding:45px 28px;
+    padding:45px 30px;
 
     text-align:center;
 
+    background:var(--glass);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid var(--border);
+
+    border-radius:24px;
+
     overflow:hidden;
 
-    transition:.4s ease;
+    transition:var(--transition);
 
     box-shadow:var(--shadow-lg);
-
-}
-
-.benefit-card:hover{
-
-    transform:translateY(-10px);
-
-    border-color:var(--secondary);
-
-    box-shadow:
-
-    0 25px 55px rgba(0,255,153,.18);
 
 }
 
@@ -1390,13 +1298,23 @@ BENEFITS SECTION
 
         rgba(0,212,255,.08),
 
-        transparent 65%
+        transparent 70%
 
     );
 
     opacity:0;
 
-    transition:.4s;
+    transition:.35s;
+
+}
+
+.benefit-card:hover{
+
+    transform:translateY(-10px);
+
+    border-color:rgba(0,212,255,.20);
+
+    box-shadow:0 25px 45px rgba(0,212,255,.15);
 
 }
 
@@ -1406,25 +1324,42 @@ BENEFITS SECTION
 
 }
 
-/*=========================================
-BENEFIT ICON
-=========================================*/
+.benefit-card>*{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+
+/*=========================================================
+    BENEFIT ICON
+=========================================================*/
 
 .benefit-icon{
 
-    width:90px;
+    width:95px;
 
-    height:90px;
+    height:95px;
 
-    margin:0 auto 28px;
+    margin:auto auto 25px;
 
     border-radius:50%;
 
     display:flex;
 
+    align-items:center;
+
     justify-content:center;
 
-    align-items:center;
+    background:rgba(0,212,255,.10);
+
+    transition:var(--transition);
+
+}
+
+.benefit-card:hover .benefit-icon{
 
     background:
 
@@ -1432,37 +1367,37 @@ BENEFIT ICON
 
         135deg,
 
-        rgba(0,212,255,.18),
+        var(--primary),
 
-        rgba(0,255,153,.12)
+        var(--secondary)
 
     );
 
-    border:1px solid rgba(0,212,255,.25);
-
-    transition:.35s;
-
-}
-
-.benefit-card:hover .benefit-icon{
-
-    transform:rotate(8deg) scale(1.08);
+    transform:rotate(10deg) scale(1.08);
 
 }
 
 .benefit-icon i{
 
-    font-size:2.4rem;
+    font-size:2.3rem;
 
     color:var(--primary);
 
+    transition:.35s;
+
 }
 
-.benefit-card h5{
+.benefit-card:hover .benefit-icon i{
 
-    color:#ffffff;
+    color:#000;
 
-    font-size:1.3rem;
+}
+
+.benefit-card h4{
+
+    color:#fff;
+
+    font-size:1.35rem;
 
     font-weight:700;
 
@@ -1474,113 +1409,16 @@ BENEFIT ICON
 
     color:var(--text-light);
 
-    line-height:1.85;
+    line-height:1.9;
 
     margin:0;
 
 }
 
-/*=========================================
-COMMON HOVER EFFECT
-=========================================*/
 
-.feature-box,
-.application-card,
-.benefit-card{
-
-    will-change:transform;
-
-}
-
-.feature-box:hover,
-.application-card:hover,
-.benefit-card:hover{
-
-    cursor:default;
-
-}
-
-/*=========================================
-FADE UP ANIMATION
-=========================================*/
-
-@keyframes fadeUp{
-
-    from{
-
-        opacity:0;
-
-        transform:translateY(40px);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:translateY(0);
-
-    }
-
-}
-
-.feature-box,
-.application-card,
-.benefit-card,
-.gallery-card,
-.specification-card{
-
-    animation:fadeUp .8s ease both;
-
-}
-
-/*=========================================
-FLOAT ANIMATION
-=========================================*/
-
-@keyframes floatCard{
-
-    0%,100%{
-
-        transform:translateY(0);
-
-    }
-
-    50%{
-
-        transform:translateY(-6px);
-
-    }
-
-}
-
-.main-product-image{
-
-    animation:floatCard 6s ease-in-out infinite;
-
-}
-
-/*=========================================
-ICON GLOW
-=========================================*/
-
-.feature-icon,
-.application-icon,
-.benefit-icon{
-
-    box-shadow:
-
-    0 0 25px rgba(0,212,255,.08);
-
-}
 /*=========================================================
-PART 5
-RELATED PRODUCTS | CTA | RESPONSIVE | UTILITIES
+    RELATED PRODUCTS
 =========================================================*/
-
-/*=========================================
-RELATED PRODUCTS
-=========================================*/
 
 .related-products-section{
 
@@ -1588,45 +1426,61 @@ RELATED PRODUCTS
 
 }
 
-.related-product-card{
+
+/*=========================================================
+    RELATED PRODUCT CARD
+=========================================================*/
+
+.related-card{
 
     height:100%;
 
-    display:flex;
+    overflow:hidden;
 
-    flex-direction:column;
+    border-radius:24px;
 
-    background:var(--card);
+    background:var(--glass);
+
+    backdrop-filter:blur(18px);
 
     border:1px solid var(--border);
 
-    border-radius:28px;
-
-    overflow:hidden;
-
-    transition:.4s ease;
+    transition:var(--transition);
 
     box-shadow:var(--shadow-lg);
 
 }
 
-.related-product-card:hover{
+.related-card:hover{
 
     transform:translateY(-10px);
 
-    border-color:var(--primary);
-
-    box-shadow:
-
-    0 30px 60px rgba(0,212,255,.18);
+    border-color:rgba(0,212,255,.20);
 
 }
 
+
+/*=========================================================
+    RELATED IMAGE
+=========================================================*/
+
 .related-product-image{
+
+    position:relative;
+
+    overflow:hidden;
+
+    height:250px;
+
+    background:#0f172a;
+
+}
+
+.related-product-image img{
 
     width:100%;
 
-    height:240px;
+    height:100%;
 
     object-fit:cover;
 
@@ -1634,53 +1488,85 @@ RELATED PRODUCTS
 
 }
 
-.related-product-card:hover .related-product-image{
+.related-card:hover img{
 
-    transform:scale(1.05);
+    transform:scale(1.08);
 
 }
+
+
+/*=========================================================
+    RELATED IMAGE OVERLAY
+=========================================================*/
+
+.related-product-image::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+    linear-gradient(
+
+        to top,
+
+        rgba(0,0,0,.30),
+
+        transparent 50%
+
+    );
+
+    opacity:0;
+
+    transition:.35s;
+
+}
+
+.related-card:hover .related-product-image::after{
+
+    opacity:1;
+
+}
+
+
+/*=========================================================
+    RELATED CONTENT
+=========================================================*/
 
 .related-product-content{
 
-    flex:1;
-
-    display:flex;
-
-    flex-direction:column;
-
-    padding:30px;
+    padding:28px;
 
 }
 
-.related-category{
+.related-product-category{
 
     display:inline-block;
 
-    align-self:flex-start;
+    margin-bottom:16px;
 
-    padding:8px 18px;
+    padding:8px 16px;
 
-    border-radius:50px;
+    border-radius:40px;
 
-    background:rgba(0,212,255,.08);
-
-    border:1px solid rgba(0,212,255,.18);
+    background:rgba(0,212,255,.10);
 
     color:var(--primary);
 
-    font-size:.82rem;
+    font-size:.85rem;
 
     font-weight:600;
-
-    margin-bottom:18px;
 
 }
 
 .related-product-content h4{
 
-    color:#ffffff;
+    color:#fff;
 
-    font-size:1.35rem;
+    font-size:1.4rem;
 
     font-weight:700;
 
@@ -1690,31 +1576,92 @@ RELATED PRODUCTS
 
 .related-product-content p{
 
-    flex:1;
-
     color:var(--text-light);
 
     line-height:1.8;
 
-    margin-bottom:25px;
+    margin-bottom:22px;
 
 }
 
 .related-product-content .btn{
 
-    width:100%;
-
-    padding:14px;
-
     border-radius:12px;
 
-    font-weight:700;
+    padding:12px 26px;
+
+    font-weight:600;
 
 }
 
-/*=========================================
-CTA
-=========================================*/
+
+/*=========================================================
+    CARD ANIMATION
+=========================================================*/
+
+.related-card,
+
+.benefit-card{
+
+    animation:fadeUp .8s ease both;
+
+}
+
+.related-card:nth-child(2){
+
+    animation-delay:.15s;
+
+}
+
+.related-card:nth-child(3){
+
+    animation-delay:.30s;
+
+}
+
+.benefit-card:nth-child(2){
+
+    animation-delay:.10s;
+
+}
+
+.benefit-card:nth-child(3){
+
+    animation-delay:.20s;
+
+}
+
+.benefit-card:nth-child(4){
+
+    animation-delay:.30s;
+
+}
+
+
+/*=========================================================
+    HOVER SHADOW
+=========================================================*/
+
+.related-card:hover,
+
+.benefit-card:hover{
+
+    box-shadow:
+
+    0 25px 60px rgba(0,0,0,.35),
+
+    0 0 35px rgba(0,212,255,.18);
+
+}
+/*=========================================================
+    PART 5
+    CTA | RESPONSIVE | UTILITIES
+=========================================================*/
+
+
+/*=========================================================
+    CTA SECTION
+=========================================================*/
 
 .product-cta{
 
@@ -1728,25 +1675,21 @@ CTA
 
     overflow:hidden;
 
-    background:
+    padding:70px 50px;
 
-    linear-gradient(
+    border-radius:30px;
+
+    text-align:center;
+
+    background:linear-gradient(
         135deg,
-        #0d1b2f,
-        #15243d
+        rgba(15,23,42,.95),
+        rgba(5,8,22,.95)
     );
 
     border:1px solid var(--border);
 
-    border-radius:35px;
-
-    padding:70px 50px;
-
-    text-align:center;
-
-    box-shadow:
-
-    var(--shadow-lg);
+    box-shadow:var(--shadow-lg);
 
 }
 
@@ -1756,25 +1699,25 @@ CTA
 
     position:absolute;
 
-    width:300px;
+    width:320px;
 
-    height:300px;
+    height:320px;
 
-    top:-120px;
+    left:-150px;
 
-    left:-120px;
+    top:-150px;
 
     border-radius:50%;
 
     background:
 
-    radial-gradient(
-        circle,
-        rgba(0,212,255,.15),
-        transparent
-    );
+    radial-gradient(circle,
 
-    filter:blur(80px);
+    rgba(0,212,255,.15),
+
+    transparent 70%);
+
+    filter:blur(70px);
 
 }
 
@@ -1784,9 +1727,9 @@ CTA
 
     position:absolute;
 
-    width:260px;
+    width:280px;
 
-    height:260px;
+    height:280px;
 
     right:-120px;
 
@@ -1796,13 +1739,13 @@ CTA
 
     background:
 
-    radial-gradient(
-        circle,
-        rgba(0,255,153,.12),
-        transparent
-    );
+    radial-gradient(circle,
 
-    filter:blur(80px);
+    rgba(0,255,153,.12),
+
+    transparent 70%);
+
+    filter:blur(70px);
 
 }
 
@@ -1818,7 +1761,7 @@ CTA
 
     color:#fff;
 
-    font-size:3rem;
+    font-size:clamp(2rem,4vw,3rem);
 
     font-weight:800;
 
@@ -1828,11 +1771,11 @@ CTA
 
 .cta-card p{
 
+    max-width:720px;
+
+    margin:0 auto 35px;
+
     color:var(--text-light);
-
-    max-width:760px;
-
-    margin:auto auto 35px;
 
     line-height:1.9;
 
@@ -1844,7 +1787,7 @@ CTA
 
     justify-content:center;
 
-    gap:20px;
+    gap:18px;
 
     flex-wrap:wrap;
 
@@ -1854,56 +1797,57 @@ CTA
 
     min-width:220px;
 
-    padding:16px 30px;
+    padding:15px 30px;
 
     border-radius:14px;
 
     font-weight:700;
 
+    transition:var(--transition);
+
 }
 
-/*=========================================
-RESPONSIVE DESIGN
-=========================================*/
+.cta-buttons .btn:hover{
 
-/* ---------- Large Desktop ---------- */
+    transform:translateY(-5px);
+
+}
+
+
+/*=========================================================
+    RESPONSIVE DESIGN
+=========================================================*/
+
+
+/*=========================================================
+    LARGE DEVICES (1200px)
+=========================================================*/
 
 @media (max-width:1200px){
-
-    .product-detail-hero{
-        padding:160px 0 100px;
-    }
-
-    .product-title{
-        font-size:3.2rem;
-        line-height:1.2;
-    }
-
-    .section-header h2{
-        font-size:2.6rem;
-    }
-
-    .main-product-image{
-        max-width:470px;
-    }
-
-}
-
-/* ---------- Tablet ---------- */
-
-@media (max-width:992px){
 
     .product-detail-hero{
 
         padding:130px 0 80px;
 
-        text-align:center;
+    }
+
+    .product-detail-card{
+
+        border-radius:28px;
 
     }
 
-    .product-image-wrapper{
+    .product-info{
 
-        margin-bottom:45px;
+        padding:45px;
+
+    }
+
+    .product-title{
+
+        font-size:2.8rem;
+
+        line-height:1.2;
 
     }
 
@@ -1911,211 +1855,269 @@ RESPONSIVE DESIGN
 
         max-width:380px;
 
-        margin:auto;
-
-    }
-
-    .image-glow{
-
-        width:320px;
-        height:320px;
-
-    }
-
-    .product-info{
-
-        padding-left:0;
-
-        margin-top:10px;
-
-    }
-
-    .product-category{
-
-        font-size:.85rem;
-
-        padding:10px 20px;
-
-    }
-
-    .product-title{
-
-        font-size:2.7rem;
-
-        line-height:1.25;
-
-        word-break:break-word;
-
-    }
-
-    .product-short-description{
-
-        font-size:1rem;
-
-        max-width:700px;
-
-        margin:0 auto 35px;
-
-    }
-
-    .product-highlights{
-
-        max-width:650px;
-
-        margin:0 auto 35px;
-
-    }
-
-    .action-buttons{
-
-        justify-content:center;
-
-    }
-
-    .section-header h2{
-
-        font-size:2.3rem;
-
     }
 
 }
 
-/* ---------- Mobile ---------- */
 
-@media (max-width:768px){
+/*=========================================================
+    TABLET (992px)
+=========================================================*/
+
+@media (max-width:992px){
 
     section{
 
-        padding:70px 0 !important;
+        padding:80px 0;
 
     }
 
     .product-detail-hero{
 
-        padding:100px 0 55px;
+        padding:110px 0 70px;
+
+    }
+
+    .product-detail-card{
+
+        border-radius:24px;
 
     }
 
     .product-image-wrapper{
 
-        margin-bottom:35px;
+        padding:40px 30px 20px;
+
+        text-align:center;
 
     }
 
     .main-product-image{
 
-        max-width:280px;
+        max-width:300px;
 
         margin:auto;
-
-        border-radius:20px;
 
     }
 
     .image-glow{
 
-        width:240px;
-        height:240px;
+        width:220px;
+
+        height:220px;
+
+    }
+
+    .product-info{
+
+        padding:35px;
+
+        text-align:center;
+
+        align-items:center;
 
     }
 
     .product-category{
 
-        font-size:.78rem;
-
-        padding:9px 16px;
+        margin-bottom:18px;
 
     }
 
     .product-title{
 
-        font-size:2rem;
+        font-size:2.2rem;
 
-        line-height:1.25;
-
-        margin-bottom:20px;
-
-        overflow-wrap:break-word;
-
-        word-break:break-word;
+        max-width:650px;
 
     }
 
     .product-short-description{
 
-        font-size:.95rem;
+        max-width:620px;
 
-        line-height:1.8;
-
-        margin-bottom:25px;
-
-    }
-
-    .section-header{
-
-        margin-bottom:40px;
-
-    }
-
-    .section-header h2{
-
-        font-size:1.9rem;
-
-    }
-
-    .section-header p{
-
-        font-size:.95rem;
+        margin:0 auto 30px;
 
     }
 
     .product-highlights{
 
-        gap:15px;
+        width:100%;
 
-        margin-bottom:30px;
+        max-width:520px;
+
+        margin:0 auto 30px;
+
+    }
+
+    .action-buttons{
+
+        width:100%;
+
+        max-width:420px;
+
+        margin:0 auto;
+
+        justify-content:center;
+
+    }
+
+}
+
+
+/*=========================================================
+    MOBILE (768px)
+=========================================================*/
+
+@media (max-width:768px){
+
+    section{
+
+        padding:60px 0 !important;
+
+    }
+
+    .product-detail-hero{
+
+        padding:85px 0 40px;
+
+    }
+
+    .product-detail-card{
+
+        border-radius:20px;
+
+    }
+
+    .product-image-wrapper{
+
+        padding:25px;
+
+    }
+
+    .main-product-image{
+
+        width:100%;
+
+        max-width:220px;
+
+        margin:auto;
+
+    }
+
+    .image-glow{
+
+        width:170px;
+
+        height:170px;
+
+        filter:blur(40px);
+
+    }
+
+    .featured-ribbon{
+
+        top:12px;
+
+        left:12px;
+
+        font-size:.75rem;
+
+        padding:8px 15px;
+
+    }
+
+    .product-info{
+
+        padding:25px;
+
+        text-align:center;
+
+        display:flex;
+
+        flex-direction:column;
+
+        align-items:center;
+
+    }
+
+    .product-category{
+
+        margin-bottom:18px;
+
+    }
+
+    .product-title{
+
+        font-size:1.7rem;
+
+        line-height:1.35;
+
+        margin-bottom:18px;
+
+    }
+
+    .product-short-description{
+
+        max-width:330px;
+
+        font-size:.95rem;
+
+        margin-bottom:28px;
+
+    }
+
+    .product-highlights{
+
+        width:100%;
+
+        max-width:340px;
+
+        margin:0 auto 30px;
+
+        gap:15px;
 
     }
 
     .highlight-box{
 
-        flex-direction:row;
-
-        align-items:center;
-
-        text-align:left;
-
         padding:16px;
 
     }
 
-    .highlight-box i{
+    .highlight-icon{
 
-        width:50px;
+        width:52px;
 
-        height:50px;
+        height:52px;
+
+    }
+
+    .highlight-icon i{
 
         font-size:1.1rem;
 
-        flex-shrink:0;
+    }
+
+    .highlight-content h6{
+
+        font-size:1rem;
 
     }
 
-    .highlight-box h6{
+    .highlight-content span{
 
-        font-size:.95rem;
-
-        margin-bottom:4px;
-
-    }
-
-    .highlight-box span{
-
-        font-size:.82rem;
+        font-size:.85rem;
 
     }
 
     .action-buttons{
+
+        width:100%;
+
+        max-width:340px;
+
+        display:flex;
 
         flex-direction:column;
 
@@ -2127,194 +2129,19 @@ RESPONSIVE DESIGN
 
         width:100%;
 
-        padding:14px;
-
     }
 
     .overview-content{
 
-        padding:25px;
-
-    }
-
-    .overview-content h2{
-
-        font-size:1.5rem;
-
-    }
-
-    .overview-content p{
-
-        font-size:.95rem;
-
-    }
-
-    .specification-table th,
-
-    .specification-table td{
-
-        padding:12px;
-
-        font-size:.88rem;
-
-    }
-
-    .gallery-image{
-
-        height:260px;
-
-        object-fit:contain;
+        padding:22px;
 
     }
 
     .feature-box,
 
-    .application-card,
-
     .benefit-card{
 
-        padding:30px 20px;
-
-    }
-
-    .feature-icon,
-
-    .application-icon,
-
-    .benefit-icon{
-
-        width:70px;
-
-        height:70px;
-
-    }
-
-    .feature-icon i,
-
-    .application-icon i,
-
-    .benefit-icon i{
-
-        font-size:1.8rem;
-
-    }
-
-    .related-product-content{
-
-        padding:20px;
-
-    }
-
-    .related-product-image{
-
-        height:190px;
-
-    }
-
-    .cta-card{
-
-        padding:35px 22px;
-
-    }
-
-    .cta-card h2{
-
-        font-size:1.8rem;
-
-    }
-
-    .cta-card p{
-
-        font-size:.95rem;
-
-    }
-
-    .cta-buttons{
-
-        flex-direction:column;
-
-    }
-
-    .cta-buttons .btn{
-
-        width:100%;
-
-    }
-
-}
-
-/* ---------- Small Mobile ---------- */
-
-@media (max-width:576px){
-
-    .product-detail-hero{
-
-        padding:90px 0 50px;
-
-    }
-
-    .main-product-image{
-
-        max-width:240px;
-
-    }
-
-    .image-glow{
-
-        width:200px;
-        height:200px;
-
-    }
-
-    .product-title{
-
-        font-size:1.65rem;
-
-        line-height:1.3;
-
-    }
-
-    .product-short-description{
-
-        font-size:.9rem;
-
-    }
-
-    .section-header h2{
-
-        font-size:1.6rem;
-
-    }
-
-    .section-header p{
-
-        font-size:.9rem;
-
-    }
-
-    .highlight-box{
-
-        padding:15px;
-
-    }
-
-    .highlight-box i{
-
-        width:45px;
-
-        height:45px;
-
-    }
-
-    .highlight-box h6{
-
-        font-size:.9rem;
-
-    }
-
-    .highlight-box span{
-
-        font-size:.78rem;
+        padding:22px 18px;
 
     }
 
@@ -2326,37 +2153,60 @@ RESPONSIVE DESIGN
 
     .related-product-image{
 
-        height:170px;
+        height:180px;
 
     }
 
-    .cta-card h2{
+    .cta-card{
 
-        font-size:1.55rem;
-
-    }
-
-    .cta-card p{
-
-        font-size:.9rem;
+        padding:28px 20px;
 
     }
 
 }
 
-/* ---------- Extra Small ---------- */
 
-@media (max-width:400px){
+/*=========================================================
+    SMALL MOBILE (576px)
+=========================================================*/
+
+@media (max-width:576px){
 
     .product-detail-hero{
 
-        padding:85px 0 45px;
+        padding:75px 0 35px;
+
+    }
+
+    .product-detail-card{
+
+        border-radius:18px;
+
+    }
+
+    .product-image-wrapper{
+
+        padding:20px;
 
     }
 
     .main-product-image{
 
-        max-width:210px;
+        max-width:180px;
+
+    }
+
+    .image-glow{
+
+        width:140px;
+
+        height:140px;
+
+    }
+
+    .product-info{
+
+        padding:20px;
 
     }
 
@@ -2366,11 +2216,207 @@ RESPONSIVE DESIGN
 
     }
 
-    .section-header h2{
+    .product-short-description{
 
-        font-size:1.3rem;
+        font-size:.9rem;
 
     }
+
+    .highlight-box{
+
+        padding:14px;
+
+    }
+
+    .highlight-icon{
+
+        width:46px;
+
+        height:46px;
+
+    }
+
+    .highlight-icon i{
+
+        font-size:1rem;
+
+    }
+
+}
+
+
+/*=========================================================
+    EXTRA SMALL (400px)
+=========================================================*/
+
+@media (max-width:400px){
+
+    .product-title{
+
+        font-size:1.25rem;
+
+    }
+
+    .product-short-description{
+
+        font-size:.85rem;
+
+    }
+
+    .highlight-content h6{
+
+        font-size:.9rem;
+
+    }
+
+    .highlight-content span{
+
+        font-size:.78rem;
+
+    }
+
+    .action-buttons .btn{
+
+        font-size:.85rem;
+
+    }
+
+}
+    
+
+    /*=========================================
+        PRODUCT INFO
+    =========================================*/
+
+    .product-category{
+
+        font-size:.75rem;
+
+        padding:8px 16px;
+
+        margin-bottom:15px;
+
+    }
+
+    .product-title{
+
+        max-width:300px;
+
+        font-size:1.45rem;
+
+        line-height:1.35;
+
+        margin-bottom:15px;
+
+    }
+
+    .product-short-description{
+
+        max-width:300px;
+
+        font-size:.9rem;
+
+        line-height:1.75;
+
+        margin-bottom:25px;
+
+    }
+
+    /*=========================================
+        HIGHLIGHT CARDS
+    =========================================*/
+
+    .product-highlights{
+
+        max-width:320px;
+
+        gap:12px;
+
+        margin-bottom:25px;
+
+    }
+
+    
+
+    /*=========================================
+        BUTTONS
+    =========================================*/
+
+    .action-buttons{
+
+        max-width:320px;
+
+        gap:12px;
+
+    }
+
+    .action-buttons .btn{
+
+        min-height:48px;
+
+        padding:12px 18px;
+
+        font-size:.9rem;
+
+    }
+
+    /*=========================================
+        OVERVIEW
+    =========================================*/
+
+    .overview-content{
+
+        padding:20px;
+
+    }
+
+    /*=========================================
+        SPECIFICATION TABLE
+    =========================================*/
+
+    .specification-table th,
+
+    .specification-table td{
+
+        padding:12px;
+
+        font-size:.85rem;
+
+    }
+
+    /*=========================================
+        FEATURES
+    =========================================*/
+
+    .feature-box,
+
+    .benefit-card{
+
+        padding:22px 16px;
+
+    }
+
+    .feature-icon,
+
+    .benefit-icon{
+
+        width:65px;
+
+        height:65px;
+
+    }
+
+    .feature-icon i,
+
+    .benefit-icon i{
+
+        font-size:1.6rem;
+
+    }
+
+    /*=========================================
+        GALLERY
+    =========================================*/
 
     .gallery-image{
 
@@ -2378,17 +2424,296 @@ RESPONSIVE DESIGN
 
     }
 
+    /*=========================================
+        RELATED PRODUCTS
+    =========================================*/
+
+    .related-product-image{
+
+        height:170px;
+
+    }
+
+    .related-product-content{
+
+        padding:18px;
+
+    }
+
+    /*=========================================
+        CTA
+    =========================================*/
+
+    .cta-card{
+
+        padding:25px 18px;
+
+    }
+
+    .cta-buttons{
+
+        flex-direction:column;
+
+        gap:12px;
+
+    }
+
+    .cta-buttons .btn{
+
+        width:100%;
+
+    }
+
+}
+/*=========================================================
+    EXTRA SMALL DEVICES (400px)
+=========================================================*/
+
+@media (max-width:400px){
+
+    /*=========================================
+        HERO
+    =========================================*/
+
+    .product-detail-hero{
+
+        padding:70px 0 30px;
+
+    }
+
+    .product-detail-hero .container{
+
+        padding-left:16px;
+
+        padding-right:16px;
+
+    }
+
+    /*=========================================
+        PRODUCT IMAGE
+    =========================================*/
+
+    .main-product-image{
+
+        max-width:165px;
+
+        border-radius:16px;
+
+    }
+
+    .image-glow{
+
+        width:120px;
+
+        height:120px;
+
+        filter:blur(30px);
+
+    }
+
+    .featured-ribbon{
+
+        top:8px;
+
+        left:8px;
+
+        padding:6px 12px;
+
+        font-size:.65rem;
+
+        border-radius:30px;
+
+    }
+
+    /*=========================================
+        PRODUCT INFO
+    =========================================*/
+
+    .product-category{
+
+        padding:7px 14px;
+
+        font-size:.72rem;
+
+        margin-bottom:14px;
+
+    }
+
+    .product-title{
+
+        max-width:260px;
+
+        font-size:1.25rem;
+
+        line-height:1.35;
+
+        margin-bottom:14px;
+
+    }
+
+    .product-short-description{
+
+        max-width:260px;
+
+        font-size:.85rem;
+
+        line-height:1.7;
+
+        margin-bottom:22px;
+
+    }
+
+    
+    /*=========================================
+        BUTTONS
+    =========================================*/
+
+    .action-buttons{
+
+        max-width:280px;
+
+        gap:10px;
+
+    }
+
+    .action-buttons .btn{
+
+        min-height:46px;
+
+        padding:12px 16px;
+
+        font-size:.85rem;
+
+    }
+
+    /*=========================================
+        OVERVIEW
+    =========================================*/
+
+    .overview-content{
+
+        padding:18px;
+
+    }
+
+    /*=========================================
+        SPECIFICATION TABLE
+    =========================================*/
+
+    .specification-table th,
+
+    .specification-table td{
+
+        padding:10px;
+
+        font-size:.8rem;
+
+    }
+
+    /*=========================================
+        FEATURES
+    =========================================*/
+
+    .feature-box,
+
+    .benefit-card{
+
+        padding:20px 15px;
+
+    }
+
+    .feature-icon,
+
+    .benefit-icon{
+
+        width:58px;
+
+        height:58px;
+
+    }
+
+    .feature-icon i,
+
+    .benefit-icon i{
+
+        font-size:1.4rem;
+
+    }
+
+    /*=========================================
+        GALLERY
+    =========================================*/
+
+    .gallery-image{
+
+        height:160px;
+
+    }
+
+    /*=========================================
+        RELATED PRODUCTS
+    =========================================*/
+
     .related-product-image{
 
         height:150px;
 
     }
 
+    .related-product-content{
+
+        padding:16px;
+
+    }
+
+    /*=========================================
+        CTA
+    =========================================*/
+
+    .cta-card{
+
+        padding:22px 16px;
+
+    }
+
+}
+/*=========================================================
+    GOOGLE TRANSLATE SUPPORT
+=========================================================*/
+
+.goog-te-banner-frame.skiptranslate{
+
+    display:none !important;
+
 }
 
-/*=========================================
-SCROLLBAR
-=========================================*/
+body{
+
+    top:0 !important;
+
+}
+
+.skiptranslate iframe{
+
+    display:none !important;
+
+}
+
+
+/*=========================================================
+    SMOOTH SCROLL
+=========================================================*/
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+
+/*=========================================================
+    SCROLLBAR
+=========================================================*/
 
 ::-webkit-scrollbar{
 
@@ -2398,7 +2723,7 @@ SCROLLBAR
 
 ::-webkit-scrollbar-track{
 
-    background:#050816;
+    background:var(--dark);
 
 }
 
@@ -2406,19 +2731,20 @@ SCROLLBAR
 
     background:var(--primary);
 
-    border-radius:30px;
+    border-radius:20px;
 
 }
 
 ::-webkit-scrollbar-thumb:hover{
 
-    background:#00b8df;
+    background:var(--primary-dark);
 
 }
 
-/*=========================================
-TEXT SELECTION
-=========================================*/
+
+/*=========================================================
+    TEXT SELECTION
+=========================================================*/
 
 ::selection{
 
@@ -2428,30 +2754,86 @@ TEXT SELECTION
 
 }
 
-/*=========================================
-SMOOTH SCROLL
-=========================================*/
 
-html{
-
-    scroll-behavior:smooth;
-
-}
-
-/*=========================================
-IMAGE RENDERING
-=========================================*/
+/*=========================================================
+    IMAGE
+=========================================================*/
 
 img{
 
-    image-rendering:auto;
+    display:block;
 
     max-width:100%;
 
-    display:block;
+}
+
+
+/*=========================================================
+    BUTTONS
+=========================================================*/
+
+.btn{
+
+    transition:var(--transition);
 
 }
 
-/*=========================================
-END OF PRODUCT DETAILS CSS
+.btn:focus{
+
+    box-shadow:none;
+
+}
+
+
+/*=========================================================
+    UTILITIES
+=========================================================*/
+
+.text-gradient{
+
+    background:linear-gradient(
+
+        90deg,
+
+        var(--primary),
+
+        var(--secondary)
+
+    );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    background-clip:text;
+
+}
+
+.glass-card{
+
+    background:var(--glass);
+
+    border:1px solid var(--border);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:var(--radius);
+
+}
+
+.shadow-hover{
+
+    transition:var(--transition);
+
+}
+
+.shadow-hover:hover{
+
+    box-shadow:0 20px 45px rgba(0,212,255,.18);
+
+}
+
+
+/*=========================================================
+    END OF PRODUCT DETAILS CSS
 =========================================================*/

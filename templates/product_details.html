@@ -21,179 +21,217 @@ PRODUCT HERO
 
     <div class="container">
 
-        <div class="row align-items-center g-5">
+        <div class="row justify-content-center">
 
-            <!-- ==========================================
-            PRODUCT IMAGE
-            ========================================== -->
+            <div class="col-xl-10 col-lg-11">
 
-            <div class="col-lg-6 col-md-12 order-1 order-lg-1">
+                <!-- ==========================================
+                PRODUCT DETAIL CARD
+                ========================================== -->
 
-                <div class="product-image-wrapper">
+                <div class="product-detail-card">
 
-                    <div class="image-glow"></div>
+                    <div class="row g-0 align-items-center">
 
-                    {% if product.image_url %}
+                        <!-- ==========================================
+                        PRODUCT IMAGE
+                        ========================================== -->
 
-                    <img
-                        src="{{ product.image_url }}"
-                        alt="{{ product.name }}"
-                        class="img-fluid main-product-image">
+                        <div class="col-lg-5">
 
-                    {% else %}
+                            <div class="product-image-wrapper">
 
-                    <img
-                        src="{{ url_for('static', filename='images/default-product.jpg') }}"
-                        alt="{{ product.name }}"
-                        class="img-fluid main-product-image">
+                                <div class="image-glow"></div>
 
-                    {% endif %}
+                                {% if product.image_url %}
 
-                    {% if product.featured %}
+                                <img
+                                    src="{{ product.image_url }}"
+                                    alt="{{ product.name }}"
+                                    class="img-fluid main-product-image">
 
-                    <div class="featured-ribbon">
+                                {% else %}
 
-                        <i class="fa-solid fa-star"></i>
+                                <img
+                                    src="{{ url_for('static', filename='images/default-product.jpg') }}"
+                                    alt="{{ product.name }}"
+                                    class="img-fluid main-product-image">
 
-                        Featured Product
+                                {% endif %}
 
-                    </div>
+                                {% if product.featured %}
 
-                    {% endif %}
+                                <div class="featured-ribbon">
+
+                                    <i class="fa-solid fa-star me-2"></i>
+
+                                    Featured Product
+
+                                </div>
+
+                                {% endif %}
+
+                            </div>
+
+                        </div>
+
+                        <!-- ==========================================
+                        PRODUCT INFORMATION
+                        ========================================== -->
+
+                        <div class="col-lg-7">
+
+                            <div class="product-info">
+
+                                <!-- CATEGORY -->
+
+                                <span class="product-category">
+
+                                    <i class="fa-solid fa-layer-group me-2"></i>
+
+                                    {{ product.category }}
+
+                                </span>
+
+                                <!-- TITLE -->
+
+                                <h1 class="product-title">
+
+                                    {{ product.name }}
+
+                                </h1>
+
+                                <!-- DESCRIPTION -->
+
+                                <p class="product-short-description">
+
+                                    {{ product.short_description }}
+
+                                </p>
+
+                                <!-- ==========================================
+                                PRODUCT HIGHLIGHTS
+                                ========================================== -->
+
+                                <div class="product-highlights">
+                                                                        <!-- Premium Quality -->
+
+                                    <div class="highlight-box">
+
+                                        <div class="highlight-icon">
+
+                                            <i class="fa-solid fa-award"></i>
+
+                                        </div>
+
+                                        <div class="highlight-content">
+
+                                            <h6>
+
+                                                Premium Quality
+
+                                            </h6>
+
+                                            <span>
+
+                                                Tested &amp; Reliable
+
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Industrial Grade -->
+
+                                    <div class="highlight-box">
+
+                                        <div class="highlight-icon">
+
+                                            <i class="fa-solid fa-shield-halved"></i>
+
+                                        </div>
+
+                                        <div class="highlight-content">
+
+                                            <h6>
+
+                                                Industrial Grade
+
+                                            </h6>
+
+                                            <span>
+
+                                                High Performance
+
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Technical Support -->
+
+                                    <div class="highlight-box">
+
+                                        <div class="highlight-icon">
+
+                                            <i class="fa-solid fa-headset"></i>
+
+                                        </div>
+
+                                        <div class="highlight-content">
+
+                                            <h6>
+
+                                                24/7 Support
+
+                                            </h6>
+
+                                            <span>
+
+                                                Technical Assistance
+
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- ==========================================
+                                ACTION BUTTONS
+                                ========================================== -->
+
+                                <div class="action-buttons">
+                                                        <a href="{{ url_for('contact') }}"
+                       class="btn btn-primary btn-lg">
+
+                        <i class="fa-solid fa-paper-plane me-2"></i>
+
+                        Request Quote
+
+                    </a>
+
+                    <a href="{{ url_for('products') }}"
+                       class="btn btn-outline-light btn-lg">
+
+                        <i class="fa-solid fa-arrow-left me-2"></i>
+
+                        Back To Products
+
+                    </a>
 
                 </div>
 
             </div>
 
-            <!-- ==========================================
-            PRODUCT INFORMATION
-            ========================================== -->
+        </div>
 
-            <div class="col-lg-6 col-md-12 order-1 order-lg-1">
+    </div>
 
-                <div class="product-info">
-
-                    <span class="product-category">
-
-                        <i class="fa-solid fa-layer-group me-2"></i>
-
-                        {{ product.category }}
-
-                    </span>
-
-                    <h1 class="product-title">
-
-                        {{ product.name }}
-
-                    </h1>
-
-                    <p class="product-short-description">
-
-                        {{ product.short_description }}
-
-                    </p>
-
-                    <!-- =========================
-                    QUICK INFO
-                    ========================== -->
-
-                    <div class="product-highlights">
-
-                        <div class="highlight-box">
-
-                            <i class="fa-solid fa-award"></i>
-
-                            <div>
-
-                                <h6>
-
-                                    Premium Quality
-
-                                </h6>
-
-                                <span>
-
-                                    Tested & Reliable
-
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                        <div class="highlight-box">
-
-                            <i class="fa-solid fa-shield-halved"></i>
-
-                            <div>
-
-                                <h6>
-
-                                    Industrial Grade
-
-                                </h6>
-
-                                <span>
-
-                                    High Performance
-
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                        <div class="highlight-box">
-
-                            <i class="fa-solid fa-headset"></i>
-
-                            <div>
-
-                                <h6>
-
-                                    24/7 Support
-
-                                </h6>
-
-                                <span>
-
-                                    Technical Assistance
-
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <!-- =========================
-                    ACTION BUTTONS
-                    ========================== -->
-
-                    <div class="action-buttons">
-
-                        <a href="{{ url_for('contact') }}"
-                           class="btn btn-primary btn-lg">
-
-                            <i class="fa-solid fa-paper-plane me-2"></i>
-
-                            Request Quote
-
-                        </a>
-
-                        <a href="{{ url_for('products') }}"
-                           class="btn btn-outline-light btn-lg">
-
-                            <i class="fa-solid fa-arrow-left me-2"></i>
-
-                            Back To Products
-
-                        </a>
-
-                    </div>
-
-                </div>
+</div>
 
             </div>
 
