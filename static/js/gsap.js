@@ -197,17 +197,19 @@ if(document.querySelector(".main-product-image")){
     });
 
 }
-
 if(document.querySelector(".product-info")){
 
-    gsap.from(".product-info",{
+    gsap.set(".product-info",{
+        opacity:1,
+        x:0,
+        clearProps:"all"
+    });
 
+    gsap.from(".product-info",{
         opacity:0,
         x:70,
-        duration:1,
-        ease:"power3.out",
-        overwrite:"auto"
-
+        duration:0.8,
+        ease:"power3.out"
     });
 
 }

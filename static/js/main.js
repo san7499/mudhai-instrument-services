@@ -128,60 +128,73 @@ function initializeCursorGlow(){
 
 
 /* ==========================================
-NAVBAR
+   NAVBAR
 ========================================== */
 
 function initializeNavbar(){
 
-    const navbar =
-        document.querySelector(
-            ".custom-navbar"
-        );
+    const navbar = document.querySelector(".custom-navbar");
 
     if(!navbar) return;
 
-    let lastScroll = 0;
+    let lastScroll = window.pageYOffset;
 
-    window.addEventListener("scroll",()=>{
+    let ticking = false;
 
-        if(window.scrollY>40){
+    const scrollThreshold = 15;
 
-            navbar.classList.add(
-                "navbar-scrolled"
-            );
+    function updateNavbar(){
+
+        const currentScroll = window.pageYOffset;
+
+        /* Navbar Background */
+
+        if(currentScroll > 40){
+
+            navbar.classList.add("navbar-scrolled");
 
         }else{
 
-            navbar.classList.remove(
-                "navbar-scrolled"
-            );
+            navbar.classList.remove("navbar-scrolled");
 
         }
 
-        const current =
-            window.pageYOffset;
+        /* Hide Navbar */
 
         if(
-            current>lastScroll &&
-            current>120
+            currentScroll > lastScroll + scrollThreshold &&
+            currentScroll > 120
         ){
 
-            navbar.classList.add(
-                "nav-hidden"
-            );
-
-        }else{
-
-            navbar.classList.remove(
-                "nav-hidden"
-            );
+            navbar.classList.add("nav-hidden");
 
         }
 
-        lastScroll =
-            current<=0
-            ?0
-            :current;
+        /* Show Navbar */
+
+        else if(
+            currentScroll < lastScroll - scrollThreshold
+        ){
+
+            navbar.classList.remove("nav-hidden");
+
+        }
+
+        lastScroll = currentScroll;
+
+        ticking = false;
+
+    }
+
+    window.addEventListener("scroll",function(){
+
+        if(!ticking){
+
+            window.requestAnimationFrame(updateNavbar);
+
+            ticking = true;
+
+        }
 
     });
 

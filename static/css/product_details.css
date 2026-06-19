@@ -2464,6 +2464,29 @@ PRODUCT DETAIL CARD
 
     }
 
+.product-detail-hero .container{
+    position:relative;
+    z-index:5;
+}
+
+.product-info{
+    position:relative;
+    z-index:10;
+}
+
+.product-image-wrapper{
+    position:relative;
+    z-index:10;
+}
+
+.hero-overlay{
+    z-index:1;
+}
+.product-detail-card,
+.product-detail-card *{
+    opacity:1 !important;
+    filter:none !important;
+    mix-blend-mode:normal !important;
 }
 /*=========================================================
     EXTRA SMALL DEVICES (400px)

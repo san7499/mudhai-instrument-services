@@ -508,104 +508,6 @@ PRODUCT FEATURES
 
 </section>
 
-<!-- =====================================================
-PRODUCT GALLERY
-===================================================== -->
-
-{% if product.image_url %}
-
-<section class="gallery-section">
-
-    <div class="container">
-
-        <div class="section-header text-center">
-
-            <span class="section-tag">
-
-                PRODUCT GALLERY
-
-            </span>
-
-            <h2>
-
-                Product Images
-
-            </h2>
-
-            <p>
-
-                Explore high-resolution product images.
-
-            </p>
-
-        </div>
-
-        <div class="row justify-content-center">
-
-            <div class="col-lg-10">
-
-                <div class="gallery-card">
-
-                    <img
-                        src="{{ product.image_url }}"
-                        alt="{{ product.name }}"
-                        class="img-fluid gallery-image">
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-{% elif product.image %}
-
-<section class="gallery-section">
-
-    <div class="container">
-
-        <div class="section-header text-center">
-
-            <span class="section-tag">
-
-                PRODUCT GALLERY
-
-            </span>
-
-            <h2>
-
-                Product Images
-
-            </h2>
-
-        </div>
-
-        <div class="row justify-content-center">
-
-            <div class="col-lg-10">
-
-                <div class="gallery-card">
-
-                    <img
-                        src="{{ url_for('static', filename=product.image) }}"
-                        alt="{{ product.name }}"
-                        class="img-fluid gallery-image">
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-{% endif %}
-
 
 <!-- =====================================================
 PRODUCT BENEFITS
@@ -893,7 +795,7 @@ CALL TO ACTION
 
                     <i class="fa-solid fa-paper-plane me-2"></i>
 
-                    Request A Quote
+                    SEND AN ENQUIRY
 
                 </a>
 
