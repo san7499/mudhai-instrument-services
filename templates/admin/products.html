@@ -5,8 +5,9 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>
         Manage Products | Mudhai Instrument Services
@@ -24,7 +25,7 @@
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <!-- Google Font -->
+    <!-- Google Fonts -->
 
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
@@ -44,19 +45,22 @@
 
     <div class="container-fluid">
 
-        <!-- Flash Messages -->
+        <!-- ==========================
+             FLASH MESSAGES
+        =========================== -->
 
         {% with messages = get_flashed_messages(with_categories=true) %}
 
             {% if messages %}
 
-                {% for category,message in messages %}
+                {% for category, message in messages %}
 
                 <div class="alert alert-{{ category }} alert-dismissible fade show">
 
                     {{ message }}
 
                     <button
+                        type="button"
                         class="btn-close"
                         data-bs-dismiss="alert">
                     </button>
@@ -69,33 +73,35 @@
 
         {% endwith %}
 
-        <!-- Header -->
+        <!-- ==========================
+             PAGE HEADER
+        =========================== -->
 
-        <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
 
             <div>
 
-                <h2 class="fw-bold text-white">
+                <h2 class="fw-bold text-white mb-2">
 
-                    <i class="fa-solid fa-box-open me-2 text-success"></i>
+                    <i class="fa-solid fa-box-open text-success me-2"></i>
 
                     Product Management
 
                 </h2>
 
-                <p class="text-secondary">
+                <p class="text-secondary mb-0">
 
-                    Manage all website products.
+                    Manage all products displayed on your website.
 
                 </p>
 
             </div>
 
-            <div>
+            <div class="d-flex gap-2">
 
                 <a
                     href="{{ url_for('admin_dashboard') }}"
-                    class="btn btn-outline-light me-2">
+                    class="btn btn-outline-light">
 
                     <i class="fa-solid fa-chart-line me-2"></i>
 
@@ -104,8 +110,9 @@
                 </a>
 
                 <button
-                    class="btn btn-success"
                     id="addProductBtn"
+                    type="button"
+                    class="btn btn-success"
                     data-bs-toggle="modal"
                     data-bs-target="#productModal">
 
@@ -119,7 +126,9 @@
 
         </div>
 
-        <!-- Search -->
+        <!-- ==========================
+             SEARCH
+        =========================== -->
 
         <div class="glass-card mb-4">
 
@@ -127,11 +136,13 @@
                 type="text"
                 id="productSearch"
                 class="form-control"
-                placeholder="Search Products...">
+                placeholder="Search product by name or category...">
 
         </div>
 
-        <!-- Products Table -->
+        <!-- ==========================
+             PRODUCTS TABLE
+        =========================== -->
 
         <div class="glass-card">
 
@@ -189,147 +200,160 @@
 
                         {% if products %}
 
-                        {% for product in products %}
+                            {% for product in products %}
 
-                        <tr>
+                            <tr>
 
-                            <td>
+                                <!-- PRODUCT IMAGE -->
 
-                                {% if product.image_url %}
+                                <td>
 
-                                <img
-                                    src="{{ product.image_url }}"
-                                    class="rounded"
-                                    width="65"
-                                    height="65"
-                                    style="object-fit:cover;">
+                                    {% if product.image_url %}
 
-                                {% else %}
+                                    <img
+                                        src="{{ product.image_url }}"
+                                        class="rounded shadow-sm"
+                                        width="70"
+                                        height="70"
+                                        style="object-fit:cover;">
 
-                                <img
-                                    src="{{ url_for('static', filename='images/default-product.jpg') }}"
-                                    class="rounded"
-                                    width="65"
-                                    height="65">
+                                    {% else %}
 
-                                {% endif %}
+                                    <img
+                                        src="{{ url_for('static', filename='images/default-product.jpg') }}"
+                                        class="rounded shadow-sm"
+                                        width="70"
+                                        height="70"
+                                        style="object-fit:cover;">
 
-                            </td>
+                                    {% endif %}
 
-                            <td>
+                                </td>
+                                                                <!-- PRODUCT NAME -->
 
-                                <strong>
+                                <td>
 
-                                    {{ product.name }}
+                                    <strong>
 
-                                </strong>
+                                        {{ product.name }}
 
-                            </td>
+                                    </strong>
 
-                            <td>
+                                </td>
 
-                                {{ product.category }}
+                                <!-- CATEGORY -->
 
-                            </td>
+                                <td>
 
-                            <td>
+                                    {{ product.category }}
 
-                                {% if product.featured %}
+                                </td>
 
-                                <span class="badge bg-success">
+                                <!-- FEATURED -->
 
-                                    Featured
+                                <td>
 
-                                </span>
+                                    {% if product.featured %}
 
-                                {% else %}
+                                    <span class="badge bg-success">
 
-                                <span class="badge bg-secondary">
+                                        Featured
 
-                                    No
+                                    </span>
 
-                                </span>
+                                    {% else %}
 
-                                {% endif %}
+                                    <span class="badge bg-secondary">
 
-                            </td>
+                                        No
 
-                            <td>
+                                    </span>
 
-                                {% if product.created_at %}
+                                    {% endif %}
 
-                                    {{ product.created_at.strftime("%d-%m-%Y") }}
+                                </td>
 
-                                {% endif %}
+                                <!-- CREATED DATE -->
 
-                            </td>
+                                <td>
 
-                            <td>
-                                                                <!-- EDIT BUTTON -->
+                                    {% if product.created_at %}
 
-                                <button
-                                    type="button"
-                                    class="btn btn-primary btn-sm me-1 editProductBtn"
+                                        {{ product.created_at.strftime("%d-%m-%Y") }}
 
-                                    data-id="{{ product._id }}"
-                                    data-name="{{ product.name }}"
-                                    data-category="{{ product.category }}"
-                                    data-image="{{ product.image_url }}"
-                                    data-short="{{ product.short_description }}"
-                                    data-description="{{ product.description }}"
-                                    data-featured="{{ product.featured }}"
+                                    {% else %}
 
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#productModal">
+                                        -
 
-                                    <i class="fa-solid fa-pen"></i>
+                                    {% endif %}
 
-                                </button>
+                                </td>
 
-                                <!-- DELETE BUTTON -->
+                                <!-- ACTION BUTTONS -->
 
-                                <a
-                                    href="{{ url_for('delete_product', id=product._id) }}"
-                                    class="btn btn-danger btn-sm"
-                                    onclick="return confirm('Delete this product?')">
+                                <td>
 
-                                    <i class="fa-solid fa-trash"></i>
+                                    <button
+                                        type="button"
+                                        class="btn btn-primary btn-sm me-1 editProductBtn"
 
-                                </a>
+                                        data-id="{{ product._id }}"
+                                        data-name="{{ product.name }}"
+                                        data-category="{{ product.category }}"
+                                        data-image="{{ product.image_url }}"
+                                        data-short="{{ product.short_description }}"
+                                        data-description="{{ product.description }}"
+                                        data-featured="{{ product.featured }}"
 
-                            </td>
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#productModal">
 
-                        </tr>
+                                        <i class="fa-solid fa-pen"></i>
 
-                        {% endfor %}
+                                    </button>
+
+                                    <a
+                                        href="{{ url_for('delete_product', id=product._id) }}"
+                                        class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Are you sure you want to delete this product?');">
+
+                                        <i class="fa-solid fa-trash"></i>
+
+                                    </a>
+
+                                </td>
+
+                            </tr>
+
+                            {% endfor %}
 
                         {% else %}
 
-                        <tr>
+                            <tr>
 
-                            <td
-                                colspan="6"
-                                class="text-center py-5">
+                                <td
+                                    colspan="6"
+                                    class="text-center py-5">
 
-                                <i class="fa-solid fa-box-open fa-3x text-secondary mb-3"></i>
+                                    <i class="fa-solid fa-box-open fa-3x text-secondary mb-3"></i>
 
-                                <h4 class="text-secondary">
+                                    <h4 class="text-secondary">
 
-                                    No Products Found
+                                        No Products Found
 
-                                </h4>
+                                    </h4>
 
-                                <p class="text-muted">
+                                    <p class="text-muted mb-0">
 
-                                    Click the
-                                    <strong>Add Product</strong>
-                                    button to create your first product.
+                                        Click the
+                                        <strong>Add Product</strong>
+                                        button to create your first product.
 
-                                </p>
+                                    </p>
 
-                            </td>
+                                </td>
 
-                        </tr>
+                            </tr>
 
                         {% endif %}
 
@@ -345,9 +369,9 @@
 
 </section>
 
-<!-- ===================================== -->
-<!-- ADD / EDIT PRODUCT MODAL -->
-<!-- ===================================== -->
+<!-- =====================================
+     ADD / EDIT PRODUCT MODAL
+===================================== -->
 
 <div
     class="modal fade"
@@ -362,9 +386,9 @@
             <form
                 id="productForm"
                 method="POST"
+                enctype="multipart/form-data"
                 action="{{ url_for('add_product') }}">
-
-                <div class="modal-header">
+                                <div class="modal-header">
 
                     <h4
                         id="modalTitle"
@@ -403,6 +427,7 @@
                                 type="text"
                                 name="name"
                                 class="form-control"
+                                placeholder="Enter product name"
                                 required>
 
                         </div>
@@ -444,23 +469,44 @@
                             </select>
 
                         </div>
-                                                <!-- IMAGE URL -->
+
+                        <!-- PRODUCT IMAGE PREVIEW -->
 
                         <div class="col-12 mb-3">
 
+                            <div class="text-center mb-3">
+
+                                <img
+                                    id="imagePreview"
+                                    src="{{ url_for('static', filename='images/default-product.jpg') }}"
+                                    class="img-thumbnail rounded shadow"
+                                    style="max-height:220px;
+                                           max-width:280px;
+                                           object-fit:contain;
+                                           background:#ffffff;
+                                           padding:12px;">
+
+                            </div>
+
                             <label class="form-label">
 
-                                Product Image URL
+                                Product Image
 
                             </label>
 
                             <input
                                 id="productImage"
-                                type="url"
-                                name="image_url"
+                                type="file"
+                                name="product_image"
                                 class="form-control"
-                                placeholder="https://example.com/product.jpg"
-                                required>
+                                accept=".jpg,.jpeg,.png,.webp">
+
+                            <div class="form-text text-light">
+
+                                Supported formats:
+                                JPG, JPEG, PNG and WEBP.
+
+                            </div>
 
                         </div>
 
@@ -531,8 +577,9 @@
                     </div>
 
                 </div>
-
-                <!-- MODAL FOOTER -->
+                                <!-- =====================================
+                     MODAL FOOTER
+                ====================================== -->
 
                 <div class="modal-footer">
 
@@ -567,21 +614,22 @@
     </div>
 
 </div>
-<!-- ===================================== -->
-<!-- Bootstrap JS -->
-<!-- ===================================== -->
+
+<!-- =====================================
+Bootstrap JS
+===================================== -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- ===================================== -->
-<!-- GSAP -->
-<!-- ===================================== -->
+<!-- =====================================
+GSAP
+===================================== -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
-<!-- ===================================== -->
-<!-- PRODUCT SEARCH -->
-<!-- ===================================== -->
+<!-- =====================================
+PRODUCT SEARCH
+===================================== -->
 
 <script>
 
@@ -595,7 +643,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if(searchInput){
 
-        searchInput.addEventListener("keyup",function(){
+        searchInput.addEventListener("keyup", function(){
 
             const value =
                 this.value.toLowerCase();
@@ -603,6 +651,7 @@ document.addEventListener("DOMContentLoaded", function () {
             rows.forEach(function(row){
 
                 row.style.display =
+
                     row.innerText
                     .toLowerCase()
                     .includes(value)
@@ -621,9 +670,44 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </script>
 
-<!-- ===================================== -->
-<!-- EDIT PRODUCT -->
-<!-- ===================================== -->
+<!-- =====================================
+IMAGE PREVIEW
+===================================== -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded",function(){
+
+    const imageInput =
+        document.getElementById("productImage");
+
+    const preview =
+        document.getElementById("imagePreview");
+
+    if(imageInput){
+
+        imageInput.addEventListener("change",function(){
+
+            const file =
+                this.files[0];
+
+            if(file){
+
+                preview.src =
+                    URL.createObjectURL(file);
+
+            }
+
+        });
+
+    }
+
+});
+
+</script>
+<!-- =====================================
+EDIT PRODUCT
+===================================== -->
 
 <script>
 
@@ -638,6 +722,52 @@ document.addEventListener("DOMContentLoaded",function(){
     const form =
         document.getElementById("productForm");
 
+    const preview =
+        document.getElementById("imagePreview");
+
+    const fileInput =
+        document.getElementById("productImage");
+
+    const addButton =
+        document.getElementById("addProductBtn");
+
+    /* =====================================
+       ADD PRODUCT
+    ===================================== */
+
+    if(addButton){
+
+        addButton.addEventListener("click",function(){
+
+            form.reset();
+
+            form.action =
+                "{{ url_for('add_product') }}";
+
+            modalTitle.innerHTML =
+
+                '<i class="fa-solid fa-circle-plus text-success me-2"></i>Add Product';
+
+            submitBtn.innerHTML =
+
+                '<i class="fa-solid fa-floppy-disk me-2"></i>Save Product';
+
+            preview.src =
+
+                "{{ url_for('static', filename='images/default-product.jpg') }}";
+
+            fileInput.value = "";
+
+            document.getElementById("featuredProduct").checked = false;
+
+        });
+
+    }
+
+    /* =====================================
+       EDIT PRODUCT
+    ===================================== */
+
     document.querySelectorAll(".editProductBtn").forEach(function(button){
 
         button.addEventListener("click",function(){
@@ -651,6 +781,7 @@ document.addEventListener("DOMContentLoaded",function(){
                 '<i class="fa-solid fa-floppy-disk me-2"></i>Update Product';
 
             form.action =
+
                 "/admin/product/edit/" +
                 this.dataset.id;
 
@@ -659,9 +790,6 @@ document.addEventListener("DOMContentLoaded",function(){
 
             document.getElementById("productCategory").value =
                 this.dataset.category;
-
-            document.getElementById("productImage").value =
-                this.dataset.image;
 
             document.getElementById("productShort").value =
                 this.dataset.short;
@@ -672,6 +800,20 @@ document.addEventListener("DOMContentLoaded",function(){
             document.getElementById("featuredProduct").checked =
                 this.dataset.featured === "True";
 
+            if(this.dataset.image){
+
+                preview.src =
+                    this.dataset.image;
+
+            }else{
+
+                preview.src =
+                    "{{ url_for('static', filename='images/default-product.jpg') }}";
+
+            }
+
+            fileInput.value = "";
+
         });
 
     });
@@ -679,3 +821,7 @@ document.addEventListener("DOMContentLoaded",function(){
 });
 
 </script>
+
+</body>
+
+</html>

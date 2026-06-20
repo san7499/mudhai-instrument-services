@@ -5,8 +5,9 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>
         Manage Blogs | Mudhai Instrument Services
@@ -52,29 +53,29 @@
 
         {% with messages = get_flashed_messages(with_categories=true) %}
 
-            {% if messages %}
+        {% if messages %}
 
-                {% for category,message in messages %}
+        {% for category, message in messages %}
 
-                <div class="alert alert-{{ category }} alert-dismissible fade show">
+        <div class="alert alert-{{ category }} alert-dismissible fade show">
 
-                    {{ message }}
+            {{ message }}
 
-                    <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="alert">
-                    </button>
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert">
+            </button>
 
-                </div>
+        </div>
 
-                {% endfor %}
+        {% endfor %}
 
-            {% endif %}
+        {% endif %}
 
         {% endwith %}
 
-        <!-- Header -->
+        <!-- HEADER -->
 
         <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
 
@@ -124,7 +125,7 @@
 
         </div>
 
-        <!-- Search -->
+        <!-- SEARCH -->
 
         <div class="glass-card mb-4">
 
@@ -136,7 +137,7 @@
 
         </div>
 
-        <!-- Blogs Table -->
+        <!-- BLOG TABLE -->
 
         <div class="glass-card">
 
@@ -151,45 +152,31 @@
                         <tr>
 
                             <th width="90">
-
                                 Image
-
                             </th>
 
                             <th>
-
                                 Title
-
                             </th>
 
                             <th>
-
                                 Category
-
                             </th>
 
                             <th>
-
                                 Author
-
                             </th>
 
                             <th>
-
                                 Featured
-
                             </th>
 
                             <th>
-
                                 Date
-
                             </th>
 
                             <th width="180">
-
                                 Actions
-
                             </th>
 
                         </tr>
@@ -210,18 +197,18 @@
 
                                 <img
                                     src="{{ blog.featured_image }}"
-                                    class="rounded"
                                     width="65"
                                     height="65"
+                                    class="rounded"
                                     style="object-fit:cover;">
 
                                 {% else %}
 
                                 <img
                                     src="{{ url_for('static', filename='images/default-blog.jpg') }}"
-                                    class="rounded"
                                     width="65"
-                                    height="65">
+                                    height="65"
+                                    class="rounded">
 
                                 {% endif %}
 
@@ -250,7 +237,8 @@
                             </td>
 
                             <td>
-                                                                {% if blog.featured %}
+
+                                {% if blog.featured %}
 
                                 <span class="badge bg-success">
 
@@ -274,11 +262,11 @@
 
                                 {% if blog.created_at %}
 
-                                    {{ blog.created_at.strftime("%d-%m-%Y") }}
+                                {{ blog.created_at.strftime("%d-%m-%Y") }}
 
                                 {% else %}
 
-                                    --
+                                --
 
                                 {% endif %}
 
@@ -289,8 +277,9 @@
                                 <!-- EDIT -->
 
                                 <button
-                                    type="button"
                                     class="btn btn-primary btn-sm me-1 editBlogBtn"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#blogModal"
 
                                     data-id="{{ blog._id }}"
                                     data-title="{{ blog.title }}"
@@ -300,10 +289,7 @@
                                     data-excerpt="{{ blog.excerpt }}"
                                     data-content="{{ blog.content }}"
                                     data-tags="{{ blog.tags|join(', ') if blog.tags else '' }}"
-                                    data-featured="{{ blog.featured }}"
-
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#blogModal">
+                                    data-featured="{{ blog.featured }}">
 
                                     <i class="fa-solid fa-pen"></i>
 
@@ -385,6 +371,7 @@
             <form
                 id="blogForm"
                 method="POST"
+                enctype="multipart/form-data"
                 action="{{ url_for('add_blog') }}">
 
                 <div class="modal-header">
@@ -477,26 +464,52 @@
                             </select>
 
                         </div>
-                                                <!-- FEATURED IMAGE -->
+                                                <!-- ===================================== -->
+                        <!-- BLOG IMAGE -->
+                        <!-- ===================================== -->
 
-                        <div class="col-12 mb-3">
+                        <div class="col-12 mb-4">
 
                             <label class="form-label">
 
-                                Featured Image URL
+                                Blog Image
 
                             </label>
 
+                            <div class="text-center mb-3">
+
+                                <img
+                                    id="imagePreview"
+                                    src="{{ url_for('static', filename='images/default-blog.jpg') }}"
+                                    class="img-fluid rounded shadow"
+                                    style="
+                                        max-height:220px;
+                                        max-width:100%;
+                                        object-fit:cover;
+                                        border:2px solid rgba(255,255,255,.08);
+                                    ">
+
+                            </div>
+
                             <input
                                 id="blogImage"
-                                type="url"
-                                name="featured_image"
+                                type="file"
+                                name="blog_image"
                                 class="form-control"
-                                placeholder="https://example.com/image.jpg">
+                                accept=".jpg,.jpeg,.png,.webp">
+
+                            <small class="text-secondary">
+
+                                Supported formats:
+                                JPG, JPEG, PNG and WEBP
+
+                            </small>
 
                         </div>
 
+                        <!-- ===================================== -->
                         <!-- BLOG EXCERPT -->
+                        <!-- ===================================== -->
 
                         <div class="col-12 mb-3">
 
@@ -511,12 +524,14 @@
                                 name="excerpt"
                                 class="form-control"
                                 rows="3"
-                                placeholder="Short description of the blog..."
+                                placeholder="Short description..."
                                 required></textarea>
 
                         </div>
 
+                        <!-- ===================================== -->
                         <!-- BLOG CONTENT -->
+                        <!-- ===================================== -->
 
                         <div class="col-12 mb-3">
 
@@ -531,12 +546,14 @@
                                 name="content"
                                 class="form-control"
                                 rows="10"
-                                placeholder="Write the complete blog here..."
+                                placeholder="Write the complete blog..."
                                 required></textarea>
 
                         </div>
 
-                        <!-- TAGS -->
+                        <!-- ===================================== -->
+                        <!-- BLOG TAGS -->
+                        <!-- ===================================== -->
 
                         <div class="col-12 mb-3">
 
@@ -551,17 +568,19 @@
                                 type="text"
                                 name="tags"
                                 class="form-control"
-                                placeholder="flowmeter, industry, agriculture">
+                                placeholder="industry, agriculture, onion">
 
                             <small class="text-secondary">
 
-                                Separate multiple tags with commas (,)
+                                Separate multiple tags using commas (,)
 
                             </small>
 
                         </div>
 
-                        <!-- FEATURED BLOG -->
+                        <!-- ===================================== -->
+                        <!-- FEATURED -->
+                        <!-- ===================================== -->
 
                         <div class="col-12">
 
@@ -589,7 +608,9 @@
 
                 </div>
 
+                <!-- ===================================== -->
                 <!-- MODAL FOOTER -->
+                <!-- ===================================== -->
 
                 <div class="modal-footer">
 
@@ -624,6 +645,7 @@
     </div>
 
 </div>
+
 <!-- ===================================== -->
 <!-- Bootstrap -->
 <!-- ===================================== -->
@@ -635,7 +657,6 @@
 <!-- ===================================== -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-
 <!-- ===================================== -->
 <!-- BLOG SEARCH -->
 <!-- ===================================== -->
@@ -679,6 +700,46 @@ document.addEventListener("DOMContentLoaded",function(){
 </script>
 
 <!-- ===================================== -->
+<!-- IMAGE PREVIEW -->
+<!-- ===================================== -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded",function(){
+
+    const imageInput =
+        document.getElementById("blogImage");
+
+    const imagePreview =
+        document.getElementById("imagePreview");
+
+    if(imageInput){
+
+        imageInput.addEventListener("change",function(){
+
+            if(this.files && this.files[0]){
+
+                const reader = new FileReader();
+
+                reader.onload = function(e){
+
+                    imagePreview.src = e.target.result;
+
+                };
+
+                reader.readAsDataURL(this.files[0]);
+
+            }
+
+        });
+
+    }
+
+});
+
+</script>
+
+<!-- ===================================== -->
 <!-- EDIT BLOG -->
 <!-- ===================================== -->
 
@@ -695,16 +756,17 @@ document.addEventListener("DOMContentLoaded",function(){
     const form =
         document.getElementById("blogForm");
 
+    const preview =
+        document.getElementById("imagePreview");
+
     document.querySelectorAll(".editBlogBtn").forEach(function(btn){
 
         btn.addEventListener("click",function(){
 
             modalTitle.innerHTML =
-
                 '<i class="fa-solid fa-pen-to-square text-warning me-2"></i>Edit Blog';
 
             submitBtn.innerHTML =
-
                 '<i class="fa-solid fa-floppy-disk me-2"></i>Update Blog';
 
             form.action =
@@ -719,9 +781,6 @@ document.addEventListener("DOMContentLoaded",function(){
             document.getElementById("blogCategory").value =
                 this.dataset.category;
 
-            document.getElementById("blogImage").value =
-                this.dataset.image;
-
             document.getElementById("blogExcerpt").value =
                 this.dataset.excerpt;
 
@@ -733,6 +792,20 @@ document.addEventListener("DOMContentLoaded",function(){
 
             document.getElementById("featuredBlog").checked =
                 this.dataset.featured === "True";
+
+            if(this.dataset.image){
+
+                preview.src =
+                    this.dataset.image;
+
+            }else{
+
+                preview.src =
+                    "{{ url_for('static', filename='images/default-blog.jpg') }}";
+
+            }
+
+            document.getElementById("blogImage").value = "";
 
         });
 
@@ -756,24 +829,30 @@ document.getElementById("addBlogBtn").addEventListener("click",function(){
     document.getElementById("submitBtn").innerHTML =
         '<i class="fa-solid fa-floppy-disk me-2"></i>Publish Blog';
 
-    document.getElementById("blogForm").reset();
+    const form =
+        document.getElementById("blogForm");
 
-    document.getElementById("blogForm").action =
+    form.reset();
+
+    form.action =
         "{{ url_for('add_blog') }}";
+
+    document.getElementById("imagePreview").src =
+        "{{ url_for('static', filename='images/default-blog.jpg') }}";
 
 });
 
 </script>
 
 <!-- ===================================== -->
-<!-- GSAP ANIMATION -->
+<!-- GSAP -->
 <!-- ===================================== -->
 
 <script>
 
 window.addEventListener("load",function(){
 
-    if(typeof gsap!=="undefined"){
+    if(typeof gsap !== "undefined"){
 
         gsap.from(".glass-card",{
 

@@ -1,6 +1,11 @@
+from itertools import product
 import os
 from datetime import datetime
+from unittest import result
 from dotenv import load_dotenv
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 from flask import (
     Flask,
@@ -19,6 +24,17 @@ from bson.errors import InvalidId
 # ENVIRONMENT
 # ==========================================
 load_dotenv()
+cloudinary.config(
+
+    cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),
+
+    api_key=os.getenv("CLOUDINARY_API_KEY"),
+
+    api_secret=os.getenv("CLOUDINARY_API_SECRET"),
+
+    secure=True
+
+)
 
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY", "mudhai_secret_key")
@@ -257,16 +273,48 @@ def add_product():
 
     try:
 
+        # ==========================================
+        # IMAGE UPLOAD
+        # ==========================================
+
+        image = request.files.get("product_image")
+
+        image_url = ""
+        public_id = ""
+
+        if image and image.filename != "":
+
+            upload_result = cloudinary.uploader.upload(
+
+                image,
+
+                folder="mudhai_products"
+
+            )
+
+            image_url = upload_result["secure_url"]
+
+            public_id = upload_result["public_id"]
+
+        # ==========================================
+        # PRODUCT DATA
+        # ==========================================
+
         product = {
 
-            "name": request.form.get("name", "").strip(),
-
-            "category": request.form.get("category", "").strip(),
-
-            "image_url": request.form.get(
-                "image_url",
+            "name": request.form.get(
+                "name",
                 ""
             ).strip(),
+
+            "category": request.form.get(
+                "category",
+                ""
+            ).strip(),
+
+            "image_url": image_url,
+
+            "public_id": public_id,
 
             "short_description": request.form.get(
                 "short_description",
@@ -284,7 +332,13 @@ def add_product():
 
         }
 
-        products_collection.insert_one(product)
+        print("========== PRODUCT ==========")
+        print(product)
+
+        result = products_collection.insert_one(product)
+
+        print("Inserted ID:", result.inserted_id)
+        print("=============================")
 
         flash(
             "Product Added Successfully!",
@@ -293,16 +347,18 @@ def add_product():
 
     except Exception as e:
 
-        print("ADD PRODUCT ERROR :", e)
+        import traceback
+
+        traceback.print_exc()
 
         flash(
-            "Unable to add product.",
+            f"Error: {str(e)}",
             "danger"
         )
 
-    return redirect(url_for("admin_products"))
-
-
+    return redirect(
+        url_for("admin_products")
+    )
 # ==========================================================
 # EDIT PRODUCT
 # ==========================================================
@@ -343,6 +399,63 @@ def edit_product(id):
 
         try:
 
+            # ==========================================
+            # KEEP OLD IMAGE
+            # ==========================================
+
+            image_url = product.get(
+                "image_url",
+                ""
+            )
+
+            public_id = product.get(
+                "public_id",
+                ""
+            )
+
+            # ==========================================
+            # NEW IMAGE
+            # ==========================================
+
+            image = request.files.get("product_image")
+
+            if image and image.filename != "":
+
+                # Delete previous Cloudinary image
+
+                if public_id:
+
+                    try:
+
+                        cloudinary.uploader.destroy(
+                            public_id
+                        )
+
+                    except Exception as delete_error:
+
+                        print(
+                            "DELETE OLD IMAGE ERROR :",
+                            delete_error
+                        )
+
+                # Upload new image
+
+                upload_result = cloudinary.uploader.upload(
+
+                    image,
+
+                    folder="mudhai_products"
+
+                )
+
+                image_url = upload_result["secure_url"]
+
+                public_id = upload_result["public_id"]
+
+            # ==========================================
+            # UPDATE DATA
+            # ==========================================
+
             updated_data = {
 
                 "name": request.form.get(
@@ -355,10 +468,9 @@ def edit_product(id):
                     ""
                 ).strip(),
 
-                "image_url": request.form.get(
-                    "image_url",
-                    ""
-                ).strip(),
+                "image_url": image_url,
+
+                "public_id": public_id,
 
                 "short_description": request.form.get(
                     "short_description",
@@ -370,7 +482,9 @@ def edit_product(id):
                     ""
                 ).strip(),
 
-                "featured": "featured" in request.form
+                "featured": "featured" in request.form,
+
+                "modified_at": datetime.utcnow()
 
             }
 
@@ -397,7 +511,10 @@ def edit_product(id):
 
         except Exception as e:
 
-            print("UPDATE PRODUCT ERROR :", e)
+            print(
+                "UPDATE PRODUCT ERROR :",
+                e
+            )
 
             flash(
                 "Unable to update product.",
@@ -405,11 +522,12 @@ def edit_product(id):
             )
 
     return render_template(
+
         "admin/edit_product.html",
+
         product=product
+
     )
-
-
 # ==========================================================
 # DELETE PRODUCT
 # ==========================================================
@@ -435,6 +553,54 @@ def delete_product(id):
                 url_for("admin_products")
             )
 
+        # ==========================================
+        # FIND PRODUCT
+        # ==========================================
+
+        product = products_collection.find_one(
+            {
+                "_id": obj_id
+            }
+        )
+
+        if not product:
+
+            flash(
+                "Product Not Found.",
+                "warning"
+            )
+
+            return redirect(
+                url_for("admin_products")
+            )
+
+        # ==========================================
+        # DELETE IMAGE FROM CLOUDINARY
+        # ==========================================
+
+        public_id = product.get(
+            "public_id"
+        )
+
+        if public_id:
+
+            try:
+
+                cloudinary.uploader.destroy(
+                    public_id
+                )
+
+            except Exception as cloudinary_error:
+
+                print(
+                    "CLOUDINARY DELETE ERROR :",
+                    cloudinary_error
+                )
+
+        # ==========================================
+        # DELETE PRODUCT FROM DATABASE
+        # ==========================================
+
         result = products_collection.delete_one(
             {
                 "_id": obj_id
@@ -451,20 +617,25 @@ def delete_product(id):
         else:
 
             flash(
-                "Product Not Found.",
+                "Unable to delete product.",
                 "warning"
             )
 
     except Exception as e:
 
-        print("DELETE PRODUCT ERROR :", e)
+        print(
+            "DELETE PRODUCT ERROR :",
+            e
+        )
 
         flash(
             "Unable to delete product.",
             "danger"
         )
 
-    return redirect(url_for("admin_products"))
+    return redirect(
+        url_for("admin_products")
+    )
 # ==========================================
 # ==========================================
 # ADMIN BLOGS
@@ -479,12 +650,15 @@ def admin_blogs():
     try:
 
         blogs = list(
-            blogs_collection.find().sort("created_at", -1)
+            blogs_collection.find().sort(
+                "created_at",
+                -1
+            )
         )
 
     except Exception as e:
 
-        print("BLOG FETCH ERROR:", e)
+        print("BLOG FETCH ERROR :", e)
 
         blogs = []
 
@@ -494,8 +668,11 @@ def admin_blogs():
         )
 
     return render_template(
+
         "admin/blogs.html",
+
         blogs=blogs
+
     )
 
 
@@ -511,17 +688,39 @@ def add_blog():
 
     try:
 
-        title = request.form.get("title", "").strip()
-        author = request.form.get("author", "").strip()
-        category = request.form.get("category", "").strip()
-        excerpt = request.form.get("excerpt", "").strip()
-        content = request.form.get("content", "").strip()
-        featured_image = request.form.get(
-            "featured_image",
+        # ==========================================
+        # BASIC DATA
+        # ==========================================
+
+        title = request.form.get(
+            "title",
             ""
         ).strip()
 
-        tags = request.form.get("tags", "").strip()
+        author = request.form.get(
+            "author",
+            ""
+        ).strip()
+
+        category = request.form.get(
+            "category",
+            ""
+        ).strip()
+
+        excerpt = request.form.get(
+            "excerpt",
+            ""
+        ).strip()
+
+        content = request.form.get(
+            "content",
+            ""
+        ).strip()
+
+        tags = request.form.get(
+            "tags",
+            ""
+        ).strip()
 
         if not title or not author or not category:
 
@@ -530,7 +729,42 @@ def add_blog():
                 "warning"
             )
 
-            return redirect(url_for("admin_blogs"))
+            return redirect(
+                url_for("admin_blogs")
+            )
+
+        # ==========================================
+        # CLOUDINARY IMAGE UPLOAD
+        # ==========================================
+
+        image = request.files.get(
+            "blog_image"
+        )
+
+        featured_image = ""
+
+        public_id = ""
+
+        if image and image.filename != "":
+
+            upload_result = cloudinary.uploader.upload(
+
+                image,
+
+                folder="mudhai_blogs"
+
+            )
+
+            featured_image = upload_result[
+                "secure_url"
+            ]
+
+            public_id = upload_result[
+                "public_id"
+            ]
+                    # ==========================================
+        # BLOG DATA
+        # ==========================================
 
         blog = {
 
@@ -545,6 +779,8 @@ def add_blog():
             "content": content,
 
             "featured_image": featured_image,
+
+            "public_id": public_id,
 
             "tags": [
 
@@ -562,26 +798,53 @@ def add_blog():
 
         }
 
-        blogs_collection.insert_one(blog)
+        # ==========================================
+        # SAVE BLOG
+        # ==========================================
+
+        result = blogs_collection.insert_one(
+            blog
+        )
+
+        print("========== BLOG ==========")
+
+        print(blog)
+
+        print(
+            "Inserted ID :",
+            result.inserted_id
+        )
+
+        print("==========================")
 
         flash(
+
             "Blog Added Successfully!",
+
             "success"
+
         )
 
     except Exception as e:
 
-        print("ADD BLOG ERROR:", e)
+        import traceback
+
+        traceback.print_exc()
 
         flash(
-            "Unable to add blog.",
+
+            f"Error : {str(e)}",
+
             "danger"
+
         )
 
-    return redirect(url_for("admin_blogs"))
+    return redirect(
 
+        url_for("admin_blogs")
 
-# ==========================================
+    )
+    # ==========================================
 # EDIT BLOG
 # ==========================================
 
@@ -602,96 +865,191 @@ def edit_blog(id):
                 "danger"
             )
 
-            return redirect(url_for("admin_blogs"))
+            return redirect(
+                url_for("admin_blogs")
+            )
 
-        tags = request.form.get("tags", "").strip()
+        # ==========================================
+        # FIND BLOG
+        # ==========================================
 
-        result = blogs_collection.update_one(
+        blog = blogs_collection.find_one(
+
+            {
+                "_id": obj_id
+            }
+
+        )
+
+        if not blog:
+
+            flash(
+                "Blog Not Found.",
+                "warning"
+            )
+
+            return redirect(
+                url_for("admin_blogs")
+            )
+
+        tags = request.form.get(
+            "tags",
+            ""
+        ).strip()
+
+        # ==========================================
+        # KEEP OLD IMAGE
+        # ==========================================
+
+        featured_image = blog.get(
+            "featured_image",
+            ""
+        )
+
+        public_id = blog.get(
+            "public_id",
+            ""
+        )
+
+        # ==========================================
+        # NEW IMAGE
+        # ==========================================
+
+        image = request.files.get(
+            "blog_image"
+        )
+
+        if image and image.filename != "":
+
+            # Delete previous Cloudinary image
+
+            if public_id:
+
+                try:
+
+                    cloudinary.uploader.destroy(
+                        public_id
+                    )
+
+                except Exception as delete_error:
+
+                    print(
+                        "DELETE OLD BLOG IMAGE ERROR :",
+                        delete_error
+                    )
+
+            # Upload new image
+
+            upload_result = cloudinary.uploader.upload(
+
+                image,
+
+                folder="mudhai_blogs"
+
+            )
+
+            featured_image = upload_result[
+                "secure_url"
+            ]
+
+            public_id = upload_result[
+                "public_id"
+            ]
+                    # ==========================================
+        # UPDATE DATA
+        # ==========================================
+
+        updated_data = {
+
+            "title": request.form.get(
+                "title",
+                ""
+            ).strip(),
+
+            "author": request.form.get(
+                "author",
+                ""
+            ).strip(),
+
+            "category": request.form.get(
+                "category",
+                ""
+            ).strip(),
+
+            "excerpt": request.form.get(
+                "excerpt",
+                ""
+            ).strip(),
+
+            "content": request.form.get(
+                "content",
+                ""
+            ).strip(),
+
+            "featured_image": featured_image,
+
+            "public_id": public_id,
+
+            "tags": [
+
+                tag.strip()
+
+                for tag in tags.split(",")
+
+                if tag.strip()
+
+            ],
+
+            "featured": "featured" in request.form,
+
+            "modified_at": datetime.utcnow()
+
+        }
+
+        # ==========================================
+        # UPDATE BLOG
+        # ==========================================
+
+        blogs_collection.update_one(
 
             {
                 "_id": obj_id
             },
 
             {
-                "$set": {
-
-                    "title": request.form.get(
-                        "title",
-                        ""
-                    ).strip(),
-
-                    "author": request.form.get(
-                        "author",
-                        ""
-                    ).strip(),
-
-                    "category": request.form.get(
-                        "category",
-                        ""
-                    ).strip(),
-
-                    "excerpt": request.form.get(
-                        "excerpt",
-                        ""
-                    ).strip(),
-
-                    "content": request.form.get(
-                        "content",
-                        ""
-                    ).strip(),
-
-                    "featured_image": request.form.get(
-                        "featured_image",
-                        ""
-                    ).strip(),
-
-                    "tags": [
-
-                        tag.strip()
-
-                        for tag in tags.split(",")
-
-                        if tag.strip()
-
-                    ],
-
-                    "featured": "featured" in request.form,
-
-                    "modified_at": datetime.utcnow()
-
-                }
-
+                "$set": updated_data
             }
 
         )
 
-        if result.matched_count:
+        flash(
 
-            flash(
-                "Blog Updated Successfully!",
-                "success"
-            )
+            "Blog Updated Successfully!",
 
-        else:
+            "success"
 
-            flash(
-                "Blog not found.",
-                "warning"
-            )
+        )
 
     except Exception as e:
 
-        print("EDIT BLOG ERROR:", e)
+        import traceback
+
+        traceback.print_exc()
 
         flash(
-            "Unable to update blog.",
+
+            f"Error : {str(e)}",
+
             "danger"
+
         )
 
-    return redirect(url_for("admin_blogs"))
+    return redirect(
 
+        url_for("admin_blogs")
 
-# ==========================================
+    )
+    # ==========================================
 # DELETE BLOG
 # ==========================================
 
@@ -712,38 +1070,111 @@ def delete_blog(id):
                 "danger"
             )
 
-            return redirect(url_for("admin_blogs"))
+            return redirect(
+                url_for("admin_blogs")
+            )
 
-        result = blogs_collection.delete_one(
+        # ==========================================
+        # FIND BLOG
+        # ==========================================
+
+        blog = blogs_collection.find_one(
+
             {
                 "_id": obj_id
             }
+
+        )
+
+        if not blog:
+
+            flash(
+                "Blog Not Found.",
+                "warning"
+            )
+
+            return redirect(
+                url_for("admin_blogs")
+            )
+
+        # ==========================================
+        # DELETE IMAGE FROM CLOUDINARY
+        # ==========================================
+
+        public_id = blog.get(
+            "public_id"
+        )
+
+        if public_id:
+
+            try:
+
+                cloudinary.uploader.destroy(
+                    public_id
+                )
+
+            except Exception as cloudinary_error:
+
+                print(
+
+                    "CLOUDINARY DELETE ERROR :",
+
+                    cloudinary_error
+
+                )
+
+        # ==========================================
+        # DELETE BLOG FROM DATABASE
+        # ==========================================
+
+        result = blogs_collection.delete_one(
+
+            {
+                "_id": obj_id
+            }
+
         )
 
         if result.deleted_count:
 
             flash(
+
                 "Blog Deleted Successfully!",
+
                 "success"
+
             )
 
         else:
 
             flash(
-                "Blog not found.",
+
+                "Unable to delete blog.",
+
                 "warning"
+
             )
 
     except Exception as e:
 
-        print("DELETE BLOG ERROR:", e)
+        import traceback
+
+        traceback.print_exc()
 
         flash(
-            "Unable to delete blog.",
+
+            f"Error : {str(e)}",
+
             "danger"
+
         )
 
-    return redirect(url_for("admin_blogs"))
+    return redirect(
+
+        url_for("admin_blogs")
+
+    )
+    
 # ==========================================
 # ADMIN ENQUIRIES
 # ==========================================
