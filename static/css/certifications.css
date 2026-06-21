@@ -1,31 +1,54 @@
-/* ==========================================
-   CERTIFICATIONS PAGE
-========================================== */
+/*=====================================================
+    CERTIFICATIONS PAGE
+    PART 1 - HERO & SECTION HEADER
+======================================================*/
 
-/* ==========================================
-   HERO SECTION
-========================================== */
+/*=====================================================
+    HERO SECTION
+======================================================*/
 
 .certification-hero{
-    min-height:70vh;
+    position:relative;
     display:flex;
     align-items:center;
     justify-content:center;
-    text-align:center;
-    position:relative;
+    min-height:75vh;
+    padding:140px 0 100px;
     overflow:hidden;
-    background:linear-gradient(135deg,#050816,#0f172a);
+    text-align:center;
+    background:linear-gradient(
+        135deg,
+        #050816 0%,
+        #071426 45%,
+        #0f172a 100%
+    );
 }
+
+/*=====================================================
+    HERO OVERLAY
+======================================================*/
 
 .certification-hero::before{
     content:"";
     position:absolute;
-    width:600px;
-    height:600px;
+    width:650px;
+    height:650px;
+    top:-250px;
+    right:-220px;
     border-radius:50%;
-    background:rgba(0,212,255,.08);
-    top:-200px;
-    right:-200px;
+    background:rgba(0,212,255,.12);
+    filter:blur(110px);
+}
+
+.certification-hero::after{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    left:-180px;
+    bottom:-180px;
+    border-radius:50%;
+    background:rgba(0,255,153,.08);
     filter:blur(100px);
 }
 
@@ -34,293 +57,1173 @@
     z-index:2;
 }
 
+/*=====================================================
+    HERO BADGE
+======================================================*/
+
 .hero-badge{
-    display:inline-block;
-    padding:12px 24px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+
+    padding:12px 26px;
+
+    margin-bottom:25px;
+
     border-radius:50px;
+
     background:rgba(255,255,255,.08);
+
     border:1px solid rgba(255,255,255,.12);
-    backdrop-filter:blur(10px);
-    color:#00d4ff;
-    margin-bottom:20px;
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    color:var(--primary);
+
+    font-size:.95rem;
+
+    font-weight:600;
+
+    transition:.35s ease;
 }
+
+.hero-badge:hover{
+    transform:translateY(-3px);
+    border-color:var(--primary);
+    box-shadow:0 15px 30px rgba(0,212,255,.20);
+}
+
+/*=====================================================
+    HERO TITLE
+======================================================*/
 
 .page-title{
-    font-size:4rem;
-    font-weight:800;
+
     color:#ffffff;
-    margin-bottom:20px;
+
+    font-size:clamp(2.8rem,5vw,4.8rem);
+
+    font-weight:800;
+
+    line-height:1.15;
+
+    margin-bottom:25px;
+
+    letter-spacing:-1px;
 }
+
+/*=====================================================
+    HERO DESCRIPTION
+======================================================*/
 
 .page-description{
-    max-width:800px;
-    margin:auto;
-    color:rgba(255,255,255,.8);
-    font-size:1.1rem;
+
+    max-width:760px;
+
+    margin:0 auto;
+
+    color:rgba(255,255,255,.82);
+
+    font-size:1.08rem;
+
+    line-height:1.9;
 }
 
-/* ==========================================
-   COMMON SECTION STYLES
-========================================== */
+/*=====================================================
+    COMMON SECTION
+======================================================*/
 
 .certifications-grid-section,
 .certification-timeline,
 .featured-certifications,
 .cta-section{
-    padding:100px 0;
+
+    position:relative;
+
+    padding:30px 0;
+
 }
 
+/*=====================================================
+    SECTION HEADER
+======================================================*/
+
 .section-header{
+
+    max-width:850px;
+
+    margin:0 auto 70px;
+
     text-align:center;
-    margin-bottom:60px;
 }
 
 .section-tag{
+
     display:inline-block;
-    color:#00d4ff;
+
+    margin-bottom:15px;
+
+    color:var(--primary);
+
     font-size:.9rem;
-    font-weight:600;
+
+    font-weight:700;
+
     letter-spacing:2px;
+
     text-transform:uppercase;
-    margin-bottom:10px;
 }
 
 .section-header h2{
+
     color:#ffffff;
-    font-size:3rem;
-    font-weight:700;
-    margin-bottom:15px;
+
+    font-size:clamp(2rem,4vw,3.3rem);
+
+    font-weight:800;
+
+    margin-bottom:20px;
 }
 
 .section-header p{
-    color:rgba(255,255,255,.75);
-    max-width:700px;
-    margin:auto;
+
+    max-width:720px;
+
+    margin:0 auto;
+
+    color:rgba(255,255,255,.78);
+
+    font-size:1.05rem;
+
+    line-height:1.9;
 }
 
-/* ==========================================
-   CERTIFICATION CARDS
-========================================== */
+/*=====================================================
+    RESPONSIVE
+======================================================*/
 
-.certification-card{
-    height:100%;
-    text-align:center;
-    padding:35px 25px;
+@media (max-width:991px){
 
-    background:rgba(255,255,255,.05);
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:24px;
+    .certification-hero{
 
-    transition:all .35s ease;
-}
+        min-height:65vh;
 
-.certification-card:hover{
-    transform:translateY(-10px);
-    border-color:#00d4ff;
-    box-shadow:0 20px 40px rgba(0,0,0,.25);
-}
-
-.certificate-icon{
-    width:90px;
-    height:90px;
-
-    margin:0 auto 25px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:3rem;
-
-    border-radius:50%;
-
-    background:rgba(0,212,255,.08);
-}
-
-.certification-card h3{
-    color:#ffffff;
-    margin-bottom:15px;
-    font-weight:700;
-}
-
-.certification-card p{
-    color:rgba(255,255,255,.75);
-    line-height:1.7;
-    margin-bottom:20px;
-}
-
-.status-badge{
-    display:inline-block;
-    padding:8px 18px;
-    border-radius:30px;
-
-    background:#00ff99;
-    color:#000000;
-
-    font-size:.85rem;
-    font-weight:600;
-}
-
-/* ==========================================
-   TIMELINE SECTION
-========================================== */
-
-.timeline-step{
-    height:100%;
-    text-align:center;
-
-    padding:35px 25px;
-
-    background:rgba(255,255,255,.05);
-    border:1px solid rgba(255,255,255,.08);
-
-    border-radius:24px;
-
-    transition:all .35s ease;
-}
-
-.timeline-step:hover{
-    transform:translateY(-10px);
-    border-color:#00d4ff;
-}
-
-.timeline-icon{
-    font-size:3rem;
-    margin-bottom:20px;
-}
-
-.timeline-step h5{
-    color:#ffffff;
-    margin-bottom:15px;
-}
-
-.timeline-step p{
-    color:rgba(255,255,255,.75);
-}
-
-/* ==========================================
-   FEATURED CERTIFICATIONS
-========================================== */
-
-.featured-cert-card{
-    height:100%;
-    text-align:center;
-
-    padding:40px 25px;
-
-    background:rgba(255,255,255,.05);
-    border:1px solid rgba(255,255,255,.08);
-
-    border-radius:24px;
-
-    transition:all .35s ease;
-}
-
-.featured-cert-card:hover{
-    transform:translateY(-10px);
-    border-color:#00d4ff;
-}
-
-.featured-cert-card h3{
-    color:#00d4ff;
-    font-size:2rem;
-    font-weight:700;
-    margin-bottom:15px;
-}
-
-.featured-cert-card p{
-    color:rgba(255,255,255,.75);
-}
-
-/* ==========================================
-   CTA SECTION
-========================================== */
-
-.cta-section{
-    text-align:center;
-}
-
-.cta-section h2{
-    color:#ffffff;
-    font-size:3.2rem;
-    font-weight:700;
-    margin-bottom:20px;
-}
-
-.cta-section p{
-    color:rgba(255,255,255,.75);
-    max-width:700px;
-    margin:0 auto 30px;
-}
-
-.cta-section .btn-success{
-    background:#00ff99;
-    color:#000;
-    border:none;
-    padding:12px 35px;
-    font-weight:600;
-    transition:.3s ease;
-}
-
-.cta-section .btn-success:hover{
-    transform:translateY(-3px);
-}
-
-/* ==========================================
-   FLOATING EFFECT
-========================================== */
-
-@keyframes floatCard{
-
-    0%,100%{
-        transform:translateY(0);
-    }
-
-    50%{
-        transform:translateY(-8px);
-    }
-
-}
-
-.featured-certifications .featured-cert-card{
-    animation:floatCard 5s ease-in-out infinite;
-}
-
-/* ==========================================
-   RESPONSIVE
-========================================== */
-
-@media (max-width:992px){
-
-    .page-title{
-        font-size:3rem;
-    }
-
-    .section-header h2{
-        font-size:2.4rem;
+        padding:120px 0 80px;
     }
 
 }
 
 @media (max-width:768px){
 
+    .certification-hero{
+
+        min-height:60vh;
+
+        padding:100px 0 70px;
+    }
+
     .page-title{
-        font-size:2.3rem;
+
+        font-size:2.6rem;
+    }
+
+    .section-header{
+
+        margin-bottom:50px;
+    }
+
+}
+
+@media (max-width:576px){
+
+    .certification-hero{
+
+        padding:90px 0 60px;
+    }
+
+    .hero-badge{
+
+        width:100%;
+        max-width:320px;
+    }
+
+    .page-title{
+
+        font-size:2.2rem;
+    }
+
+    .page-description{
+
+        font-size:1rem;
     }
 
     .section-header h2{
+
         font-size:2rem;
+    }
+
+}
+/*=====================================================
+    CERTIFICATION CARDS
+======================================================*/
+
+.certification-card{
+    position:relative;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    align-items:center;
+
+    height:100%;
+
+    padding:40px 30px;
+
+    text-align:center;
+
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.10);
+
+    border-radius:28px;
+
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+
+    overflow:hidden;
+
+    transition:all .4s ease;
+}
+
+/* Top Gradient */
+
+.certification-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:4px;
+
+    background:linear-gradient(
+        90deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+}
+
+/* Hover */
+
+.certification-card:hover{
+
+    transform:translateY(-12px);
+
+    border-color:var(--primary);
+
+    box-shadow:
+        0 25px 55px rgba(0,212,255,.20);
+
+}
+
+/*=====================================================
+    CERTIFICATE LOGO
+======================================================*/
+
+.certificate-logo{
+
+    width:120px;
+
+    height:120px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin:0 auto 30px;
+
+    padding:18px;
+
+    border-radius:24px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.10);
+
+    transition:.35s ease;
+
+}
+
+.certificate-logo img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:contain;
+
+    transition:.35s ease;
+
+}
+
+.certification-card:hover .certificate-logo{
+
+    transform:scale(1.08);
+
+    border-color:var(--primary);
+
+}
+
+.certification-card:hover .certificate-logo img{
+
+    transform:scale(1.05);
+
+}
+
+/*=====================================================
+    CARD TITLE
+======================================================*/
+
+.certification-card h3{
+
+    color:#ffffff;
+
+    font-size:1.6rem;
+
+    font-weight:700;
+
+    margin-bottom:18px;
+
+}
+
+/*=====================================================
+    CARD DESCRIPTION
+======================================================*/
+
+.certification-card p{
+
+    color:rgba(255,255,255,.80);
+
+    line-height:1.8;
+
+    margin-bottom:25px;
+
+    flex-grow:1;
+
+}
+
+/*=====================================================
+    STATUS BADGE
+======================================================*/
+
+.status-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:10px 22px;
+
+    border-radius:50px;
+
+    background:linear-gradient(
+        135deg,
+        var(--secondary),
+        #00ff99
+    );
+
+    color:#050816;
+
+    font-size:.85rem;
+
+    font-weight:700;
+
+    letter-spacing:.5px;
+
+}
+
+/*=====================================================
+    CARD ANIMATION
+======================================================*/
+
+.certification-card{
+
+    animation:cardFloat 6s ease-in-out infinite;
+
+}
+
+.certification-card:nth-child(2){
+
+    animation-delay:.4s;
+
+}
+
+.certification-card:nth-child(3){
+
+    animation-delay:.8s;
+
+}
+
+.certification-card:nth-child(4){
+
+    animation-delay:1.2s;
+
+}
+
+@keyframes cardFloat{
+
+    0%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-6px);
+    }
+
+    100%{
+        transform:translateY(0);
+    }
+
+}
+
+/*=====================================================
+    RESPONSIVE
+======================================================*/
+
+@media (max-width:991px){
+
+    .certification-card{
+
+        padding:35px 25px;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .certificate-logo{
+
+        width:100px;
+
+        height:100px;
+
+    }
+
+    .certification-card h3{
+
+        font-size:1.4rem;
+
+    }
+
+}
+
+@media (max-width:576px){
+
+    .certification-card{
+
+        padding:30px 22px;
+
+        border-radius:22px;
+
+    }
+
+    .certificate-logo{
+
+        width:90px;
+
+        height:90px;
+
+        padding:15px;
+
+    }
+
+    .certification-card h3{
+
+        font-size:1.3rem;
+
+    }
+
+    .certification-card p{
+
+        font-size:.95rem;
+
+    }
+
+}
+/*=====================================================
+    TRUST TIMELINE
+======================================================*/
+
+.certification-timeline{
+    position:relative;
+    overflow:hidden;
+}
+
+.timeline-step{
+    position:relative;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+
+    height:100%;
+
+    padding:40px 30px;
+
+    text-align:center;
+
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.10);
+
+    border-radius:28px;
+
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+
+    transition:all .4s ease;
+
+    overflow:hidden;
+}
+
+/* Top Border */
+
+.timeline-step::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:4px;
+
+    background:linear-gradient(
+        90deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+}
+
+/* Hover */
+
+.timeline-step:hover{
+
+    transform:translateY(-12px);
+
+    border-color:var(--primary);
+
+    box-shadow:
+        0 25px 55px rgba(0,212,255,.18);
+
+}
+
+/*=====================================================
+    TIMELINE ICON
+======================================================*/
+
+.timeline-icon{
+
+    width:90px;
+
+    height:90px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        rgba(0,212,255,.15),
+        rgba(0,255,153,.10)
+    );
+
+    border:2px solid rgba(0,212,255,.25);
+
+    color:var(--primary);
+
+    font-size:2rem;
+
+    transition:.35s ease;
+
+}
+
+.timeline-step:hover .timeline-icon{
+
+    transform:rotate(8deg) scale(1.08);
+
+    border-color:var(--primary);
+
+}
+
+/*=====================================================
+    TIMELINE TITLE
+======================================================*/
+
+.timeline-step h5{
+
+    color:#ffffff;
+
+    font-size:1.35rem;
+
+    font-weight:700;
+
+    margin-bottom:18px;
+
+}
+
+/*=====================================================
+    TIMELINE TEXT
+======================================================*/
+
+.timeline-step p{
+
+    color:rgba(255,255,255,.78);
+
+    line-height:1.8;
+
+    margin-bottom:0;
+
+}
+
+/*=====================================================
+    FEATURED CERTIFICATIONS
+======================================================*/
+
+.featured-certifications{
+    position:relative;
+}
+
+.featured-cert-card{
+
+    position:relative;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    height:100%;
+
+    padding:45px 30px;
+
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.10);
+
+    border-radius:28px;
+
+    backdrop-filter:blur(20px);
+
+    transition:all .4s ease;
+
+}
+
+.featured-cert-card:hover{
+
+    transform:translateY(-12px);
+
+    border-color:var(--primary);
+
+    box-shadow:
+        0 25px 55px rgba(0,212,255,.20);
+
+}
+
+.featured-cert-card h3{
+
+    color:var(--primary);
+
+    font-size:2rem;
+
+    font-weight:800;
+
+    margin-bottom:15px;
+
+}
+
+.featured-cert-card p{
+
+    color:rgba(255,255,255,.80);
+
+    line-height:1.8;
+
+    margin-bottom:0;
+
+}
+
+/*=====================================================
+    FLOAT ANIMATION
+======================================================*/
+
+.timeline-step,
+.featured-cert-card{
+
+    animation:floatCard 6s ease-in-out infinite;
+
+}
+
+.timeline-step:nth-child(2),
+.featured-cert-card:nth-child(2){
+
+    animation-delay:.5s;
+
+}
+
+.timeline-step:nth-child(3),
+.featured-cert-card:nth-child(3){
+
+    animation-delay:1s;
+
+}
+
+.timeline-step:nth-child(4),
+.featured-cert-card:nth-child(4){
+
+    animation-delay:1.5s;
+
+}
+
+@keyframes floatCard{
+
+    0%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-6px);
+    }
+
+    100%{
+        transform:translateY(0);
+    }
+
+}
+
+/*=====================================================
+    RESPONSIVE
+======================================================*/
+
+@media (max-width:991px){
+
+    .timeline-step,
+    .featured-cert-card{
+
+        padding:35px 25px;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .timeline-icon{
+
+        width:80px;
+
+        height:80px;
+
+        font-size:1.8rem;
+
+    }
+
+    .timeline-step h5{
+
+        font-size:1.25rem;
+
+    }
+
+    .featured-cert-card h3{
+
+        font-size:1.7rem;
+
+    }
+
+}
+
+@media (max-width:576px){
+
+    .timeline-step,
+    .featured-cert-card{
+
+        padding:30px 22px;
+
+        border-radius:22px;
+
+    }
+
+    .timeline-icon{
+
+        width:70px;
+
+        height:70px;
+
+        font-size:1.6rem;
+
+    }
+
+    .timeline-step h5{
+
+        font-size:1.15rem;
+
+    }
+
+    .featured-cert-card h3{
+
+        font-size:1.5rem;
+
+    }
+
+}
+/*=====================================================
+    CTA SECTION
+======================================================*/
+
+.cta-section{
+    position:relative;
+    overflow:hidden;
+    padding:40px 0;
+    text-align:center;
+}
+
+/*=====================================================
+    CTA BACKGROUND
+======================================================*/
+
+.cta-section::before{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    top:-180px;
+    left:-180px;
+    border-radius:50%;
+    background:rgba(0,212,255,.08);
+    filter:blur(100px);
+}
+
+.cta-section::after{
+    content:"";
+    position:absolute;
+    width:420px;
+    height:420px;
+    bottom:-160px;
+    right:-160px;
+    border-radius:50%;
+    background:rgba(0,255,153,.08);
+    filter:blur(100px);
+}
+
+.cta-section .container{
+    position:relative;
+    z-index:2;
+}
+
+/*=====================================================
+    CTA TITLE
+======================================================*/
+
+.cta-section h2{
+
+    color:#ffffff;
+
+    font-size:clamp(2rem,4vw,3.4rem);
+
+    font-weight:800;
+
+    margin-bottom:22px;
+
+}
+
+/*=====================================================
+    CTA DESCRIPTION
+======================================================*/
+
+.cta-section p{
+
+    max-width:760px;
+
+    margin:0 auto 40px;
+
+    color:rgba(255,255,255,.80);
+
+    font-size:1.08rem;
+
+    line-height:1.9;
+
+}
+
+/*=====================================================
+    BUTTON WRAPPER
+======================================================*/
+
+.cta-button-wrapper{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+/*=====================================================
+    CTA BUTTON
+======================================================*/
+
+.cta-section .btn{
+
+    display:inline-flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-width:240px;
+
+    height:58px;
+
+    padding:0 34px;
+
+    border-radius:14px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    text-decoration:none;
+
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    border:none;
+
+    color:#050816;
+
+    transition:all .35s ease;
+
+    box-shadow:0 15px 35px rgba(0,212,255,.22);
+
+}
+
+.cta-section .btn i{
+
+    margin-right:10px;
+
+}
+
+.cta-section .btn:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 22px 45px rgba(0,212,255,.35);
+
+}
+
+/*=====================================================
+    SECTION ANIMATION
+======================================================*/
+
+.certification-card,
+.timeline-step,
+.featured-cert-card{
+
+    animation:fadeUp .8s ease both;
+
+}
+
+.certification-card:nth-child(2){
+
+    animation-delay:.15s;
+
+}
+
+.certification-card:nth-child(3){
+
+    animation-delay:.30s;
+
+}
+
+.certification-card:nth-child(4){
+
+    animation-delay:.45s;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(35px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/*=====================================================
+    PERFORMANCE
+======================================================*/
+
+.certification-card,
+.timeline-step,
+.featured-cert-card,
+.cta-section .btn{
+
+    will-change:transform;
+
+    transform:translateZ(0);
+
+    backface-visibility:hidden;
+
+}
+
+/*=====================================================
+    SELECTION
+======================================================*/
+
+.certification-hero ::selection,
+.certifications-grid-section ::selection,
+.certification-timeline ::selection,
+.cta-section ::selection{
+
+    background:var(--primary);
+
+    color:#000;
+
+}
+
+/*=====================================================
+    RESPONSIVE
+======================================================*/
+
+@media (max-width:991px){
+
+    .cta-section{
+
+        padding:40px 0;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .cta-section{
+
+        padding:40px 0;
+
     }
 
     .cta-section h2{
-        font-size:2rem;
+
+        font-size:2.2rem;
+
     }
 
-    .certifications-grid-section,
-    .certification-timeline,
-    .featured-certifications,
+    .cta-section .btn{
+
+        min-width:220px;
+
+        height:44px;
+
+    }
+
+}
+
+@media (max-width:576px){
+
     .cta-section{
-        padding:70px 0;
+
+        padding:40px 0;
+
     }
 
+    .cta-section h2{
+
+        font-size:1.9rem;
+
+    }
+
+    .cta-section p{
+
+        font-size:1rem;
+
+    }
+
+    .cta-section .btn{
+
+        width:100%;
+
+        max-width:320px;
+
+        height:42px;
+
+        font-size:15px;
+
+    }
+
+}
+/* ===== TEMP FIX ===== */
+
+.page-title,
+.page-description{
+    display:block !important;
+    opacity:1 !important;
+    visibility:visible !important;
+    transform:none !important;
+    position:relative;
+    z-index:100;
+}
+
+.hero-badge{
+    opacity:1 !important;
+    visibility:visible !important;
+}
+
+.certification-hero .container{
+    position:relative;
+    z-index:999;
 }

@@ -2724,3 +2724,27 @@ body{
     }
 
 }
+.page-hero,
+.blog-hero,
+.certification-hero{
+    min-height:60vh !important;
+    padding:120px 0 70px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+}
+
+.page-hero .container,
+.blog-hero .container,
+.certification-hero .container{
+    position:relative;
+    z-index:10;
+}
+
+.page-title{
+    margin-top:0 !important;
+}
+
+.page-description{
+    margin-top:20px !important;
+}

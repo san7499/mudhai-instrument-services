@@ -331,7 +331,7 @@
 
     position:relative;
 
-    padding:40px 0;
+    padding:30px 0;
 
 }
 
@@ -656,7 +656,7 @@
 
     .products-section{
 
-        padding:90px 0;
+        padding:30px 0;
 
     }
 
@@ -727,7 +727,7 @@
 
     position:relative;
 
-    padding:130px 0;
+    padding:30px 0;
 
     overflow:hidden;
 
@@ -988,7 +988,7 @@
 
     .product-highlight{
 
-        padding:100px 0;
+        padding:30px 0;
 
     }
 
@@ -1078,7 +1078,7 @@
 
     .product-highlight{
 
-        padding:80px 0;
+        padding:30px 0;
 
     }
 
@@ -1125,7 +1125,7 @@
 
     position:relative;
 
-    padding:120px 0;
+    padding:20px 0;
 
 }
 
@@ -1243,139 +1243,137 @@
 
 }
 
-
 /*=====================================================
-  CTA SECTION
+    CTA SECTION
 ======================================================*/
 
 .cta-section{
-
     position:relative;
-
-    padding:130px 0;
-
+    padding:120px 0;
     text-align:center;
-
     overflow:hidden;
-
+    background:transparent;
 }
 
-
 /*=====================================================
-  CTA BACKGROUND
+    CTA BACKGROUND
 ======================================================*/
 
 .cta-section::before{
-
     content:"";
-
     position:absolute;
-
     width:500px;
-
     height:500px;
-
     top:-180px;
-
     left:-180px;
-
     border-radius:50%;
-
     background:rgba(0,212,255,.08);
-
-    filter:blur(90px);
-
+    filter:blur(100px);
+    z-index:0;
 }
 
 .cta-section::after{
-
     content:"";
-
     position:absolute;
-
     width:420px;
-
     height:420px;
-
     right:-150px;
-
     bottom:-150px;
-
     border-radius:50%;
-
     background:rgba(0,255,153,.06);
-
-    filter:blur(90px);
-
+    filter:blur(100px);
+    z-index:0;
 }
 
-
 /*=====================================================
-  CTA CONTENT
+    CTA CONTENT
 ======================================================*/
 
 .cta-section .container{
-
     position:relative;
-
     z-index:2;
-
+    text-align:center;
 }
 
 .cta-section h2{
-
     margin-bottom:20px;
-
     color:#ffffff;
-
     font-size:clamp(2rem,5vw,3.5rem);
-
     font-weight:800;
-
 }
 
 .cta-section p{
-
     max-width:760px;
-
-    margin:0 auto 35px;
-
-    color:rgba(255,255,255,.78);
-
+    margin:0 auto 40px;
+    color:rgba(255,255,255,.80);
     font-size:1.1rem;
-
     line-height:1.9;
-
 }
 
+/*=====================================================
+    BUTTON WRAPPER
+======================================================*/
+
+.cta-btn-wrapper{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:100%;
+}
 
 /*=====================================================
-  CTA BUTTON
+    CTA BUTTON
 ======================================================*/
 
 .cta-section .btn{
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
 
     min-width:220px;
+    height:58px;
 
-    padding:15px 32px;
+    padding:0 35px;
 
     border-radius:14px;
 
-    font-size:1rem;
-
+    font-size:16px;
     font-weight:600;
 
     transition:all .35s ease;
 
+    text-decoration:none;
 }
 
 .cta-section .btn:hover{
+    transform:translateY(-5px);
+}
 
-    transform:translateY(-4px);
+/*=====================================================
+    RESPONSIVE
+======================================================*/
+
+@media (max-width:768px){
+
+    .cta-section{
+        padding:90px 0;
+    }
+
+    .cta-section .btn{
+        min-width:200px;
+        height:54px;
+    }
 
 }
 
+@media (max-width:576px){
 
+    .cta-section .btn{
+        width:100%;
+        max-width:320px;
+    }
+
+}
 /*=====================================================
   RESPONSIVE
 ======================================================*/
@@ -1384,7 +1382,7 @@
 
     .why-products-section{
 
-        padding:90px 0;
+        padding:30px 0;
 
     }
 
@@ -1440,7 +1438,7 @@
 
     .why-products-section{
 
-        padding:70px 0;
+        padding:30px 0;
 
     }
 
@@ -1648,7 +1646,7 @@ html{
 
     .products-section{
 
-        padding:40px 0;
+        padding:30px 0;
 
     }
 
@@ -1678,7 +1676,7 @@ html{
 
     .products-section{
 
-        padding:90px 0;
+        padding:30px 0;
 
     }
 

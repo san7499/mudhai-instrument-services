@@ -478,64 +478,6 @@ body{
 
 }
 /* =====================================================
-   LOGIN BUTTON
-===================================================== */
-
-.login-btn{
-
-    width:100%;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--primary),
-            var(--secondary)
-        );
-
-    border:none;
-
-    color:#000;
-
-    font-size:1rem;
-
-    font-weight:700;
-
-    padding:15px;
-
-    border-radius:14px;
-
-    cursor:pointer;
-
-    transition:
-        transform .35s ease,
-        box-shadow .35s ease,
-        opacity .35s ease;
-
-}
-
-.login-btn:hover{
-
-    transform:translateY(-4px);
-
-    box-shadow:
-        0 15px 35px rgba(0,212,255,.35);
-
-}
-
-.login-btn:active{
-
-    transform:scale(.98);
-
-}
-
-.login-btn:focus{
-
-    box-shadow:
-        0 0 0 .2rem rgba(0,212,255,.30);
-
-}
-
-/* =====================================================
    BACK TO WEBSITE
 ===================================================== */
 

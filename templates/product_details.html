@@ -11,227 +11,108 @@
 
 {% block content %}
 
-<!-- =====================================================
-PRODUCT HERO
-===================================================== -->
-
 <section class="product-detail-hero">
 
     <div class="hero-overlay"></div>
 
     <div class="container">
 
-        <div class="row justify-content-center">
-
-            <div class="col-xl-10 col-lg-11">
-
-                <!-- ==========================================
-                PRODUCT DETAIL CARD
-                ========================================== -->
-
-                <div class="product-detail-card">
-
-                    <div class="row g-0 align-items-center">
-
-                        <!-- ==========================================
-                        PRODUCT IMAGE
-                        ========================================== -->
-
-                        <div class="col-lg-5">
-
-                            <div class="product-image-wrapper">
-
-                                <div class="image-glow"></div>
-
-                                {% if product.image_url %}
-
-                                <img
-                                    src="{{ product.image_url }}"
-                                    alt="{{ product.name }}"
-                                    class="img-fluid main-product-image">
-
-                                {% else %}
-
-                                <img
-                                    src="{{ url_for('static', filename='images/default-product.jpg') }}"
-                                    alt="{{ product.name }}"
-                                    class="img-fluid main-product-image">
-
-                                {% endif %}
-
-                                {% if product.featured %}
-
-                                <div class="featured-ribbon">
-
-                                    <i class="fa-solid fa-star me-2"></i>
-
-                                    Featured Product
-
-                                </div>
-
-                                {% endif %}
-
-                            </div>
-
-                        </div>
-
-                        <!-- ==========================================
-                        PRODUCT INFORMATION
-                        ========================================== -->
-
-                        <div class="col-lg-7">
-
-                            <div class="product-info">
-
-                                <!-- CATEGORY -->
-
-                                <span class="product-category">
-
-                                    <i class="fa-solid fa-layer-group me-2"></i>
-
-                                    {{ product.category }}
-
-                                </span>
-
-                                <!-- TITLE -->
-
-                                <h1 class="product-title">
-
-                                    {{ product.name }}
-
-                                </h1>
-
-                                <!-- DESCRIPTION -->
-
-                                <p class="product-short-description">
-
-                                    {{ product.short_description }}
-
-                                </p>
-
-                                <!-- ==========================================
-                                PRODUCT HIGHLIGHTS
-                                ========================================== -->
-
-                                <div class="product-highlights">
-                                                                        <!-- Premium Quality -->
-
-                                    <div class="highlight-box">
-
-                                        <div class="highlight-icon">
-
-                                            <i class="fa-solid fa-award"></i>
-
-                                        </div>
-
-                                        <div class="highlight-content">
-
-                                            <h6>
-
-                                                Premium Quality
-
-                                            </h6>
-
-                                            <span>
-
-                                                Tested &amp; Reliable
-
-                                            </span>
-
-                                        </div>
-
-                                    </div>
-
-                                    <!-- Industrial Grade -->
-
-                                    <div class="highlight-box">
-
-                                        <div class="highlight-icon">
-
-                                            <i class="fa-solid fa-shield-halved"></i>
-
-                                        </div>
-
-                                        <div class="highlight-content">
-
-                                            <h6>
-
-                                                Industrial Grade
-
-                                            </h6>
-
-                                            <span>
-
-                                                High Performance
-
-                                            </span>
-
-                                        </div>
-
-                                    </div>
-
-                                    <!-- Technical Support -->
-
-                                    <div class="highlight-box">
-
-                                        <div class="highlight-icon">
-
-                                            <i class="fa-solid fa-headset"></i>
-
-                                        </div>
-
-                                        <div class="highlight-content">
-
-                                            <h6>
-
-                                                24/7 Support
-
-                                            </h6>
-
-                                            <span>
-
-                                                Technical Assistance
-
-                                            </span>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                                <!-- ==========================================
-                                ACTION BUTTONS
-                                ========================================== -->
-
-                                <div class="action-buttons">
-                                                        <a href="{{ url_for('contact') }}"
-                       class="btn btn-primary btn-lg">
-
-                        <i class="fa-solid fa-paper-plane me-2"></i>
-
-                        Request Quote
-
-                    </a>
-
-                    <a href="{{ url_for('products') }}"
-                       class="btn btn-outline-light btn-lg">
-
-                        <i class="fa-solid fa-arrow-left me-2"></i>
-
-                        Back To Products
-
-                    </a>
+        <div class="row justify-content-center align-items-stretch g-4">
+
+            <div class="col-xl-4 col-lg-5 col-md-10 d-flex">
+
+                <div class="product-side-card image-card-wrapper w-100">
+
+                    <div class="image-glow"></div>
+
+                    {% if product.featured %}
+                    <div class="featured-ribbon">
+                        <i class="fa-solid fa-star"></i>
+                        <span>Featured Product</span>
+                    </div>
+                    {% endif %}
+
+                    <div class="image-inner-holder">
+                        {% if product.image_url %}
+                        <img src="{{ product.image_url }}"
+                             alt="{{ product.name }}"
+                             class="main-product-image">
+                        {% else %}
+                        <img src="{{ url_for('static', filename='images/default-product.jpg') }}"
+                             alt="{{ product.name }}"
+                             class="main-product-image">
+                        {% endif %}
+                    </div>
 
                 </div>
 
             </div>
 
-        </div>
+            <div class="col-xl-7 col-lg-7 col-md-10 d-flex">
 
-    </div>
+                <div class="product-side-card info-card-wrapper w-100">
 
-</div>
+                    <div class="category-badge-container">
+                        <span class="product-category">
+                            <i class="fa-solid fa-layer-group"></i>
+                            {{ product.category }}
+                        </span>
+                    </div>
+
+                    <h1 class="product-title">
+                        {{ product.name }}
+                    </h1>
+
+                    <p class="product-short-description">
+                        {{ product.short_description }}
+                    </p>
+
+                    <div class="product-highlights">
+
+                        <div class="highlight-box">
+                            <div class="highlight-icon">
+                                <i class="fa-solid fa-award"></i>
+                            </div>
+                            <div class="highlight-content">
+                                <h6>Premium Quality</h6>
+                                <span>Tested &amp; Reliable</span>
+                            </div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <div class="highlight-icon">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <div class="highlight-content">
+                                <h6>Industrial Grade</h6>
+                                <span>High Performance</span>
+                            </div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <div class="highlight-icon">
+                                <i class="fa-solid fa-headset"></i>
+                            </div>
+                            <div class="highlight-content">
+                                <h6>24/7 Technical Support</h6>
+                                <span>Expert Assistance Whenever You Need It</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="action-buttons">
+                        <a href="{{ url_for('contact') }}" class="btn btn-primary">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            Request Quote
+                        </a>
+                        <a href="{{ url_for('products') }}" class="btn btn-outline-light">
+                            <i class="fa-solid fa-arrow-left"></i>
+                            Back To Products
+                        </a>
+                    </div>
+
+                </div>
 
             </div>
 
