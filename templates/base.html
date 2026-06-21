@@ -226,40 +226,66 @@
 
         <div class="row gy-5">
 
-            <!-- Company -->
+            <!-- ===================================== -->
+            <!-- COMPANY INFORMATION -->
+            <!-- ===================================== -->
 
-            <div class="col-lg-4">
+            <div class="col-lg-4 col-md-6">
 
-                <img src="{{ url_for('static', filename='images/logo.png') }}"
-                     alt="Mudhai Logo"
-                     height="70">
+                <div class="footer-brand">
 
-                <p class="mt-4">
+                    <img
+                        src="{{ url_for('static', filename='images/logo.png') }}"
+                        alt="Mudhai Instrument Services"
+                        class="footer-logo">
 
-                    Mudhai Instrument Services provides reliable industrial
-                    instrumentation and agricultural solutions with a strong
-                    focus on quality, innovation and customer satisfaction.
+                    <h4 class="footer-title">
 
-                </p>
+                        Mudhai Instrument Services
 
-                <div class="social-links mt-4">
+                    </h4>
 
-                    <a href="https://www.facebook.com/share/1JK81cQRDe/" class="social-btn">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/vilas-chavan-4a48ba413" class="social-btn">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
+                    <p class="footer-description">
+
+                        Mudhai Instrument Services provides reliable industrial
+                        instrumentation, automation solutions and agricultural
+                        products with a strong commitment to quality,
+                        innovation, reliability and complete customer
+                        satisfaction across India.
+
+                    </p>
+
+                    <div class="footer-social">
+
+                        <a href="https://www.facebook.com/share/1JK81cQRDe/"
+                           target="_blank"
+                           aria-label="Facebook">
+
+                            <i class="fab fa-facebook-f"></i>
+
+                        </a>
+
+                        <a href="https://www.linkedin.com/in/vilas-chavan-4a48ba413"
+                           target="_blank"
+                           aria-label="LinkedIn">
+
+                            <i class="fab fa-linkedin-in"></i>
+
+                        </a>
+
+                    </div>
 
                 </div>
 
             </div>
 
-            <!-- Quick Links -->
+            <!-- ===================================== -->
+            <!-- QUICK LINKS -->
+            <!-- ===================================== -->
 
-            <div class="col-lg-4">
+            <div class="col-lg-4 col-md-6">
 
-                <h5 class="mb-4">
+                <h5 class="footer-heading">
 
                     Quick Links
 
@@ -268,100 +294,164 @@
                 <ul class="footer-links">
 
                     <li>
+
                         <a href="{{ url_for('home') }}">
+
+                            <i class="fa-solid fa-angle-right me-2"></i>
+
                             Home
+
                         </a>
+
                     </li>
 
                     <li>
+
                         <a href="{{ url_for('about') }}">
+
+                            <i class="fa-solid fa-angle-right me-2"></i>
+
                             About Us
+
                         </a>
+
                     </li>
 
                     <li>
+
                         <a href="{{ url_for('products') }}">
+
+                            <i class="fa-solid fa-angle-right me-2"></i>
+
                             Products
+
                         </a>
+
                     </li>
 
                     <li>
+
                         <a href="{{ url_for('blogs') }}">
+
+                            <i class="fa-solid fa-angle-right me-2"></i>
+
                             Blogs
+
                         </a>
+
                     </li>
 
                     <li>
+
                         <a href="{{ url_for('certifications') }}">
+
+                            <i class="fa-solid fa-angle-right me-2"></i>
+
                             Certifications
+
                         </a>
+
                     </li>
 
                     <li>
+
                         <a href="{{ url_for('contact') }}">
-                            Contact
+
+                            <i class="fa-solid fa-angle-right me-2"></i>
+
+                            Contact Us
+
                         </a>
+
                     </li>
 
                 </ul>
 
             </div>
 
-            <!-- Contact -->
+            <!-- ===================================== -->
+            <!-- CONTACT INFORMATION -->
+            <!-- ===================================== -->
 
-            <div class="col-lg-4">
+            <div class="col-lg-4 col-md-12">
 
-                <h5 class="mb-4">
+                <h5 class="footer-heading">
 
                     Contact Information
 
                 </h5>
 
-                <p>
+                <ul class="footer-contact">
 
-                    <i class="fa-solid fa-location-dot text-info me-2"></i>
+                    <li>
 
-                    PA/P Dahigaon, Tal. Koregaon, Dist. Satara, Maharashtra - 415524
+                        <i class="fa-solid fa-location-dot"></i>
 
-                </p>
+                        <span>
 
-                <p>
+                            A/P Dahigaon, Tal. Koregaon,<br>
+                            Dist. Satara, Maharashtra - 415524
 
-                    <i class="fa-solid fa-envelope text-info me-2"></i>
+                        </span>
 
-                    info@mudhaiinstrumentservices.com
+                    </li>
 
-                </p>
+                    <li>
 
-                <p>
+                        <i class="fa-solid fa-envelope"></i>
 
-                    <i class="fa-solid fa-phone text-info me-2"></i>
+                        <span>
 
-                    +91 9834424390
+                            info@mudhaiinstrumentservices.com
 
-                </p>
+                        </span>
 
-                <p>
+                    </li>
 
-                    <i class="fa-solid fa-clock text-info me-2"></i>
+                    <li>
 
-                    Available 24/7 for Customer Support & Emergency Services
+                        <i class="fa-solid fa-phone"></i>
 
-                </p>
+                        <span>
+
+                            +91 9834424390
+
+                        </span>
+
+                    </li>
+
+                    <li>
+
+                        <i class="fa-solid fa-clock"></i>
+
+                        <span>
+
+                            Available 24/7 for Customer Support
+                            & Emergency Services
+
+                        </span>
+
+                    </li>
+
+                </ul>
 
             </div>
 
         </div>
 
-        <hr class="my-5">
+        <!-- ===================================== -->
+        <!-- FOOTER BOTTOM -->
+        <!-- ===================================== -->
 
-        <div class="text-center">
+        <div class="footer-bottom">
 
-            © <span id="year"></span>
+            <p>
 
-            Mudhai Instrument Services.
+                © <span id="year"></span>
+                <strong>Mudhai Instrument Services</strong>.
+                All Rights Reserved.
 
-            All Rights Reserved.
+            </p>
 
         </div>
 

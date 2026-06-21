@@ -130,26 +130,15 @@ function initializeCursorGlow(){
 /* ==========================================
    NAVBAR
 ========================================== */
-
 function initializeNavbar(){
 
     const navbar = document.querySelector(".custom-navbar");
 
     if(!navbar) return;
 
-    let lastScroll = window.pageYOffset;
-
-    let ticking = false;
-
-    const scrollThreshold = 15;
-
     function updateNavbar(){
 
-        const currentScroll = window.pageYOffset;
-
-        /* Navbar Background */
-
-        if(currentScroll > 40){
+        if(window.scrollY > 40){
 
             navbar.classList.add("navbar-scrolled");
 
@@ -159,44 +148,11 @@ function initializeNavbar(){
 
         }
 
-        /* Hide Navbar */
-
-        if(
-            currentScroll > lastScroll + scrollThreshold &&
-            currentScroll > 120
-        ){
-
-            navbar.classList.add("nav-hidden");
-
-        }
-
-        /* Show Navbar */
-
-        else if(
-            currentScroll < lastScroll - scrollThreshold
-        ){
-
-            navbar.classList.remove("nav-hidden");
-
-        }
-
-        lastScroll = currentScroll;
-
-        ticking = false;
-
     }
 
-    window.addEventListener("scroll",function(){
+    window.addEventListener("scroll", updateNavbar);
 
-        if(!ticking){
-
-            window.requestAnimationFrame(updateNavbar);
-
-            ticking = true;
-
-        }
-
-    });
+    updateNavbar();
 
 }
 
